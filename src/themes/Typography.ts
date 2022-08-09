@@ -5,6 +5,10 @@ const baseTypographyOptions: TypographyOptions = {
     fontSize: "20px",
     fontWeight: 400,
   },
+  h2: {
+    fontSize: "16px",
+    fontWeight: 400,
+  },
   body1: {
     fontSize: "12px",
     fontWeight: 400,
