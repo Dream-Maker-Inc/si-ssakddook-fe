@@ -5,25 +5,20 @@ import { LightColor } from "./Color";
 const baseTypographyOptions: TypographyOptions = {
   fontFamily: "IropkeBatangM,sans-serif",
   h1: {
-    fontSize: "20px",
-    fontWeight: 400,
+    fontSize: "20px", //20px
   },
   h2: {
-    fontSize: "4.44vw", //16px
-    fontWeight: 400,
+    fontSize: "16px", //16px
     color: LightColor.TextMain,
   },
   body1: {
-    fontSize: "3.33vw", // 12px
-    fontWeight: 400,
+    fontSize: "12px", // 12px
   },
   body2: {
-    fontSize: "2.77vw", //10px
-    fontWeight: 400,
+    fontSize: "10px", //10px
   },
   caption: {
-    fontSize: "2.77vw", //10px
-    fontWeight: 400,
+    fontSize: "10px", //10px
     color: LightColor.Gray100,
   },
 };
