@@ -1,4 +1,10 @@
 @import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.css");
+
+@font-face {
+  font-family: "IropkeBatangM";
+  src: url("./fonts/IropkeBatangM.otf") format("opentype");
+}
+
 html,
 body {
   width: 100vw;
@@ -8,8 +14,7 @@ body {
 
   background-color: #f5f5f5;
 
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "IropkeBatangM";
 }
 
 a {
@@ -23,7 +28,6 @@ a {
 #__next {
   width: 100%;
   height: 100%;
-  padding: 16px;
 
   overflow: hidden;
 }

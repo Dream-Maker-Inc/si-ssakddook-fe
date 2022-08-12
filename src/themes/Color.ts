@@ -8,6 +8,7 @@ export enum LightColor {
   TextMain = "#606060",
   TextSub = "#DDDDDD",
 
+  Gray100 = "#999999",
   Gray500 = "#F1F1F1",
 }
 

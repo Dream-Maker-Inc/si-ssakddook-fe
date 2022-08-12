@@ -9,7 +9,20 @@ export const lightTheme = createTheme({
   typography: lightTypographyOptions,
   shape: { borderRadius: 8 },
 
-  components: {},
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: "8px",
+          height: "5.65vh",
+          minHeight: "36px",
+          boxShadow: "none",
+          margin: "0px",
+          fontSize: "3.3vw",
+        },
+      },
+    },
+  },
 });
 
 export enum ThemeTypes {
