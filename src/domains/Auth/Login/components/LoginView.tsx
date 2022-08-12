@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useLoginView } from "./useLoginView";
 
 export const LoginView = () => {
-  const { login } = useLoginView();
+  const { emailState, pwState, login } = useLoginView();
   return (
     <div css={sx.root}>
       <div css={sx.container}>
@@ -22,13 +22,25 @@ export const LoginView = () => {
         <div css={sx.loginBoxContainer}>
           <Typography variant="h1">로그인</Typography>
           <div css={sx.loginBox}>
-            <TextField fullWidth placeholder="아이디 (이메일)" />
-            <TextField fullWidth placeholder="비밀번호" />
+            <TextField
+              fullWidth
+              placeholder="아이디 (이메일)"
+              value={emailState.value}
+              onChange={emailState.onChange}
+              error={emailState.error}
+            />
+            <TextField
+              fullWidth
+              placeholder="비밀번호"
+              value={pwState.value}
+              onChange={pwState.onChange}
+            />
             <Button
-              onClick={login.onClick}
               fullWidth
               variant="contained"
               color="primary"
+              onClick={login.onClick}
+              disabled={login.disabled}
             >
               <Typography variant="body1" color="white">
                 로그인
