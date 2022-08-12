@@ -42,7 +42,12 @@ export const IntroView = () => {
           <Button fullWidth variant="contained" color="primary">
             회원가입
           </Button>
-          <Button fullWidth variant="contained" color="secondary">
+          <Button
+            fullWidth
+            variant="contained"
+            color="secondary"
+            sx={{ color: "#606060" }}
+          >
             로그인
           </Button>
         </div>
