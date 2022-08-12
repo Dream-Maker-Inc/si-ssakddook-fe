@@ -1,8 +1,10 @@
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
-import { setMaxListeners } from "process";
+import { useIntroView } from "./useIntroView";
 export const IntroView = () => {
+  const { signup, login } = useIntroView();
+
   return (
     <div css={sx.root}>
       <div css={sx.container}>
@@ -17,7 +19,7 @@ export const IntroView = () => {
 
         <Typography
           variant="h2"
-          lineHeight="7.09vw"
+          lineHeight="26px"
           textAlign="center"
           mt="10.9vh"
         >
@@ -39,16 +41,25 @@ export const IntroView = () => {
           </Typography>
         </div>
         <div css={sx.buttonWrapper}>
-          <Button fullWidth variant="contained" color="primary">
-            회원가입
+          <Button
+            onClick={signup.onClick}
+            fullWidth
+            variant="contained"
+            color="primary"
+          >
+            <Typography variant="body1" color="white">
+              회원가입
+            </Typography>
           </Button>
           <Button
+            onClick={login.onClick}
             fullWidth
             variant="contained"
             color="secondary"
-            sx={{ color: "#606060" }}
           >
-            로그인
+            <Typography variant="body1" color="#606060">
+              로그인
+            </Typography>
           </Button>
         </div>
       </div>
@@ -77,7 +88,7 @@ const sx = {
 
   smallTextWrapper: css`
     width: 100%;
-    height: 13.28vh;
+    height: 85px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
