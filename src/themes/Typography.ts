@@ -14,6 +14,7 @@ const baseTypographyOptions: TypographyOptions = {
 
   h4: {
     fontSize: "10px",
+    lineHeight: "16.65px",
     color: LightColor.TextMain,
   },
   body1: {
