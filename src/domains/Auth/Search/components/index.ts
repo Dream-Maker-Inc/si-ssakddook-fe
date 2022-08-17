@@ -1,0 +1,1 @@
+export { IdPasswordSearchView } from "./IdPasswordSearchView";

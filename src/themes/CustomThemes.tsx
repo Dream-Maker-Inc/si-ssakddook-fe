@@ -1,4 +1,3 @@
-import { unstable_useEnhancedEffect } from "@mui/material";
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { useMemo, useState } from "react";
 import { lightPalette } from "./Color";
@@ -19,6 +18,7 @@ export const lightTheme = createTheme({
           minHeight: "36px",
           boxShadow: "none",
           margin: "0px",
+          padding: "0px",
           fontSize: "12px",
           lineHeight: "20px",
         },

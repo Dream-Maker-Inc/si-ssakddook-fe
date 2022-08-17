@@ -31,6 +31,7 @@ export const LoginView = () => {
             />
             <TextField
               fullWidth
+              type="password"
               placeholder="비밀번호"
               value={pwState.value}
               onChange={pwState.onChange}
