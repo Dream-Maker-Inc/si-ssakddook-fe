@@ -24,6 +24,7 @@ export const lightTheme = createTheme({
         },
       },
     },
+
     MuiTextField: {
       styleOverrides: {
         root: {
