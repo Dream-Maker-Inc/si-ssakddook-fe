@@ -47,7 +47,7 @@ export const LoginView = () => {
                 로그인
               </Typography>
             </Button>
-            <Link href="/">
+            <Link href="/auth/search">
               <a css={sx.lostAccount}>회원정보를 잊으셨나요?</a>
             </Link>
           </div>
