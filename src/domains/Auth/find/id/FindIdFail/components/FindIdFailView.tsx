@@ -1,5 +1,4 @@
 import { Title } from "@/common/components/title/Title";
-import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
