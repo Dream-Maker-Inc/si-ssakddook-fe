@@ -15,6 +15,7 @@ export const lightTheme = createTheme({
         root: {
           borderRadius: "8px",
           height: "36px",
+          minHeight: "36px",
           boxShadow: "none",
           margin: "0px",
           padding: "0px",
@@ -44,6 +45,7 @@ export const lightTheme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: "8px",
+          height: "36px",
 
           // default
           "&.MuiOutlinedInput-root": {

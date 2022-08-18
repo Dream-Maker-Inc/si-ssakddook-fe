@@ -4,11 +4,16 @@ import { Typography } from "@mui/material";
 export type FormTitleWithDescProps = {
   title: string;
   desc: string;
+  marginBottom?: string;
 };
 
-export const FormTitleWithDesc = ({ title, desc }: FormTitleWithDescProps) => {
+export const FormTitleWithDesc = ({
+  title,
+  desc,
+  marginBottom = "10px",
+}: FormTitleWithDescProps) => {
   return (
-    <div css={sx.container}>
+    <div css={sx.container(marginBottom)}>
       <Typography variant="body1">{title}</Typography>
       <Typography variant="caption">{desc}</Typography>
     </div>
@@ -16,13 +21,13 @@ export const FormTitleWithDesc = ({ title, desc }: FormTitleWithDescProps) => {
 };
 
 const sx = {
-  container: css`
+  container: (marginBottom: string) => css`
     width: 100%;
 
     display: flex;
     flex-direction: column;
     gap: 4px;
 
-    margin-bottom: 10px;
+    margin-bottom: ${marginBottom};
   `,
 };

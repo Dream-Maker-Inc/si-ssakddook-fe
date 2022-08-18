@@ -1,0 +1,1 @@
+export { AgreementArticle } from "./ServiceArticle";

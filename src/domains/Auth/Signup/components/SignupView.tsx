@@ -1,6 +1,8 @@
 import { PrevButton } from "@/common/components/button/PrevButton";
 import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
 import { css } from "@emotion/react";
+import { Button, Typography } from "@mui/material";
+import { AgreementArticle } from "./AgreementArticle";
 import { PasswordArticle } from "./PasswordArticle";
 import { useSignupView } from "./useSignupView";
 import { ValidationArticle } from "./ValidationArticle";
@@ -59,7 +61,20 @@ export const SignupView = () => {
               onChange: confirmPwState.onChange,
             }}
           />
+          <AgreementArticle
+            titleProps={{
+              title: "이용 약관 동의",
+              desc: "서비스 이용에 필요한 약관에 동의해 주세요.",
+            }}
+            checkboxProps={{}}
+          />
         </div>
+
+        <Button fullWidth variant="contained" color="primary">
+          <Typography variant="body1" color="white">
+            다음
+          </Typography>
+        </Button>
       </div>
     </div>
   );
@@ -80,6 +95,9 @@ const sx = {
     position: relative;
 
     overflow-y: scroll;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   `,
 
   articleWrapper: css`
@@ -88,5 +106,17 @@ const sx = {
     display: flex;
     flex-direction: column;
     gap: 40px;
+    margin-bottom: 40px;
+  `,
+  buttonWrapper: css`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    font-size: 12px;
+
+    position: absolute;
+    bottom: 0px;
   `,
 };

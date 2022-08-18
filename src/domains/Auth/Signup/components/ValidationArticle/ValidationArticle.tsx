@@ -35,6 +35,7 @@ export const ValidationArticle = ({
         <Button
           variant="outlined"
           color="primary"
+          css={sx.button}
           onClick={fieldProps.onVerifyClick}
         >
           중복확인
@@ -49,5 +50,9 @@ const sx = {
     width: 100%;
     display: flex;
     gap: 16px;
+  `,
+  button: css`
+    width: 15%;
+    min-width: 79px;
   `,
 };
