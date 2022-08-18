@@ -1,5 +1,6 @@
 import { PrevButton } from "@/common/components/button/PrevButton";
 import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
+import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import { AgreementArticle } from "./AgreementArticle";
@@ -12,7 +13,7 @@ export const SignupView = () => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
-        <PrevButton />
+        <PrevButton location={RoutePath.Home} />
         <TitleWithDesc
           title="회원가입"
           desc="회원가입을 위한 필수 정보를 입력해주세요."
@@ -27,7 +28,16 @@ export const SignupView = () => {
               placeholder: "account@ssakduk.com",
               value: idState.value,
               onChange: idState.onChange,
-              onVerifyClick: () => alert(idState.value),
+              error: idState.error,
+              helperText: (
+                <Typography variant="caption" color={idState.color}>
+                  {idState.helperText}
+                </Typography>
+              ),
+            }}
+            buttonProps={{
+              onClick: idState.onValidatorClick,
+              disabled: idState.disabled,
             }}
           />
           <ValidationArticle
@@ -38,8 +48,8 @@ export const SignupView = () => {
             fieldProps={{
               value: nicknameState.value,
               onChange: nicknameState.onChange,
-              onVerifyClick: () => alert(nicknameState.value),
             }}
+            buttonProps={{}}
           />
           <PasswordArticle
             titleProps={{

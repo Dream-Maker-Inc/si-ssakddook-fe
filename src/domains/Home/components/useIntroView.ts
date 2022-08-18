@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-export const useIntroView = () => {
+export const useHomeView = () => {
   const router = useRouter();
 
   const handleLoginClick = () => {

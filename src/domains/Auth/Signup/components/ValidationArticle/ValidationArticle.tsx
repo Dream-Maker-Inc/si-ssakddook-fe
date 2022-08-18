@@ -1,4 +1,10 @@
-import { Button, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  ButtonProps,
+  TextField,
+  TextFieldProps,
+  Typography,
+} from "@mui/material";
 import { css } from "@emotion/react";
 
 import {
@@ -8,35 +14,25 @@ import {
 
 type ValidationArticleProps = {
   titleProps: FormTitleWithDescProps;
-  fieldProps: TextfieldProps;
-};
-
-type TextfieldProps = {
-  placeholder?: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onVerifyClick: () => void;
+  fieldProps: TextFieldProps;
+  buttonProps: ButtonProps;
 };
 
 export const ValidationArticle = ({
   titleProps,
   fieldProps,
+  buttonProps,
 }: ValidationArticleProps) => {
   return (
     <div>
       <FormTitleWithDesc title={titleProps.title} desc={titleProps.desc} />
       <div css={sx.fieldWrapper}>
-        <TextField
-          fullWidth
-          placeholder={fieldProps.placeholder}
-          value={fieldProps.value}
-          onChange={fieldProps.onChange}
-        />
+        <TextField fullWidth {...fieldProps} />
         <Button
           variant="outlined"
           color="primary"
           css={sx.button}
-          onClick={fieldProps.onVerifyClick}
+          {...buttonProps}
         >
           중복확인
         </Button>

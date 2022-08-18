@@ -1,0 +1,1 @@
+export { SplashView } from "./SplashView";

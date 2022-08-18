@@ -1,9 +1,9 @@
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
-import { useIntroView } from "./useIntroView";
-export const IntroView = () => {
-  const { signup, login } = useIntroView();
+import { useHomeView } from "./useIntroView";
+export const HomeView = () => {
+  const { signup, login } = useHomeView();
 
   return (
     <div css={sx.root}>

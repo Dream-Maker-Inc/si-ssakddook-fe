@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import Image from "next/image";
-export const HomeView = () => {
+export const SplashView = () => {
   return (
     <div css={sx.root}>
       <Image

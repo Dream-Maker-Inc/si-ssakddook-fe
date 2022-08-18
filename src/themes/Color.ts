@@ -10,6 +10,8 @@ export enum LightColor {
 
   Gray100 = "#999999",
   Gray500 = "#F1F1F1",
+
+  Error = "#D84849",
 }
 
 export const lightPalette: PaletteOptions = {
