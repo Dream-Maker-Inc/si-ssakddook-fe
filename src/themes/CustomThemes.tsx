@@ -14,8 +14,7 @@ export const lightTheme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: "8px",
-          height: "5.65vh",
-          minHeight: "36px",
+          height: "36px",
           boxShadow: "none",
           margin: "0px",
           padding: "0px",

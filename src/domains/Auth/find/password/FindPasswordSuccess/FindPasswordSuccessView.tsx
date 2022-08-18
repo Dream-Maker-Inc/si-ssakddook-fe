@@ -80,7 +80,7 @@ const sx = {
 
   alarm: css`
     position: absolute;
-    bottom: 8.7vh;
+    bottom: 56px;
   `,
   underline: css`
     text-decoration: underline;

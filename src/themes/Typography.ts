@@ -18,7 +18,8 @@ const baseTypographyOptions: TypographyOptions = {
     color: LightColor.TextMain,
   },
   body1: {
-    fontSize: "12px", // 12px
+    fontSize: "12px",
+    lineHeight: "20px", // 12px
   },
   body2: {
     fontSize: "10px", //10px
