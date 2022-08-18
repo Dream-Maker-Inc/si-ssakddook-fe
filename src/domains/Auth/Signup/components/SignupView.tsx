@@ -48,8 +48,17 @@ export const SignupView = () => {
             fieldProps={{
               value: nicknameState.value,
               onChange: nicknameState.onChange,
+              error: nicknameState.error,
+              helperText: (
+                <Typography variant="caption" color={nicknameState.color}>
+                  {nicknameState.helperText}
+                </Typography>
+              ),
             }}
-            buttonProps={{}}
+            buttonProps={{
+              onClick: nicknameState.onValidatorClick,
+              disabled: nicknameState.disabled,
+            }}
           />
           <PasswordArticle
             titleProps={{

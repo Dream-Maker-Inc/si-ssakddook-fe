@@ -1,4 +1,5 @@
 import { LightColor } from "@/themes/Color";
+import { Regex } from "@/utils/validation/common/CommonRegex";
 import { isEmailAddress } from "@/utils/validation/Email/EmailValidation";
 import { collapseClasses, colors } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -38,32 +39,35 @@ export const useSignupView = () => {
       setIsIdError(true);
       setIdHelperText("이메일을 형식을 확인해주세요.");
     } else {
+      // 중복인 겨우
       setIsIdError(true);
       setIdHelperText("이메일을 사용할 수 없어요");
     }
   };
 
   // nickname
+  const nickValidation = Regex.nickname.test(nickname);
 
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
   };
 
   useEffect(() => {
-    setIsIdError(false);
-    setIsIdValidationPassed(false);
-  }, [id]);
+    setIsNicknameError(false);
+    setIsNicknameValidationPassed(false);
+  }, [nickname]);
 
   const handleNicknameValidatorClick = () => {
-    if (idValidation) {
-      setIsIdValidationPassed(true);
-      setIdHelperText("이메일을 사용할 수 있어요");
-    } else if (!idValidation) {
-      setIsIdError(true);
-      setIdHelperText("이메일을 형식을 확인해주세요.");
+    if (nickValidation) {
+      setIsNicknameValidationPassed(true);
+      setNicknameHelperText("닉네임을 사용할 수 있어요");
+    } else if (!nickValidation) {
+      setIsNicknameError(true);
+      setNicknameHelperText("닉네임을 형식을 확인해주세요.");
     } else {
-      setIsIdError(true);
-      setIdHelperText("이메일을 사용할 수 없어요");
+      // 중복인 경우
+      setIsNicknameError(true);
+      setNicknameHelperText("닉네임을 사용할 수 없어요");
     }
   };
 
@@ -90,13 +94,21 @@ export const useSignupView = () => {
     nicknameState: {
       value: nickname,
       onChange: handleNicknameChange,
+      helperText:
+        (isNicknameError && nicknameHelperText) ||
+        (isNicknameValidationPassed && nicknameHelperText),
+      isValidationPassed: isNicknameValidationPassed,
+      error: isNicknameError,
+      color: isNicknameError ? LightColor.Error : LightColor.PrimaryDark,
+      onValidatorClick: handleNicknameValidatorClick,
+      disabled: !nickname || isNicknameError || isNicknameValidationPassed,
     },
     pwState: {
-      value: nickname,
+      value: pw,
       onChange: handlePwChange,
     },
     confirmPwState: {
-      value: nickname,
+      value: confirmPw,
       onChange: handleConfirmPwChange,
     },
   };
