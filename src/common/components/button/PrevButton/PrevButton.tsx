@@ -2,7 +2,6 @@ import Image from "next/image";
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
 import { IconButton } from "@mui/material";
-import { Url } from "url";
 
 type TPrevButton = {
   location?: string;
