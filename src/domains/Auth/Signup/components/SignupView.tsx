@@ -66,8 +66,11 @@ export const SignupView = () => {
               desc: "영문 대문자와 특수문자가 포함된 8자 이상의 비밀번호를 설정해 주세요.",
             }}
             fieldProps={{
+              type: "password",
               value: pwState.value,
               onChange: pwState.onChange,
+              error: pwState.error,
+              helperText: pwState.helperText,
             }}
           />
           <PasswordArticle
@@ -76,8 +79,15 @@ export const SignupView = () => {
               desc: "비밀번호를 다시 한 번 입력해 주세요.",
             }}
             fieldProps={{
+              type: "password",
               value: confirmPwState.value,
               onChange: confirmPwState.onChange,
+              error: confirmPwState.error,
+              helperText: (
+                <Typography variant="caption" color={confirmPwState.color}>
+                  {confirmPwState.helperText}
+                </Typography>
+              ),
             }}
           />
           <AgreementArticle

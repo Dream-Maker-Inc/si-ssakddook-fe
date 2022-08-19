@@ -71,13 +71,19 @@ export const useSignupView = () => {
     }
   };
 
+  // pw
   const handlePwChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPw(e.target.value);
   };
 
+  const pwValidation = Regex.password.test(pw) ? true : false;
+
+  // confirm pw
   const handleConfirmPwChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setConfirmPw(e.target.value);
   };
+
+  const confirmPwValidation = confirmPw === pw ? true : false;
 
   return {
     idState: {
@@ -106,10 +112,19 @@ export const useSignupView = () => {
     pwState: {
       value: pw,
       onChange: handlePwChange,
+      error: !pwValidation && pw !== "" ? true : false,
+      helperText: !pwValidation && pw !== "" && "비밀번호 조건을 확인해주세요.",
     },
     confirmPwState: {
       value: confirmPw,
       onChange: handleConfirmPwChange,
+      error: !confirmPwValidation && confirmPw !== "" ? true : false,
+      helperText:
+        (!confirmPwValidation &&
+          confirmPw !== "" &&
+          "비밀번호가 일치하지 않아요.") ||
+        (confirmPwValidation && confirmPw !== "" && "비밀번호가 일치해요."),
+      color: !confirmPwValidation ? LightColor.Error : LightColor.PrimaryDark,
     },
   };
 };
