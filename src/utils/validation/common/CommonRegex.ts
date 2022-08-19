@@ -7,5 +7,5 @@ export const Regex = {
   name: /^[가-힣|a-z|A-Z]+$/,
   site: /^https?:\/\/[\w\-\.]+/g,
   businessNumber: /([0-9]{3})-?([0-9]{2})-?([0-9]{5})/,
-  nickname: /^[가-힣|a-z|A-Z-_]{2,16}$/,
+  nickname: /^[가-힣|a-z|A-Z-_]{1,10}$/,
 };
