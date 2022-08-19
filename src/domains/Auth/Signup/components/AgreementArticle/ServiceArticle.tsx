@@ -1,22 +1,26 @@
 import { css } from "@emotion/react";
-import { Checkbox, FormControlLabel, Typography } from "@mui/material";
+import {
+  Checkbox,
+  CheckboxProps,
+  FormControlLabel,
+  Typography,
+} from "@mui/material";
 import { FormTitleWithDesc } from "../FormTitleWithDesc";
 import { FormTitleWithDescProps } from "../FormTitleWithDesc/FormTitleWithDesc";
 import CheckBoxRoundedIcon from "@mui/icons-material/CheckBoxRounded";
 
 type AgreementArticleProps = {
   titleProps: FormTitleWithDescProps;
-  checkboxProps: CheckBoxProps;
-};
-
-type CheckBoxProps = {
-  open?: boolean;
-  onChange?: () => void;
+  firstCheckboxProps: CheckboxProps;
+  secondCheckboxProps: CheckboxProps;
+  thirdCheckboxProps: CheckboxProps;
 };
 
 export const AgreementArticle = ({
   titleProps,
-  checkboxProps,
+  firstCheckboxProps,
+  secondCheckboxProps,
+  thirdCheckboxProps,
 }: AgreementArticleProps) => {
   return (
     <div css={sx.container}>
@@ -26,50 +30,25 @@ export const AgreementArticle = ({
         marginBottom={"12px"}
       />
       <div css={sx.checkboxWrapper}>
-        <FormControlLabel
-          control={
-            <Checkbox
-              icon={<CheckBoxRoundedIcon />}
-              checkedIcon={<CheckBoxRoundedIcon />}
-              css={sx.chekcbox}
-              defaultChecked
-            />
-          }
-          label={
-            <Typography variant="h4" ml="10px">
-              [필수] <a css={sx.span}>서비스 이용 약관</a>에 동의합니다.
-            </Typography>
-          }
+        <CheckBox
+          label={"에 동의합니다."}
+          hightlightText={"서비스 이용 약관"}
+          necessary={true}
+          props={firstCheckboxProps}
         />
-        <FormControlLabel
-          control={
-            <Checkbox
-              icon={<CheckBoxRoundedIcon />}
-              checkedIcon={<CheckBoxRoundedIcon />}
-              css={sx.chekcbox}
-              defaultChecked
-            />
-          }
-          label={
-            <Typography variant="h4" ml="10px">
-              [필수] <a css={sx.span}>개인정보 수집 및 이용</a>에 동의합니다.
-            </Typography>
-          }
+
+        <CheckBox
+          label={"에 동의합니다."}
+          hightlightText={"개인정보 수집 및 이용"}
+          necessary={true}
+          props={secondCheckboxProps}
         />
-        <FormControlLabel
-          control={
-            <Checkbox
-              icon={<CheckBoxRoundedIcon />}
-              checkedIcon={<CheckBoxRoundedIcon />}
-              css={sx.chekcbox}
-              defaultChecked
-            />
-          }
-          label={
-            <Typography variant="h4" ml="10px">
-              [선택] <a css={sx.span}>프로모션 정보 수신</a>에 동의합니다.
-            </Typography>
-          }
+
+        <CheckBox
+          label={"에 동의합니다."}
+          hightlightText={"프로모션 정보 수신"}
+          necessary={false}
+          props={thirdCheckboxProps}
         />
       </div>
     </div>
@@ -102,4 +81,38 @@ const sx = {
     flex-direction: column;
     gap: 10px;
   `,
+};
+
+type CustomCheckBoxProps = {
+  label: string;
+  hightlightText: string;
+  necessary: boolean;
+  props?: CheckboxProps;
+};
+
+const CheckBox = ({
+  label,
+  hightlightText,
+  necessary = true,
+  props,
+}: CustomCheckBoxProps) => {
+  return (
+    <FormControlLabel
+      control={
+        <Checkbox
+          icon={<CheckBoxRoundedIcon />}
+          checkedIcon={<CheckBoxRoundedIcon />}
+          css={sx.chekcbox}
+          {...props}
+        />
+      }
+      label={
+        <Typography variant="h4" ml="10px">
+          {necessary ? "[필수]" : "[선택]"}{" "}
+          <a css={sx.span}>{hightlightText}</a>
+          {label}
+        </Typography>
+      }
+    />
+  );
 };

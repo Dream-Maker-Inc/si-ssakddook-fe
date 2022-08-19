@@ -9,7 +9,8 @@ import { useSignupView } from "./useSignupView";
 import { ValidationArticle } from "./ValidationArticle";
 
 export const SignupView = () => {
-  const { idState, nicknameState, pwState, confirmPwState } = useSignupView();
+  const { idState, nicknameState, pwState, confirmPwState, checkState } =
+    useSignupView();
   return (
     <div css={sx.root}>
       <div css={sx.container}>
@@ -95,7 +96,18 @@ export const SignupView = () => {
               title: "이용 약관 동의",
               desc: "서비스 이용에 필요한 약관에 동의해 주세요.",
             }}
-            checkboxProps={{}}
+            firstCheckboxProps={{
+              checked: checkState.firstCheck.value,
+              onChange: checkState.firstCheck.onChange,
+            }}
+            secondCheckboxProps={{
+              checked: checkState.secondCheck.value,
+              onChange: checkState.secondCheck.onChange,
+            }}
+            thirdCheckboxProps={{
+              checked: checkState.thirdCheck.value,
+              onChange: checkState.thirdCheck.onChange,
+            }}
           />
         </div>
 

@@ -5,23 +5,13 @@ import { collapseClasses, colors } from "@mui/material";
 import { useEffect, useState } from "react";
 
 export const useSignupView = () => {
+  // id
   const [id, setId] = useState("");
   const [isIdError, setIsIdError] = useState(false);
   const [isIdValidationPassed, setIsIdValidationPassed] = useState(false);
   const [idHelperText, setIdHelperText] = useState("");
-
   const idValidation = isEmailAddress(id);
 
-  const [nickname, setNickname] = useState("");
-  const [isNicknameError, setIsNicknameError] = useState(false);
-  const [isNicknameValidationPassed, setIsNicknameValidationPassed] =
-    useState(false);
-  const [nicknameHelperText, setNicknameHelperText] = useState("");
-
-  const [pw, setPw] = useState("");
-  const [confirmPw, setConfirmPw] = useState("");
-
-  // id
   const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
   };
@@ -46,6 +36,12 @@ export const useSignupView = () => {
   };
 
   // nickname
+  const [nickname, setNickname] = useState("");
+  const [isNicknameError, setIsNicknameError] = useState(false);
+  const [isNicknameValidationPassed, setIsNicknameValidationPassed] =
+    useState(false);
+  const [nicknameHelperText, setNicknameHelperText] = useState("");
+
   const nickValidation = Regex.nickname.test(nickname);
 
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,6 +68,8 @@ export const useSignupView = () => {
   };
 
   // pw
+  const [pw, setPw] = useState("");
+
   const handlePwChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPw(e.target.value);
   };
@@ -79,11 +77,30 @@ export const useSignupView = () => {
   const pwValidation = Regex.password.test(pw) ? true : false;
 
   // confirm pw
+  const [confirmPw, setConfirmPw] = useState("");
+
   const handleConfirmPwChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setConfirmPw(e.target.value);
   };
 
   const confirmPwValidation = confirmPw === pw ? true : false;
+
+  // checkbox
+  const [firstCheck, setFirstCheck] = useState(false);
+  const [secondCheck, setSecondCheck] = useState(false);
+  const [thirdCheck, setThirdCheck] = useState(false);
+
+  const handleFirstCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFirstCheck(e.target.checked);
+  };
+
+  const handleSecondCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSecondCheck(e.target.checked);
+  };
+
+  const handleThirdCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setThirdCheck(e.target.checked);
+  };
 
   return {
     idState: {
@@ -125,6 +142,21 @@ export const useSignupView = () => {
           "비밀번호가 일치하지 않아요.") ||
         (confirmPwValidation && confirmPw !== "" && "비밀번호가 일치해요."),
       color: !confirmPwValidation ? LightColor.Error : LightColor.PrimaryDark,
+    },
+
+    checkState: {
+      firstCheck: {
+        value: firstCheck,
+        onChange: handleFirstCheckChange,
+      },
+      secondCheck: {
+        value: secondCheck,
+        onChange: handleSecondCheckChange,
+      },
+      thirdCheck: {
+        value: thirdCheck,
+        onChange: handleThirdCheckChange,
+      },
     },
   };
 };
