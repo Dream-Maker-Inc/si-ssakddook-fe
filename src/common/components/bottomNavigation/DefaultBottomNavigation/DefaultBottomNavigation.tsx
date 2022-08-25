@@ -1,5 +1,4 @@
 import { RoutePath } from "@/constants/Path";
-import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { useRouter } from "next/router";
 import { css } from "@emotion/react";
 import Link from "next/link";
@@ -49,7 +48,8 @@ export const DefaultBottomNavigation = () => {
 
   return (
     <div>
-      {router.asPath === (main || chat || community || diary || more) && (
+      {/* {router.asPath === (main || chat || community || diary || more) && ( */}
+      {router.asPath === community && (
         <div css={styles.root}>
           {navigationItems.map((it, index) => (
             <div css={styles.link} key={index}>

@@ -11,10 +11,19 @@ const baseTypographyOptions: TypographyOptions = {
     lineHeight: "26.65px",
     color: LightColor.TextMain,
   },
+  h3: {
+    fontSize: "14px",
+    lineHeight: "16.65px",
+  },
 
   h4: {
     fontSize: "10px",
     lineHeight: "16.65px",
+    color: LightColor.TextMain,
+  },
+  h5: {
+    fontSize: "8px",
+    lineHeight: "13.32px",
     color: LightColor.TextMain,
   },
   body1: {
@@ -23,6 +32,7 @@ const baseTypographyOptions: TypographyOptions = {
   },
   body2: {
     fontSize: "10px", //10px
+    lineHeight: "16.65px",
   },
   caption: {
     fontSize: "10px", //10px

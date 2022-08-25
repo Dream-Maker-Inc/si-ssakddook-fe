@@ -1,8 +1,8 @@
-import { MainView } from "@/domains/Main";
+import { CommunityMainView } from "@/domains/community/CommunityMain";
 import { NextPage } from "next";
 
-const MainPage: NextPage = () => {
-  return <MainView />;
+const CommunityMainPage: NextPage = () => {
+  return <CommunityMainView />;
 };
 
-export default MainPage;
+export default CommunityMainPage;

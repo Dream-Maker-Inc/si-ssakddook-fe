@@ -18,7 +18,8 @@ export const MainAppbar = () => {
 
   return (
     <div>
-      {router.asPath === (main || chat || community || diary || more) && (
+      {/* {router.asPath === (main || chat || community || diary || more) && ( */}
+      {router.asPath === community && (
         <div css={sx.container}>
           <div css={sx.appbarContainer}>
             <IconButton>
