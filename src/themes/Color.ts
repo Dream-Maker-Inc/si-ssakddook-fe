@@ -9,6 +9,7 @@ export enum LightColor {
   TextSub = "#DDDDDD",
 
   Gray100 = "#999999",
+  Gray200 = "#434343",
   Gray500 = "#F1F1F1",
 
   Error = "#D84849",

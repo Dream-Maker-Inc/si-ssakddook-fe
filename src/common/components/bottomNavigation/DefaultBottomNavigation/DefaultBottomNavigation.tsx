@@ -49,7 +49,7 @@ export const DefaultBottomNavigation = () => {
 
   return (
     <div>
-      {
+      {router.asPath === (main || chat || community || diary || more) && (
         <div css={styles.root}>
           {navigationItems.map((it, index) => (
             <div css={styles.link} key={index}>
@@ -68,7 +68,7 @@ export const DefaultBottomNavigation = () => {
             </div>
           ))}
         </div>
-      }
+      )}
     </div>
   );
 };

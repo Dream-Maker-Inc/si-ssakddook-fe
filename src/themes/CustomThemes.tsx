@@ -10,6 +10,27 @@ export const lightTheme = createTheme({
   shape: { borderRadius: 8 },
 
   components: {
+    MuiToolbar: {
+      styleOverrides: {
+        root: {
+          minHeight: "50px",
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          minHeight: "50px",
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          whiteSpace: "break-spaces",
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
