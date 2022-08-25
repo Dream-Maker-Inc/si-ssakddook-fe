@@ -1,5 +1,5 @@
 [스플래시 페이지](https://ssakddook.netlify.app/splash)<br />
-[메인 페이지](https://ssakddook.netlify.app/home)<br />
+[홈 페이지](https://ssakddook.netlify.app/home)<br />
 [로그인 페이지](https://ssakddook.netlify.app/auth/login)<br />
 [회원정보 찾기 페이지](https://ssakddook.netlify.app/auth/search)<br />
 [아이디 찾기 페이지 - 본인인증](https://ssakddook.netlify.app/auth/find/id)<br />
