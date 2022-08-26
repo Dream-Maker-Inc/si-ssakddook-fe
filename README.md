@@ -8,4 +8,8 @@
 [회원가입 페이지](https://ssakddook.netlify.app/auth/signup)<br />
 [회원가입 완료 페이지](https://ssakddook.netlify.app/auth/signupsuccess)<br/>
 [메인 페이지](https://ssakddook.netlify.app/main)<br/>
+[커뮤니티 페이지 - 리스트 ](https://ssakddook.netlify.app/community/list)<br />
+[커뮤니티 페이지 - 서치 ](https://ssakddook.netlify.app/community/search)<br />
+[커뮤니티 페이지 - 디테일 ](https://ssakddook.netlify.app/community/detail)<br />
+
 
