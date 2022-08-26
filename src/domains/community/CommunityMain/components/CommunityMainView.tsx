@@ -1,3 +1,4 @@
+import { BoardItem } from "@/common/components/board/BoardItem";
 import { FloatingButton } from "@/common/components/button/FloatingButton";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
@@ -9,7 +10,7 @@ import { NoticeBox } from "./NoticeBox";
 import { useCommunityMainView } from "./useCommunityMainView";
 
 export const CommunityMainView = () => {
-  const { boxData } = useCommunityMainView();
+  const { boxData, boardData } = useCommunityMainView();
   return (
     <div css={sx.root}>
       <div css={sx.container}>
@@ -38,206 +39,18 @@ export const CommunityMainView = () => {
               </div>
             </Link>
           </div>
-          <div css={sx.item}>
-            <div css={sx.rowWrapper}>
-              <Typography variant="body2" color="black">
-                고민 상담해 드립니다.
-              </Typography>
-              <Typography fontSize="8px" color={LightColor.Gray100}>
-                3일전
-              </Typography>
-            </div>
-            <div css={sx.rowWrapper}>
-              <Typography fontSize="8px" color={LightColor.Gray100}>
-                고독한 강아지{" · "}직장 폭력
-              </Typography>
 
-              <div css={sx.chatWrapper}>
-                <div css={sx.wrapper}>
-                  <Image
-                    width="10px"
-                    height="10px"
-                    src="/img/icon-chat-heart.svg"
-                    alt=""
-                  />
-                  <Typography fontSize="8px" color={LightColor.Gray100}>
-                    1.2만
-                  </Typography>
-                </div>
-                <div css={sx.wrapper}>
-                  <Image
-                    width="10px"
-                    height="10px"
-                    src="/img/icon-chat-comment.svg"
-                    alt=""
-                  />
-                  <Typography fontSize="8px" color={LightColor.Gray100}>
-                    1.2만
-                  </Typography>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div css={sx.item}>
-            <div css={sx.rowWrapper}>
-              <Typography variant="body2" color="black">
-                고민 상담해 드립니다.
-              </Typography>
-              <Typography fontSize="8px" color={LightColor.Gray100}>
-                3일전
-              </Typography>
-            </div>
-            <div css={sx.rowWrapper}>
-              <Typography fontSize="8px" color={LightColor.Gray100}>
-                고독한 강아지{" · "}직장 폭력
-              </Typography>
-
-              <div css={sx.chatWrapper}>
-                <div css={sx.wrapper}>
-                  <Image
-                    width="10px"
-                    height="10px"
-                    src="/img/icon-chat-heart.svg"
-                    alt=""
-                  />
-                  <Typography fontSize="8px" color={LightColor.Gray100}>
-                    1.2만
-                  </Typography>
-                </div>
-                <div css={sx.wrapper}>
-                  <Image
-                    width="10px"
-                    height="10px"
-                    src="/img/icon-chat-comment.svg"
-                    alt=""
-                  />
-                  <Typography fontSize="8px" color={LightColor.Gray100}>
-                    1.2만
-                  </Typography>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div css={sx.item}>
-            <div css={sx.rowWrapper}>
-              <Typography variant="body2" color="black">
-                고민 상담해 드립니다.
-              </Typography>
-              <Typography fontSize="8px" color={LightColor.Gray100}>
-                3일전
-              </Typography>
-            </div>
-            <div css={sx.rowWrapper}>
-              <Typography fontSize="8px" color={LightColor.Gray100}>
-                고독한 강아지{" · "}직장 폭력
-              </Typography>
-
-              <div css={sx.chatWrapper}>
-                <div css={sx.wrapper}>
-                  <Image
-                    width="10px"
-                    height="10px"
-                    src="/img/icon-chat-heart.svg"
-                    alt=""
-                  />
-                  <Typography fontSize="8px" color={LightColor.Gray100}>
-                    1.2만
-                  </Typography>
-                </div>
-                <div css={sx.wrapper}>
-                  <Image
-                    width="10px"
-                    height="10px"
-                    src="/img/icon-chat-comment.svg"
-                    alt=""
-                  />
-                  <Typography fontSize="8px" color={LightColor.Gray100}>
-                    1.2만
-                  </Typography>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div css={sx.item}>
-            <div css={sx.rowWrapper}>
-              <Typography variant="body2" color="black">
-                고민 상담해 드립니다.
-              </Typography>
-              <Typography fontSize="8px" color={LightColor.Gray100}>
-                3일전
-              </Typography>
-            </div>
-            <div css={sx.rowWrapper}>
-              <Typography fontSize="8px" color={LightColor.Gray100}>
-                고독한 강아지{" · "}직장 폭력
-              </Typography>
-
-              <div css={sx.chatWrapper}>
-                <div css={sx.wrapper}>
-                  <Image
-                    width="10px"
-                    height="10px"
-                    src="/img/icon-chat-heart.svg"
-                    alt=""
-                  />
-                  <Typography fontSize="8px" color={LightColor.Gray100}>
-                    1.2만
-                  </Typography>
-                </div>
-                <div css={sx.wrapper}>
-                  <Image
-                    width="10px"
-                    height="10px"
-                    src="/img/icon-chat-comment.svg"
-                    alt=""
-                  />
-                  <Typography fontSize="8px" color={LightColor.Gray100}>
-                    1.2만
-                  </Typography>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div css={sx.item}>
-            <div css={sx.rowWrapper}>
-              <Typography variant="body2" color="black">
-                고민 상담해 드립니다.
-              </Typography>
-              <Typography fontSize="8px" color={LightColor.Gray100}>
-                3일전
-              </Typography>
-            </div>
-            <div css={sx.rowWrapper}>
-              <Typography fontSize="8px" color={LightColor.Gray100}>
-                고독한 강아지{" · "}직장 폭력
-              </Typography>
-
-              <div css={sx.chatWrapper}>
-                <div css={sx.wrapper}>
-                  <Image
-                    width="10px"
-                    height="10px"
-                    src="/img/icon-chat-heart.svg"
-                    alt=""
-                  />
-                  <Typography fontSize="8px" color={LightColor.Gray100}>
-                    1.2만
-                  </Typography>
-                </div>
-                <div css={sx.wrapper}>
-                  <Image
-                    width="10px"
-                    height="10px"
-                    src="/img/icon-chat-comment.svg"
-                    alt=""
-                  />
-                  <Typography fontSize="8px" color={LightColor.Gray100}>
-                    1.2만
-                  </Typography>
-                </div>
-              </div>
-            </div>
-          </div>
+          {boardData.map((it, index) => (
+            <BoardItem
+              key={index}
+              title={it.title}
+              date={it.date}
+              nickname={it.nickname}
+              category={it.category}
+              like={it.like}
+              comments={it.comments}
+            />
+          ))}
         </div>
       </div>
       <FloatingButton />
@@ -294,31 +107,5 @@ const sx = {
     align-items: center;
 
     cursor: pointer;
-  `,
-
-  item: css`
-    width: 100%;
-    height: 52px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    border-bottom: 1px solid ${LightColor.Gray500};
-  `,
-  rowWrapper: css`
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  `,
-
-  chatWrapper: css`
-    display: flex;
-    gap: 10px;
-  `,
-  wrapper: css`
-    display: flex;
-    align-items: center;
-    gap: 2px;
   `,
 };

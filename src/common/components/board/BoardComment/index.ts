@@ -1,0 +1,1 @@
+export { BoardComment } from "./BoardComment";

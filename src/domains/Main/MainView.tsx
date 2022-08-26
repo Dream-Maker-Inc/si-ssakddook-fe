@@ -1,5 +1,3 @@
-import { MainAppbar } from "@/common/components/appbar/MainAppBar";
-import { DefaultBottomNavigation } from "@/common/components/bottomNavigation/DefaultBottomNavigation";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";

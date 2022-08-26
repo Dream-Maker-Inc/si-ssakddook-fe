@@ -12,6 +12,8 @@ export enum LightColor {
   Gray200 = "#434343",
   Gray500 = "#F1F1F1",
 
+  Green100 = "#dee7d7",
+
   Error = "#D84849",
 }
 
