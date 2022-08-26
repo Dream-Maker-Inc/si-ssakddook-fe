@@ -1,6 +1,7 @@
+import { FloatingButton } from "@/common/components/button/FloatingButton";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
-import { Button, Typography } from "@mui/material";
+import { Fab, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { CommunityBox } from "./CommunityBox/CommunityBox";
@@ -239,6 +240,7 @@ export const CommunityMainView = () => {
           </div>
         </div>
       </div>
+      <FloatingButton />
     </div>
   );
 };
