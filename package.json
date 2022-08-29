@@ -11,9 +11,15 @@
     "deploy": "next build && next export"
   },
   "dependencies": {
+    "@types/date-fns": "^2.6.0",
+    "@types/react-big-calendar": "^0.38.1",
+    "date-fns": "^2.29.2",
     "next": "12.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-big-calendar": "^1.5.0",
+    "react-dom": "18.2.0",
+    "react-horizontal-strip-datepicker": "^3.0.2",
+    "sass": "^1.54.5"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",

@@ -39,7 +39,7 @@ export const SearchTab = ({ value, onChange }: SearchTabProps) => {
 
 const sx = {
   tabContainer: css`
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 50px;
     left: 0px;

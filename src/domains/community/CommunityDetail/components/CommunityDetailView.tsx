@@ -1,5 +1,5 @@
 import { CommentWrite } from "@/common/components/board/CommentWrite";
-import { WritingTab } from "@/common/components/tab/WiritingTab";
+import { DetailTab } from "@/common/components/tab/DetailTab";
 import { css } from "@emotion/react";
 import { CommentSection } from "./CommentSection";
 import { ContentSection } from "./ContentSection";
@@ -11,7 +11,7 @@ export const CommunityDetailView = () => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
-        <WritingTab />
+        <DetailTab />
         <ContentSection />
         <ReactionSection />
         <CommentSection />

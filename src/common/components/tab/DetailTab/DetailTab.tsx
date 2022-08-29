@@ -3,7 +3,7 @@ import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import { BoardPrevButton } from "../../button/BoardPrevButton";
 
-export const WritingTab = () => {
+export const DetailTab = () => {
   return (
     <div css={sx.tabContainer}>
       <div css={sx.tabWrapper}>
@@ -21,7 +21,7 @@ export const WritingTab = () => {
 
 const sx = {
   tabContainer: css`
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 50px;
     left: 0px;

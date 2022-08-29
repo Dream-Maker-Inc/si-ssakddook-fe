@@ -20,6 +20,11 @@
     },
     "jsxImportSource": "@emotion/react"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/domains/diary/components/reousrces/events.js"
+  ],
   "exclude": ["node_modules"]
 }

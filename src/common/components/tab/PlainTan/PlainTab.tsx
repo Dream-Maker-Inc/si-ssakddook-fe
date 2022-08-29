@@ -1,16 +1,19 @@
 import { css } from "@emotion/react";
-import { Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
+import Image from "next/image";
 import { BoardPrevButton } from "../../button/BoardPrevButton";
 
 type DefaultTabProps = {
   category: string;
 };
 
-export const DefaultTab = ({ category }: DefaultTabProps) => {
+export const PlainTab = ({ category }: DefaultTabProps) => {
   return (
     <div css={sx.tabContainer}>
-      <BoardPrevButton />
-      <Typography variant="h2" ml="12px">
+      <IconButton>
+        <Image width="24px" height="16px" src="/img/main/logo.svg" alt="logo" />
+      </IconButton>
+      <Typography variant="h2" lineHeight="1" ml="12px">
         {category}
       </Typography>
     </div>

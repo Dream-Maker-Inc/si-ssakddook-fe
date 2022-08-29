@@ -1,8 +1,8 @@
-import { MainView } from "@/domains/Main";
+import { DiaryView } from "@/domains/diary";
 import { NextPage } from "next";
 
-const MainPage: NextPage = () => {
-  return <MainView />;
+const DiaryPage: NextPage = () => {
+  return <DiaryView />;
 };
 
-export default MainPage;
+export default DiaryPage;
