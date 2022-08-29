@@ -20,6 +20,7 @@ const MemoCalendar = ({
   setNowDate,
   currentMonth,
   setCurrentMonth,
+  currentWeek,
   setCurrentWeek,
 }) => {
   const changeMonthHandle = (btnType) => {

@@ -29,6 +29,7 @@ export const WeeklyCalendar = () => {
           setNowDate={setNowDate}
           currentMonth={currentMonth}
           setCurrentMonth={setCurrentMonth}
+          currentWeek={currentWeek}
           setCurrentWeek={setCurrentWeek}
         />
       </div>
@@ -40,6 +41,7 @@ export const WeeklyCalendar = () => {
           setNowDate={setNowDate}
           currentMonth={currentMonth}
           setCurrentMonth={setCurrentMonth}
+          currentWeek={currentWeek}
           setCurrentWeek={setCurrentWeek}
         />
       </div>
@@ -59,6 +61,6 @@ const sx = {
     height: 1px;
     background-color: ${LightColor.Gray500};
 
-    margin: 20px 0;
+    margin: 8px 0 10px;
   `,
 };

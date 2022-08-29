@@ -262,7 +262,8 @@ header #logo .icon {
   text-align: center;
   margin: 0;
   width: 100%;
-  height: 100%;
+  height: 90%;
+  padding-bottom: 50px;
 }
 
 .vertical-calendar {
@@ -369,11 +370,12 @@ header #logo .icon {
 .memo {
   width: 90%;
   height: 100%;
-  background-color: #f1f1f1;
   border-radius: 8px;
 
   display: flex;
   align-items: center;
+
+  padding-left: 16px;
 }
 
 .memo-deco {

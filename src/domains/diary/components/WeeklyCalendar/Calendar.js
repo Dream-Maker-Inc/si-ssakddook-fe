@@ -19,6 +19,7 @@ const Calendar = ({
   setNowDate,
   currentMonth,
   setCurrentMonth,
+  currentWeek,
   setCurrentWeek,
 }) => {
   const changeMonthHandle = (btnType) => {
@@ -33,14 +34,16 @@ const Calendar = ({
   const changeWeekHandle = (btnType) => {
     //console.log("current week", currentWeek);
     if (btnType === "prev") {
-      //console.log(subWeeks(currentMonth, 1));
+      console.log(subWeeks(currentMonth, 1));
       setCurrentMonth(subWeeks(currentMonth, 1));
       setCurrentWeek(getWeek(subWeeks(currentMonth, 1)));
     }
     if (btnType === "next") {
       //console.log(addWeeks(currentMonth, 1));
+
       setCurrentMonth(addWeeks(currentMonth, 1));
       setCurrentWeek(getWeek(addWeeks(currentMonth, 1)));
+      console.log(getWeek(addWeeks(currentMonth, 1)));
     }
   };
 
@@ -91,7 +94,7 @@ const Calendar = ({
     let days = [];
     let day = startDate;
     let formattedDate = "";
-    while (day <= endDate) {
+    while (day < endDate) {
       for (let i = 0; i < 7; i++) {
         formattedDate = format(day, dateFormat);
         const cloneDay = day;
