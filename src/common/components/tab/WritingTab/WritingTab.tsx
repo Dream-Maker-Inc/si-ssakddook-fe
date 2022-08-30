@@ -3,13 +3,17 @@ import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import { BoardPrevButton } from "../../button/BoardPrevButton";
 
-export const WritingTab = () => {
+type WritingTabProps = {
+  title?: string;
+};
+
+export const WritingTab = ({ title = "커뮤니티" }: WritingTabProps) => {
   return (
     <div css={sx.tabContainer}>
       <div css={sx.tabWrapper}>
         <BoardPrevButton />
         <Typography variant="h2" ml="12px">
-          커뮤니티
+          {title}
         </Typography>
       </div>
       <IconButton>

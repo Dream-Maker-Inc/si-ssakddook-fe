@@ -50,6 +50,11 @@ export const lightTheme = createTheme({
       styleOverrides: {
         root: {
           margin: "0px",
+          "& .MuiInputBase-root": {
+            padding: "0px",
+            width: "100%",
+            height: "100%",
+          },
         },
       },
     },

@@ -13,6 +13,8 @@ import {
 } from "date-fns";
 import Image from "next/image";
 import { IconButton } from "@mui/material";
+import { useRouter } from "next/router";
+import { RoutePath } from "@/constants/Path";
 
 const MemoCalendar = ({
   showDetailsHandle,
@@ -23,6 +25,11 @@ const MemoCalendar = ({
   currentWeek,
   setCurrentWeek,
 }) => {
+  const router = useRouter();
+
+  const handleMemoClick = () => {
+    router.push(RoutePath.DiaryDetail);
+  };
   const changeMonthHandle = (btnType) => {
     if (btnType === "prev") {
       setCurrentMonth(subMonths(currentMonth, 1));
@@ -51,19 +58,6 @@ const MemoCalendar = ({
     showDetailsHandle(dayStr);
   };
 
-  const renderDays = () => {
-    const dateFormat = "EEE";
-    const days = [];
-    let startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
-    for (let i = 0; i < 7; i++) {
-      days.push(
-        <div className="col col-center col-weekdays" key={i}>
-          {format(addDays(startDate, i), dateFormat)}
-        </div>
-      );
-    }
-    return <div className="days row">{days}</div>;
-  };
   const renderCells = () => {
     const startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
     const endDate = lastDayOfWeek(currentMonth, { weekStartsOn: 1 });
@@ -77,12 +71,11 @@ const MemoCalendar = ({
         formattedDate = format(day, dateFormat);
         const cloneDay = day;
         days.push(
-          <div className="memo-wrapper">
+          <div className="memo-wrapper" key={day}>
             <div
               className={`col cell ${
                 isSameDay(day, nowDate) ? "selected" : ""
               }`}
-              key={day}
               onClick={() => {
                 const dayStr = format(cloneDay, "ccc dd MMM yy");
                 onDateClickHandle(cloneDay, dayStr);
@@ -92,7 +85,7 @@ const MemoCalendar = ({
                 <span className="number">{formattedDate}</span>
               </div>
             </div>
-            <div className="memo">
+            <div className="memo" onClick={handleMemoClick}>
               <div className="memo-deco"></div>
               <div className="memo-content">
                 <IconButton className="memo-arrow-right">
@@ -120,12 +113,7 @@ const MemoCalendar = ({
     return <div className="vertical-body">{rows}</div>;
   };
 
-  return (
-    <div className="vertical-calendar">
-      {/* {renderDays()} */}
-      {renderCells()}
-    </div>
-  );
+  return <div className="vertical-calendar">{renderCells()}</div>;
 };
 
 export default MemoCalendar;

@@ -24,7 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/domains/diary/components/reousrces/events.js"
+    "src/domains/diary/CustomWeeklyCalendar/components/reousrces/events.js"
   ],
   "exclude": ["node_modules"]
 }

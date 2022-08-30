@@ -6,5 +6,6 @@ export enum RoutePath {
   Chat = "/chat",
   Community = "/community",
   Diary = "/diary",
+  DiaryDetail = "/diary/write",
   More = "/more",
 }
