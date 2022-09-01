@@ -47,6 +47,8 @@ export const LoginView = () => {
                 로그인
               </Typography>
             </Button>
+          </div>
+          <div css={sx.link}>
             <Link href="/auth/search">
               <a css={sx.lostAccount}>회원정보를 잊으셨나요?</a>
             </Link>
@@ -97,5 +99,9 @@ const sx = {
     color: #999999;
     text-decoration: underline;
     margin-top: 3.12px;
+  `,
+
+  link: css`
+    margin-top: 20px;
   `,
 };
