@@ -6,14 +6,19 @@ import MemoCalendar from "./MemoCalendar";
 import { getWeek } from "date-fns";
 import { LightColor } from "@/themes/Color";
 import { PlainTab } from "@/common/components/tab/PlainTan";
+import { SelectChangeEvent } from "@mui/material";
 export const WeeklyCalendar = () => {
-  const now = new Date();
+  const signupMonth = new Date("2022/03/17");
+
   const [showDetails, setShowDetails] = useState(false);
   const [data, setData] = useState("");
   const [nowDate, setNowDate] = useState(new Date());
-
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentWeek, setCurrentWeek] = useState(getWeek(currentMonth));
+
+  const handleMonthSelectChange = (e: SelectChangeEvent) => {
+    setCurrentMonth(new Date(e.target.value));
+  };
 
   const showDetailsHandle = (dayStr: string) => {
     setData(dayStr);
@@ -31,6 +36,8 @@ export const WeeklyCalendar = () => {
           setCurrentMonth={setCurrentMonth}
           currentWeek={currentWeek}
           setCurrentWeek={setCurrentWeek}
+          signupMonth={signupMonth}
+          onSelectChange={handleMonthSelectChange}
         />
       </div>
       <div css={sx.hr} />

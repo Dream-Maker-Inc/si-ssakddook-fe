@@ -1,5 +1,4 @@
 import { DiaryTab } from "@/common/components/tab/DiaryTab";
-import { WritingTab } from "@/common/components/tab/WritingTab";
 import { RoutePath } from "@/constants/Path";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
@@ -18,6 +17,7 @@ export const WriteDiaryView = () => {
 
   const [isWritingMode, setIsWritingMode] = useState(false);
 
+  //forwardRef 사용 권고
   const inputRef = useRef<HTMLInputElement>(null);
   const handleFieldFocus = () => inputRef.current?.focus();
 
@@ -98,6 +98,7 @@ const sx = {
 
     overflow-y: scroll;
     ::-webkit-scrollbar {
+      display: none;
     }
   `,
   contentContainer: css`

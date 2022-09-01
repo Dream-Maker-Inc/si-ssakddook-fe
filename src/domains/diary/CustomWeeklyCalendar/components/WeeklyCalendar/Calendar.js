@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   format,
   subMonths,
@@ -12,6 +11,7 @@ import {
   subWeeks,
 } from "date-fns";
 import Image from "next/image";
+import { MonthSelection } from "../MonthSelection";
 
 const Calendar = ({
   showDetailsHandle,
@@ -21,6 +21,8 @@ const Calendar = ({
   setCurrentMonth,
   currentWeek,
   setCurrentWeek,
+  signupMonth,
+  onSelectChange,
 }) => {
   const changeMonthHandle = (btnType) => {
     if (btnType === "prev") {
@@ -53,23 +55,17 @@ const Calendar = ({
   };
 
   const renderHeader = () => {
-    const dateFormat = "yyyy MMM";
-    // console.log("selected day", selectedDate);
+    const dateFormatYear = "yyyy";
+    const dateFormatMonth = "M";
+
     return (
       <div className="header row flex-middle">
-        {/* <div className="col col-start">
-          <div className="icon" onClick={() => changeMonthHandle("prev")}>
-            prev month
-          </div>
-        </div> */}
         <div className="col col-start">
-          <span>{format(currentMonth, dateFormat)}</span>
+          <span>
+            {format(currentMonth, dateFormatYear)}년&nbsp;
+            {format(currentMonth, dateFormatMonth)}월
+          </span>
         </div>
-        {/* <div className="col col-end">
-          <div className="icon" onClick={() => changeMonthHandle("next")}>
-            next month
-          </div>
-        </div> */}
       </div>
     );
   };
@@ -127,7 +123,7 @@ const Calendar = ({
   const renderFooter = () => {
     return (
       <div className="footer row">
-        <div className="col col-start">
+        <div className="col-start">
           <div className="icon" onClick={() => changeWeekHandle("prev")}>
             <Image
               width="20px"
@@ -137,7 +133,7 @@ const Calendar = ({
             />
           </div>
         </div>
-        <div className="col col-end" onClick={() => changeWeekHandle("next")}>
+        <div className="col-end" onClick={() => changeWeekHandle("next")}>
           <Image
             width="20px"
             height="20px"
@@ -150,7 +146,11 @@ const Calendar = ({
   };
   return (
     <div className="calendar">
-      {renderHeader()}
+      <MonthSelection
+        currentMonth={currentMonth}
+        signupMonth={signupMonth}
+        onChange={onSelectChange}
+      />
       {renderDays()}
       {renderCells()}
       {renderFooter()}
