@@ -12,5 +12,7 @@
 [커뮤니티 페이지 - 서치 ](https://ssakddook.netlify.app/community/search)<br />
 [커뮤니티 페이지 - 디테일 ](https://ssakddook.netlify.app/community/detail)<br />
 [다이어리 페이지 - 메인](https://ssakddook.netlify.app/diary)<br />
+[다이어리 페이지 - 글쓰기](https://ssakddook.netlify.app/diary/write)<br />
+
 
 
