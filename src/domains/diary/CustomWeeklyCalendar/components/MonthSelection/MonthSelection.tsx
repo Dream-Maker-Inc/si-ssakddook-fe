@@ -24,11 +24,8 @@ export const MonthSelection = ({
 
   const formatToYYYYMM = (date: Date) => {
     const formattedDate = format(date, "yyyy MM");
-
     return formattedDate + "";
   };
-
-  console.log("#################### : " + currentMonth);
 
   return (
     <div css={sx.selectContainer}>

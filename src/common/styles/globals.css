@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "IropkeBatangM";
-  src: url("./fonts/IropkeBatangM.otf") format("opentype");
+  src: url("/fonts/IropkeBatangM.otf") format("opentype");
 }
 
 html,
@@ -96,7 +96,7 @@ header {
   position: absolute;
   top: 58%;
   left: 0;
-  z-index: 99;
+  z-index: 0;
 }
 
 header #logo {
@@ -188,7 +188,10 @@ header #logo .icon {
 }
 
 .calendar .body {
-  padding: 0 20px;
+  margin: 0 20px;
+
+  position: relative;
+  z-index: 1;
 }
 
 .calendar .body .cell {
@@ -343,7 +346,6 @@ header #logo .icon {
 
 .vertical-calendar .vertical-body .col {
   width: 10%;
-  /* width: calc(100% / 7); */
   height: 100%;
 }
 
