@@ -24,28 +24,24 @@ const Calendar = ({
   signupMonth,
   onSelectChange,
 }) => {
-  const changeMonthHandle = (btnType) => {
-    if (btnType === "prev") {
-      setCurrentMonth(subMonths(currentMonth, 1));
-    }
-    if (btnType === "next") {
-      setCurrentMonth(addMonths(currentMonth, 1));
-    }
-  };
-
   const changeWeekHandle = (btnType) => {
-    //console.log("current week", currentWeek);
-    if (btnType === "prev") {
-      console.log(subWeeks(currentMonth, 1));
+    if (btnType === "prev" && getWeek(currentMonth) > getWeek(signupMonth)) {
       setCurrentMonth(subWeeks(currentMonth, 1));
       setCurrentWeek(getWeek(subWeeks(currentMonth, 1)));
+    } else if (
+      btnType === "prev" &&
+      getWeek(currentMonth) <= getWeek(signupMonth)
+    ) {
+      alert("first week");
     }
-    if (btnType === "next") {
-      //console.log(addWeeks(currentMonth, 1));
-
+    if (btnType === "next" && getWeek(currentMonth) < getWeek(new Date())) {
       setCurrentMonth(addWeeks(currentMonth, 1));
       setCurrentWeek(getWeek(addWeeks(currentMonth, 1)));
-      console.log(getWeek(addWeeks(currentMonth, 1)));
+    } else if (
+      btnType === "next" &&
+      getWeek(currentMonth) >= getWeek(new Date())
+    ) {
+      alert("last week");
     }
   };
 
