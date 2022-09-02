@@ -1,3 +1,4 @@
+import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { DiaryTab } from "@/common/components/tab/DiaryTab";
 import { RoutePath } from "@/constants/Path";
 import { LightColor } from "@/themes/Color";
@@ -35,54 +36,56 @@ export const WriteDiaryView = () => {
   };
 
   return (
-    <div css={sx.root}>
-      <DiaryTab
-        title={diaryRecords.date}
-        writingState={{
-          isWritingState: isWritingMode,
-          onSubmitClick: handleSubmitClick,
-          onEditlick: handleEditClick,
-          onRestate: handleRestate,
-        }}
-      />
-      <div css={sx.container}>
-        <div css={sx.contentContainer}>
-          <TextField
-            inputRef={inputRef}
-            onFocus={function (e) {
-              var val = e.target.value;
-              e.target.value = "";
-              e.target.value = val;
-            }}
-            value={content}
-            onChange={handleContentChange}
-            multiline
-            variant="standard"
-            placeholder={
-              content === null
-                ? "본인 외에는 그 누구도 나의 감정일기를 볼 수 없어요."
-                : ""
-            }
-            css={sx.textfield}
-            InputProps={{
-              disableUnderline: true,
-              readOnly: !isWritingMode,
-            }}
-          />
-          {isWritingMode || <LastUpdated date={diaryRecords.updateDate} />}
-        </div>
-        {isWritingMode || (
-          <div css={sx.cheerImg}>
-            <Image
-              width="162px"
-              height="80px"
-              src="/img/diary/img-cheer-text.svg"
-              alt=""
+    <AppbarLayout>
+      <div css={sx.root}>
+        <DiaryTab
+          title={diaryRecords.date}
+          writingState={{
+            isWritingState: isWritingMode,
+            onSubmitClick: handleSubmitClick,
+            onEditlick: handleEditClick,
+            onRestate: handleRestate,
+          }}
+        />
+        <div css={sx.container}>
+          <div css={sx.contentContainer}>
+            <TextField
+              inputRef={inputRef}
+              onFocus={function (e) {
+                var val = e.target.value;
+                e.target.value = "";
+                e.target.value = val;
+              }}
+              value={content}
+              onChange={handleContentChange}
+              multiline
+              variant="standard"
+              placeholder={
+                content === null
+                  ? "본인 외에는 그 누구도 나의 감정일기를 볼 수 없어요."
+                  : ""
+              }
+              css={sx.textfield}
+              InputProps={{
+                disableUnderline: true,
+                readOnly: !isWritingMode,
+              }}
             />
+            {isWritingMode || <LastUpdated date={diaryRecords.updateDate} />}
           </div>
-        )}
+          {isWritingMode || (
+            <div css={sx.cheerImg}>
+              <Image
+                width="162px"
+                height="80px"
+                src="/img/diary/img-cheer-text.svg"
+                alt=""
+              />
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </AppbarLayout>
   );
 };
 

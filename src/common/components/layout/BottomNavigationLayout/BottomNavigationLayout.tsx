@@ -3,19 +3,17 @@ import { RoutePath } from "@/constants/Path";
 import { CommunityMainView } from "@/domains/community/CommunityMain";
 import { DiaryView } from "@/domains/diary/CustomWeeklyCalendar";
 import { MainView } from "@/domains/Main";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DefaultBottomNavigation } from "../../bottomNavigation/DefaultBottomNavigation";
+import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { NavigationAtom } from "@/recoil/Navigation/Navigation.atom";
 
 export const BottomNavigationLayout = () => {
-  const [page, setPage] = useState("");
+  const [navigation, setNavigation] = useRecoilState(NavigationAtom);
   const handleItemChange = (newPage: string) => {
-    setPage(newPage);
+    setNavigation(newPage);
   };
-
-  let currnetPage;
-  useEffect(() => {
-    currnetPage = getLayoutByPage(page);
-  }, [page]);
 
   const getLayoutByPage = (page: string) => {
     switch (page) {
@@ -33,9 +31,10 @@ export const BottomNavigationLayout = () => {
         return <MainView />;
     }
   };
+
   return (
     <div css={sx.root}>
-      {currnetPage}
+      {getLayoutByPage(navigation)}
       <DefaultBottomNavigation onPageChange={handleItemChange} />
     </div>
   );

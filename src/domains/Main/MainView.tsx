@@ -1,4 +1,6 @@
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
+import { DefaultTab } from "@/common/components/tab/DefaultTab";
+import { MainTab } from "@/common/components/tab/MainTab";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
@@ -9,6 +11,7 @@ export const MainView = () => {
   const { data } = useMainView();
   return (
     <AppbarLayout>
+      <MainTab />
       <div css={sx.root}>
         <div css={sx.container}>
           <Typography variant="h2" color={LightColor.Gray200} textAlign="left">

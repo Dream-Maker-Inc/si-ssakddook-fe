@@ -1,4 +1,5 @@
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
+import { BottomNavigationLayout } from "@/common/components/layout/BottomNavigationLayout";
 import { css } from "@emotion/react";
 import { WeeklyCalendar } from "./WeeklyCalendar/WeeklyCalendar";
 

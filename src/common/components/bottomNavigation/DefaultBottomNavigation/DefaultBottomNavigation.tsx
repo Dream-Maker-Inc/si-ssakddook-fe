@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { css } from "@emotion/react";
 import Image from "next/image";
 import { IconButton } from "@mui/material";
+import { useRecoilValue } from "recoil";
+import { NavigationAtom } from "@/recoil/Navigation/Navigation.atom";
 
 type DefaultBottomNavigationProps = {
   onPageChange: (e: string) => void;
@@ -11,7 +13,7 @@ type DefaultBottomNavigationProps = {
 export const DefaultBottomNavigation = ({
   onPageChange,
 }: DefaultBottomNavigationProps) => {
-  const router = useRouter();
+  const navigation = useRecoilValue(NavigationAtom);
 
   const main = RoutePath.Main;
   const chat = RoutePath.Chat;
@@ -21,31 +23,27 @@ export const DefaultBottomNavigation = ({
 
   const navigationItems = [
     {
-      currAddress: main,
       routingAddress: main,
       unselected: "/img/bottomNavigation/inActive/icon-home.svg",
       selected: "/img/bottomNavigation/active/icon-home-active.svg",
     },
     {
-      currAddress: chat,
       routingAddress: chat,
       unselected: "/img/bottomNavigation/inActive/icon-chat.svg",
       selected: "/img/bottomNavigation/active/icon-chat-active.svg",
     },
     {
-      currAddress: community,
       routingAddress: community,
       unselected: "/img/bottomNavigation/inActive/icon-bamboo.svg",
       selected: "/img/bottomNavigation/active/icon-bamboo-active.svg",
     },
     {
-      currAddress: diary,
       routingAddress: diary,
+
       unselected: "/img/bottomNavigation/inActive/icon-diary.svg",
       selected: "/img/bottomNavigation/active/icon-diary-active.svg",
     },
     {
-      currAddress: more,
       routingAddress: more,
       unselected: "/img/bottomNavigation/inActive/icon-more.svg",
       selected: "/img/bottomNavigation/active/icon-more-active.svg",
@@ -54,27 +52,22 @@ export const DefaultBottomNavigation = ({
 
   return (
     <div>
-      {/* {router.asPath === (main || chat || community || diary || more) && ( */}
-      {router.asPath === more && (
-        <div css={styles.root}>
-          {navigationItems.map((it, index) => (
-            <div css={styles.link} key={index}>
-              <IconButton onClick={() => onPageChange(it.routingAddress)}>
-                <Image
-                  width="18px"
-                  height="18px'"
-                  src={
-                    router.asPath === it.currAddress
-                      ? it.selected
-                      : it.unselected
-                  }
-                  alt="navigation-icon"
-                />
-              </IconButton>
-            </div>
-          ))}
-        </div>
-      )}
+      <div css={styles.root}>
+        {navigationItems.map((it, index) => (
+          <div css={styles.link} key={index}>
+            <IconButton onClick={() => onPageChange(it.routingAddress)}>
+              <Image
+                width="18px"
+                height="18px'"
+                src={
+                  it.routingAddress === navigation ? it.selected : it.unselected
+                }
+                alt="navigation-icon"
+              />
+            </IconButton>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

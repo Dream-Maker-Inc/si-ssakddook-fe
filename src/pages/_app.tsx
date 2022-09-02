@@ -2,17 +2,17 @@ import "@/common/styles/globals.css";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material";
 import { findTheme, ThemeTypes } from "@/themes/CustomThemes";
-import { DefaultLayout } from "@/common/components/layout/DefaultLayout";
+import { RecoilRoot } from "recoil";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={findTheme(ThemeTypes.Light)}>
-      <DefaultLayout>
+    <RecoilRoot>
+      <ThemeProvider theme={findTheme(ThemeTypes.Light)}>
         <main>
           <Component {...pageProps} />
         </main>
-      </DefaultLayout>
-    </ThemeProvider>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }
 
