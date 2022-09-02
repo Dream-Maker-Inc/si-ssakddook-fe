@@ -9,8 +9,8 @@ export const FindPasswordSuccessView = () => {
       <div css={sx.container}>
         <Title>이메일을 확인해주세요.</Title>
         <Image
-          width="250px"
-          height="160px"
+          width="100px"
+          height="90px"
           src="/img/find/password-success.svg"
           alt="img"
         />
@@ -33,13 +33,6 @@ export const FindPasswordSuccessView = () => {
             <br />
             상황에 따라 메일 발송이 지연될 수도 있어요.
           </Typography>
-        </div>
-        <div css={sx.buttonWrapper}>
-          <Button fullWidth variant="contained" color="primary">
-            <Typography variant="body1" color="white">
-              로그인하러 가기
-            </Typography>
-          </Button>
         </div>
       </div>
     </div>

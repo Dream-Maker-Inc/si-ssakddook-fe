@@ -19,7 +19,7 @@ export const MainAppbar = () => {
   return (
     <div>
       {/* {router.asPath === (main || chat || community || diary || more) && ( */}
-      {router.asPath === community && (
+      {router.asPath === main && (
         <div css={sx.container}>
           <div css={sx.appbarContainer}>
             <IconButton>
@@ -38,7 +38,6 @@ export const MainAppbar = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
             >
               <NotificationsOutlinedIcon
                 color="secondary"

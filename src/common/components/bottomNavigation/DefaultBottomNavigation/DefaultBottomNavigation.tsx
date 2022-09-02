@@ -1,11 +1,21 @@
 import { RoutePath } from "@/constants/Path";
 import { useRouter } from "next/router";
 import { css } from "@emotion/react";
-import Link from "next/link";
 import Image from "next/image";
+import { IconButton } from "@mui/material";
 
-export const DefaultBottomNavigation = () => {
+type DefaultBottomNavigationProps = {
+  onChange(e: string): void;
+};
+
+export const DefaultBottomNavigation = ({
+  onChange,
+}: DefaultBottomNavigationProps) => {
   const router = useRouter();
+
+  const textFunction = (e: string) => {
+    console.log(e);
+  };
 
   const main = RoutePath.Main;
   const chat = RoutePath.Chat;
@@ -49,11 +59,11 @@ export const DefaultBottomNavigation = () => {
   return (
     <div>
       {/* {router.asPath === (main || chat || community || diary || more) && ( */}
-      {router.asPath === diary && (
+      {router.asPath === more && (
         <div css={styles.root}>
           {navigationItems.map((it, index) => (
             <div css={styles.link} key={index}>
-              <Link href={it.routingAddress} replace>
+              <IconButton onClick={() => textFunction(it.routingAddress)}>
                 <Image
                   width="18px"
                   height="18px'"
@@ -64,7 +74,7 @@ export const DefaultBottomNavigation = () => {
                   }
                   alt="navigation-icon"
                 />
-              </Link>
+              </IconButton>
             </div>
           ))}
         </div>

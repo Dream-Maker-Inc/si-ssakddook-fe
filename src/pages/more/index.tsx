@@ -1,8 +1,8 @@
-import { MainView } from "@/domains/Main";
+import { BottomNavigationLayout } from "@/common/components/layout/BottomNavigationLayout";
 import { NextPage } from "next";
 
-const MainPage: NextPage = () => {
-  return <MainView />;
+const BottomNavigationLayoutPage: NextPage = () => {
+  return <BottomNavigationLayout />;
 };
 
-export default MainPage;
+export default BottomNavigationLayoutPage;

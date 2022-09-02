@@ -1,3 +1,4 @@
+import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
@@ -7,16 +8,23 @@ import { useMainView } from "./useMainView";
 export const MainView = () => {
   const { data } = useMainView();
   return (
-    <div css={sx.root}>
-      <div css={sx.container}>
-        <Typography variant="h2" color={LightColor.Gray200} textAlign="left">
-          {data}
-        </Typography>
-        <div css={sx.img}>
-          <Image width="93px" height="516px" src="/img/main/leaf.svg" alt="" />
+    <AppbarLayout>
+      <div css={sx.root}>
+        <div css={sx.container}>
+          <Typography variant="h2" color={LightColor.Gray200} textAlign="left">
+            {data}
+          </Typography>
+          <div css={sx.img}>
+            <Image
+              width="93px"
+              height="516px"
+              src="/img/main/leaf.svg"
+              alt=""
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </AppbarLayout>
   );
 };
 

@@ -1,10 +1,10 @@
 import { PrevButton } from "@/common/components/button/PrevButton";
-import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
 import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import { AgreementArticle } from "./AgreementArticle";
 import { PasswordArticle } from "./PasswordArticle";
+import { SignupTitleWithDesc } from "./SignupTitleWithDesc";
 import { useSignupView } from "./useSignupView";
 import { ValidationArticle } from "./ValidationArticle";
 
@@ -15,7 +15,7 @@ export const SignupView = () => {
     <div css={sx.root}>
       <div css={sx.container}>
         <PrevButton location={RoutePath.Home} />
-        <TitleWithDesc
+        <SignupTitleWithDesc
           title="회원가입"
           desc="회원가입을 위한 필수 정보를 입력해주세요."
         />

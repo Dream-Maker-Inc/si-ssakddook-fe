@@ -8,6 +8,7 @@ export const Title = (p: TypographyProps) => {
       mb="60px"
       width="100%"
       textAlign="left"
+      fontSize="18px"
       {...p}
     />
   );

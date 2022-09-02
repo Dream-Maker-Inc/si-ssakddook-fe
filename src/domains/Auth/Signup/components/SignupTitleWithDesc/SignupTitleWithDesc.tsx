@@ -2,11 +2,11 @@ import { css } from "@emotion/react";
 
 import { Typography } from "@mui/material";
 
-type TTitleWithDesc = {
+type TSignupTitleWithDesc = {
   title: string;
   desc: string;
 };
-export const TitleWithDesc = ({ title, desc }: TTitleWithDesc) => {
+export const SignupTitleWithDesc = ({ title, desc }: TSignupTitleWithDesc) => {
   return (
     <div css={sx.textWrapper}>
       <Typography variant="h1">{title}</Typography>
@@ -25,6 +25,6 @@ const sx = {
     gap: 12px;
 
     margin-top: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   `,
 };

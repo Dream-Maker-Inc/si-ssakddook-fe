@@ -1,12 +1,12 @@
-import { MainAppbar } from "../appbar/MainAppBar";
-import { DefaultBottomNavigation } from "../bottomNavigation/DefaultBottomNavigation";
+import { MainAppbar } from "../../appbar/MainAppBar";
+import { DefaultBottomNavigation } from "../../bottomNavigation/DefaultBottomNavigation";
 import { css } from "@emotion/react";
 
-type LayoutProps = {
+type DefaultLayoutProps = {
   children: React.ReactNode;
 };
 
-export default function Layout({ children }: LayoutProps) {
+export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
   return (
     <div css={sx.container}>
       <MainAppbar />
@@ -14,7 +14,7 @@ export default function Layout({ children }: LayoutProps) {
       <DefaultBottomNavigation />
     </div>
   );
-}
+};
 
 const sx = {
   container: css`

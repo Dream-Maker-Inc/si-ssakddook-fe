@@ -5,7 +5,7 @@ import Calendar from "./Calendar";
 import MemoCalendar from "./MemoCalendar";
 import { getWeek } from "date-fns";
 import { LightColor } from "@/themes/Color";
-import { PlainTab } from "@/common/components/tab/PlainTan";
+import { PlainTab } from "@/common/components/tab/PlainTab";
 import { SelectChangeEvent } from "@mui/material";
 export const WeeklyCalendar = () => {
   const signupMonth = new Date("2022/03/17");

@@ -25,8 +25,8 @@ export const PrevButton = ({ location }: TPrevButton) => {
 
 const sx = {
   img: css`
-    position: absolute;
-    top: 0;
-    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: start;
   `,
 };

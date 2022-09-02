@@ -1,8 +1,11 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
 import { FloatingButton } from "@/common/components/button/FloatingButton";
+import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
+import { CommunityTab } from "@/common/components/tab/CommunityTab";
+
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
-import { Fab, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { CommunityBox } from "./CommunityBox/CommunityBox";
@@ -12,49 +15,52 @@ import { useCommunityMainView } from "./useCommunityMainView";
 export const CommunityMainView = () => {
   const { boxData, boardData } = useCommunityMainView();
   return (
-    <div css={sx.root}>
-      <div css={sx.container}>
-        <NoticeBox />
-        <div css={sx.boxContainer}>
-          {boxData.map((it, index) => (
-            <CommunityBox key={index} img={it.imgSrc} content={it.content} />
-          ))}
-        </div>
-        <div>
-          <div css={sx.recentContentTitle}>
-            <Typography variant="h3" color="black">
-              최근 게시글
-            </Typography>
-            <Link href="/main">
-              <div css={sx.more}>
-                <Typography variant="h5" fontSize="8px">
-                  더보기
-                </Typography>
-                <Image
-                  width="11px"
-                  height="11px"
-                  src="/img/arrowIcon/icon-arrow-right-small.svg"
-                  alt=""
-                />
-              </div>
-            </Link>
+    <AppbarLayout>
+      <CommunityTab />
+      <div css={sx.root}>
+        <div css={sx.container}>
+          <NoticeBox />
+          <div css={sx.boxContainer}>
+            {boxData.map((it, index) => (
+              <CommunityBox key={index} img={it.imgSrc} content={it.content} />
+            ))}
           </div>
+          <div>
+            <div css={sx.recentContentTitle}>
+              <Typography variant="h3" color="black">
+                최근 게시글
+              </Typography>
+              <Link href="/main">
+                <div css={sx.more}>
+                  <Typography variant="h5" fontSize="8px">
+                    더보기
+                  </Typography>
+                  <Image
+                    width="11px"
+                    height="11px"
+                    src="/img/arrowIcon/icon-arrow-right-small.svg"
+                    alt=""
+                  />
+                </div>
+              </Link>
+            </div>
 
-          {boardData.map((it, index) => (
-            <BoardItem
-              key={index}
-              title={it.title}
-              date={it.date}
-              nickname={it.nickname}
-              category={it.category}
-              like={it.like}
-              comments={it.comments}
-            />
-          ))}
+            {boardData.map((it, index) => (
+              <BoardItem
+                key={index}
+                title={it.title}
+                date={it.date}
+                nickname={it.nickname}
+                category={it.category}
+                like={it.like}
+                comments={it.comments}
+              />
+            ))}
+          </div>
         </div>
+        <FloatingButton />
       </div>
-      <FloatingButton />
-    </div>
+    </AppbarLayout>
   );
 };
 
