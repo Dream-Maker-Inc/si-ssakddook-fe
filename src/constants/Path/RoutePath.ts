@@ -8,4 +8,6 @@ export enum RoutePath {
   Diary = "/diary",
   DiaryDetail = "/diary/write",
   More = "/more",
+  MyInformation = "/more/my-information",
+  ChangeNickname = "/more/change-nickname",
 }

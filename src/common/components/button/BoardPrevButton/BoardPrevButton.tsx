@@ -5,14 +5,13 @@ import { IconButton } from "@mui/material";
 
 type TBoardPrevButton = {
   location?: string;
+  onClick: () => void;
 };
-export const BoardPrevButton = ({ location }: TBoardPrevButton) => {
+export const BoardPrevButton = ({ location, onClick }: TBoardPrevButton) => {
   const router = useRouter();
-  const nextLocation = () => {
-    location == null ? router.back() : router.push(location);
-  };
+
   return (
-    <IconButton onClick={nextLocation}>
+    <IconButton onClick={onClick}>
       <Image
         width="24px"
         height="24px"

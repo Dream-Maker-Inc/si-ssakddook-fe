@@ -1,0 +1,1 @@
+export { ChangeNicknameView } from "./ChangeNicknameView";

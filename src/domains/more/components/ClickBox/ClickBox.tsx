@@ -2,6 +2,7 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { ClickBoxProps } from "../model/MoreModels";
 
 export const ClickBox = ({
@@ -9,9 +10,14 @@ export const ClickBox = ({
   desc,
   iconSrc,
   nextButtonState = true,
+  onClick,
 }: ClickBoxProps) => {
+  const router = useRouter();
+  const handleBoxClick = (path: string) => {
+    router.push(path);
+  };
   return (
-    <div css={sx.root}>
+    <div css={sx.root} onClick={() => handleBoxClick(onClick)}>
       <div css={sx.container}>
         <div>
           <Image width="18px" height="18px" src={iconSrc} alt="" />
@@ -47,6 +53,8 @@ const sx = {
     border-bottom: 1px solid ${LightColor.Gray500};
 
     position: relative;
+
+    cursor: pointer;
   `,
   container: css`
     display: flex;

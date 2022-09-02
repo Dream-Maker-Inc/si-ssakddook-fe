@@ -15,6 +15,8 @@ export const MoreView = () => {
             title={it.title}
             desc={it.desc}
             iconSrc={it.iconSrc}
+            nextButtonState={it.nextButtonState}
+            onClick={it.onClick}
           />
         ))}
       </div>
