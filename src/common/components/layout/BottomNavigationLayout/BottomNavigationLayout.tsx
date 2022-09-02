@@ -3,11 +3,10 @@ import { RoutePath } from "@/constants/Path";
 import { CommunityMainView } from "@/domains/community/CommunityMain";
 import { DiaryView } from "@/domains/diary/CustomWeeklyCalendar";
 import { MainView } from "@/domains/Main";
-import React, { useEffect, useState } from "react";
 import { DefaultBottomNavigation } from "../../bottomNavigation/DefaultBottomNavigation";
-import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { NavigationAtom } from "@/recoil/Navigation/Navigation.atom";
+import { MoreView } from "@/domains/more/More";
 
 export const BottomNavigationLayout = () => {
   const [navigation, setNavigation] = useRecoilState(NavigationAtom);
@@ -26,7 +25,7 @@ export const BottomNavigationLayout = () => {
       case RoutePath.Diary:
         return <DiaryView />;
       case RoutePath.More:
-        return <MainView />;
+        return <MoreView />;
       default:
         return <MainView />;
     }

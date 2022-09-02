@@ -1,8 +1,8 @@
-import { BottomNavigationLayout } from "@/common/components/layout/BottomNavigationLayout";
+import { MoreView } from "@/domains//more/More";
 import { NextPage } from "next";
 
-const BottomNavigationLayoutPage: NextPage = () => {
-  return <BottomNavigationLayout />;
+const MorePage: NextPage = () => {
+  return <MoreView />;
 };
 
-export default BottomNavigationLayoutPage;
+export default MorePage;
