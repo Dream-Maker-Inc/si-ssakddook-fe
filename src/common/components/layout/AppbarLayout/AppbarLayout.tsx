@@ -1,5 +1,3 @@
-import { MainAppbar } from "../../appbar/MainAppBar";
-import { DefaultBottomNavigation } from "../../bottomNavigation/DefaultBottomNavigation";
 import { css } from "@emotion/react";
 
 type LayoutProps = {

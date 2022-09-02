@@ -63,10 +63,9 @@ const sx = {
   appbarContainer: css`
     width: 100%;
     height: 100%;
-    padding: 0 18px;
+    padding: 0 16px;
     background-color: white;
-    box-shadow: none;
-    border-bottom: 2px solid ${LightColor.Gray500};
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 10%);
 
     display: flex;
     align-items: center;

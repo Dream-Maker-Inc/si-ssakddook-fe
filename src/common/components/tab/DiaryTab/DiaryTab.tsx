@@ -26,7 +26,7 @@ export const DiaryTab = ({ title, writingState }: DiaryTabProps) => {
   const handleModalClose = () => setModalOpen(false);
 
   const moveToDiaryPage = () => {
-    router.push(RoutePath.Diary);
+    router.back();
   };
   const moveToDiaryUpdatePage = () => {
     handleModalClose();
