@@ -4,7 +4,12 @@ import { Typography } from "@mui/material";
 import Image from "next/image";
 import { ClickBoxProps } from "../model/MoreModels";
 
-export const ClickBox = ({ title, desc, iconSrc }: ClickBoxProps) => {
+export const ClickBox = ({
+  title,
+  desc,
+  iconSrc,
+  nextButtonState = true,
+}: ClickBoxProps) => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
@@ -20,14 +25,16 @@ export const ClickBox = ({ title, desc, iconSrc }: ClickBoxProps) => {
           </Typography>
         </div>
       </div>
-      <div css={sx.arrow}>
-        <Image
-          width="24px"
-          height="24px"
-          src="/img/arrowIcon/icon-arrow-right.svg"
-          alt=""
-        />
-      </div>
+      {nextButtonState && (
+        <div css={sx.arrow}>
+          <Image
+            width="24px"
+            height="24px"
+            src="/img/arrowIcon/icon-arrow-right.svg"
+            alt=""
+          />
+        </div>
+      )}
     </div>
   );
 };
