@@ -12,10 +12,6 @@ export const BottomNavigationLayout = () => {
     setPage(newPage);
   };
 
-  const textFunction = (e: string) => {
-    console.log(e);
-  };
-
   let currnetPage;
   useEffect(() => {
     currnetPage = getLayoutByPage(page);
@@ -40,7 +36,7 @@ export const BottomNavigationLayout = () => {
   return (
     <div css={sx.root}>
       {currnetPage}
-      <DefaultBottomNavigation onChange={handleItemChange} />
+      <DefaultBottomNavigation onPageChange={handleItemChange} />
     </div>
   );
 };

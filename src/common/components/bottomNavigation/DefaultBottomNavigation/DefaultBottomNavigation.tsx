@@ -5,17 +5,13 @@ import Image from "next/image";
 import { IconButton } from "@mui/material";
 
 type DefaultBottomNavigationProps = {
-  onChange(e: string): void;
+  onPageChange: (e: string) => void;
 };
 
 export const DefaultBottomNavigation = ({
-  onChange,
+  onPageChange,
 }: DefaultBottomNavigationProps) => {
   const router = useRouter();
-
-  const textFunction = (e: string) => {
-    console.log(e);
-  };
 
   const main = RoutePath.Main;
   const chat = RoutePath.Chat;
@@ -63,7 +59,7 @@ export const DefaultBottomNavigation = ({
         <div css={styles.root}>
           {navigationItems.map((it, index) => (
             <div css={styles.link} key={index}>
-              <IconButton onClick={() => textFunction(it.routingAddress)}>
+              <IconButton onClick={() => onPageChange(it.routingAddress)}>
                 <Image
                   width="18px"
                   height="18px'"
