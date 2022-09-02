@@ -59,7 +59,7 @@ export const myInformationModel: ClickBoxProps[] = [
     desc: "비밀번호를 잊으셨나요? 새로운 비밀번호로 변경할 수 있어요.",
     iconSrc: "/img/more/icon-password.svg",
     nextButtonState: true,
-    onClick: RoutePath.MyInformation,
+    onClick: RoutePath.ChangePassword,
   },
   {
     title: "로그아웃",

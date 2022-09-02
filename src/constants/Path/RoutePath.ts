@@ -10,4 +10,5 @@ export enum RoutePath {
   More = "/more",
   MyInformation = "/more/my-information",
   ChangeNickname = "/more/change-nickname",
+  ChangePassword = "/more/change-password",
 }

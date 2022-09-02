@@ -2,7 +2,7 @@ import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
 import { css } from "@emotion/react";
 import { ClickBox } from "../../components/ClickBox/ClickBox";
-import { myInformationModel } from "../../components/model/MoreModels";
+import { myInformationModel } from "../../model/MoreModels";
 
 export const MyInformationView = () => {
   return (
