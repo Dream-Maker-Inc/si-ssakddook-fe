@@ -1,0 +1,1 @@
+export { LifeView } from "./LifeView";

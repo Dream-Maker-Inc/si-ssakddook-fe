@@ -1,5 +1,4 @@
 import { RoutePath } from "@/constants/Path";
-import { useRouter } from "next/router";
 
 export type ClickBoxProps = {
   title: string;
