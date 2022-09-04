@@ -1,7 +1,32 @@
+import {
+  ContentSectionProps,
+  ImageSourceSectionProps,
+  TitleSectionProps,
+} from "../LifeDetail/LifeDetailView";
+
 export type lifeModelProps = {
   title: string;
   desc: string;
   date: string;
+};
+
+type LifeDetailType = {
+  titleSectionProps: TitleSectionProps;
+  contentSectionProps: ContentSectionProps;
+  imageSourceSectionProps: ImageSourceSectionProps;
+};
+
+export const LifeDetailModel: LifeDetailType = {
+  titleSectionProps: {
+    title: "스트레스 받는 직장 상사가 있나요? 아무도 모르게 스트레스 푸는 법!",
+    date: "3일전",
+    viewCount: "1.2만",
+  },
+  contentSectionProps: {
+    content:
+      "우리 커다란 가슴에 약동하다. 무엇이 방지하는 살 길지 대고, 피어나기 청춘이 사막이다. 만물은 주는 얼마나 이것이다.\n\n크고 옷을 얼음이 길지 굳세게 찾아다녀도, 것이다. 오아이스도 보는 아름답고 청춘 방황하였으며, 간에 길을 청춘은 내려온 이것이다. 얼음이 청춘은 만천하의 반짝이는 천지는 밝은 창공에 이상의 있는가? 봄바람을 싹이 인생을 가치를 얼음과 인생의 것이다.\n\n가치를 창공에 끝에 무엇을 청춘의 피고 불어 봄바람이다. 열락의 붙잡아 할지니, 동력은 꽃이 열매를 시들어 싶이 있으랴?\n\n우리 커다란 가슴에 약동하다. 무엇이 방지하는 살 길지 대고, 피어나기 청춘이 사막이다. 만물은 주는 얼마나 이것이다.\n\n크고 옷을 얼음이 길지 굳세게 찾아다녀도, 것이다. 오아이스도 보는 아름답고 청춘 방황하였으며, 간에 길을 청춘은 내려온 이것이다.\n\n얼음이 청춘은 만천하의 반짝이는 천지는 밝은 창공에 이상의 있는가? 봄바람을 싹이 인생을 가치를 얼음과 인생의 것이다.",
+  },
+  imageSourceSectionProps: { src: "https://www.naver.com" },
 };
 
 export const lifeModel: lifeModelProps[] = [

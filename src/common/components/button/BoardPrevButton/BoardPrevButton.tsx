@@ -4,14 +4,16 @@ import { useRouter } from "next/router";
 import { IconButton } from "@mui/material";
 
 type TBoardPrevButton = {
-  location?: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
-export const BoardPrevButton = ({ location, onClick }: TBoardPrevButton) => {
+export const BoardPrevButton = ({ onClick }: TBoardPrevButton) => {
   const router = useRouter();
+  const handleMovoBack = () => {
+    router.back();
+  };
 
   return (
-    <IconButton onClick={onClick}>
+    <IconButton onClick={onClick || handleMovoBack}>
       <Image
         width="24px"
         height="24px"
