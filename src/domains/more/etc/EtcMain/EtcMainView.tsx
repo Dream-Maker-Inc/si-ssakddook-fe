@@ -1,7 +1,6 @@
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
 import { css } from "@emotion/react";
-import { ClickBox } from "../../components/ClickBox/ClickBox";
 import { EtcBox } from "../../components/EtcBox/EtcBox";
 import { etcModel } from "../../model/MoreModels";
 
