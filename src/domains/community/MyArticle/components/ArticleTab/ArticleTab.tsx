@@ -87,5 +87,8 @@ const sx = {
     width: 100%;
     height: 100%;
     overflow-y: scroll;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   `,
 };
