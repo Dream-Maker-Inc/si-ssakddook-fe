@@ -20,6 +20,8 @@
 [더보기 페이지 - 내 정보](https://ssakddook.netlify.app/more/my-information)<br/>
 [더보기 페이지 - 닉네임 변경](https://ssakddook.netlify.app/more/change-nickname)<br/>
 [더보기 페이지 - 비밀번호 변경](https://ssakddook.netlify.app/more/my-password)<br/>
+[더보기 페이지 - 회원탈퇴](https://ssakddook.netlify.app/more/secession)<br/>
+[더보기 페이지 - 기타](https://ssakddook.netlify.app/more/etc)<br/>
 
 
 
