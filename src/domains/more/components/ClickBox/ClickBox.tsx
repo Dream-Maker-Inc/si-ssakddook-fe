@@ -10,14 +10,14 @@ export const ClickBox = ({
   desc,
   iconSrc,
   nextButtonState = true,
-  onClick,
+  onClickPath,
 }: ClickBoxProps) => {
   const router = useRouter();
   const handleBoxClick = (path: string) => {
     router.push(path);
   };
   return (
-    <div css={sx.root} onClick={() => handleBoxClick(onClick)}>
+    <div css={sx.root} onClick={() => handleBoxClick(onClickPath)}>
       <div css={sx.container}>
         <div>
           <Image width="18px" height="18px" src={iconSrc} alt="" />
