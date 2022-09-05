@@ -78,7 +78,7 @@ export const myInformationModel: ClickBoxProps[] = [
     desc: "더이상 싹둑을 사용하지 않으시려면, 회원 탈퇴가 가능해요.",
     iconSrc: "/img/more/icon-exit.svg",
     nextButtonState: true,
-    onClickPath: RoutePath.MyInformation,
+    onClickPath: RoutePath.Secession,
   },
 ];
 
