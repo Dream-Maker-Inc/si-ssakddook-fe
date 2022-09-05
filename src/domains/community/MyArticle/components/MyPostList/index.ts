@@ -1,0 +1,1 @@
+export { MyPostList } from "./MyPostList";
