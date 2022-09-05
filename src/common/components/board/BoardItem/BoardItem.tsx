@@ -7,8 +7,10 @@ type BoardItemProps = {
   date: string;
   nickname: string;
   category: string;
-  like: string;
-  comments: string;
+  like?: string;
+  comments?: string;
+  isInMyArticleList?: boolean;
+  isPost?: boolean;
 };
 
 export const BoardItem = ({
@@ -18,15 +20,17 @@ export const BoardItem = ({
   category,
   like,
   comments,
+  isInMyArticleList = false,
+  isPost = true,
 }: BoardItemProps) => {
   return (
-    <div css={sx.item}>
+    <div css={sx.item(isInMyArticleList)}>
       <div css={sx.rowWrapper}>
         <Typography variant="body2" color="black">
           {title}
         </Typography>
         <Typography fontSize="8px" color={LightColor.Gray100}>
-          {date}일전
+          {date}
         </Typography>
       </div>
       <div css={sx.rowWrapper}>
@@ -35,38 +39,39 @@ export const BoardItem = ({
           {" · "}
           {category}
         </Typography>
-
-        <div css={sx.chatWrapper}>
-          <div css={sx.wrapper}>
-            <Image
-              width="10px"
-              height="10px"
-              src="/img/icon-chat-heart.svg"
-              alt=""
-            />
-            <Typography fontSize="8px" color={LightColor.Gray100}>
-              {like}
-            </Typography>
+        {isPost && (
+          <div css={sx.chatWrapper}>
+            <div css={sx.wrapper}>
+              <Image
+                width="10px"
+                height="10px"
+                src="/img/icon-chat-heart.svg"
+                alt=""
+              />
+              <Typography fontSize="8px" color={LightColor.Gray100}>
+                {like}
+              </Typography>
+            </div>
+            <div css={sx.wrapper}>
+              <Image
+                width="10px"
+                height="10px"
+                src="/img/icon-chat-comment.svg"
+                alt=""
+              />
+              <Typography fontSize="8px" color={LightColor.Gray100}>
+                {comments}
+              </Typography>
+            </div>
           </div>
-          <div css={sx.wrapper}>
-            <Image
-              width="10px"
-              height="10px"
-              src="/img/icon-chat-comment.svg"
-              alt=""
-            />
-            <Typography fontSize="8px" color={LightColor.Gray100}>
-              {comments}
-            </Typography>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
 };
 
 const sx = {
-  item: css`
+  item: (isInMyArticleList: boolean) => css`
     width: 100%;
     height: 52px;
 
@@ -75,6 +80,7 @@ const sx = {
     justify-content: center;
 
     border-bottom: 1px solid ${LightColor.Gray500};
+    padding: ${isInMyArticleList ? "10px 16px" : "0px"};
   `,
   rowWrapper: css`
     width: 100%;
