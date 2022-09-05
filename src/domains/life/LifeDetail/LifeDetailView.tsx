@@ -2,7 +2,6 @@ import { css } from "@emotion/react";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
 import { Typography } from "@mui/material";
 import { LightColor } from "@/themes/Color";
-import { lifeModel } from "../model/LifeModel";
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import Image from "next/image";
 import { LifeDetailModel } from "../model/LifeModel";
