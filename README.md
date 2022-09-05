@@ -10,7 +10,8 @@
 [메인 페이지](https://ssakddook.netlify.app/main)<br/><br/>
 [커뮤니티 페이지 - 리스트 ](https://ssakddook.netlify.app/community/list)<br />
 [커뮤니티 페이지 - 서치 ](https://ssakddook.netlify.app/community/search)<br />
-[커뮤니티 페이지 - 디테일 ](https://ssakddook.netlify.app/community/detail)<br /><br/>
+[커뮤니티 페이지 - 디테일 ](https://ssakddook.netlify.app/community/detail)<br />
+[커뮤니티 페이지 - 내가 작성한 글](https://ssakddook.netlify.app/community/my-article)<br /><br/>
 [다이어리 페이지 - 메인](https://ssakddook.netlify.app/diary)<br />
 [다이어리 페이지 - 글쓰기](https://ssakddook.netlify.app/diary/write)<br /><br/>
 [라이프 페이지 - 메인](https://ssakddook.netlify.app/life)<br/>
