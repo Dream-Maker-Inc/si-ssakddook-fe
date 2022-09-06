@@ -57,7 +57,7 @@ export const myInformationModel: ClickBoxProps[] = [
     desc: "프로필 이미지를 변경할 수 있어요.",
     iconSrc: "/img/more/icon-smile.svg",
     nextButtonState: true,
-    onClickPath: RoutePath.MyInformation,
+    onClickPath: RoutePath.ChangeProfileImage,
   },
   {
     title: "비밀번호 변경",
