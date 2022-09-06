@@ -8,9 +8,13 @@ import { PrevModal } from "../../modal/PrevModal/PrevModal";
 
 type WritingTabProps = {
   title?: string;
+  onActive?: boolean;
 };
 
-export const WritingTab = ({ title = "커뮤니티" }: WritingTabProps) => {
+export const WritingTab = ({
+  title = "커뮤니티",
+  onActive = false,
+}: WritingTabProps) => {
   const router = useRouter();
   const moveToBackPage = () => {
     router.back();
@@ -29,7 +33,14 @@ export const WritingTab = ({ title = "커뮤니티" }: WritingTabProps) => {
         </Typography>
       </div>
       <IconButton>
-        <Image width="24px" height="24px" src="/img/icon-submit.svg" alt="" />
+        <Image
+          width="24px"
+          height="24px"
+          src={
+            onActive ? "/img/icon-submit.svg" : "/img/icon-submit-disabled.svg"
+          }
+          alt=""
+        />
       </IconButton>
       <PrevModal
         key={"modal"}
