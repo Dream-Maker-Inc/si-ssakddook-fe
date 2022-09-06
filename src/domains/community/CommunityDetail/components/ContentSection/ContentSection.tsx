@@ -22,8 +22,6 @@ const sx = {
   contentRoot: css`
     width: 100%;
     padding: 0 16px;
-
-    margin-top: 16px;
   `,
   contentContainer: css`
     width: 100%;

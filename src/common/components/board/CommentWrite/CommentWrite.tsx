@@ -47,6 +47,9 @@ const sx = {
     position: absolute;
     bottom: 0;
     left: 0;
+
+    display: flex;
+    align-items: center;
   `,
 
   searchField: css`
