@@ -9,8 +9,14 @@ import { useSignupView } from "./useSignupView";
 import { ValidationArticle } from "./ValidationArticle";
 
 export const SignupView = () => {
-  const { idState, nicknameState, pwState, confirmPwState, checkState } =
-    useSignupView();
+  const {
+    idState,
+    nicknameState,
+    pwState,
+    confirmPwState,
+    checkState,
+    buttonState,
+  } = useSignupView();
   return (
     <div css={sx.root}>
       <div css={sx.container}>
@@ -111,8 +117,14 @@ export const SignupView = () => {
           />
         </div>
 
-        <Button fullWidth variant="contained" color="primary">
-          <Typography variant="body1" color="white">
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          disabled={buttonState.disabled}
+          onClick={buttonState.onClick}
+        >
+          <Typography variant="body1" color="white" lineHeight="1">
             다음
           </Typography>
         </Button>

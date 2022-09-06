@@ -1,10 +1,13 @@
+import { RoutePath } from "@/constants/Path";
 import { LightColor } from "@/themes/Color";
 import { Regex } from "@/utils/validation/common/CommonRegex";
 import { isEmailAddress } from "@/utils/validation/Email/EmailValidation";
-import { collapseClasses, colors } from "@mui/material";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export const useSignupView = () => {
+  const router = useRouter();
+
   // id
   const [id, setId] = useState("");
   const [isIdError, setIsIdError] = useState(false);
@@ -102,6 +105,21 @@ export const useSignupView = () => {
     setThirdCheck(e.target.checked);
   };
 
+  //submit button
+  const isButtonDisabled =
+    !isIdValidationPassed ||
+    !isNicknameValidationPassed ||
+    !pw ||
+    !confirmPw ||
+    !pwValidation ||
+    !confirmPwValidation ||
+    firstCheck === false ||
+    secondCheck === false;
+
+  const onSubmit = () => {
+    router.push(RoutePath.SignupSuccess);
+  };
+
   return {
     idState: {
       value: id,
@@ -157,6 +175,10 @@ export const useSignupView = () => {
         value: thirdCheck,
         onChange: handleThirdCheckChange,
       },
+    },
+    buttonState: {
+      disabled: isButtonDisabled,
+      onClick: onSubmit,
     },
   };
 };
