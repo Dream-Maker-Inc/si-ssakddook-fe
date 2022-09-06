@@ -5,7 +5,7 @@ export const useChangePasswordView = () => {
   const [img, setImage] = useState(defaultImage);
   const [changeImageState, setChangeImageState] = useState(false);
 
-  const imageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const imapgeUploadHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
@@ -22,7 +22,7 @@ export const useChangePasswordView = () => {
   return {
     imageState: {
       value: img,
-      onUpload: imageHandler,
+      onUpload: imapgeUploadHandler,
     },
 
     buttonState: {
