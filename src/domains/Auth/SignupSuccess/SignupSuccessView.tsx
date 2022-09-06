@@ -1,10 +1,16 @@
 import { Title } from "@/common/components/title/Title";
+import { RoutePath } from "@/constants/Path";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export const SignupSuccessView = () => {
+  const router = useRouter();
+  const onClick = () => {
+    router.push(RoutePath.Login);
+  };
   return (
     <div css={sx.root}>
       <div css={sx.container}>
@@ -30,7 +36,12 @@ export const SignupSuccessView = () => {
         </div>
 
         <div css={sx.buttonWrapper}>
-          <Button fullWidth variant="contained" color="primary">
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={onClick}
+          >
             <Typography variant="body1" color="white">
               로그인하러 가기
             </Typography>

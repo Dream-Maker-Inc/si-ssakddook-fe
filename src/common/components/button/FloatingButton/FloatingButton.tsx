@@ -1,11 +1,11 @@
-import { LightColor } from "@/themes/Color";
+import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
 import Image from "next/image";
 import Link from "next/link";
 
 export const FloatingButton = () => {
   return (
-    <Link href="/community">
+    <Link href={RoutePath.CommunityWrite}>
       <div css={sx.container}>
         <Image width="24px" height="24px" src="/img/icon-edit.svg" alt="" />
       </div>
@@ -30,5 +30,6 @@ const sx = {
     border-radius: 50px;
 
     z-index: 99;
+    cursor: pointer;
   `,
 };

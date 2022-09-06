@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "@mui/material";
+import { Button, ButtonProps, Typography } from "@mui/material";
 
 export const SubmitButton = (p: ButtonProps) => {
   return (
@@ -9,7 +9,9 @@ export const SubmitButton = (p: ButtonProps) => {
       sx={{ fontSize: "12px" }}
       {...p}
     >
-      회원 탈퇴하기
+      <Typography variant="body1" color="white" lineHeight="1">
+        회원 탈퇴하기
+      </Typography>
     </Button>
   );
 };
