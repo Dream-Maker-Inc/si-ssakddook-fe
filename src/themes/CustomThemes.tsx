@@ -55,6 +55,29 @@ export const lightTheme = createTheme({
             width: "100%",
             height: "100%",
           },
+
+          input: {
+            fontSize: "12px",
+
+            // placeholder
+            "::placeholder": {
+              color: "#CCCCCC",
+              opacity: 1,
+              fontSize: "12px",
+            },
+          },
+
+          textarea: {
+            fontSize: "12px",
+            lineHeight: "20px",
+            // placeholder
+            "::placeholder": {
+              color: "#CCCCCC",
+              opacity: 1,
+              fontSize: "12px",
+              lineHeight: "20px",
+            },
+          },
         },
       },
     },
