@@ -1,1 +1,1 @@
-export { LoginView } from "./components/LoginView";
+export { LoginView } from "./LoginView";
