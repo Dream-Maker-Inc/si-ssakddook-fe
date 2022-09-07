@@ -24,7 +24,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/domains/diary/CustomWeeklyCalendar/components/reousrces/events.js"
+    "src/domains/diary/CustomWeeklyCalendar/components/reousrces/events.js",
+    "src/domains/talk/components/CustomLoadingIndicator/index.js",
+    "src/domains/talk/components/CustomLoadingIndicator/CustonLoadingIndicator.jsx"
   ],
   "exclude": ["node_modules"]
 }
