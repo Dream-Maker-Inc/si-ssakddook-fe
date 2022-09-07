@@ -1,1 +1,0 @@
-export { ArticleTab } from "./ArticleTab";
