@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
-import { BoardPrevButton } from "../../button/BoardPrevButton";
 
 type DefaultTabProps = {
   category: string;
