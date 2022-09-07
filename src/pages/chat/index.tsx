@@ -1,8 +1,8 @@
-import { MainView } from "@/domains/Main";
+import { ChatMainView } from "@/domains/chat/ChatMain";
 import { NextPage } from "next";
 
-const MainPage: NextPage = () => {
-  return <MainView />;
+const ChatMainPage: NextPage = () => {
+  return <ChatMainView />;
 };
 
-export default MainPage;
+export default ChatMainPage;

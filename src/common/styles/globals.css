@@ -406,3 +406,66 @@ header #logo .icon {
 
   transform: translateY(-50%);
 }
+
+/* stream talk */
+.channel-preview__container {
+  height: 71px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 16px;
+  border-bottom: 1px solid #f1f1f1;
+  position: relative;
+}
+
+.channel-preview__container:hover {
+  background: #f1f1f1;
+}
+
+.channel-preview__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 100%;
+}
+
+.channel-preview__content-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  height: 18px;
+  margin-bottom: 4px;
+}
+
+.channel-preview__content-name {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: #000000;
+  margin: 0;
+  max-width: 158px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.channel-preview__content-message {
+  font-size: 10px;
+  line-height: 16.65px;
+  margin: 0;
+  color: #999999;
+  height: 16px;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.str-chat__loading-channels {
+  min-width: unset;
+  width: 100%;
+}
