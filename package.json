@@ -20,7 +20,9 @@
     "react-dom": "18.2.0",
     "react-horizontal-strip-datepicker": "^3.0.2",
     "recoil": "^0.7.5",
-    "sass": "^1.54.5"
+    "sass": "^1.54.5",
+    "stream-chat": "^7.1.0",
+    "stream-chat-react": "^9.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
