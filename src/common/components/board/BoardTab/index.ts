@@ -1,0 +1,1 @@
+export { BoardTab } from "./BoardTab";
