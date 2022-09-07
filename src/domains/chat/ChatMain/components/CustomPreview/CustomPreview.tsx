@@ -13,7 +13,9 @@ export const CustomPreview = (props: ChannelPreviewUIComponentProps) => {
     useRecoilState(ChatAtom);
 
   const handleChannelClick = () => {
-    setActiveChannel(channel);
+    if (setActiveChannel) {
+      setActiveChannel(channel);
+    }
     setIsChannelListVisible(false);
   };
 
