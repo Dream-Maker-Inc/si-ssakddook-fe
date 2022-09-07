@@ -1,0 +1,1 @@
+export { ChatMainTab } from "./ChatMainTab";
