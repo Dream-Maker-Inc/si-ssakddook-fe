@@ -7,6 +7,7 @@ import { DefaultBottomNavigation } from "../../bottomNavigation/DefaultBottomNav
 import { useRecoilState } from "recoil";
 import { NavigationAtom } from "@/recoil/Navigation/Navigation.atom";
 import { MoreView } from "@/domains/more/More";
+import { ChatMainView } from "@/domains/chat/ChatMain";
 
 export const BottomNavigationLayout = () => {
   const [navigation, setNavigation] = useRecoilState(NavigationAtom);
@@ -19,7 +20,7 @@ export const BottomNavigationLayout = () => {
       case RoutePath.Main:
         return <MainView />;
       case RoutePath.Chat:
-        return <MainView />;
+        return <ChatMainView />;
       case RoutePath.Community:
         return <CommunityMainView />;
       case RoutePath.Diary:
