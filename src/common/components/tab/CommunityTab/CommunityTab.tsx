@@ -1,12 +1,15 @@
+import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
-
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
-import { LightColor } from "@/themes/Color";
 import { useRouter } from "next/router";
 
 export const CommunityTab = () => {
   const router = useRouter();
+
+  const onMyClick = () => {
+    router.push(RoutePath.MyArticle);
+  };
 
   return (
     <div>
@@ -40,7 +43,7 @@ export const CommunityTab = () => {
                 alt=""
               />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={onMyClick}>
               <Typography variant="h2">MY</Typography>
             </IconButton>
           </div>

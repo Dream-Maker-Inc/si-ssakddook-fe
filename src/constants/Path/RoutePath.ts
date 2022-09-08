@@ -11,6 +11,7 @@ export enum RoutePath {
   Community = "/community",
   CommunityWrite = "/community/write",
   CommunityDetail = "/community/detail",
+  MyArticle = "/community/my-article",
   Diary = "/diary",
   DiaryDetail = "/diary/write",
   More = "/more",
