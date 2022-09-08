@@ -1,7 +1,9 @@
+import { RoutePath } from "@/constants/Path";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/router";
 type BoardItemProps = {
   title: string;
   date: string;
@@ -23,8 +25,12 @@ export const BoardItem = ({
   isInMyArticleList = false,
   isPost = true,
 }: BoardItemProps) => {
+  const router = useRouter();
+  const handleBoxClick = () => {
+    router.push(RoutePath.CommunityDetail);
+  };
   return (
-    <div css={sx.item(isInMyArticleList)}>
+    <div css={sx.item(isInMyArticleList)} onClick={handleBoxClick}>
       <div css={sx.rowWrapper}>
         <Typography variant="body2" color="black">
           {title}
@@ -81,6 +87,8 @@ const sx = {
 
     border-bottom: 1px solid ${LightColor.Gray500};
     padding: ${isInMyArticleList ? "10px 16px" : "0px"};
+
+    cursor: pointer;
   `,
   rowWrapper: css`
     width: 100%;

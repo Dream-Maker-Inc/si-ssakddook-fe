@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import { RoutePath } from "@/constants/Path";
-import { CommunityMainView } from "@/domains/community/CommunityMain";
+import { CommunityMainView } from "@/domains/community/views/CommunityMain";
 import { DiaryView } from "@/domains/diary/CustomWeeklyCalendar";
 import { MainView } from "@/domains/Main";
 import { DefaultBottomNavigation } from "../../bottomNavigation/DefaultBottomNavigation";

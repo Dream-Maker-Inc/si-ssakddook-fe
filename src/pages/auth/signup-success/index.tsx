@@ -1,4 +1,4 @@
-import { SignupSuccessView } from "@/domains/Auth/SignupSuccess";
+import { SignupSuccessView } from "@/domains/auth/SignupSuccess";
 import { NextPage } from "next";
 
 const SignupSuccessPage: NextPage = () => {

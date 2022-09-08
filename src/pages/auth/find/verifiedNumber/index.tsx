@@ -1,4 +1,4 @@
-import { InputVerifiedNumberView } from "@/domains/Auth/find/InputVerfifedNumber";
+import { InputVerifiedNumberView } from "@/domains/auth/views/find/InputVerfifedNumber";
 import { NextPage } from "next";
 
 const InputVerifiedNumberPage: NextPage = () => {

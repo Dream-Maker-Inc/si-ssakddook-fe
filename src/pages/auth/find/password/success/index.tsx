@@ -1,4 +1,4 @@
-import { FindPasswordSuccessView } from "@/domains/Auth/find/password/FindPasswordSuccess";
+import { FindPasswordSuccessView } from "@/domains/auth/views/find/password/FindPasswordSuccess";
 import { NextPage } from "next";
 
 const FindPasswordSuccessPage: NextPage = () => {

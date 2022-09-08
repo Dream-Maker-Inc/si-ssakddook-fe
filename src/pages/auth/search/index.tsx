@@ -1,4 +1,4 @@
-import { IdPasswordSearchView } from "@/domains/Auth/Search";
+import { IdPasswordSearchView } from "@/domains/auth/Search";
 import { NextPage } from "next";
 
 const SearchPage: NextPage = () => {

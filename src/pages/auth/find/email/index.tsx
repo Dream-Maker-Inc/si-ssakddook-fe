@@ -1,4 +1,4 @@
-import { InputEmailView } from "@/domains/Auth/find/InputEmail";
+import { InputEmailView } from "@/domains/auth/views/find/InputEmail";
 import { NextPage } from "next";
 
 const InputEmailPage: NextPage = () => {

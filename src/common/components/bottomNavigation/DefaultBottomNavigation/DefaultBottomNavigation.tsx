@@ -1,5 +1,4 @@
 import { RoutePath } from "@/constants/Path";
-import { useRouter } from "next/router";
 import { css } from "@emotion/react";
 import Image from "next/image";
 import { IconButton } from "@mui/material";

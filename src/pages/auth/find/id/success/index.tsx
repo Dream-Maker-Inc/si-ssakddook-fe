@@ -1,4 +1,4 @@
-import { FindIdSuccessView } from "@/domains/Auth/find/id/FindIdSuccess";
+import { FindIdSuccessView } from "@/domains/auth/views/find/id/FindIdSuccess";
 import { NextPage } from "next";
 
 const FindIdSuccessPage: NextPage = () => {

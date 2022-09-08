@@ -1,4 +1,4 @@
-import { CommunityMainView } from "@/domains/community/CommunityMain";
+import { CommunityMainView } from "@/domains/community/views/CommunityMain";
 import { NextPage } from "next";
 
 const CommunityMainPage: NextPage = () => {

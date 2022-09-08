@@ -1,5 +1,5 @@
 import { BoardComment } from "@/common/components/board/BoardComment";
-import { commentsModel } from "@/domains/community/community.model";
+import { commentsModel } from "@/domains/community/models/community.model";
 
 export const CommentSection = () => {
   return (

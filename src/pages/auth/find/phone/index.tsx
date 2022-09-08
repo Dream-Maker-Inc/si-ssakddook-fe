@@ -1,4 +1,4 @@
-import { InputPhoneNumberView } from "@/domains/Auth/find/InputPhoneNumber";
+import { InputPhoneNumberView } from "@/domains/auth/views/find/InputPhoneNumber";
 import { NextPage } from "next";
 
 const InputPhoneNumberPage: NextPage = () => {
