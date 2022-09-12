@@ -1,5 +1,5 @@
 import axios from "axios";
 
-export const AxiosClient = axios.create({
-  baseURL: "ssakduk-api.ureca.im:3000/api",
+export const axiosClient = axios.create({
+  baseURL: "http://ssakduk-api.ureca.im:3000/api",
 });
