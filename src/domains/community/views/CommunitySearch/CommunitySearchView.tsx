@@ -1,7 +1,7 @@
 import { BoardExpandedItem } from "@/common/components/board/BoardExpandedItem";
 import { SearchTab } from "@/common/components/tab/SearchTab";
 import { css } from "@emotion/react";
-import { boardItemInfos } from "../community.model";
+import { boardItemInfos } from "../../models/community.model";
 import { useCommunitySearchView } from "./useCommunitySearchView";
 
 export const CommunitySearchView = () => {

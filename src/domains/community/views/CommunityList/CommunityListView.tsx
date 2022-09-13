@@ -1,7 +1,7 @@
 import { BoardExpandedItem } from "@/common/components/board/BoardExpandedItem";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
 import { css } from "@emotion/react";
-import { boardItemInfos } from "../community.model";
+import { boardItemInfos } from "../../models/community.model";
 
 export const CommunityListView = () => {
   return (

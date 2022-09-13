@@ -1,4 +1,4 @@
-import { CommunitySearchView } from "@/domains/community/CommunitySearch";
+import { CommunitySearchView } from "@/domains/community/views/CommunitySearch";
 import { NextPage } from "next";
 
 const CommunitySearchPage: NextPage = () => {
