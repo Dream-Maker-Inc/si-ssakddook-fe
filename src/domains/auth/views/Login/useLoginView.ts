@@ -1,5 +1,6 @@
 import { RoutePath } from "@/constants/Path";
-import { isEmailAddress } from "@/utils/validation/Email/EmailValidation";
+import { useLogin } from "@/data/apis/auth/useAuthApiHooks";
+import { validateEmail } from "@/utils/validation/Email/EmailValidation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -10,7 +11,7 @@ export const useLoginView = () => {
   const [pw, setPw] = useState("");
 
   const [isEmailNotValid, setEmailNotValid] = useState(false);
-  const emailValidation = isEmailAddress(email);
+  const emailValidation = validateEmail(email);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -18,6 +19,20 @@ export const useLoginView = () => {
   const handlePwChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPw(e.target.value);
   };
+
+  const { mutate, isSuccess, isError, data } = useLogin(email, pw);
+
+  if (isSuccess) {
+    if (data.accessToken !== null) {
+      console.log(data.accessToken);
+      localStorage.setItem("jwt", data.accessToken);
+      router.push(RoutePath.Main);
+    } else {
+      console.log("로그인에 실패했습니다.");
+    }
+  } else if (isError) {
+    console.log(data);
+  }
 
   useEffect(() => {
     setEmailNotValid(false);
@@ -27,8 +42,7 @@ export const useLoginView = () => {
     if (!emailValidation) {
       setEmailNotValid(true);
     } else {
-      router.push(RoutePath.Main);
-      setEmailNotValid(false);
+      mutate();
     }
   };
 

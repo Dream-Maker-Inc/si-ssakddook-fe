@@ -1,4 +1,4 @@
-import { MyArticleView } from "@/domains/community/MyArticle";
+import { MyArticleView } from "@/domains/community/views/MyArticle";
 import { NextPage } from "next";
 
 const MyArticlePage: NextPage = () => {

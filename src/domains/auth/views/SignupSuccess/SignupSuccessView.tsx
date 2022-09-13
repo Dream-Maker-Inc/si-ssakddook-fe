@@ -1,16 +1,19 @@
 import { Title } from "@/common/components/title/Title";
 import { RoutePath } from "@/constants/Path";
+import { MemberAtom } from "@/recoil/Member/Member.atom";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useRecoilValue } from "recoil";
 
 export const SignupSuccessView = () => {
   const router = useRouter();
   const onClick = () => {
     router.push(RoutePath.Login);
   };
+  console.log(useRecoilValue(MemberAtom));
   return (
     <div css={sx.root}>
       <div css={sx.container}>

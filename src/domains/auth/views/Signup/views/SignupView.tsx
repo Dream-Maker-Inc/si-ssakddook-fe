@@ -2,18 +2,20 @@ import { PrevButton } from "@/common/components/button/PrevButton";
 import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
-import { AgreementArticle } from "./AgreementArticle";
-import { PasswordArticle } from "./PasswordArticle";
-import { SignupTitleWithDesc } from "./SignupTitleWithDesc";
-import { useSignupView } from "./useSignupView";
-import { ValidationArticle } from "./ValidationArticle";
+import {
+  AgreementArticle,
+  PasswordArticle,
+  SignupTitleWithDesc,
+  ValidationArticle,
+} from "../components";
+import { useSignupView } from "../hooks/useSignupView";
 
 export const SignupView = () => {
   const {
-    idState,
+    emailState,
     nicknameState,
-    pwState,
-    confirmPwState,
+    passwordState,
+    confirmPasswordState,
     checkState,
     buttonState,
   } = useSignupView();
@@ -33,18 +35,21 @@ export const SignupView = () => {
             }}
             fieldProps={{
               placeholder: "account@ssakduk.com",
-              value: idState.value,
-              onChange: idState.onChange,
-              error: idState.error,
+              value: emailState.value,
+              onChange: (e) => emailState.onChange(e.target.value),
+              error: emailState.isError,
               helperText: (
-                <Typography variant="caption" color={idState.color}>
-                  {idState.helperText}
+                <Typography
+                  variant="caption"
+                  color={emailState.helperText.color}
+                >
+                  {emailState.helperText.text}
                 </Typography>
               ),
             }}
             buttonProps={{
-              onClick: idState.onValidatorClick,
-              disabled: idState.disabled,
+              onClick: emailState.button.onClick,
+              disabled: emailState.button.disabled,
             }}
           />
           <ValidationArticle
@@ -54,17 +59,20 @@ export const SignupView = () => {
             }}
             fieldProps={{
               value: nicknameState.value,
-              onChange: nicknameState.onChange,
-              error: nicknameState.error,
+              onChange: (e) => nicknameState.onChange(e.target.value),
+              error: nicknameState.isError,
               helperText: (
-                <Typography variant="caption" color={nicknameState.color}>
-                  {nicknameState.helperText}
+                <Typography
+                  variant="caption"
+                  color={nicknameState.helperText.color}
+                >
+                  {nicknameState.helperText.text}
                 </Typography>
               ),
             }}
             buttonProps={{
-              onClick: nicknameState.onValidatorClick,
-              disabled: nicknameState.disabled,
+              onClick: nicknameState.button.onClick,
+              disabled: nicknameState.button.disabled,
             }}
           />
           <PasswordArticle
@@ -74,10 +82,10 @@ export const SignupView = () => {
             }}
             fieldProps={{
               type: "password",
-              value: pwState.value,
-              onChange: pwState.onChange,
-              error: pwState.error,
-              helperText: pwState.helperText,
+              value: passwordState.value,
+              onChange: (e) => passwordState.onChange(e.target.value),
+              error: passwordState.isError,
+              helperText: passwordState.helperText,
             }}
           />
           <PasswordArticle
@@ -87,12 +95,15 @@ export const SignupView = () => {
             }}
             fieldProps={{
               type: "password",
-              value: confirmPwState.value,
-              onChange: confirmPwState.onChange,
-              error: confirmPwState.error,
+              value: confirmPasswordState.value,
+              onChange: (e) => confirmPasswordState.onChange(e.target.value),
+              error: confirmPasswordState.isError,
               helperText: (
-                <Typography variant="caption" color={confirmPwState.color}>
-                  {confirmPwState.helperText}
+                <Typography
+                  variant="caption"
+                  color={confirmPasswordState.color}
+                >
+                  {confirmPasswordState.helperText}
                 </Typography>
               ),
             }}
