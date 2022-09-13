@@ -2,7 +2,6 @@ import { axiosClient } from "@/constants/api/client/client";
 import { ApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import {
   GetCurrentMemberApiResponse,
-  SignupApiResponse,
   ValidateEmailApiResponse,
   ValidateNicknameApiResponse,
 } from "./member.dto";
