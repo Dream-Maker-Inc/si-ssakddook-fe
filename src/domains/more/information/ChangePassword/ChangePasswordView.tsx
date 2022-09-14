@@ -5,10 +5,15 @@ import { PasswordBox } from "./components/PasswordBox/PasswordBox";
 import { useChangePasswordView } from "./useChangePasswordView";
 
 export const ChangePasswordView = () => {
-  const { currPwStae, newPwStae, confirmPwState } = useChangePasswordView();
+  const { currPwState, newPwState, confirmPwState, tabState } =
+    useChangePasswordView();
   return (
     <AppbarLayout>
-      <WritingTab title="비밀번호 변경" />
+      <WritingTab
+        title={tabState.title}
+        onActive={tabState.onActive}
+        onClick={tabState.onClick}
+      />
       <div css={sx.root}>
         <div css={sx.container}>
           <PasswordBox
@@ -17,8 +22,8 @@ export const ChangePasswordView = () => {
               desc: "기존 비밀번호를 입력해 주세요.",
             }}
             fieldProps={{
-              value: currPwStae.value,
-              onChange: currPwStae.onChange,
+              value: currPwState.value,
+              onChange: currPwState.onChange,
             }}
           />
           <PasswordBox
@@ -27,8 +32,10 @@ export const ChangePasswordView = () => {
               desc: "변경할 비밀번호를 입력해 주세요.",
             }}
             fieldProps={{
-              value: newPwStae.value,
-              onChange: newPwStae.onChange,
+              value: newPwState.value,
+              onChange: newPwState.onChange,
+              error: newPwState.error,
+              helperText: newPwState.helperText,
             }}
           />
           <PasswordBox
