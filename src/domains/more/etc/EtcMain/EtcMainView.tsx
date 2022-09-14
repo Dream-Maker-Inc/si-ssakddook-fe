@@ -2,14 +2,15 @@ import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
 import { css } from "@emotion/react";
 import { EtcBox } from "../../components/EtcBox/EtcBox";
-import { etcModel } from "../../model/MoreModels";
+import { useEtcMainView } from "./useEtcMainView";
 
 export const EtcMainView = () => {
+  const models = useEtcMainView();
   return (
     <AppbarLayout>
       <div css={sx.root}>
         <DefaultTab category="기타" />
-        {etcModel.map((it, index) => (
+        {models.map((it, index) => (
           <EtcBox
             key={index}
             title={it.title}

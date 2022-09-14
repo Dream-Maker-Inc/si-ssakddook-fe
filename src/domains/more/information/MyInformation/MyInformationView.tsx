@@ -2,14 +2,15 @@ import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
 import { css } from "@emotion/react";
 import { ClickBox } from "../../components/ClickBox/ClickBox";
-import { myInformationModel } from "../../model/MoreModels";
+import { useMyInformationView } from "./useMyInformationView";
 
 export const MyInformationView = () => {
+  const models = useMyInformationView();
   return (
     <AppbarLayout>
       <div css={sx.root}>
         <DefaultTab category="내 정보" />
-        {myInformationModel.map((it, index) => (
+        {models.map((it, index) => (
           <ClickBox
             key={index}
             title={it.title}
