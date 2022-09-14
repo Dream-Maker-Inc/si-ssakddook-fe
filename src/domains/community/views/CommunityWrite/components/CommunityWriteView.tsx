@@ -9,11 +9,17 @@ import { TitleSection } from "./TitleSection";
 import { useCommunityWriteView } from "./useCommunityWriteView";
 
 export const CommunityWriteView = () => {
-  const { titleState, categoryState, contentState, imageState, buttonState } =
-    useCommunityWriteView();
+  const {
+    titleState,
+    categoryState,
+    contentState,
+    imageState,
+    buttonState,
+    tabState,
+  } = useCommunityWriteView();
   return (
     <AppbarLayout>
-      <WritingTab onActive={buttonState.onActive} />
+      <WritingTab onActive={tabState.onActive} onClick={tabState.onClick} />
       <div css={sx.root}>
         <div css={sx.container}>
           <CategorySelection
