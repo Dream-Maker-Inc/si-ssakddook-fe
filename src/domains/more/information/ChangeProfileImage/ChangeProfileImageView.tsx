@@ -7,13 +7,14 @@ import Image from "next/image";
 import { useChangePasswordView } from "./useChangeProfileImageView";
 
 export const ChangeProfileImageView = () => {
-  const { imageState, buttonState } = useChangePasswordView();
+  const { imageState, tabState } = useChangePasswordView();
 
   return (
     <AppbarLayout>
       <WritingTab
-        title="프로필 이미지 변경하기"
-        onActive={buttonState.onActive}
+        title={tabState.title}
+        onActive={tabState.onActive}
+        onClick={tabState.onClick}
       />
       <div css={sx.root}>
         <div css={sx.container}>

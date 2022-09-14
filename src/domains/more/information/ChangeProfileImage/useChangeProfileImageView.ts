@@ -1,9 +1,20 @@
+import { RoutePath } from "@/constants/Path";
+import {
+  useGetCurrentMember,
+  useUpdateProfileImage,
+} from "@/data/apis/member/useMemberApiHooks";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import { useQuery } from "react-query";
 
 export const useChangePasswordView = () => {
-  const defaultImage = "/img/badge/icon-default-avatar.svg";
+  const router = useRouter();
+  // member profile-image
+  const defaultImage = useQuery("get-curr-member", useGetCurrentMember).data
+    ?.profileImageUrl;
+
   const [img, setImage] = useState(defaultImage);
-  const [changeImageState, setChangeImageState] = useState(false);
+  const [uploadImage, setUploadImage] = useState<any>(null);
 
   const imapgeUploadHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
@@ -17,16 +28,40 @@ export const useChangePasswordView = () => {
       return;
     }
     reader.readAsDataURL(e.target.files[0]);
-    setChangeImageState(true);
+    setUploadImage(e.target.files[0]);
   };
+
+  // change profile-image api
+  const id = localStorage.getItem("id");
+  const { mutate, isSuccess, isError, data } = useUpdateProfileImage(id!!);
+
+  if (isSuccess) {
+    console.log("change profile-image success");
+    console.log(data);
+    router.push(RoutePath.MyInformation);
+  }
+
+  if (isError) {
+    console.log("change profile-image failed");
+    console.log(data);
+  }
+
+  const onSubmit = () => {
+    const formData = new FormData();
+    formData.append("file", uploadImage);
+    mutate(formData);
+  };
+
   return {
     imageState: {
       value: img,
       onUpload: imapgeUploadHandler,
     },
 
-    buttonState: {
-      onActive: changeImageState,
+    tabState: {
+      title: "프로필 이미지 변경하기",
+      onActive: uploadImage === null ? false : true,
+      onClick: onSubmit,
     },
   };
 };
