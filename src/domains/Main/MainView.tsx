@@ -1,5 +1,4 @@
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
-import { DefaultTab } from "@/common/components/tab/DefaultTab";
 import { MainTab } from "@/common/components/tab/MainTab";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
@@ -8,10 +7,10 @@ import Image from "next/image";
 import { useMainView } from "./useMainView";
 
 export const MainView = () => {
-  const { data } = useMainView();
+  const { data, username } = useMainView();
   return (
     <AppbarLayout>
-      <MainTab />
+      <MainTab username={username} />
       <div css={sx.root}>
         <div css={sx.container}>
           <Typography variant="h2" color={LightColor.Gray200} textAlign="left">
