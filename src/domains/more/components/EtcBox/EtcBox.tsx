@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { EtcBoxProps } from "../../model/MoreModels";
+import { EtcBoxProps } from "../../types/MoreType.type";
 
 export const EtcBox = ({ title, iconSrc, onClickPath }: EtcBoxProps) => {
   const router = useRouter();
