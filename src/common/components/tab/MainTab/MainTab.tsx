@@ -4,7 +4,10 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import Image from "next/image";
 import { LightColor } from "@/themes/Color";
 
-export const MainTab = () => {
+type MainTabProps = {
+  username: string;
+};
+export const MainTab = ({ username }: MainTabProps) => {
   return (
     <div>
       <div css={sx.container}>
@@ -18,7 +21,7 @@ export const MainTab = () => {
             />
           </IconButton>
           <Typography variant="h2" ml="12px" sx={{ flexGrow: 1 }}>
-            홍길동님, 환영해요.
+            {username}님, 환영해요.
           </Typography>
           <IconButton
             size="large"

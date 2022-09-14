@@ -9,11 +9,14 @@ import { PrevModal } from "../../modal/PrevModal/PrevModal";
 type WritingTabProps = {
   title?: string;
   onActive?: boolean;
+  // 나중에 필수로 변경
+  onClick?: () => void;
 };
 
 export const WritingTab = ({
   title = "커뮤니티",
   onActive = false,
+  onClick,
 }: WritingTabProps) => {
   const router = useRouter();
   const moveToBackPage = () => {
@@ -32,7 +35,7 @@ export const WritingTab = ({
           {title}
         </Typography>
       </div>
-      <IconButton>
+      <IconButton onClick={onClick}>
         <Image
           width="24px"
           height="24px"
