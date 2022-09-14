@@ -18,6 +18,26 @@ export const useGetCurrentMember = () => {
   return MemberApiService.getCurrentMember();
 };
 
+export const useUpdateNickname = (id: string, nickname: string) => {
+  return useMutation(() => MemberApiService.updateNickname(id, nickname));
+};
+
+export const useUpdatePassword = (
+  id: string,
+  oldPassword: string,
+  newPassword: string
+) => {
+  return useMutation(() =>
+    MemberApiService.updatePassword(id, oldPassword, newPassword)
+  );
+};
+
+export const useUpdateProfileImage = (id: string) => {
+  return useMutation((formData: any) =>
+    MemberApiService.updateProfileImage(id, formData)
+  );
+};
+
 // const {
 //   mutate,
 //   isSuccess,

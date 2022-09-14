@@ -1,3 +1,4 @@
+import { ApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import {
   SignupApiResponse,
   ValidateEmailApiResponse,
@@ -11,4 +12,11 @@ export interface MemberApiInterface {
   validateNickname(nickname: string): Promise<ValidateNicknameApiResponse>;
   signup(body: MemberModel): Promise<SignupApiResponse>;
   getCurrentMember(): Promise<GetCurrentMemberApiResponse>;
+  updateNickname(id: string, nickname: string): Promise<ApiFailedResponse>;
+  updatePassword(
+    id: string,
+    oldPassword: string,
+    newPassword: string
+  ): Promise<ApiFailedResponse>;
+  updateProfileImage(id: string, formData: any): Promise<ApiFailedResponse>;
 }

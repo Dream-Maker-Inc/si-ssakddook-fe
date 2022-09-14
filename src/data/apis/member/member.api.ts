@@ -14,6 +14,11 @@ class MemberApiService implements MemberApiInterface {
     return this.instance || (this.instance = new this());
   }
 
+  jwt = localStorage.getItem("jwt");
+  config = {
+    headers: { Authorization: `Bearer ${this.jwt}` },
+  };
+
   async validateEmail(email: string): Promise<ValidateEmailApiResponse> {
     const response = await axiosClient.post("/v1/member/validate/email", {
       email,
@@ -42,11 +47,47 @@ class MemberApiService implements MemberApiInterface {
   }
 
   async getCurrentMember(): Promise<GetCurrentMemberApiResponse> {
-    const jwt = localStorage.getItem("jwt");
-    const config = {
-      headers: { Authorization: `Bearer ${jwt}` },
-    };
-    const response = await axiosClient.get("/v1/member/me", config);
+    const response = await axiosClient.get("/v1/member/me", this.config);
+
+    return response.data;
+  }
+
+  async updateNickname(
+    id: string,
+    nickname: string
+  ): Promise<ApiFailedResponse | any> {
+    const response = await axiosClient.patch(
+      `/v1/member/${id}`,
+      { nickname },
+      this.config
+    );
+
+    return response.data;
+  }
+
+  async updatePassword(
+    id: string,
+    oldPassword: string,
+    newPassword: string
+  ): Promise<ApiFailedResponse | any> {
+    const response = await axiosClient.patch(
+      `/v1/member/${id}/password`,
+      { oldPassword, newPassword },
+      this.config
+    );
+
+    return response.data;
+  }
+
+  async updateProfileImage(
+    id: string,
+    formData: any
+  ): Promise<ApiFailedResponse | any> {
+    const response = await axiosClient.patch(
+      `/v1/member/${id}/profile`,
+      formData,
+      this.config
+    );
 
     return response.data;
   }
