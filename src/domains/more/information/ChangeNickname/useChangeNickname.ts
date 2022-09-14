@@ -13,8 +13,7 @@ export const useChangeNickname = () => {
   const onActive = nickname !== "" ? true : false;
 
   // change nickname api
-  const id = localStorage.getItem("id");
-  const { mutate, isSuccess, isError } = useUpdateNickname(id!!, nickname);
+  const { mutate, isSuccess, isError } = useUpdateNickname(nickname);
   if (isSuccess) {
     console.log("nickname change success");
     router.push(RoutePath.MyInformation);

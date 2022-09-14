@@ -32,8 +32,7 @@ export const useChangePasswordView = () => {
   };
 
   // change profile-image api
-  const id = localStorage.getItem("id");
-  const { mutate, isSuccess, isError, data } = useUpdateProfileImage(id!!);
+  const { mutate, isSuccess, isError, data } = useUpdateProfileImage();
 
   if (isSuccess) {
     console.log("change profile-image success");

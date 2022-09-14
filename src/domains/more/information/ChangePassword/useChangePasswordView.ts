@@ -28,9 +28,7 @@ export const useChangePasswordView = () => {
   const isNewPwError = newPassword !== "" && !newPwValidation;
 
   // change nickname api
-  const id = localStorage.getItem("id");
   const { mutate, isSuccess, isError } = useUpdatePassword(
-    id!!,
     oldPassword,
     newPassword
   );

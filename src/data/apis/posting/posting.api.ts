@@ -1,4 +1,5 @@
 import { axiosClient } from "@/constants/api/client/client";
+import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { ApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { PostingApiInterface } from "./posting.interface";
 
@@ -8,7 +9,8 @@ class PostingApiService implements PostingApiInterface {
     return this.instance || (this.instance = new this());
   }
 
-  jwt = localStorage.getItem("jwt");
+  id = LocalStorage.getItem("id");
+  jwt = LocalStorage.getItem("jwt");
   config = {
     headers: { Authorization: `Bearer ${this.jwt}` },
   };
@@ -23,12 +25,11 @@ class PostingApiService implements PostingApiInterface {
   }
 
   async findAllPostById(
-    id: string,
     page: string,
     size: string
   ): Promise<ApiFailedResponse> {
     const response = await axiosClient.get(
-      `/v1/posting?memberId=${id}&page=${page}&size=${size}}`,
+      `/v1/posting?memberId=${this.id}&page=${page}&size=${size}}`,
       this.config
     );
     return response.data;

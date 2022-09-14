@@ -18,23 +18,19 @@ export const useGetCurrentMember = () => {
   return MemberApiService.getCurrentMember();
 };
 
-export const useUpdateNickname = (id: string, nickname: string) => {
-  return useMutation(() => MemberApiService.updateNickname(id, nickname));
+export const useUpdateNickname = (nickname: string) => {
+  return useMutation(() => MemberApiService.updateNickname(nickname));
 };
 
-export const useUpdatePassword = (
-  id: string,
-  oldPassword: string,
-  newPassword: string
-) => {
+export const useUpdatePassword = (oldPassword: string, newPassword: string) => {
   return useMutation(() =>
-    MemberApiService.updatePassword(id, oldPassword, newPassword)
+    MemberApiService.updatePassword(oldPassword, newPassword)
   );
 };
 
-export const useUpdateProfileImage = (id: string) => {
+export const useUpdateProfileImage = () => {
   return useMutation((formData: any) =>
-    MemberApiService.updateProfileImage(id, formData)
+    MemberApiService.updateProfileImage(formData)
   );
 };
 

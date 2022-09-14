@@ -1,5 +1,6 @@
 import { RoutePath } from "@/constants/Path";
 import { useLogin } from "@/data/apis/auth/useAuthApiHooks";
+import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { validateEmail } from "@/utils/validation/Email/EmailValidation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -25,7 +26,7 @@ export const useLoginView = () => {
   if (isSuccess) {
     if (data.accessToken !== null) {
       console.log(data.accessToken);
-      localStorage.setItem("jwt", data.accessToken);
+      LocalStorage.setItem("jwt", data.accessToken);
       router.push(RoutePath.Main);
     } else {
       console.log("로그인에 실패했습니다.");
