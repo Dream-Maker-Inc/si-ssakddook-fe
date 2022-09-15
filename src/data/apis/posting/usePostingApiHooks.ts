@@ -2,7 +2,7 @@ import PostingApiService from "./posting.api";
 import { useMutation, useQuery } from "react-query";
 
 export const useCreatePost = () => {
-  return useMutation((formData: any) => PostingApiService.create(formData));
+  return useMutation((formData: any) => PostingApiService.createPost(formData));
 };
 
 export const useFindAllPostById = (page: string, size: string) => {
@@ -27,10 +27,6 @@ export const useFindOneByPostId = (postId: string) => {
   return useMutation(() => PostingApiService.findOneByPostId(postId));
 };
 
-export const useFindAllPostByCategory = (body: any) => {
-  return useMutation(() => PostingApiService.create(body));
-};
-
 export const useDeleteCommentById = (
   onSuccess: (res: any) => void,
   onError: (err: any) => void
@@ -42,4 +38,8 @@ export const useDeleteCommentById = (
       onError,
     }
   );
+};
+
+export const useCreateComment = (body: any) => {
+  return useMutation(() => PostingApiService.createComment(body));
 };

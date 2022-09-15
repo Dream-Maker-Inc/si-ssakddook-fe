@@ -6,11 +6,6 @@ export const useCommunityDetailView = () => {
   const router = useRouter();
   const postId = router.query.postId + "";
 
-  const [comment, setComment] = useState("");
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setComment(e.target.value);
-  };
-
   const { mutate, data } = useFindOneByPostId(postId);
 
   useEffect(() => {
@@ -18,10 +13,6 @@ export const useCommunityDetailView = () => {
   }, []);
 
   return {
-    commentState: {
-      value: comment,
-      onChange: handleSearchChange,
-    },
     models: data,
     postId: postId,
   };

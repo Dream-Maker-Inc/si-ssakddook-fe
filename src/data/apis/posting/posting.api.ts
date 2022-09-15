@@ -21,7 +21,7 @@ class PostingApiService implements PostingApiInterface {
     headers: { Authorization: `Bearer ${this.jwt}` },
   };
 
-  async create(formData: any): Promise<ApiFailedResponse> {
+  async createPost(formData: any): Promise<ApiFailedResponse> {
     const response = await axiosClient.post(
       "/v1/posting",
       formData,
@@ -89,6 +89,11 @@ class PostingApiService implements PostingApiInterface {
       `/v1/comment/${commentId}`,
       this.config
     );
+    return response.data;
+  }
+
+  async createComment(body: any): Promise<CommentResponse> {
+    const response = await axiosClient.post("/v1/comment", body, this.config);
     return response.data;
   }
 }

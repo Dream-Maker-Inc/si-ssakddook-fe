@@ -6,9 +6,16 @@ import Image from "next/image";
 type CommentWriteProps = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  postId: string;
+  onCommentSubmit: () => void;
 };
 
-export const CommentWrite = ({ value, onChange }: CommentWriteProps) => {
+export const CommentWrite = ({
+  value,
+  onChange,
+  postId,
+  onCommentSubmit,
+}: CommentWriteProps) => {
   return (
     <div css={sx.commentWriteContainer}>
       <TextField
@@ -21,7 +28,7 @@ export const CommentWrite = ({ value, onChange }: CommentWriteProps) => {
         InputProps={{
           disableUnderline: true,
           endAdornment: (
-            <IconButton>
+            <IconButton onClick={onCommentSubmit}>
               <Image
                 width="24px"
                 height="24px"

@@ -15,14 +15,14 @@ export const useMoreView = () => {
       desc: "앱 설정을 변경할 수 있어요.",
       iconSrc: "/img/more/icon-setting.svg",
       nextButtonState: true,
-      onClickPath: RoutePath.MyInformation,
+      onClickPath: RoutePath.Setting,
     },
     {
       title: "기타",
       desc: "공지사항, 앱 정보, 회사 소개 등을 조회할 수 있어요.",
       iconSrc: "/img/more/icon-more.svg",
       nextButtonState: true,
-      onClickPath: RoutePath.MyInformation,
+      onClickPath: RoutePath.Etc,
     },
   ];
 

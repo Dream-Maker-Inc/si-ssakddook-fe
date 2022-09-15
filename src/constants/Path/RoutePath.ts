@@ -20,4 +20,6 @@ export enum RoutePath {
   ChangePassword = "/more/change-password",
   ChangeProfileImage = "/more/change-profile-image",
   Secession = "/more/secession",
+  Etc = "/more/etc",
+  Setting = "/more/setting",
 }

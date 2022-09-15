@@ -1,4 +1,4 @@
-import { CommentWrite } from "@/common/components/board/CommentWrite";
+import { CommentWrite } from "@/domains/community/views/CommunityDetail/components/CommentWrite";
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { DetailTab } from "@/common/components/tab/DetailTab";
 import { css } from "@emotion/react";
@@ -9,10 +9,10 @@ import { ReactionSection } from "./ReactionSection";
 import { useCommunityDetailView } from "./useCommunityDetailView";
 
 export const CommunityDetailView = () => {
-  const { commentState, models, postId } = useCommunityDetailView();
+  const { models, postId } = useCommunityDetailView();
 
   return (
-    <AppbarLayout>
+    <AppbarLayout hasCommentWriteSection={true}>
       <div css={sx.root}>
         <div css={sx.container}>
           <DetailTab />
@@ -28,10 +28,6 @@ export const CommunityDetailView = () => {
             commentCount={models?.commentCount}
           />
           <CommentSection postId={postId} />
-          <CommentWrite
-            value={commentState.value}
-            onChange={commentState.onChange}
-          />
         </div>
       </div>
     </AppbarLayout>

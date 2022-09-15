@@ -1,5 +1,6 @@
 import { BoardComment } from "@/common/components/board/BoardComment";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
+import { CommentWrite } from "../CommentWrite";
 import { useCommentSection } from "./useCommentSection";
 
 type CommentSectionProps = {
@@ -7,7 +8,7 @@ type CommentSectionProps = {
 };
 
 export const CommentSection = ({ postId }: CommentSectionProps) => {
-  const { fetchState, result } = useCommentSection(postId);
+  const { fetchState, result, commentState } = useCommentSection(postId);
 
   if (!result) return <div></div>;
   if (fetchState.isLoading) return <CircularLoading />;
@@ -28,6 +29,12 @@ export const CommentSection = ({ postId }: CommentSectionProps) => {
           onDelete={buttonState.onDelete}
         />
       ))}
+      <CommentWrite
+        value={commentState.value}
+        onChange={commentState.onChange}
+        postId={postId}
+        onCommentSubmit={commentState.onSubmit}
+      />
     </div>
   );
 };

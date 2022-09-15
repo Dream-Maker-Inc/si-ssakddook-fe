@@ -7,20 +7,25 @@ import {
 } from "./posting.dto";
 
 export interface PostingApiInterface {
-  create(formData: any): Promise<ApiFailedResponse>;
+  // post
+  createPost(formData: any): Promise<ApiFailedResponse>;
   findAllPostById(page: string, size: string): Promise<AllPostingResponse>;
+  findAllPostByCategory(
+    category: string,
+    page: string,
+    size: string
+  ): Promise<ApiFailedResponse>;
+  findOneByPostId(postId: string): Promise<PostResponse>;
+
+  // comment
+  createComment(body: any): Promise<CommentResponse>;
   findAllCommentById(page: string, size: string): Promise<AllCommentResponse>;
   findAllCommentByPostId(
     postId: string,
     page: string,
     size: string
   ): Promise<CommentResponse>;
-  findOneByPostId(postId: string): Promise<PostResponse>;
-  findAllPostByCategory(
-    category: string,
-    page: string,
-    size: string
-  ): Promise<ApiFailedResponse>;
 
+  // like
   deleteCommentById(commentId: string): Promise<CommentResponse>;
 }

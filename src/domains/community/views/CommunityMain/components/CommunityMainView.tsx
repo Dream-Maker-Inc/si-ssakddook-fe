@@ -2,7 +2,6 @@ import { BoardItem } from "@/common/components/board/BoardItem";
 import { FloatingButton } from "@/common/components/button/FloatingButton";
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { CommunityTab } from "@/common/components/tab/CommunityTab";
-
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
