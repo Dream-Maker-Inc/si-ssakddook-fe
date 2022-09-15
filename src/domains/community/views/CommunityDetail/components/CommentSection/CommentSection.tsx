@@ -1,16 +1,22 @@
 import { BoardComment } from "@/common/components/board/BoardComment";
-import { commentsModel } from "@/domains/community/models/community.model";
+import { useCommentSection } from "./useCommentSection";
 
-export const CommentSection = () => {
+type CommentSectionProps = {
+  postId: string;
+};
+
+export const CommentSection = ({ postId }: CommentSectionProps) => {
+  const { models } = useCommentSection(postId);
   return (
     <div>
-      {commentsModel.map((it, index) => (
+      {models?.map((it, index) => (
         <BoardComment
           key={index}
-          content={it.content}
-          nickname={it.nickname}
-          date={it.date}
-          like={it.like}
+          id={it.comment.id}
+          content={it.comment.content}
+          nickname={it.member.nickname}
+          date={it.comment.createdAt}
+          like={it.likedCount}
         />
       ))}
     </div>

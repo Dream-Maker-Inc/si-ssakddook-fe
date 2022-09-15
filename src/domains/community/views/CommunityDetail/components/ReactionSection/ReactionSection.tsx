@@ -3,11 +3,16 @@ import { css } from "@emotion/react";
 import { IconButton, Typography, TypographyProps } from "@mui/material";
 import Image from "next/image";
 
-export const ReactionSection = () => {
+type ReactionSectionProps = {
+  likeCount: number | undefined;
+  commentCount: number | undefined;
+};
+
+export const ReactionSection = (props: ReactionSectionProps) => {
   return (
     <div css={sx.reactionContainer}>
-      <LikeBox>1,300</LikeBox>
-      <CommentBox>1,300</CommentBox>
+      <LikeBox>{props.likeCount}</LikeBox>
+      <CommentBox>{props.commentCount}</CommentBox>
       <ReportBox />
     </div>
   );
