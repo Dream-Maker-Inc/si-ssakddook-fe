@@ -5,9 +5,10 @@ import { Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 type BoardItemProps = {
+  postId: number;
   title: string;
   date: string;
-  nickname: string;
+  nicknameOrTitle: string;
   category: string;
   like?: string;
   comments?: string;
@@ -16,9 +17,10 @@ type BoardItemProps = {
 };
 
 export const BoardItem = ({
+  postId,
   title,
   date,
-  nickname,
+  nicknameOrTitle,
   category,
   like,
   comments,
@@ -27,7 +29,10 @@ export const BoardItem = ({
 }: BoardItemProps) => {
   const router = useRouter();
   const handleBoxClick = () => {
-    router.push(RoutePath.CommunityDetail);
+    router.push({
+      pathname: RoutePath.CommunityDetail,
+      query: { postId: postId },
+    });
   };
   return (
     <div css={sx.item(isInMyArticleList)} onClick={handleBoxClick}>
@@ -36,12 +41,12 @@ export const BoardItem = ({
           {title}
         </Typography>
         <Typography fontSize="8px" color={LightColor.Gray100}>
-          {date}
+          {date.slice(0, 10)}
         </Typography>
       </div>
       <div css={sx.rowWrapper}>
         <Typography fontSize="8px" color={LightColor.Gray100}>
-          {nickname}
+          {nicknameOrTitle}
           {" · "}
           {category}
         </Typography>
