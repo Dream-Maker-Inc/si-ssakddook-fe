@@ -3,29 +3,14 @@ import IamCertificationApi from "@/data/apis/certification/certification.api";
 import memberApi from "@/data/apis/member/member.api";
 import { MemberAtom } from "@/recoil/Member/Member.atom";
 import { useRouter } from "next/router";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { StatusCode } from "@/data/statusCode/StatusCode.enum";
 import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 
-//
 export const useSignupService = () => {
   const router = useRouter();
-  const setMemberState = useSetRecoilState(MemberAtom);
   const memberModel = useRecoilValue(MemberAtom);
   const { member, termsIds } = memberModel;
-
-  // jwt 및 멤버 정보 전역변수에 저장
-  function setMemberInfo(data: any) {
-    setMemberState((old) => ({
-      ...old,
-      member: {
-        ...old.member,
-        name: data.username,
-        phone: data.phone,
-        birthDay: data.birthDay,
-      },
-    }));
-  }
 
   const requestSignup = async () => {
     // iamport 인증
