@@ -1,6 +1,12 @@
 import { axiosClient } from "@/constants/api/client/client";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { ApiFailedResponse } from "@/data/statusCode/FailedResponse";
+import {
+  AllCommentResponse,
+  AllPostingResponse,
+  CommentResponse,
+  PostResponse,
+} from "./posting.dto";
 import { PostingApiInterface } from "./posting.interface";
 
 class PostingApiService implements PostingApiInterface {
@@ -27,9 +33,40 @@ class PostingApiService implements PostingApiInterface {
   async findAllPostById(
     page: string,
     size: string
-  ): Promise<ApiFailedResponse> {
+  ): Promise<AllPostingResponse> {
     const response = await axiosClient.get(
-      `/v1/posting?memberId=${this.id}&page=${page}&size=${size}}`,
+      `/v1/posting?memberId=${this.id}&page=${page}&size=${size}`,
+      this.config
+    );
+    return response.data;
+  }
+
+  async findAllCommentById(
+    page: string,
+    size: string
+  ): Promise<AllCommentResponse> {
+    const response = await axiosClient.get(
+      `/v1/comment?authorId=${this.id}&page=${page}&size=${size}`,
+      this.config
+    );
+    return response.data;
+  }
+
+  async findAllCommentByPostId(
+    postId: string,
+    page: string,
+    size: string
+  ): Promise<CommentResponse> {
+    const response = await axiosClient.get(
+      `/v1/comment?postingId=${postId}&page=${page}&size=${size}`,
+      this.config
+    );
+    return response.data;
+  }
+
+  async findOneByPostId(postId: string): Promise<PostResponse> {
+    const response = await axiosClient.get(
+      `/v1/posting/${postId}`,
       this.config
     );
     return response.data;
@@ -42,6 +79,14 @@ class PostingApiService implements PostingApiInterface {
   ): Promise<ApiFailedResponse> {
     const response = await axiosClient.get(
       `/v1/posting?category=${category}&page=${page}&size=${size}}`,
+      this.config
+    );
+    return response.data;
+  }
+
+  async deleteCommentById(commentId: string): Promise<CommentResponse> {
+    const response = await axiosClient.delete(
+      `/v1/comment/${commentId}`,
       this.config
     );
     return response.data;

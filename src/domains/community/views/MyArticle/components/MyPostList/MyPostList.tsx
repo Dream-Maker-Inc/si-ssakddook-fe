@@ -1,20 +1,21 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
 import { css } from "@emotion/react";
-
-import { myPostList } from "../../model/myArticleModel";
+import { useMyPostList } from "./useMyPostList";
 
 export const MyPostList = () => {
+  const { models } = useMyPostList();
   return (
     <div css={sx.postRoot}>
-      {myPostList.map((it, index) => (
+      {models?.map((it, index) => (
         <BoardItem
           key={index}
-          title={it.title}
-          date={it.date}
-          nickname={it.nickname}
-          category={it.category}
-          like={it.like}
-          comments={it.comments}
+          postId={it.posting.id}
+          title={it.posting.title}
+          date={it.posting.createdAt}
+          nicknameOrTitle={it.member.nickname}
+          category={it.posting.category}
+          like={it.likedCount + ""}
+          comments={it.commentCount + ""}
           isInMyArticleList={true}
         />
       ))}

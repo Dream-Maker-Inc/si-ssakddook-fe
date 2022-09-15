@@ -1,17 +1,19 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
 import { css } from "@emotion/react";
-import { myCommentList } from "../../model/myArticleModel";
+import { useMyCommentList } from "./useMyCommentList";
 
 export const MyCommentList = () => {
+  const { models } = useMyCommentList();
   return (
     <div css={sx.root}>
-      {myCommentList.map((it, index) => (
+      {models?.map((it, index) => (
         <BoardItem
           key={index}
-          title={it.title}
-          date={it.date}
-          nickname={it.nickname}
-          category={it.category}
+          postId={it.comment.id}
+          title={it.comment.content}
+          date={it.comment.createdAt}
+          nicknameOrTitle={it.posting.title}
+          category={it.posting.category}
           isInMyArticleList={true}
           isPost={false}
         />

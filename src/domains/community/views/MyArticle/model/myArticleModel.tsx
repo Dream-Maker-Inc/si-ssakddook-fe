@@ -1,4 +1,13 @@
-export const myPostList = [
+export type MYPostListType = {
+  title: string;
+  date: string;
+  nickname: string;
+  category: string;
+  like: string;
+  comments: string;
+};
+
+export const myPostList: MYPostListType[] = [
   {
     title: "고민 상담해 드립니다.",
     date: "3일전",
