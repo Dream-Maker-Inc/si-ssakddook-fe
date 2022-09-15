@@ -30,6 +30,18 @@ class PostingApiService implements PostingApiInterface {
     return response.data;
   }
 
+  async findAllPost(
+    page: string,
+    size: string,
+    withDeleted: boolean
+  ): Promise<AllPostingResponse> {
+    const response = await axiosClient.get(
+      `/v1/posting?page=${page}&size=${size}&withDeleted=${withDeleted}`,
+      this.config
+    );
+    return response.data;
+  }
+
   async findAllPostById(
     page: string,
     size: string
@@ -76,9 +88,9 @@ class PostingApiService implements PostingApiInterface {
     category: string,
     page: string,
     size: string
-  ): Promise<ApiFailedResponse> {
+  ): Promise<AllPostingResponse> {
     const response = await axiosClient.get(
-      `/v1/posting?category=${category}&page=${page}&size=${size}}`,
+      `/v1/posting?category=${category}&page=${page}&size=${size}`,
       this.config
     );
     return response.data;

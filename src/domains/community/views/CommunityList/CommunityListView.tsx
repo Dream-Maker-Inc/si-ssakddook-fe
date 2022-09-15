@@ -1,24 +1,39 @@
 import { BoardExpandedItem } from "@/common/components/board/BoardExpandedItem";
+import { PlainLayout } from "@/common/components/layout/PlainLayout";
+import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
 import { css } from "@emotion/react";
-import { boardItemInfos } from "../../models/community.model";
+import { useCommunityListView } from "./useCommunityListView";
 
 export const CommunityListView = () => {
+  const { category, fetchState, result } = useCommunityListView();
+  if (fetchState.isLoading)
+    return (
+      <PlainLayout>
+        <DefaultTab category={category} />
+        <CircularLoading />
+      </PlainLayout>
+    );
+  if (fetchState.isError) return <div></div>;
+  if (!result) return <div></div>;
+
   return (
-    <div css={sx.root}>
-      <DefaultTab category="직장 폭력" />
-      {boardItemInfos.map((it, index) => (
-        <BoardExpandedItem
-          key={index}
-          title={it.title}
-          date={it.date}
-          nickname={it.nickname}
-          category={it.category}
-          like={it.like}
-          comments={it.comments}
-        />
-      ))}
-    </div>
+    <PlainLayout>
+      <DefaultTab category={category} />
+      <div css={sx.root}>
+        {result.map((it, index) => (
+          <BoardExpandedItem
+            key={index}
+            title={it.posting.title}
+            date={it.posting.createdAt}
+            nickname={it.member.nickname}
+            category={it.posting.category}
+            like={it.likedCount + ""}
+            comments={it.commentCount + ""}
+          />
+        ))}
+      </div>
+    </PlainLayout>
   );
 };
 

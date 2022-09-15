@@ -12,8 +12,11 @@ export const useCommentSection = (postId: string) => {
     setComment(e.target.value);
   };
 
-  const { data, isLoading, isError, error, refetch } =
-    useFindAllCommentByPostId(postId, page, size);
+  const { data, isLoading, isError, refetch } = useFindAllCommentByPostId(
+    postId,
+    page,
+    size
+  );
 
   const { mutate: deleteCommentMutate, data: deleteCommentData } = useMutation(
     (commentId: string) => PostingApiService.deleteCommentById(commentId),
@@ -52,7 +55,6 @@ export const useCommentSection = (postId: string) => {
       fetchState: {
         isLoading,
         isError,
-        error,
       },
       result: null,
     };
@@ -61,7 +63,6 @@ export const useCommentSection = (postId: string) => {
     fetchState: {
       isLoading,
       isError,
-      error,
     },
     result: {
       models: data.items,

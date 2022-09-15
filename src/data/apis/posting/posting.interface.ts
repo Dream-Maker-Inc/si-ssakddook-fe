@@ -9,12 +9,17 @@ import {
 export interface PostingApiInterface {
   // post
   createPost(formData: any): Promise<ApiFailedResponse>;
+  findAllPost(
+    page: string,
+    size: string,
+    withDeleted: boolean
+  ): Promise<AllPostingResponse>;
   findAllPostById(page: string, size: string): Promise<AllPostingResponse>;
   findAllPostByCategory(
     category: string,
     page: string,
     size: string
-  ): Promise<ApiFailedResponse>;
+  ): Promise<AllPostingResponse>;
   findOneByPostId(postId: string): Promise<PostResponse>;
 
   // comment

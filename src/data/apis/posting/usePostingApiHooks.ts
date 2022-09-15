@@ -5,6 +5,16 @@ export const useCreatePost = () => {
   return useMutation((formData: any) => PostingApiService.createPost(formData));
 };
 
+export const useFindAllPost = (
+  page: string,
+  size: string,
+  withDeleted: boolean
+) => {
+  return useQuery(["find-all-post", page, size, withDeleted], () =>
+    PostingApiService.findAllPost(page, size, withDeleted)
+  );
+};
+
 export const useFindAllPostById = (page: string, size: string) => {
   return useMutation(() => PostingApiService.findAllPostById(page, size));
 };
@@ -20,6 +30,16 @@ export const useFindAllCommentByPostId = (
 ) => {
   return useQuery(["comment-by-postid", page, postId], () =>
     PostingApiService.findAllCommentByPostId(postId, page, size)
+  );
+};
+
+export const useFindAllPostByCategory = (
+  category: string,
+  page: string,
+  size: string
+) => {
+  return useQuery(["find-all-post-by-category", category, page, size], () =>
+    PostingApiService.findAllPostByCategory(category, page, size)
   );
 };
 

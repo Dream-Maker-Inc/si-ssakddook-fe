@@ -1,6 +1,7 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
 import { FloatingButton } from "@/common/components/button/FloatingButton";
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
+import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { CommunityTab } from "@/common/components/tab/CommunityTab";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
@@ -12,7 +13,12 @@ import { NoticeBox } from "./NoticeBox";
 import { useCommunityMainView } from "./useCommunityMainView";
 
 export const CommunityMainView = () => {
-  const { boxData, boardData } = useCommunityMainView();
+  const { boxData, result, fetchState } = useCommunityMainView();
+
+  if (!result) return <div></div>;
+  if (fetchState.isLoading) return <CircularLoading />;
+  if (fetchState.isError) return <div></div>;
+
   return (
     <AppbarLayout>
       <CommunityTab />
@@ -44,16 +50,16 @@ export const CommunityMainView = () => {
               </Link>
             </div>
 
-            {boardData.map((it, index) => (
+            {result.map((it, index) => (
               <BoardItem
                 key={index}
-                postId={index}
-                title={it.title}
-                date={it.date}
-                nicknameOrTitle={it.nickname}
-                category={it.category}
-                like={it.like}
-                comments={it.comments}
+                postId={it.posting.id}
+                title={it.posting.title}
+                date={it.posting.createdAt}
+                nicknameOrTitle={it.member.nickname}
+                category={it.posting.category}
+                like={it.likedCount + ""}
+                comments={it.commentCount + ""}
               />
             ))}
           </div>

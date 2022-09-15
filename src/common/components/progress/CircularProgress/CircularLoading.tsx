@@ -4,7 +4,9 @@ import { css } from "@emotion/react";
 export const CircularLoading = () => {
   return (
     <div css={sx.root}>
-      <CircularProgress />
+      <div css={sx.progress}>
+        <CircularProgress />
+      </div>
     </div>
   );
 };
@@ -13,6 +15,10 @@ const sx = {
   root: css`
     width: 100%;
     height: 100%;
+    position: relative;
+  `,
+
+  progress: css`
     position: absolute;
 
     top: 50%;

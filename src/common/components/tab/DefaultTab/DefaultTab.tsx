@@ -3,10 +3,10 @@ import { Typography } from "@mui/material";
 import { BoardPrevButton } from "../../button/BoardPrevButton";
 
 type DefaultTabProps = {
-  category: string;
+  category?: string;
 };
 
-export const DefaultTab = ({ category }: DefaultTabProps) => {
+export const DefaultTab = ({ category = "커뮤니티" }: DefaultTabProps) => {
   return (
     <div css={sx.tabContainer}>
       <BoardPrevButton />

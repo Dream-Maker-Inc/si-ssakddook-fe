@@ -24,7 +24,7 @@ export const CommunityTab = () => {
             />
           </IconButton>
           <Typography variant="h2" ml="12px" sx={{ flexGrow: 1 }}>
-            카테고리
+            커뮤니티
           </Typography>
           <div css={sx.buttonWrapper}>
             <IconButton>

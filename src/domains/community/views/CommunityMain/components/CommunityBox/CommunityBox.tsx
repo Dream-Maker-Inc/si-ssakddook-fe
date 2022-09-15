@@ -4,6 +4,7 @@ import { LightColor } from "@/themes/Color";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { RoutePath } from "@/constants/Path";
 
 type CommunityBoxProps = {
   img: string;
@@ -13,7 +14,12 @@ type CommunityBoxProps = {
 
 export const CommunityBox = ({ img, content }: CommunityBoxProps) => {
   return (
-    <Link href="/main">
+    <Link
+      href={{
+        pathname: RoutePath.CommunityList,
+        query: { category: content },
+      }}
+    >
       <div css={sx.boxContainer}>
         <div css={sx.img}>
           <Image width="20px" height="20px" src={img} alt="" />

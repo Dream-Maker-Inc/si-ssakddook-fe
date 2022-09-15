@@ -1,3 +1,5 @@
+import { useFindAllPost } from "@/data/apis/posting/usePostingApiHooks";
+
 export const useCommunityMainView = () => {
   const communitBoxInfos = [
     {
@@ -68,48 +70,26 @@ export const useCommunityMainView = () => {
     },
   ];
 
-  const boardItemInfos = [
-    {
-      title: "고민 상담해 드립니다.",
-      date: "3",
-      nickname: "고독한 강아지",
-      category: "직장 폭력",
-      like: "1.2만",
-      comments: "1.2만",
-    },
-    {
-      title: "고민 상담해 드립니다.",
-      date: "3",
-      nickname: "고독한 강아지",
-      category: "직장 폭력",
-      like: "1.2만",
-      comments: "1.2만",
-    },
-    {
-      title: "고민 상담해 드립니다.",
-      date: "3",
-      nickname: "고독한 강아지",
-      category: "직장 폭력",
-      like: "1.2만",
-      comments: "1.2만",
-    },
-    {
-      title: "고민 상담해 드립니다.",
-      date: "3",
-      nickname: "고독한 강아지",
-      category: "직장 폭력",
-      like: "1.2만",
-      comments: "1.2만",
-    },
-    {
-      title: "고민 상담해 드립니다.",
-      date: "3",
-      nickname: "고독한 강아지",
-      category: "직장 폭력",
-      like: "1.2만",
-      comments: "1.2만",
-    },
-  ];
+  const size = "5";
+  const page = "1";
+  const withDeleted = false;
+  const { data, isLoading, isError } = useFindAllPost(page, size, withDeleted);
 
-  return { boxData: communitBoxInfos, boardData: boardItemInfos };
+  if (!data) {
+    return {
+      fetchState: {
+        isLoading,
+        isError,
+      },
+      result: null,
+    };
+  }
+  return {
+    boxData: communitBoxInfos,
+    fetchState: {
+      isLoading,
+      isError,
+    },
+    result: data.items,
+  };
 };
