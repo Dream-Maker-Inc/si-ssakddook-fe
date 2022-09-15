@@ -3,8 +3,7 @@ import { useRouter } from "next/router";
 
 export const useCommunityListView = () => {
   const router = useRouter();
-  const category =
-    router.query.category !== null ? router.query.category + "" : "";
+  const category = router.query.category + "";
   const page = "1";
   const size = "30";
 
