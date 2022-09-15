@@ -13,7 +13,8 @@ export const HomeView = () => {
             width="60px"
             height="40px"
             alt={"img"}
-            src={"/img/logo/main.svg"}
+            // src={"/img/logo/main.svg"}
+            src={"/main.svg"}
           />
         </div>
 

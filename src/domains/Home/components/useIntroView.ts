@@ -1,10 +1,11 @@
+import { RoutePath } from "@/constants/Path";
 import { useRouter } from "next/router";
 
 export const useHomeView = () => {
   const router = useRouter();
 
   const handleLoginClick = () => {
-    router.push("/auth/login");
+    router.push(RoutePath.Login);
   };
 
   const handleSignupClick = () => {
