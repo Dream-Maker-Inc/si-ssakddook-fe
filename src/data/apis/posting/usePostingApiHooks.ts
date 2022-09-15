@@ -1,5 +1,5 @@
 import PostingApiService from "./posting.api";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 export const useCreatePost = () => {
   return useMutation((formData: any) => PostingApiService.create(formData));
@@ -18,7 +18,7 @@ export const useFindAllCommentByPostId = (
   page: string,
   size: string
 ) => {
-  return useMutation(() =>
+  return useQuery(["comment-by-postid", page, postId], () =>
     PostingApiService.findAllCommentByPostId(postId, page, size)
   );
 };
@@ -31,6 +31,15 @@ export const useFindAllPostByCategory = (body: any) => {
   return useMutation(() => PostingApiService.create(body));
 };
 
-export const useDeleteCommentById = (commentId: string) => {
-  return useMutation(() => PostingApiService.deleteCommentById(commentId));
+export const useDeleteCommentById = (
+  onSuccess: (res: any) => void,
+  onError: (err: any) => void
+) => {
+  return useMutation(
+    (commentId: string) => PostingApiService.deleteCommentById(commentId),
+    {
+      onSuccess,
+      onError,
+    }
+  );
 };

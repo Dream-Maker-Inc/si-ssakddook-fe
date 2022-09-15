@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 export const useMyPostList = () => {
   const page = "1";
-  const size = "12";
+  const size = "30";
 
   const { mutate, data, isSuccess, isError } = useFindAllPostById(page, size);
 

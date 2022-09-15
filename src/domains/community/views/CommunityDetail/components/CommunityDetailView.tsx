@@ -9,9 +9,7 @@ import { ReactionSection } from "./ReactionSection";
 import { useCommunityDetailView } from "./useCommunityDetailView";
 
 export const CommunityDetailView = () => {
-  const postId = Router.query.postId + "";
-
-  const { commentState, models } = useCommunityDetailView(postId);
+  const { commentState, models, postId } = useCommunityDetailView();
 
   return (
     <AppbarLayout>

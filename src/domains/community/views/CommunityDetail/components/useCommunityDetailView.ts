@@ -1,7 +1,11 @@
 import { useFindOneByPostId } from "@/data/apis/posting/usePostingApiHooks";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export const useCommunityDetailView = (postId: string) => {
+export const useCommunityDetailView = () => {
+  const router = useRouter();
+  const postId = router.query.postId + "";
+
   const [comment, setComment] = useState("");
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
@@ -19,5 +23,6 @@ export const useCommunityDetailView = (postId: string) => {
       onChange: handleSearchChange,
     },
     models: data,
+    postId: postId,
   };
 };

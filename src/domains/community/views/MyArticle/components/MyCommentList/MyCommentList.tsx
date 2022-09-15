@@ -9,7 +9,7 @@ export const MyCommentList = () => {
       {models?.map((it, index) => (
         <BoardItem
           key={index}
-          postId={it.comment.id}
+          postId={it.posting.id}
           title={it.comment.content}
           date={it.comment.createdAt}
           nicknameOrTitle={it.posting.title}

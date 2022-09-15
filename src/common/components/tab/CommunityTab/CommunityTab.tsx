@@ -19,7 +19,7 @@ export const CommunityTab = () => {
             <Image
               width="24px"
               height="16px"
-              src="/img/main/logo.svg"
+              src="img/main/logo.svg"
               alt="logo"
             />
           </IconButton>

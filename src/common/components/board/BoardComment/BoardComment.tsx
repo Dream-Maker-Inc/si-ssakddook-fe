@@ -3,17 +3,21 @@ import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 type BoardCommentProps = {
+  commentId: number;
   content: string;
   date: string;
   nickname: string;
-  like: string;
+  like: number;
+  onDelete: (e: string) => void;
 };
 
 export const BoardComment = ({
+  commentId,
   content,
   date,
   nickname,
   like,
+  onDelete,
 }: BoardCommentProps) => {
   return (
     <div css={sx.item}>
@@ -23,7 +27,7 @@ export const BoardComment = ({
           {" · "}
           {date}
         </Typography>
-        <IconButton>
+        <IconButton onClick={() => onDelete(commentId + "")}>
           <Image
             width="10px"
             height="10px"

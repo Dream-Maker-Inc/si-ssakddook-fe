@@ -1,23 +1,48 @@
-import { useEffect } from "react";
-import {
-  useDeleteCommentById,
-  useFindAllCommentByPostId,
-} from "@/data/apis/posting/usePostingApiHooks";
+import { useFindAllCommentByPostId } from "@/data/apis/posting/usePostingApiHooks";
+import { useMutation, useQuery } from "react-query";
+import PostingApiService from "@/data/apis/posting/posting.api";
 
 export const useCommentSection = (postId: string) => {
   const page = "1";
-  const size = "2";
-  const { mutate, data } = useFindAllCommentByPostId(postId, page, size);
+  const size = "30";
 
-  useDeleteCommentById(postId);
+  const { data, isLoading, isError, error, refetch } =
+    useFindAllCommentByPostId(postId, page, size);
 
-  useEffect(() => {
-    mutate();
-  }, []);
+  const { mutate: deleteCommentMutate, data: deleteCommentData } = useMutation(
+    (commentId: string) => PostingApiService.deleteCommentById(commentId),
+    {
+      onSuccess: (res) => {
+        refetch();
+      },
+    }
+  );
 
-  console.log(data?.items);
+  const onDelete = (commentId: string) => {
+    deleteCommentMutate(commentId);
+  };
+
+  if (!data)
+    return {
+      fetchState: {
+        isLoading,
+        isError,
+        error,
+      },
+      result: null,
+    };
 
   return {
-    models: data?.items,
+    fetchState: {
+      isLoading,
+      isError,
+      error,
+    },
+    result: {
+      models: data.items,
+      buttonState: {
+        onDelete: onDelete,
+      },
+    },
   };
 };
