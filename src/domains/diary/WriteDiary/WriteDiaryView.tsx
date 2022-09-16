@@ -1,39 +1,14 @@
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { DiaryTab } from "@/common/components/tab/DiaryTab";
-import { RoutePath } from "@/constants/Path";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { TextField, Typography } from "@mui/material";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useRef, useState } from "react";
 import { diaryRecords } from "../model/diary.model";
+import { useWriteDiaryView } from "./useWriteDiaryView";
 
 export const WriteDiaryView = () => {
-  const router = useRouter();
-  const [content, setContent] = useState(diaryRecords.content);
-  const handleContentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setContent(e.target.value);
-  };
-
-  const [isWritingMode, setIsWritingMode] = useState(false);
-
-  //forwardRef 사용 권고
-  const inputRef = useRef<HTMLInputElement>(null);
-  const handleFieldFocus = () => inputRef.current?.focus();
-
-  const handleSubmitClick = () => {
-    router.push(RoutePath.Diary);
-  };
-
-  const handleEditClick = () => {
-    setIsWritingMode(true);
-    handleFieldFocus();
-  };
-
-  const handleRestate = () => {
-    setIsWritingMode(false);
-  };
+  const { tabState, diaryState } = useWriteDiaryView();
 
   return (
     <AppbarLayout>
@@ -41,48 +16,37 @@ export const WriteDiaryView = () => {
         <DiaryTab
           title={diaryRecords.date}
           writingState={{
-            isWritingState: isWritingMode,
-            onSubmitClick: handleSubmitClick,
-            onEditlick: handleEditClick,
-            onRestate: handleRestate,
+            isWritingState: tabState.isWritingState,
+            onSubmitClick: tabState.onSubmit,
+            onEditlick: tabState.onEdit,
+            onRestate: tabState.onRestate,
           }}
         />
         <div css={sx.container}>
           <div css={sx.contentContainer}>
             <TextField
-              inputRef={inputRef}
+              inputRef={diaryState.ref}
               onFocus={function (e) {
                 var val = e.target.value;
                 e.target.value = "";
                 e.target.value = val;
               }}
-              value={content}
-              onChange={handleContentChange}
+              value={diaryState.value}
+              onChange={diaryState.onChange}
               multiline
               variant="standard"
-              placeholder={
-                content === null
-                  ? "본인 외에는 그 누구도 나의 감정일기를 볼 수 없어요."
-                  : ""
-              }
+              placeholder={diaryState.placeholder}
               css={sx.textfield}
               InputProps={{
                 disableUnderline: true,
-                readOnly: !isWritingMode,
+                readOnly: !tabState.isWritingState,
               }}
             />
-            {isWritingMode || <LastUpdated date={diaryRecords.updateDate} />}
+            {tabState.isWritingState || (
+              <LastUpdated date={diaryRecords.updateDate} />
+            )}
           </div>
-          {isWritingMode || (
-            <div css={sx.cheerImg}>
-              <Image
-                width="162px"
-                height="80px"
-                src="/img/diary/img-cheer-text.svg"
-                alt=""
-              />
-            </div>
-          )}
+          {tabState.isWritingState || <CheerImage />}
         </div>
       </div>
     </AppbarLayout>
@@ -146,5 +110,18 @@ const LastUpdated = ({ date }: LastUpdatedProps) => {
     <Typography variant="h5" color={LightColor.Gray100} css={sx.lastUpdate}>
       마지막 수정일 : {date}
     </Typography>
+  );
+};
+
+const CheerImage = () => {
+  return (
+    <div css={sx.cheerImg}>
+      <Image
+        width="162px"
+        height="80px"
+        src="/img/diary/img-cheer-text.svg"
+        alt=""
+      />
+    </div>
   );
 };
