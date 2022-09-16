@@ -1,0 +1,11 @@
+import { ApiFailedResponse } from "@/data/statusCode/FailedResponse";
+import { DiaryItemResponse, DiaryItemsResponse } from "./diary.dto";
+
+export interface DiaryApiInterface {
+  // post
+  createDiary(formData: any): Promise<ApiFailedResponse>;
+  deleteDiary(diaryId: number): Promise<ApiFailedResponse>;
+  updateDiary(diaryId: number, content: string): Promise<ApiFailedResponse>;
+  findOneByDiaryId(diaryId: number): Promise<DiaryItemResponse>;
+  findAllByMonth(month: string): Promise<DiaryItemsResponse>;
+}
