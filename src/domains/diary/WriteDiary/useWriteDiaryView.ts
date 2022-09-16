@@ -4,12 +4,18 @@ import { useRef, useState } from "react";
 import { useMutation } from "react-query";
 import { diaryRecords } from "../model/diary.model";
 import DiaryApiService from "@/data/apis/diary/diary.api";
+import { format } from "date-fns";
 
 export const useWriteDiaryView = () => {
   const router = useRouter();
+  const date = router.query.date + "";
   //forwardRef 사용 권고
   const inputRef = useRef<HTMLInputElement>(null);
   const handleFieldFocus = () => inputRef.current?.focus();
+
+  // date 변환
+  const customaDate = new Date(date);
+  const testDate = format(customaDate, "yyyy년 MM월 dd일");
 
   // diary
   const [content, setContent] = useState(diaryRecords.content);
@@ -50,6 +56,7 @@ export const useWriteDiaryView = () => {
   };
   return {
     tabState: {
+      title: testDate,
       isWritingState: isWritingMode,
       onSubmit: handleSubmitClick,
       onEdit: handleEditClick,

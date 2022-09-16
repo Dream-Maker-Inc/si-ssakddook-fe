@@ -1,12 +1,17 @@
 import { css } from "@emotion/react";
-import { FormControl, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { format } from "date-fns";
 import { useMonthSelection } from "./useMonthSelection";
 
 export type MonthSelectionProps = {
   currentMonth: Date;
   signupMonth: Date;
-  onChange: () => void;
+  onChange: (e: SelectChangeEvent) => void;
 };
 
 export const MonthSelection = ({

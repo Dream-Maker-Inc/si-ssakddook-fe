@@ -1,55 +1,36 @@
 import { css } from "@emotion/react";
-
-import { useState } from "react";
 import Calendar from "./Calendar";
 import MemoCalendar from "./MemoCalendar";
-import { getWeek } from "date-fns";
 import { LightColor } from "@/themes/Color";
-import { PlainTab } from "@/common/components/tab/PlainTab";
-import { SelectChangeEvent } from "@mui/material";
+import { useWeeklyCalendar } from "./useWeeklyCalendar";
 export const WeeklyCalendar = () => {
-  const signupMonth = new Date("2022/03/17");
+  const { calendarState, memoCalendarState, result } = useWeeklyCalendar();
 
-  const [showDetails, setShowDetails] = useState(false);
-  const [data, setData] = useState("");
-  const [nowDate, setNowDate] = useState(new Date());
-  const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [currentWeek, setCurrentWeek] = useState(getWeek(currentMonth));
-
-  const handleMonthSelectChange = (e: SelectChangeEvent) => {
-    setCurrentMonth(new Date(e.target.value));
-  };
-
-  const showDetailsHandle = (dayStr: string) => {
-    setData(dayStr);
-    setShowDetails(true);
-  };
   return (
     <div css={sx.root}>
-      <PlainTab category="다이어리" />
       <div className="global">
         <Calendar
-          showDetailsHandle={showDetailsHandle}
-          nowDate={nowDate}
-          setNowDate={setNowDate}
-          currentMonth={currentMonth}
-          setCurrentMonth={setCurrentMonth}
-          currentWeek={currentWeek}
-          setCurrentWeek={setCurrentWeek}
-          signupMonth={signupMonth}
-          onSelectChange={handleMonthSelectChange}
+          showDetailsHandle={calendarState.showDetailsHandle}
+          nowDate={calendarState.nowDate}
+          setNowDate={calendarState.setNowDate}
+          currentMonth={calendarState.currentMonth}
+          setCurrentMonth={calendarState.setCurrentMonth}
+          currentWeek={calendarState.currentWeek}
+          setCurrentWeek={calendarState.setCurrentWeek}
+          signupMonth={calendarState.signupMonth}
+          onSelectChange={calendarState.handleMonthSelectChange}
         />
       </div>
       <div css={sx.hr} />
       <div className="vertical-global">
         <MemoCalendar
-          showDetailsHandle={showDetailsHandle}
-          nowDate={nowDate}
-          setNowDate={setNowDate}
-          currentMonth={currentMonth}
-          setCurrentMonth={setCurrentMonth}
-          currentWeek={currentWeek}
-          setCurrentWeek={setCurrentWeek}
+          showDetailsHandle={memoCalendarState.showDetailsHandle}
+          nowDate={memoCalendarState.nowDate}
+          setNowDate={memoCalendarState.setNowDate}
+          currentMonth={memoCalendarState.currentMonth}
+          setCurrentMonth={memoCalendarState.setCurrentMonth}
+          currentWeek={memoCalendarState.currentWeek}
+          setCurrentWeek={memoCalendarState.setCurrentWeek}
         />
       </div>
     </div>
@@ -61,6 +42,9 @@ const sx = {
     width: 100%;
     height: 100%;
     padding: 16px;
+
+    display: flex;
+    flex-direction: column;
   `,
 
   hr: css`

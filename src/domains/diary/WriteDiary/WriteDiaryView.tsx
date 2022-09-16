@@ -14,7 +14,7 @@ export const WriteDiaryView = () => {
     <AppbarLayout>
       <div css={sx.root}>
         <DiaryTab
-          title={diaryRecords.date}
+          title={tabState.title}
           writingState={{
             isWritingState: tabState.isWritingState,
             onSubmitClick: tabState.onSubmit,

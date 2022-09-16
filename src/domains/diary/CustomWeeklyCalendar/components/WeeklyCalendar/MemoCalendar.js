@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   format,
   subMonths,
@@ -12,7 +11,7 @@ import {
   subWeeks,
 } from "date-fns";
 import Image from "next/image";
-import { IconButton } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
 import { useRouter } from "next/router";
 import { RoutePath } from "@/constants/Path";
 
@@ -26,9 +25,11 @@ const MemoCalendar = ({
   setCurrentWeek,
 }) => {
   const router = useRouter();
-
-  const handleMemoClick = () => {
-    router.push(RoutePath.DiaryDetail);
+  const handleMemoClick = (clickedDate) => {
+    router.push({
+      pathname: RoutePath.DiaryDetail,
+      query: { date: clickedDate },
+    });
   };
   const changeMonthHandle = (btnType) => {
     if (btnType === "prev") {
@@ -62,12 +63,16 @@ const MemoCalendar = ({
     const startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
     const endDate = lastDayOfWeek(currentMonth, { weekStartsOn: 1 });
     const dateFormat = "d";
+    const monthDateFormat = "yyyy-MM-dd";
+
     const rows = [];
     let days = [];
     let day = startDate;
     let formattedDate = "";
-    while (day <= endDate) {
+
+    while (day < endDate) {
       for (let i = 0; i < 7; i++) {
+        let clickedDate = format(day, monthDateFormat);
         formattedDate = format(day, dateFormat);
         const cloneDay = day;
         days.push(
@@ -85,9 +90,10 @@ const MemoCalendar = ({
                 <span className="number">{formattedDate}</span>
               </div>
             </div>
-            <div className="memo" onClick={handleMemoClick}>
+            <div className="memo" onClick={() => handleMemoClick(clickedDate)}>
               <div className="memo-deco"></div>
               <div className="memo-content">
+                <p className="memo-text">{clickedDate}</p>
                 <IconButton className="memo-arrow-right">
                   <Image
                     width="20px"
