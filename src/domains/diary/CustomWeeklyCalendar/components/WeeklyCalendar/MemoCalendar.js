@@ -14,6 +14,7 @@ import Image from "next/image";
 import { IconButton, TextField } from "@mui/material";
 import { useRouter } from "next/router";
 import { RoutePath } from "@/constants/Path";
+import { useMemoCalendar } from "./useMemoCalendar";
 
 const MemoCalendar = ({
   showDetailsHandle,
@@ -25,6 +26,10 @@ const MemoCalendar = ({
   setCurrentWeek,
 }) => {
   const router = useRouter();
+
+  // diary api
+  const { refetchState, result } = useMemoCalendar();
+
   const handleMemoClick = (clickedDate) => {
     router.push({
       pathname: RoutePath.DiaryDetail,

@@ -4,7 +4,7 @@ import MemoCalendar from "./MemoCalendar";
 import { LightColor } from "@/themes/Color";
 import { useWeeklyCalendar } from "./useWeeklyCalendar";
 export const WeeklyCalendar = () => {
-  const { calendarState, memoCalendarState, result } = useWeeklyCalendar();
+  const { calendarState, memoCalendarState } = useWeeklyCalendar();
 
   return (
     <div css={sx.root}>
@@ -18,7 +18,7 @@ export const WeeklyCalendar = () => {
           currentWeek={calendarState.currentWeek}
           setCurrentWeek={calendarState.setCurrentWeek}
           signupMonth={calendarState.signupMonth}
-          onSelectChange={calendarState.handleMonthSelectChange}
+          onSelectChange={calendarState.onSelectChange}
         />
       </div>
       <div css={sx.hr} />
