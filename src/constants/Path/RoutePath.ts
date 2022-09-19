@@ -15,6 +15,7 @@ export enum RoutePath {
   MyArticle = "/community/my-article",
   Diary = "/diary",
   DiaryDetail = "/diary/write",
+  CreateDiary = "/diary/create/",
   More = "/more",
   MyInformation = "/more/my-information",
   ChangeNickname = "/more/change-nickname",

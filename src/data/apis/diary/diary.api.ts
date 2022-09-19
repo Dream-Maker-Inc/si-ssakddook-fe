@@ -16,10 +16,10 @@ class DiaryApiService implements DiaryApiInterface {
     headers: { Authorization: `Bearer ${this.jwt}` },
   };
 
-  async createDiary(formData: any): Promise<ApiFailedResponse> {
+  async createDiary(body: any): Promise<ApiFailedResponse> {
     const response = await axiosClient.post(
       "/v1/diary-item",
-      formData,
+      body,
       this.config
     );
     return response.data;
@@ -45,7 +45,7 @@ class DiaryApiService implements DiaryApiInterface {
     return response.data;
   }
 
-  async findOneByDiaryId(diaryId: number): Promise<DiaryItemResponse> {
+  async findOneByDiaryId(diaryId: string): Promise<DiaryItemResponse> {
     const response = await axiosClient.get(
       `/v1/diary-item/${diaryId}`,
       this.config

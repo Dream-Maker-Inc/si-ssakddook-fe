@@ -11,10 +11,12 @@ import {
   subWeeks,
 } from "date-fns";
 import Image from "next/image";
-import { IconButton, TextField } from "@mui/material";
+import { IconButton } from "@mui/material";
 import { useRouter } from "next/router";
 import { RoutePath } from "@/constants/Path";
 import { useMemoCalendar } from "./useMemoCalendar";
+import { useSetRecoilState } from "recoil";
+import { DiaryAtom } from "@/recoil/Diary/Diary.atom";
 
 const MemoCalendar = ({
   showDetailsHandle,
@@ -26,36 +28,76 @@ const MemoCalendar = ({
   setCurrentWeek,
 }) => {
   const router = useRouter();
+  const setDiaryState = useSetRecoilState(DiaryAtom);
 
   // diary api
   const { refetchState, result } = useMemoCalendar();
 
-  const handleMemoClick = (clickedDate) => {
-    router.push({
-      pathname: RoutePath.DiaryDetail,
-      query: { date: clickedDate },
-    });
-  };
-  const changeMonthHandle = (btnType) => {
-    if (btnType === "prev") {
-      setCurrentMonth(subMonths(currentMonth, 1));
+  const handleMemoClick = (clickedDate, diaryId) => {
+    if (!diaryId) {
+      router.push({
+        pathname: RoutePath.CreateDiary,
+        query: { date: clickedDate },
+      });
+    } else {
+      router.push({
+        pathname: RoutePath.DiaryDetail,
+        query: { date: clickedDate, diaryId: diaryId },
+      });
     }
-    if (btnType === "next") {
-      setCurrentMonth(addMonths(currentMonth, 1));
+  };
+  // const changeMonthHandle = (btnType) => {
+  //   if (btnType === "prev") {
+  //     setCurrentMonth(subMonths(currentMonth, 1));
+  //   }
+  //   if (btnType === "next") {
+  //     setCurrentMonth(addMonths(currentMonth, 1));
+  //   }
+  // };
+
+  // const changeWeekHandle = (btnType) => {
+  //   //console.log("current week", currentWeek);
+  //   if (btnType === "prev") {
+  //     //console.log(subWeeks(currentMonth, 1));
+  //     setCurrentMonth(subWeeks(currentMonth, 1));
+  //     setCurrentWeek(getWeek(subWeeks(currentMonth, 1)));
+  //   }
+  //   if (btnType === "next") {
+  //     //console.log(addWeeks(currentMonth, 1));
+  //     setCurrentMonth(addWeeks(currentMonth, 1));
+  //     setCurrentWeek(getWeek(addWeeks(currentMonth, 1)));
+  //   }
+  // };
+
+  const getContentByResult = (clickedDate) => {
+    const contentObject = result?.filter((item) => item.date === clickedDate);
+
+    if (
+      contentObject == null ||
+      contentObject == "undefined" ||
+      contentObject.length == 0
+    ) {
+      return "";
+    } else {
+      return contentObject[0].content;
     }
   };
 
-  const changeWeekHandle = (btnType) => {
-    //console.log("current week", currentWeek);
-    if (btnType === "prev") {
-      //console.log(subWeeks(currentMonth, 1));
-      setCurrentMonth(subWeeks(currentMonth, 1));
-      setCurrentWeek(getWeek(subWeeks(currentMonth, 1)));
-    }
-    if (btnType === "next") {
-      //console.log(addWeeks(currentMonth, 1));
-      setCurrentMonth(addWeeks(currentMonth, 1));
-      setCurrentWeek(getWeek(addWeeks(currentMonth, 1)));
+  const getDiaryIdByResult = (clickedDate) => {
+    const contentObject = result?.filter((item) => item.date === clickedDate);
+    if (
+      contentObject == null ||
+      contentObject == "undefined" ||
+      contentObject.length == 0
+    ) {
+      return null;
+    } else {
+      setDiaryState((old) => ({
+        ...old,
+        content: contentObject[0].content,
+        updatedAt: contentObject[0].updatedAt,
+      }));
+      return contentObject[0].id;
     }
   };
 
@@ -95,10 +137,15 @@ const MemoCalendar = ({
                 <span className="number">{formattedDate}</span>
               </div>
             </div>
-            <div className="memo" onClick={() => handleMemoClick(clickedDate)}>
+            <div
+              className="memo"
+              onClick={() =>
+                handleMemoClick(clickedDate, getDiaryIdByResult(clickedDate))
+              }
+            >
               <div className="memo-deco"></div>
               <div className="memo-content">
-                <p className="memo-text">{clickedDate}</p>
+                <p className="memo-text">{getContentByResult(clickedDate)}</p>
                 <IconButton className="memo-arrow-right">
                   <Image
                     width="20px"
