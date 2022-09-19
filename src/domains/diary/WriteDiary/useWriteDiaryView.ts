@@ -9,8 +9,7 @@ import { format } from "date-fns";
 
 export const useWriteDiaryView = () => {
   const router = useRouter();
-  const date = router.query.date + "";
-  const diaryId = router.query.diaryId + "";
+  const date = router.query?.date + "";
   const diary = useRecoilValue(DiaryAtom);
   // tab
   const [isWritingMode, setIsWritingMode] = useState(false);
@@ -20,10 +19,8 @@ export const useWriteDiaryView = () => {
   const handleFieldFocus = () => inputRef.current?.focus();
 
   // date 변환
-  const customaDate = new Date(date);
-  console.log("customaDate");
-  console.log(date);
-  const testDate = format(customaDate, "yyyy년 MM월 dd일");
+  const customaDate = date == "undefined" ? new Date() : new Date(date);
+  const titleDate = format(customaDate, "yyyy년 MM월 dd일");
 
   // create diary
   const { mutate, data: newDiaryData } = useMutation(
@@ -44,14 +41,19 @@ export const useWriteDiaryView = () => {
     setContent(e.target.value);
   };
 
-  const lastUpdatedDate = format(
-    new Date(diary.updatedAt),
-    "yyyy년 MM월 dd일 a h시 mm"
-  );
+  console.log("lastUpdatedDate before");
+  console.log(diary.updatedAt);
+  const lastUpdatedDate =
+    diary.updatedAt.length == 0
+      ? format(new Date(), "yyyy년 MM월 dd일 a h시 mm")
+      : format(new Date(diary.updatedAt), "yyyy년 MM월 dd일 a h시 mm");
+
+  console.log("lastUpdatedDate");
+  console.log(lastUpdatedDate);
 
   const body = {
     content: content,
-    date: date,
+    date: customaDate,
   };
 
   const handleSubmitClick = () => {
@@ -68,7 +70,7 @@ export const useWriteDiaryView = () => {
 
   return {
     tabState: {
-      title: testDate,
+      title: titleDate,
       isWritingState: isWritingMode,
       onSubmit: handleSubmitClick,
       onEdit: handleEditClick,
