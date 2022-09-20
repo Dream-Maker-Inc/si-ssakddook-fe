@@ -12,7 +12,7 @@ export type SignupApiResponse = {
   ref: any;
 };
 
-export type GetCurrentMemberApiResponse = {
+export type MemberApiResponse = {
   id: number;
   email: string;
   nickname: string;

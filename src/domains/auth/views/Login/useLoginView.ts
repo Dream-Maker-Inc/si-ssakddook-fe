@@ -25,7 +25,6 @@ export const useLoginView = () => {
 
   if (isSuccess) {
     if (data.accessToken !== null) {
-      console.log(data.accessToken);
       LocalStorage.setItem("jwt", data.accessToken);
       router.push(RoutePath.Main);
     } else {

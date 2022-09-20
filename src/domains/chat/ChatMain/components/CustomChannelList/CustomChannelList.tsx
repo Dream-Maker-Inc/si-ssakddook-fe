@@ -20,12 +20,12 @@ const sx = {
 
     & .str-chat {
       width: 100%;
-      background-color: white;
-      position: unset;
-      left: unset;
-      top: unset;
-      z-index: unset;
-      min-height: unset;
+      background-color: white !important;
+      position: unset !important;
+      left: unset !important;
+      top: unset !important;
+      z-index: unset !important;
+      min-height: unset !important;
       overflow-y: unset;
       box-shadow: unset;
       transition: unset;
@@ -37,7 +37,7 @@ const sx = {
     }
 
     & .str-chat__channel-list-messenger__main {
-      padding: 0px;
+      padding: 0px !important;
     }
 
     button {

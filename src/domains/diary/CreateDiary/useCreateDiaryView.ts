@@ -1,4 +1,3 @@
-import { RoutePath } from "@/constants/Path";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { useMutation } from "react-query";
@@ -28,7 +27,7 @@ export const useCreateDiaryView = () => {
     (body: any) => DiaryApiService.createDiary(body),
     {
       onSuccess: (res) => {
-        router.push(RoutePath.Diary);
+        router.back();
       },
       onError: (err) => {
         console.log(newDiaryData);

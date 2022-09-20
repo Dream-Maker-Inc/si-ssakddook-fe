@@ -6,6 +6,7 @@ export enum RoutePath {
   Login = "/auth/login",
   Main = "/main",
   Chat = "/chat",
+  ChatCreate = "/chat/create",
   Life = "/life",
   LifeDefail = "/life/detail",
   Community = "/community",

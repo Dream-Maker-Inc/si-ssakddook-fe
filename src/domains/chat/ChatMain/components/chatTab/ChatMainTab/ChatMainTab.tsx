@@ -2,7 +2,11 @@ import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 
-export const ChatMainTab = () => {
+type ChatMainTabProps = {
+  onCreate: () => void;
+};
+
+export const ChatMainTab = ({ onCreate }: ChatMainTabProps) => {
   return (
     <div css={sx.tabContainer}>
       <div css={sx.wrapper}>
@@ -19,7 +23,7 @@ export const ChatMainTab = () => {
         </Typography>
       </div>
       <div>
-        <IconButton onClick={() => alert("create")}>
+        <IconButton onClick={onCreate}>
           <Image
             width="18px"
             height="18px"
