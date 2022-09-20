@@ -94,6 +94,7 @@ const MemoCalendar = ({
     } else {
       setDiaryState((old) => ({
         ...old,
+        id: contentObject[0].id,
         content: contentObject[0].content,
         updatedAt: contentObject[0].updatedAt,
       }));

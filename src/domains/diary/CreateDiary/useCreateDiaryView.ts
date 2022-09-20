@@ -8,12 +8,12 @@ import { format } from "date-fns";
 export const useCreateDiaryView = () => {
   const router = useRouter();
   const date = router.query?.date + "";
+
   //forwardRef 사용 권고
   const inputRef = useRef<HTMLInputElement>(null);
   const handleFieldFocus = () => inputRef.current?.focus();
 
   // date 변환
-
   const customaDate = date == "undefined" ? new Date() : new Date(date);
   const titleDate = format(customaDate, "yyyy년 MM월 dd일");
 

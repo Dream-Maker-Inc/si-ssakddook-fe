@@ -34,7 +34,7 @@ class DiaryApiService implements DiaryApiInterface {
   }
 
   async updateDiary(
-    diaryId: number,
+    diaryId: string,
     content: string
   ): Promise<ApiFailedResponse> {
     const response = await axiosClient.patch(

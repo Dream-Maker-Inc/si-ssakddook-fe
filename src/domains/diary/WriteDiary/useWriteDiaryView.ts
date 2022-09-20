@@ -1,6 +1,5 @@
 import { DiaryAtom } from "./../../../recoil/Diary/Diary.atom";
 import { useRecoilValue } from "recoil";
-import { RoutePath } from "@/constants/Path";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { useMutation } from "react-query";
@@ -11,8 +10,11 @@ export const useWriteDiaryView = () => {
   const router = useRouter();
   const date = router.query?.date + "";
   const diary = useRecoilValue(DiaryAtom);
+
   // tab
   const [isWritingMode, setIsWritingMode] = useState(false);
+  // diary text
+  const [content, setContent] = useState(diary.content);
 
   //forwardRef 사용 권고
   const inputRef = useRef<HTMLInputElement>(null);
@@ -22,12 +24,17 @@ export const useWriteDiaryView = () => {
   const customaDate = date == "undefined" ? new Date() : new Date(date);
   const titleDate = format(customaDate, "yyyy년 MM월 dd일");
 
-  // create diary
+  const lastUpdatedDate =
+    diary.updatedAt.length == 0
+      ? format(new Date(), "yyyy년 MM월 dd일 a h시 mm")
+      : format(new Date(diary.updatedAt), "yyyy년 MM월 dd일 a h시 mm");
+
+  // update diary
   const { mutate, data: newDiaryData } = useMutation(
-    (body: any) => DiaryApiService.createDiary(body),
+    () => DiaryApiService.updateDiary(diary.id + "", content),
     {
       onSuccess: (res) => {
-        router.push(RoutePath.Diary);
+        handleRestate();
       },
       onError: (err) => {
         console.log(newDiaryData);
@@ -35,29 +42,13 @@ export const useWriteDiaryView = () => {
     }
   );
 
-  const [content, setContent] = useState(diary.content);
-
+  // functions
   const handleContentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
   };
 
-  console.log("lastUpdatedDate before");
-  console.log(diary.updatedAt);
-  const lastUpdatedDate =
-    diary.updatedAt.length == 0
-      ? format(new Date(), "yyyy년 MM월 dd일 a h시 mm")
-      : format(new Date(diary.updatedAt), "yyyy년 MM월 dd일 a h시 mm");
-
-  console.log("lastUpdatedDate");
-  console.log(lastUpdatedDate);
-
-  const body = {
-    content: content,
-    date: customaDate,
-  };
-
   const handleSubmitClick = () => {
-    mutate(body);
+    mutate();
   };
   const handleEditClick = () => {
     setIsWritingMode(true);
