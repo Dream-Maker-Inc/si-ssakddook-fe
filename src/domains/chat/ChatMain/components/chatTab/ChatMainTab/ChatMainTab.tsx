@@ -1,36 +1,60 @@
+import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 type ChatMainTabProps = {
   onCreate: () => void;
+  onBack: () => void;
+  isCreateView: boolean;
 };
 
-export const ChatMainTab = ({ onCreate }: ChatMainTabProps) => {
+export const ChatMainTab = ({
+  onCreate,
+  onBack,
+  isCreateView,
+}: ChatMainTabProps) => {
+  const router = useRouter();
+
   return (
     <div css={sx.tabContainer}>
       <div css={sx.wrapper}>
-        <IconButton>
-          <Image
-            width="24px"
-            height="16px"
-            src="/img/main/logo.svg"
-            alt="logo"
-          />
-        </IconButton>
+        {isCreateView ? (
+          <IconButton onClick={onBack}>
+            <Image
+              width="24px"
+              height="24px"
+              src="/img/arrowIcon/prev-icon.svg"
+              alt="logo"
+            />
+          </IconButton>
+        ) : (
+          <IconButton>
+            <Image
+              width="24px"
+              height="16px"
+              src="/img/main/logo.svg"
+              alt="logo"
+            />
+          </IconButton>
+        )}
+
         <Typography variant="h2" lineHeight="1" ml="12px">
           톡
         </Typography>
       </div>
       <div>
-        <IconButton onClick={onCreate}>
-          <Image
-            width="18px"
-            height="18px"
-            src="/img/tab/icon-add-chat.svg"
-            alt=""
-          />
-        </IconButton>
+        {isCreateView || (
+          <IconButton onClick={onCreate}>
+            <Image
+              width="18px"
+              height="18px"
+              src="/img/tab/icon-add-chat.svg"
+              alt=""
+            />
+          </IconButton>
+        )}
       </div>
     </div>
   );

@@ -41,6 +41,7 @@ const user = {
 // const user2 = {
 //   id: "jane",
 //   name: "jane",
+
 //   image: "https://getstream.imgix.net/images/random_svg/FS.png",
 // };
 
@@ -78,7 +79,11 @@ export const ChatMainView = () => {
     <AppbarLayout>
       <Chat client={client} theme="messaging light">
         {isChannelListVisible ? (
-          <ChatMainTab onCreate={() => setIsCreateChatVisible(true)} />
+          <ChatMainTab
+            onCreate={() => setIsCreateChatVisible(true)}
+            onBack={() => setIsCreateChatVisible(false)}
+            isCreateView={isCreateChatVisible}
+          />
         ) : (
           <ChatRoomTab />
         )}

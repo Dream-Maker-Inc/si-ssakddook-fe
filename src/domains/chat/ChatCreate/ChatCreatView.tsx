@@ -2,6 +2,9 @@ import { generateRandomString } from "@/utils/random/generateRandomString";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useChatContext } from "stream-chat-react";
+import { css } from "@emotion/react";
+import { ChatMainTab } from "../ChatMain/components/chatTab/ChatMainTab";
+
 type ChatCreateViewProps = {
   onClose: () => void;
 };
@@ -28,20 +31,39 @@ export const ChatCreateView = ({ onClose }: ChatCreateViewProps) => {
   };
 
   return (
-    <div>
-      <TextField
-        fullWidth
-        value={name}
-        onChange={(e) => handleNameChange(e.target.value)}
-      />
-      <Button
-        fullWidth
-        variant="contained"
-        color="primary"
-        onClick={createChannel}
-      >
-        채팅방 만들기
-      </Button>
+    <div css={sx.root}>
+      <div css={sx.container}>
+        <TextField
+          fullWidth
+          value={name}
+          onChange={(e) => handleNameChange(e.target.value)}
+          sx={{ marginBottom: "20px" }}
+        />
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          onClick={createChannel}
+        >
+          채팅방 만들기
+        </Button>
+      </div>
     </div>
   );
+};
+
+const sx = {
+  root: css`
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
+
+  container: css`
+    width: 100%;
+  `,
 };
