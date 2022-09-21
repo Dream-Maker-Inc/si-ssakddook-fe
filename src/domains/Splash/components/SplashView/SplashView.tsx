@@ -1,14 +1,12 @@
 import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
 export const SplashView = () => {
-  const router = useRouter();
-
   useEffect(() => {
     setTimeout(() => {
-      router.push(RoutePath.Home);
+      Router.push(RoutePath.Home);
     }, 1500);
   }, []);
 

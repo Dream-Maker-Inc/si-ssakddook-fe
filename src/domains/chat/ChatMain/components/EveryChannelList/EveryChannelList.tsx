@@ -1,10 +1,11 @@
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { ChannelList, useChatContext } from "stream-chat-react";
 import { CustomLoadingIndicator } from "../CustomLoadingIndicator";
 import { CustomPreview } from "../CustomPreview";
+import { PublicChannelItem } from "../PublicChannelItem";
 
 export const EveryChannelList = () => {
   const { client } = useChatContext();
@@ -18,12 +19,12 @@ export const EveryChannelList = () => {
 
   useEffect(() => {
     const fetchChannels = async () => {
-      const response = await client.queryChannels(filter);
+      const filteredChannels = await client.queryChannels(filter);
       //const filteredChannels = response.filter((c) => c.type === "messaging");
 
-      //setChannels(filteredChannels);
+      setChannels(filteredChannels);
       setLoadingChannels(false);
-      await console.log(response);
+      await console.log(filteredChannels);
     };
 
     fetchChannels();
@@ -31,20 +32,13 @@ export const EveryChannelList = () => {
 
   return (
     <div css={sx.root}>
-      <ChannelList
-        filters={filter}
-        Preview={CustomPreview}
-        LoadingIndicator={CustomLoadingIndicator}
-      />
-      {/* {loadingChannels ? (
-        <Typography>채널을 로딩중 입니다.</Typography>
+      {loadingChannels ? (
+        <CustomLoadingIndicator />
       ) : (
         channels.map((it, index) => (
-          <div key={index} css={sx.channel}>
-            {it}
-          </div>
+          <PublicChannelItem key={index} channel={it} />
         ))
-      )} */}
+      )}
     </div>
   );
 };
@@ -52,6 +46,9 @@ export const EveryChannelList = () => {
 const sx = {
   root: css`
     width: 100%;
+    height: 100%;
+
+    overflow-y: scroll;
 
     & .str-chat {
       width: 100%;

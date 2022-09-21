@@ -20,11 +20,6 @@ export const ChatCreateView = ({ onClose }: ChatCreateViewProps) => {
       members: [client.user!!.id],
     });
 
-    console.log(client);
-    console.log(client.user!!.id);
-    console.log(name);
-    console.log(channel);
-
     await channel.create();
     await channel.watch();
     await setActiveChannel(channel);
