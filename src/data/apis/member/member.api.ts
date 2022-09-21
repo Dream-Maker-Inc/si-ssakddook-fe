@@ -2,7 +2,7 @@ import { axiosClient } from "@/constants/api/client/client";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { ApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import {
-  GetCurrentMemberApiResponse,
+  MemberApiResponse,
   ValidateEmailApiResponse,
   ValidateNicknameApiResponse,
 } from "./member.dto";
@@ -48,9 +48,8 @@ class MemberApiService implements MemberApiInterface {
     return response.data;
   }
 
-  async getCurrentMember(): Promise<GetCurrentMemberApiResponse> {
+  async getCurrentMember(): Promise<MemberApiResponse> {
     const response = await axiosClient.get("/v1/member/me", this.config);
-
     return response.data;
   }
 

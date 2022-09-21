@@ -266,8 +266,7 @@ header #logo .icon {
   text-align: center;
   margin: 0;
   width: 100%;
-  height: 90%;
-  padding-bottom: 50px;
+  flex: 1;
 }
 
 .vertical-calendar {
@@ -379,10 +378,12 @@ header #logo .icon {
   align-items: center;
 
   padding-left: 16px;
+  cursor: pointer;
 }
 
 .memo-deco {
-  width: 10px;
+  width: 5%;
+  min-width: 10px;
   height: 100%;
 
   background-color: rgba(90, 136, 53, 0.2);
@@ -390,13 +391,34 @@ header #logo .icon {
 }
 
 .memo-content {
-  width: 100%;
+  width: 95%;
   height: 100%;
 
   background-color: #f1f1f1;
   border-radius: 0px 8px 8px 0px;
+  padding: 0 16px;
 
   position: relative;
+
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: left;
+}
+
+.memo-text {
+  width: 85%;
+
+  font-size: 10px;
+  line-height: 16px;
+
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .memo-arrow-right {

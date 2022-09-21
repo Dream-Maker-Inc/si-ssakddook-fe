@@ -1,18 +1,18 @@
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
-import { DiaryTab } from "@/common/components/tab/DiaryTab";
+import { CreateDiaryTab } from "@/common/components/tab/CreateDiaryTan";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { TextField, Typography } from "@mui/material";
 import Image from "next/image";
-import { useWriteDiaryView } from "./useWriteDiaryView";
+import { useCreateDiaryView } from "./useCreateDiaryView";
 
-export const WriteDiaryView = () => {
-  const { tabState, diaryState } = useWriteDiaryView();
+export const CreateDiaryView = () => {
+  const { tabState, diaryState } = useCreateDiaryView();
 
   return (
     <AppbarLayout>
       <div css={sx.root}>
-        <DiaryTab
+        <CreateDiaryTab
           title={tabState.title}
           writingState={{
             isWritingState: tabState.isWritingState,
@@ -38,14 +38,9 @@ export const WriteDiaryView = () => {
               css={sx.textfield}
               InputProps={{
                 disableUnderline: true,
-                readOnly: !tabState.isWritingState,
               }}
             />
-            {tabState.isWritingState || (
-              <LastUpdated date={diaryState.lastUpdatedDate} />
-            )}
           </div>
-          {tabState.isWritingState || <CheerImage />}
         </div>
       </div>
     </AppbarLayout>

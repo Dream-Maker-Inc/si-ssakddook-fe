@@ -96,6 +96,12 @@ const sx = {
     min-height: 40px;
 
     font-size: 12px;
+
+    & .str-chat {
+      position: relative;
+      left: unset;
+      top: unset;
+    }
   `,
 
   panelContainer: css`
@@ -105,5 +111,7 @@ const sx = {
     ::-webkit-scrollbar {
       display: none;
     }
+
+    padding-bottom: 50px;
   `,
 };

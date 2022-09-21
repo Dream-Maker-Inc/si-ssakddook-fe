@@ -1,12 +1,17 @@
 import { css } from "@emotion/react";
-import { FormControl, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { format } from "date-fns";
 import { useMonthSelection } from "./useMonthSelection";
 
 export type MonthSelectionProps = {
   currentMonth: Date;
   signupMonth: Date;
-  onChange: () => void;
+  onChange: (e: string) => void;
 };
 
 export const MonthSelection = ({
@@ -32,7 +37,7 @@ export const MonthSelection = ({
       <Select
         value={formatToYYYYMM(currentMonth)}
         label="Age"
-        onChange={onChange}
+        onChange={(e: SelectChangeEvent) => onChange(e.target.value)}
         variant={"standard"}
         disableUnderline
         css={sx.select}
