@@ -20,7 +20,6 @@ export const EveryChannelList = () => {
   useEffect(() => {
     const fetchChannels = async () => {
       const filteredChannels = await client.queryChannels(filter);
-      //const filteredChannels = response.filter((c) => c.type === "messaging");
 
       setChannels(filteredChannels);
       setLoadingChannels(false);
