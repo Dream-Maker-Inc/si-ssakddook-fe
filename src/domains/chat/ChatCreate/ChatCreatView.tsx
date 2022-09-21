@@ -26,6 +26,7 @@ export const ChatCreateView = ({ onClose }: ChatCreateViewProps) => {
     console.log(channel);
 
     await channel.create();
+    await channel.watch();
     await setActiveChannel(channel);
     await onClose();
   };

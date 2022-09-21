@@ -4,7 +4,7 @@ import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { ChatAtom } from "@/recoil/Navigation/Navigation.atom";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { StreamChat } from "stream-chat";
 import {
   Chat,
@@ -22,6 +22,7 @@ import { CustomChannel } from "./components/CustomChannel";
 import { CustomChannelList } from "./components/CustomChannelList";
 import { CustomLoadingIndicator } from "./components/CustomLoadingIndicator";
 import { CustomPreview } from "./components/CustomPreview";
+import { EveryChannelList } from "./components/EveryChannelList";
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY!!;
 // const user = {
@@ -44,6 +45,7 @@ const user2 = {
 
 export const ChatMainView = () => {
   const router = useRouter();
+
   const [client, setClient] = useState<any>(null);
   const [isCreateChatVisible, setIsCreateChatVisible] = useState(false);
   const [isChannelListVisible, setIsChannelListVisible] =
@@ -54,18 +56,31 @@ export const ChatMainView = () => {
       const chatClient = StreamChat.getInstance(apiKey);
       await chatClient.connectUser(user1, chatClient.devToken(user1.id));
 
-      setClient(chatClient);
+      await setClient(chatClient);
     }
 
     init();
 
-    if (client) return () => client.disconnectUser();
+    if (client)
+      return () => {
+        console.log("client disconnected");
+        console.log(client);
+        client.disconnectUser();
+      };
   }, []);
 
   if (!client) return <LoadingIndicator />;
 
   const myChat = { members: { $in: [user1.id] } };
-  const everyChat = {};
+  const everyChannel = {
+    $or: [
+      {
+        members: {
+          $in: [user1.id],
+        },
+      },
+    ],
+  };
 
   return (
     <AppbarLayout>
@@ -100,15 +115,7 @@ export const ChatMainView = () => {
               }}
               secondTabInfo={{
                 title: "둘러보기",
-                children: (
-                  <CustomChannelList
-                    props={{
-                      Preview: CustomPreview,
-                      filters: myChat,
-                      LoadingIndicator: CustomLoadingIndicator,
-                    }}
-                  />
-                ),
+                children: <EveryChannelList />,
               }}
             />
             <CustomChannel isVisible={!isChannelListVisible}>
