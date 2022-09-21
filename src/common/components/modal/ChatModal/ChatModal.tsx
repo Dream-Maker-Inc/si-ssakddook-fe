@@ -1,6 +1,6 @@
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
-import { Box, Modal, Typography } from "@mui/material";
+import { Box, IconButton, Modal, Typography } from "@mui/material";
 
 export type ChatModalProps = {
   isOpen: boolean;
@@ -10,7 +10,7 @@ export type ChatModalProps = {
 
 export const ChatModal = ({ isOpen, onClose, onContinue }: ChatModalProps) => {
   return (
-    <Modal open={isOpen}>
+    <Modal open={isOpen} onClose={onClose}>
       <Box css={sx.modalBox}>
         <Typography variant="h4">대화방에 참여하시겠습니까?</Typography>
         <div css={sx.modalButtonWrapper}>
@@ -22,6 +22,7 @@ export const ChatModal = ({ isOpen, onClose, onContinue }: ChatModalProps) => {
           >
             취소
           </Typography>
+
           <Typography
             variant="h4"
             color={LightColor.PrimaryDark}
@@ -56,6 +57,7 @@ const sx = {
     border-radius: 8px;
 
     padding: 20px;
+    z-index: 99;
   `,
 
   modalButtonWrapper: css`

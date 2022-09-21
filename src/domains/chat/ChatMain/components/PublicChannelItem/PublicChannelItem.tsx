@@ -1,44 +1,54 @@
 import { ChatModal } from "@/common/components/modal/ChatModal/ChatModal";
+import { ChatAtom } from "@/recoil/Navigation/Navigation.atom";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { useChatContext } from "stream-chat-react";
 
 type PublicChannelItemProps = {
   channel: any;
 };
 export const PublicChannelItem = ({ channel }: PublicChannelItemProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const onModalOpen = () => {
-    setIsModalOpen(true);
+  const { client, setActiveChannel } = useChatContext();
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const setIsChannelListVisible = useSetRecoilState(ChatAtom);
+
+  const handleModalOpen = () => setModalOpen(true);
+  const handleModalClose = () => setModalOpen(false);
+  const handleChatJoin = async () => {
+    setModalOpen(false);
+
+    await channel.addMembers([client.user?.id]);
+    await channel.watch();
+    await setActiveChannel(channel);
+
+    await setIsChannelListVisible(false);
   };
 
-  const onModalClose = () => {
-    setIsModalOpen(false);
-  };
-
-  const onChatParticipate = () => {
-    alert(1);
-  };
   return (
-    <div css={sx.root} onClick={onModalOpen}>
+    <div css={sx.root}>
       <Typography variant="body1" color="black">
         {channel.data.name}
       </Typography>
+      {channel.data.created_by.id == client.user?.id || (
+        <div css={sx.joinText} onClick={handleModalOpen}>
+          <Image
+            width="24px"
+            height="24px"
+            src="/img/arrowIcon/icon-arrow-right.svg"
+            alt=""
+          />
+        </div>
+      )}
 
-      <div css={sx.arrowIcon}>
-        <Image
-          width="24px"
-          height="24px"
-          src="/img/arrowIcon/icon-arrow-right.svg"
-          alt=""
-        />
-      </div>
       <ChatModal
-        isOpen={isModalOpen}
-        onClose={onModalClose}
-        onContinue={onChatParticipate}
+        isOpen={modalOpen}
+        onClose={handleModalClose}
+        onContinue={handleChatJoin}
       />
     </div>
   );
@@ -59,7 +69,7 @@ const sx = {
     cursor: pointer; ;
   `,
 
-  arrowIcon: css`
+  joinText: css`
     position: absolute;
     top: 50%;
     right: 16px;

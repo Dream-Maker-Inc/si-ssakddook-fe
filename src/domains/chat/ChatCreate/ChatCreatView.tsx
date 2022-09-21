@@ -1,3 +1,4 @@
+import { generateRandomString } from "@/utils/random/generateRandomString";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useChatContext } from "stream-chat-react";
@@ -14,7 +15,7 @@ export const ChatCreateView = ({ onClose }: ChatCreateViewProps) => {
   };
 
   const createChannel = async () => {
-    const channelId = name.replace(/\s/g, "-").toLowerCase();
+    const channelId = generateRandomString(10);
     const channel = client.channel("messaging", channelId, {
       name: name,
       members: [client.user!!.id],

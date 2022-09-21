@@ -1,3 +1,4 @@
+import { ChatModal } from "@/common/components/modal/ChatModal/ChatModal";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { CircularProgress, Typography } from "@mui/material";
@@ -14,6 +15,7 @@ export const EveryChannelList = () => {
 
   const filter = {
     type: "messaging",
+    member_count: { $eq: 1 },
   };
   //const sort = { last_message_at: -1 };
 
@@ -45,9 +47,6 @@ export const EveryChannelList = () => {
 const sx = {
   root: css`
     width: 100%;
-    height: 100%;
-
-    overflow-y: scroll;
 
     & .str-chat {
       width: 100%;

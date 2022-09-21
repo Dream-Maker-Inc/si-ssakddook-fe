@@ -23,25 +23,26 @@ import { CustomChannelList } from "./components/CustomChannelList";
 import { CustomLoadingIndicator } from "./components/CustomLoadingIndicator";
 import { CustomPreview } from "./components/CustomPreview";
 import { EveryChannelList } from "./components/EveryChannelList";
+import LocalStorage from "@/data/LocalStorage/LocalStorage";
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY!!;
-// const user = {
-//   id: LocalStorage.getItem("id")!!,
-//   name: LocalStorage.getItem("nickname")!!,
+const user = {
+  id: LocalStorage.getItem("id")!!,
+  name: LocalStorage.getItem("nickname")!!,
+  image: "https://getstream.imgix.net/images/random_svg/FS.png",
+};
+
+// const user1 = {
+//   id: "andy",
+//   name: "andy",
 //   image: "https://getstream.imgix.net/images/random_svg/FS.png",
 // };
 
-const user1 = {
-  id: "andy",
-  name: "andy",
-  image: "https://getstream.imgix.net/images/random_svg/FS.png",
-};
-
-const user2 = {
-  id: "jane",
-  name: "jane",
-  image: "https://getstream.imgix.net/images/random_svg/FS.png",
-};
+// const user2 = {
+//   id: "jane",
+//   name: "jane",
+//   image: "https://getstream.imgix.net/images/random_svg/FS.png",
+// };
 
 export const ChatMainView = () => {
   const router = useRouter();
@@ -54,7 +55,7 @@ export const ChatMainView = () => {
   useEffect(() => {
     async function init() {
       const chatClient = StreamChat.getInstance(apiKey);
-      await chatClient.connectUser(user1, chatClient.devToken(user1.id));
+      await chatClient.connectUser(user, chatClient.devToken(user.id));
 
       await setClient(chatClient);
     }
@@ -71,16 +72,7 @@ export const ChatMainView = () => {
 
   if (!client) return <LoadingIndicator />;
 
-  const myChat = { members: { $in: [user1.id] } };
-  const everyChannel = {
-    $or: [
-      {
-        members: {
-          $in: [user1.id],
-        },
-      },
-    ],
-  };
+  const myChat = { members: { $in: [user.id] } };
 
   return (
     <AppbarLayout>
