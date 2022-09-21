@@ -1,6 +1,5 @@
-import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
-import { Box, IconButton, Modal, Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -20,6 +19,7 @@ type DiaryTabStateProps = {
 
 export const DiaryTab = ({ title, writingState }: DiaryTabProps) => {
   const router = useRouter();
+
   //modal
   const [modalOpen, setModalOpen] = useState(false);
   const handleModalOpen = () => setModalOpen(true);

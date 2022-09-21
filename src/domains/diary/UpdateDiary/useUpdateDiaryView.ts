@@ -1,20 +1,35 @@
-import { DiaryAtom } from "./../../../recoil/Diary/Diary.atom";
-import { useRecoilValue } from "recoil";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import DiaryApiService from "@/data/apis/diary/diary.api";
 import { format } from "date-fns";
+import PostingApiService from "@/data/apis/diary/diary.api";
 
-export const useWriteDiaryView = () => {
+export const useUpdateDiaryView = () => {
   const router = useRouter();
   const date = router.query?.date + "";
-  const diary = useRecoilValue(DiaryAtom);
+  const diaryId = router.query?.diaryId + "";
+
+  const [content, setContent] = useState("");
+  const [lastDate, setLastDate] = useState("");
+
+  // diary api
+  const { data, refetch } = useQuery(
+    "find-one-by-diary-id",
+    () => PostingApiService.findOneByDiaryId(diaryId),
+    {
+      onSuccess(data) {
+        setContent(data.content);
+        setLastDate(
+          format(new Date(data.updatedAt), "yyyy년 MM월 dd일 a h시 mm분")
+        );
+      },
+      onError(err) {},
+    }
+  );
 
   // tab
   const [isWritingMode, setIsWritingMode] = useState(false);
-  // diary text
-  const [content, setContent] = useState(diary.content);
 
   //forwardRef 사용 권고
   const inputRef = useRef<HTMLInputElement>(null);
@@ -24,17 +39,13 @@ export const useWriteDiaryView = () => {
   const customaDate = date == "undefined" ? new Date() : new Date(date);
   const titleDate = format(customaDate, "yyyy년 MM월 dd일");
 
-  const lastUpdatedDate =
-    diary.updatedAt.length == 0
-      ? format(new Date(), "yyyy년 MM월 dd일 a h시 mm")
-      : format(new Date(diary.updatedAt), "yyyy년 MM월 dd일 a h시 mm");
-
   // update diary
   const { mutate, data: newDiaryData } = useMutation(
-    () => DiaryApiService.updateDiary(diary.id + "", content),
+    () => DiaryApiService.updateDiary(diaryId, content!!),
     {
       onSuccess: (res) => {
         handleRestate();
+        refetch();
       },
       onError: (err) => {
         console.log(newDiaryData);
@@ -76,7 +87,7 @@ export const useWriteDiaryView = () => {
         content === null
           ? "본인 외에는 그 누구도 나의 감정일기를 볼 수 없어요."
           : "",
-      lastUpdatedDate: lastUpdatedDate,
+      lastUpdatedDate: lastDate,
     },
   };
 };

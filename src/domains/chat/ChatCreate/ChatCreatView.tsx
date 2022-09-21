@@ -3,7 +3,6 @@ import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useChatContext } from "stream-chat-react";
 import { css } from "@emotion/react";
-import { ChatMainTab } from "../ChatMain/components/chatTab/ChatMainTab";
 
 type ChatCreateViewProps = {
   onClose: () => void;

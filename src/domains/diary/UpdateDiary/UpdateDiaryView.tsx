@@ -4,10 +4,10 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { TextField, Typography } from "@mui/material";
 import Image from "next/image";
-import { useWriteDiaryView } from "./useWriteDiaryView";
+import { useUpdateDiaryView } from "./useUpdateDiaryView";
 
-export const WriteDiaryView = () => {
-  const { tabState, diaryState } = useWriteDiaryView();
+export const UpdateDiaryView = () => {
+  const { tabState, diaryState } = useUpdateDiaryView();
 
   return (
     <AppbarLayout>

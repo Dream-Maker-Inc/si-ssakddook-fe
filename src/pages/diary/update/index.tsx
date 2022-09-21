@@ -1,8 +1,8 @@
-import { WriteDiaryView } from "@/domains/diary/WriteDiary";
+import { UpdateDiaryView } from "@/domains/diary/UpdateDiary";
 import { NextPage } from "next";
 
 const WriteDiaryPage: NextPage = () => {
-  return <WriteDiaryView />;
+  return <UpdateDiaryView />;
 };
 
 export default WriteDiaryPage;

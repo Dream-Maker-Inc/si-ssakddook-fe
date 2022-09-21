@@ -1,14 +1,9 @@
 import {
   format,
-  subMonths,
-  addMonths,
   startOfWeek,
   addDays,
   isSameDay,
   lastDayOfWeek,
-  getWeek,
-  addWeeks,
-  subWeeks,
 } from "date-fns";
 import Image from "next/image";
 import { IconButton } from "@mui/material";
@@ -41,7 +36,7 @@ const MemoCalendar = ({
       });
     } else {
       router.push({
-        pathname: RoutePath.DiaryDetail,
+        pathname: RoutePath.UpdateDiary,
         query: { date: clickedDate, diaryId: diaryId },
       });
     }
@@ -92,12 +87,6 @@ const MemoCalendar = ({
     ) {
       return null;
     } else {
-      setDiaryState((old) => ({
-        ...old,
-        id: contentObject[0].id,
-        content: contentObject[0].content,
-        updatedAt: contentObject[0].updatedAt,
-      }));
       return contentObject[0].id;
     }
   };

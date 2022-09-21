@@ -2,7 +2,6 @@ import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
-import { useRouter } from "next/router";
 
 type ChatMainTabProps = {
   onCreate: () => void;
@@ -15,8 +14,6 @@ export const ChatMainTab = ({
   onBack,
   isCreateView,
 }: ChatMainTabProps) => {
-  const router = useRouter();
-
   return (
     <div css={sx.tabContainer}>
       <div css={sx.wrapper}>

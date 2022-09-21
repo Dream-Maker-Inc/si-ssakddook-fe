@@ -2,7 +2,6 @@ import { css } from "@emotion/react";
 import { BoardTab } from "@/common/components/board/BoardTab";
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { ChatAtom } from "@/recoil/Navigation/Navigation.atom";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { StreamChat } from "stream-chat";
@@ -32,22 +31,7 @@ const user = {
   image: "https://getstream.imgix.net/images/random_svg/FS.png",
 };
 
-// const user1 = {
-//   id: "andy",
-//   name: "andy",
-//   image: "https://getstream.imgix.net/images/random_svg/FS.png",
-// };
-
-// const user2 = {
-//   id: "jane",
-//   name: "jane",
-
-//   image: "https://getstream.imgix.net/images/random_svg/FS.png",
-// };
-
 export const ChatMainView = () => {
-  const router = useRouter();
-
   const [client, setClient] = useState<any>(null);
   const [isCreateChatVisible, setIsCreateChatVisible] = useState(false);
   const [isChannelListVisible, setIsChannelListVisible] =
