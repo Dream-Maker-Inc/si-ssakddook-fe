@@ -1,11 +1,8 @@
-import { ChatModal } from "@/common/components/modal/ChatModal/ChatModal";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
-import { CircularProgress, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { ChannelList, useChatContext } from "stream-chat-react";
+import { useChatContext } from "stream-chat-react";
 import { CustomLoadingIndicator } from "../CustomLoadingIndicator";
-import { CustomPreview } from "../CustomPreview";
 import { PublicChannelItem } from "../PublicChannelItem";
 
 export const EveryChannelList = () => {
@@ -17,7 +14,6 @@ export const EveryChannelList = () => {
     type: "messaging",
     member_count: { $eq: 1 },
   };
-  //const sort = { last_message_at: -1 };
 
   useEffect(() => {
     const fetchChannels = async () => {
