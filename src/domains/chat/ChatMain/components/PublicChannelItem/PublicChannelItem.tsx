@@ -1,41 +1,22 @@
 import { ChatModal } from "@/common/components/modal/ChatModal/ChatModal";
-import { ChatAtom } from "@/recoil/Navigation/Navigation.atom";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
-import { useState } from "react";
-import { useSetRecoilState } from "recoil";
-import { useChatContext } from "stream-chat-react";
+import { usePublicChannelItem } from "./usePublicChannelItem";
 
 type PublicChannelItemProps = {
   channel: any;
 };
 export const PublicChannelItem = ({ channel }: PublicChannelItemProps) => {
-  const { client, setActiveChannel } = useChatContext();
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const setIsChannelListVisible = useSetRecoilState(ChatAtom);
-
-  const handleModalOpen = () => setModalOpen(true);
-  const handleModalClose = () => setModalOpen(false);
-  const handleChatJoin = async () => {
-    setModalOpen(false);
-
-    await channel.addMembers([client.user?.id]);
-    await channel.watch();
-    await setActiveChannel(channel);
-
-    await setIsChannelListVisible(false);
-  };
-
+  const { modalState, channelState } = usePublicChannelItem(channel);
   return (
     <div css={sx.root}>
       <Typography variant="body1" color="black">
         {channel.data.name}
       </Typography>
-      {channel.data.created_by.id == client.user?.id || (
-        <div css={sx.joinText} onClick={handleModalOpen}>
+      {channelState.channelUserid == channelState.clientUserId || (
+        <div css={sx.join} onClick={modalState.onOpen}>
           <Image
             width="24px"
             height="24px"
@@ -44,11 +25,10 @@ export const PublicChannelItem = ({ channel }: PublicChannelItemProps) => {
           />
         </div>
       )}
-
       <ChatModal
-        isOpen={modalOpen}
-        onClose={handleModalClose}
-        onContinue={handleChatJoin}
+        isOpen={modalState.isOpen}
+        onClose={modalState.onClose}
+        onContinue={modalState.onContinue}
       />
     </div>
   );
@@ -66,13 +46,14 @@ const sx = {
     justify-content: center;
 
     position: relative;
-    cursor: pointer; ;
   `,
 
-  joinText: css`
+  join: css`
     position: absolute;
     top: 50%;
     right: 16px;
     transform: translateY(-50%);
+
+    cursor: pointer;
   `,
 };
