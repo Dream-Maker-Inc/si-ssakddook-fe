@@ -4,20 +4,25 @@ import { Typography } from "@mui/material";
 import { LightColor } from "@/themes/Color";
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import Image from "next/image";
-import { LifeDetailModel } from "../model/LifeModel";
+import { useLifeDetailView } from "./useLifeDetailView";
+import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 
 export const LifeDetailView = () => {
+  const { fetchState, result } = useLifeDetailView();
+  if (fetchState.isLoading) return <CircularLoading />;
+  if (fetchState.isError) return <CircularLoading />;
+
   return (
     <PlainLayout>
       <DefaultTab category="라이프" />
       <div css={sx.root}>
         <TitleSection
-          title={LifeDetailModel.titleSectionProps.title}
-          date={LifeDetailModel.titleSectionProps.date}
-          viewCount={LifeDetailModel.titleSectionProps.viewCount}
+          title={result.title}
+          date={result.date}
+          viewCount={result.viewCount}
         />
-        <ContentSection content={LifeDetailModel.contentSectionProps.content} />
-        <ImageSourceSection src={LifeDetailModel.imageSourceSectionProps.src} />
+        <ContentSection content={result.content} />
+        <ImageSourceSection src={result.attachments} />
       </div>
     </PlainLayout>
   );
@@ -92,7 +97,7 @@ const sx = {
 export type TitleSectionProps = {
   title: string;
   date: string;
-  viewCount: string;
+  viewCount: number;
 };
 
 const TitleSection = ({ title, date, viewCount }: TitleSectionProps) => {
