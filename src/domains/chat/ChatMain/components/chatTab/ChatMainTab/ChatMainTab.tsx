@@ -1,15 +1,16 @@
-import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 
 type ChatMainTabProps = {
+  onClick: () => void;
   onCreate: () => void;
   onBack: () => void;
   isCreateView: boolean;
 };
 
 export const ChatMainTab = ({
+  onClick,
   onCreate,
   onBack,
   isCreateView,
@@ -38,12 +39,21 @@ export const ChatMainTab = ({
         )}
 
         <Typography variant="h2" lineHeight="1" ml="12px">
-          톡
+          {isCreateView ? "톡방 개설하기" : "톡"}
         </Typography>
       </div>
       <div>
-        {isCreateView || (
+        {isCreateView ? (
           <IconButton onClick={onCreate}>
+            <Image
+              width="24px"
+              height="24px"
+              src="/img/icon-submit.svg"
+              alt=""
+            />
+          </IconButton>
+        ) : (
+          <IconButton onClick={onClick}>
             <Image
               width="18px"
               height="18px"

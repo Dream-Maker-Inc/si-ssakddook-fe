@@ -1,52 +1,25 @@
-import { generateRandomString } from "@/utils/random/generateRandomString";
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useState } from "react";
-import { useChatContext } from "stream-chat-react";
 import { css } from "@emotion/react";
+import { LightColor } from "@/themes/Color";
 
 type ChatCreateViewProps = {
-  onClose: () => void;
+  value: string;
+  onChange: (e: string) => void;
 };
 
-export const ChatCreateView = ({ onClose }: ChatCreateViewProps) => {
-  const { client, setActiveChannel } = useChatContext();
-  const [name, setName] = useState("");
-
-  const handleNameChange = (e: string) => {
-    setName(e);
-  };
-
-  const createChannel = async () => {
-    const channelId = generateRandomString(10);
-    const channel = client.channel("messaging", channelId, {
-      name: name,
-      members: [client.user!!.id],
-    });
-
-    await channel.create();
-    await channel.watch();
-    await setActiveChannel(channel);
-    await onClose();
-  };
-
+export const ChatCreateView = ({ value, onChange }: ChatCreateViewProps) => {
   return (
     <div css={sx.root}>
-      <div css={sx.container}>
-        <TextField
-          fullWidth
-          value={name}
-          onChange={(e) => handleNameChange(e.target.value)}
-          sx={{ marginBottom: "20px" }}
-        />
-        <Button
-          fullWidth
-          variant="contained"
-          color="primary"
-          onClick={createChannel}
-        >
-          채팅방 만들기
-        </Button>
-      </div>
+      <TextField
+        fullWidth
+        variant="standard"
+        InputProps={{ disableUnderline: true }}
+        placeholder="제목을 입력해 주세요."
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        css={sx.textfield}
+      />
     </div>
   );
 };
@@ -55,14 +28,12 @@ const sx = {
   root: css`
     width: 100%;
     height: 100%;
-    padding: 16px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
   `,
 
-  container: css`
+  textfield: css`
     width: 100%;
+    height: 40px;
+    border-bottom: 1px solid ${LightColor.Gray500};
+    padding: 0 16px;
   `,
 };

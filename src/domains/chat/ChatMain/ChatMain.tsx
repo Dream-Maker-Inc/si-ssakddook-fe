@@ -11,6 +11,7 @@ import {
   MessageInput,
   MessageList,
   Thread,
+  useChatContext,
   Window,
 } from "stream-chat-react";
 import "stream-chat-react/dist/css/index.css";
@@ -23,6 +24,7 @@ import { CustomLoadingIndicator } from "./components/CustomLoadingIndicator";
 import { CustomPreview } from "./components/CustomPreview";
 import { EveryChannelList } from "./components/EveryChannelList";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
+import { generateRandomString } from "@/utils/random/generateRandomString";
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY!!;
 const user = {
@@ -33,6 +35,14 @@ const user = {
 
 export const ChatMainView = () => {
   const [client, setClient] = useState<any>(null);
+  const [name, setName] = useState("");
+  const handleNameChange = (e: string) => {
+    setName(e);
+  };
+  const handleNameReset = () => {
+    setName("");
+  };
+
   const [isCreateChatVisible, setIsCreateChatVisible] = useState(false);
   const [isChannelListVisible, setIsChannelListVisible] =
     useRecoilState(ChatAtom);
@@ -59,25 +69,38 @@ export const ChatMainView = () => {
 
   const myChat = { members: { $in: [user.id] } };
 
+  const createChannel = async () => {
+    const channelId = generateRandomString(10);
+    const channel = client.channel("messaging", channelId, {
+      name: name,
+      members: [client.user!!.id],
+    });
+
+    await channel.create();
+    await channel.watch();
+    await setIsChannelListVisible(false);
+    await setIsCreateChatVisible(false);
+    handleNameReset;
+  };
+
   return (
     <AppbarLayout>
       <Chat client={client} theme="messaging light">
         {isChannelListVisible ? (
           <ChatMainTab
-            onCreate={() => setIsCreateChatVisible(true)}
-            onBack={() => setIsCreateChatVisible(false)}
+            onClick={() => setIsCreateChatVisible(true)}
+            onCreate={createChannel}
+            onBack={() => {
+              setIsCreateChatVisible(false);
+              handleNameReset();
+            }}
             isCreateView={isCreateChatVisible}
           />
         ) : (
           <ChatRoomTab />
         )}
         {isCreateChatVisible ? (
-          <ChatCreateView
-            onClose={() => {
-              setIsChannelListVisible(false);
-              setIsCreateChatVisible(false);
-            }}
-          />
+          <ChatCreateView value={name} onChange={handleNameChange} />
         ) : (
           <div css={sx.container}>
             <BoardTab
