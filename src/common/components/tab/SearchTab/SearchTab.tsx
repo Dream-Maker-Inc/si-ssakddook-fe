@@ -6,9 +6,10 @@ import { BoardPrevButton } from "../../button/BoardPrevButton";
 type SearchTabProps = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSearch: () => void;
 };
 
-export const SearchTab = ({ value, onChange }: SearchTabProps) => {
+export const SearchTab = ({ value, onChange, onSearch }: SearchTabProps) => {
   return (
     <div css={sx.tabContainer}>
       <BoardPrevButton />
@@ -22,7 +23,7 @@ export const SearchTab = ({ value, onChange }: SearchTabProps) => {
         InputProps={{
           disableUnderline: true,
           endAdornment: (
-            <IconButton>
+            <IconButton onClick={onSearch}>
               <Image
                 width="16px"
                 height="16px"
@@ -47,7 +48,6 @@ const sx = {
 
     display: flex;
     align-items: center;
-
     gap: 12px;
 
     padding: 0 16px;

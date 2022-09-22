@@ -15,11 +15,9 @@ class MemberApiService implements MemberApiInterface {
     return this.instance || (this.instance = new this());
   }
 
-  id = LocalStorage.getItem("id");
-  jwt = LocalStorage.getItem("jwt");
-  config = {
-    headers: { Authorization: `Bearer ${this.jwt}` },
-  };
+  get id() {
+    return LocalStorage.getItem("id");
+  }
 
   async validateEmail(email: string): Promise<ValidateEmailApiResponse> {
     const response = await axiosClient.post("/v1/member/validate/email", {
@@ -49,16 +47,14 @@ class MemberApiService implements MemberApiInterface {
   }
 
   async getCurrentMember(): Promise<MemberApiResponse> {
-    const response = await axiosClient.get("/v1/member/me", this.config);
+    const response = await axiosClient.get("/v1/member/me");
     return response.data;
   }
 
   async updateNickname(nickname: string): Promise<ApiFailedResponse | any> {
-    const response = await axiosClient.patch(
-      `/v1/member/${this.id}`,
-      { nickname },
-      this.config
-    );
+    const response = await axiosClient.patch(`/v1/member/${this.id}`, {
+      nickname,
+    });
 
     return response.data;
   }
@@ -67,11 +63,10 @@ class MemberApiService implements MemberApiInterface {
     oldPassword: string,
     newPassword: string
   ): Promise<ApiFailedResponse | any> {
-    const response = await axiosClient.patch(
-      `/v1/member/${this.id}/password`,
-      { oldPassword, newPassword },
-      this.config
-    );
+    const response = await axiosClient.patch(`/v1/member/${this.id}/password`, {
+      oldPassword,
+      newPassword,
+    });
 
     return response.data;
   }
@@ -79,8 +74,7 @@ class MemberApiService implements MemberApiInterface {
   async updateProfileImage(formData: any): Promise<ApiFailedResponse | any> {
     const response = await axiosClient.patch(
       `/v1/member/${this.id}/profile`,
-      formData,
-      this.config
+      formData
     );
 
     return response.data;

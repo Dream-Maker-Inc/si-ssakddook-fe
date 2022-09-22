@@ -11,6 +11,10 @@ export const CommunityTab = () => {
     router.push(RoutePath.MyArticle);
   };
 
+  const onSearch = () => {
+    router.push(RoutePath.CommunitySearch);
+  };
+
   return (
     <div>
       <div css={sx.container}>
@@ -27,7 +31,7 @@ export const CommunityTab = () => {
             커뮤니티
           </Typography>
           <div css={sx.buttonWrapper}>
-            <IconButton>
+            <IconButton onClick={onSearch}>
               <Image
                 width="16px"
                 height="16px"

@@ -15,18 +15,12 @@ class PostingApiService implements PostingApiInterface {
     return this.instance || (this.instance = new this());
   }
 
-  id = LocalStorage.getItem("id");
-  jwt = LocalStorage.getItem("jwt");
-  config = {
-    headers: { Authorization: `Bearer ${this.jwt}` },
-  };
+  get id() {
+    return LocalStorage.getItem("id");
+  }
 
   async createPost(formData: any): Promise<ApiFailedResponse> {
-    const response = await axiosClient.post(
-      "/v1/posting",
-      formData,
-      this.config
-    );
+    const response = await axiosClient.post("/v1/posting", formData);
     return response.data;
   }
 
@@ -36,8 +30,7 @@ class PostingApiService implements PostingApiInterface {
     withDeleted: boolean
   ): Promise<AllPostingResponse> {
     const response = await axiosClient.get(
-      `/v1/posting?page=${page}&size=${size}&withDeleted=${withDeleted}`,
-      this.config
+      `/v1/posting?page=${page}&size=${size}&withDeleted=${withDeleted}`
     );
     return response.data;
   }
@@ -47,8 +40,18 @@ class PostingApiService implements PostingApiInterface {
     size: string
   ): Promise<AllPostingResponse> {
     const response = await axiosClient.get(
-      `/v1/posting?memberId=${this.id}&page=${page}&size=${size}`,
-      this.config
+      `/v1/posting?memberId=${this.id}&page=${page}&size=${size}`
+    );
+    return response.data;
+  }
+
+  async findAllPostByKeyword(
+    keyword: string,
+    page: number,
+    size: number
+  ): Promise<AllPostingResponse> {
+    const response = await axiosClient.get(
+      `/v1/posting?keyword=${keyword}&page=${page}&size=${size}`
     );
     return response.data;
   }
@@ -58,8 +61,7 @@ class PostingApiService implements PostingApiInterface {
     size: string
   ): Promise<AllCommentResponse> {
     const response = await axiosClient.get(
-      `/v1/comment?authorId=${this.id}&page=${page}&size=${size}`,
-      this.config
+      `/v1/comment?authorId=${this.id}&page=${page}&size=${size}`
     );
     return response.data;
   }
@@ -70,17 +72,13 @@ class PostingApiService implements PostingApiInterface {
     size: string
   ): Promise<CommentResponse> {
     const response = await axiosClient.get(
-      `/v1/comment?postingId=${postId}&page=${page}&size=${size}`,
-      this.config
+      `/v1/comment?postingId=${postId}&page=${page}&size=${size}`
     );
     return response.data;
   }
 
   async findOneByPostId(postId: string): Promise<PostResponse> {
-    const response = await axiosClient.get(
-      `/v1/posting/${postId}`,
-      this.config
-    );
+    const response = await axiosClient.get(`/v1/posting/${postId}`);
     return response.data;
   }
 
@@ -90,22 +88,18 @@ class PostingApiService implements PostingApiInterface {
     size: string
   ): Promise<AllPostingResponse> {
     const response = await axiosClient.get(
-      `/v1/posting?category=${category}&page=${page}&size=${size}`,
-      this.config
+      `/v1/posting?category=${category}&page=${page}&size=${size}`
     );
     return response.data;
   }
 
   async deleteCommentById(commentId: string): Promise<CommentResponse> {
-    const response = await axiosClient.delete(
-      `/v1/comment/${commentId}`,
-      this.config
-    );
+    const response = await axiosClient.delete(`/v1/comment/${commentId}`);
     return response.data;
   }
 
   async createComment(body: any): Promise<CommentResponse> {
-    const response = await axiosClient.post("/v1/comment", body, this.config);
+    const response = await axiosClient.post("/v1/comment", body);
     return response.data;
   }
 }

@@ -15,6 +15,16 @@ export const useFindAllPost = (
   );
 };
 
+export const useFindAllPostByKeyword = (
+  keyword: string,
+  page: number,
+  size: number
+) => {
+  return useQuery(["find-all-post-by-keyword", keyword, page, size], () =>
+    PostingApiService.findAllPostByKeyword(keyword, page, size)
+  );
+};
+
 export const useFindAllPostById = (page: string, size: string) => {
   return useMutation(() => PostingApiService.findAllPostById(page, size));
 };

@@ -1,26 +1,35 @@
 import { BoardExpandedItem } from "@/common/components/board/BoardExpandedItem";
+import { PlainLayout } from "@/common/components/layout/PlainLayout";
+import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { SearchTab } from "@/common/components/tab/SearchTab";
 import { css } from "@emotion/react";
-import { boardItemInfos } from "../../models/community.model";
 import { useCommunitySearchView } from "./useCommunitySearchView";
 
 export const CommunitySearchView = () => {
-  const { searchState } = useCommunitySearchView();
+  const { searchState, fetchState, result } = useCommunitySearchView();
+
+  if (fetchState.isLoading) return <CircularLoading />;
   return (
-    <div css={sx.root}>
-      <SearchTab value={searchState.value} onChange={searchState.onChange} />
-      {boardItemInfos.map((it, index) => (
-        <BoardExpandedItem
-          key={index}
-          title={it.title}
-          date={it.date}
-          nickname={it.nickname}
-          category={it.category}
-          like={it.like}
-          comments={it.comments}
-        />
-      ))}
-    </div>
+    <PlainLayout>
+      <SearchTab
+        value={searchState.value}
+        onChange={searchState.onChange}
+        onSearch={() => alert(1)}
+      />
+      <div css={sx.root}>
+        {result?.items.map((it, index) => (
+          <BoardExpandedItem
+            key={index}
+            title={it.posting.title}
+            date={it.posting.createdAt}
+            nickname={it.member.nickname}
+            category={it.posting.category}
+            like={it.likedCount + ""}
+            comments={it.commentCount + ""}
+          />
+        ))}
+      </div>
+    </PlainLayout>
   );
 };
 

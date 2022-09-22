@@ -21,6 +21,11 @@ export interface PostingApiInterface {
     size: string
   ): Promise<AllPostingResponse>;
   findOneByPostId(postId: string): Promise<PostResponse>;
+  findAllPostByKeyword(
+    keyword: string,
+    page: number,
+    size: number
+  ): Promise<AllPostingResponse>;
 
   // comment
   createComment(body: any): Promise<CommentResponse>;
