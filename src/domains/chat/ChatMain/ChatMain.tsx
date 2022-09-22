@@ -11,7 +11,6 @@ import {
   MessageInput,
   MessageList,
   Thread,
-  useChatContext,
   Window,
 } from "stream-chat-react";
 import "stream-chat-react/dist/css/index.css";
@@ -51,7 +50,6 @@ export const ChatMainView = () => {
     async function init() {
       const chatClient = StreamChat.getInstance(apiKey);
       await chatClient.connectUser(user, chatClient.devToken(user.id));
-
       await setClient(chatClient);
     }
 
