@@ -1,1 +1,0 @@
-export { ActivateSearch } from "./ActivateSearch";
