@@ -26,7 +26,7 @@ export const BoardExpandedItem = ({
           {title}
         </Typography>
         <Typography fontSize="8px" lineHeight="1" color={LightColor.Gray100}>
-          {date}일전
+          {date}
         </Typography>
       </div>
       <div css={sx.rowWrapper}>

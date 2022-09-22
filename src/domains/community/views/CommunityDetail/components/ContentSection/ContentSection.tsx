@@ -56,7 +56,7 @@ const ContentInfos = ({ nickname, date }: ContentInfosProps) => {
     <Typography variant="h5" color={LightColor.Gray100}>
       {nickname}
       {" | "}
-      {date}분전
+      {date}
     </Typography>
   );
 };

@@ -7,9 +7,9 @@ export type PostingItems = {
     content: string;
     viewCount: number;
     attachments: [];
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt: Date | null;
   };
   member: {
     id: number;
@@ -20,9 +20,9 @@ export type PostingItems = {
     phone: string;
     profileImageUrl: string;
     suspendedAt: string | null;
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt: Date | null;
   };
   likedCount: number;
   commentCount: number;
@@ -34,8 +34,8 @@ export type MyCommentItems = {
     authorId: number;
     postingId: number;
     content: string;
-    createdAt: string;
-    updateAt: string;
+    createdAt: Date;
+    updateAt: Date;
     deletedAt: null;
   };
   posting: {
@@ -46,9 +46,9 @@ export type MyCommentItems = {
     content: string;
     viewCount: number;
     attachments: [];
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt: Date | null;
   };
   likedCount: number;
 };
@@ -59,9 +59,9 @@ export type CommentItems = {
     authorId: number;
     postingId: number;
     content: string;
-    createdAt: string;
-    updateAt: string;
-    deletedAt: null;
+    createdAt: Date;
+    updateAt: Date;
+    deletedAt: Date | null;
   };
   member: {
     id: number;
@@ -72,9 +72,9 @@ export type CommentItems = {
     phone: string;
     profileImageUrl: string;
     suspendedAt: string | null;
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt: Date | null;
   };
   likedCount: number;
 };
@@ -130,9 +130,9 @@ export type PostResponse = {
     content: string;
     viewCount: number;
     attachments: [];
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt: Date | null;
   };
   member: {
     id: number;
@@ -143,9 +143,9 @@ export type PostResponse = {
     phone: string;
     profileImageUrl: string;
     suspendedAt: null;
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: null;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt: Date | null;
   };
   likedCount: number;
   commentCount: number;

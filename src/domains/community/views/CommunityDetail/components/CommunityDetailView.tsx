@@ -7,6 +7,7 @@ import { CommentSection } from "./CommentSection";
 import { ContentSection } from "./ContentSection";
 import { ReactionSection } from "./ReactionSection";
 import { useCommunityDetailView } from "./useCommunityDetailView";
+import { getDateDiff } from "@/utils/DateDif/DateDiff";
 
 export const CommunityDetailView = () => {
   const { models, postId } = useCommunityDetailView();
@@ -20,7 +21,7 @@ export const CommunityDetailView = () => {
             category={models?.posting.category}
             title={models?.posting.title}
             nickname={models?.member.nickname}
-            date={models?.posting.createdAt}
+            date={getDateDiff(models?.posting.createdAt!!)}
             content={models?.posting.content}
           />
           <ReactionSection
