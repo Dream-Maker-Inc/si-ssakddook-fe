@@ -12,6 +12,7 @@ import { RoutePath } from "@/constants/Path";
 import { useMemoCalendar } from "./useMemoCalendar";
 import { useSetRecoilState } from "recoil";
 import { DiaryAtom } from "@/recoil/Diary/Diary.atom";
+import { getDateDiff, getDiaryDateDiff } from "@/utils/DateDif/DateDiff";
 
 const MemoCalendar = ({
   showDetailsHandle,
@@ -24,6 +25,8 @@ const MemoCalendar = ({
 }) => {
   const router = useRouter();
   const setDiaryState = useSetRecoilState(DiaryAtom);
+
+  const today = new Date();
 
   // diary api
   const { refetchState, result } = useMemoCalendar();
@@ -41,28 +44,6 @@ const MemoCalendar = ({
       });
     }
   };
-  // const changeMonthHandle = (btnType) => {
-  //   if (btnType === "prev") {
-  //     setCurrentMonth(subMonths(currentMonth, 1));
-  //   }
-  //   if (btnType === "next") {
-  //     setCurrentMonth(addMonths(currentMonth, 1));
-  //   }
-  // };
-
-  // const changeWeekHandle = (btnType) => {
-  //   //console.log("current week", currentWeek);
-  //   if (btnType === "prev") {
-  //     //console.log(subWeeks(currentMonth, 1));
-  //     setCurrentMonth(subWeeks(currentMonth, 1));
-  //     setCurrentWeek(getWeek(subWeeks(currentMonth, 1)));
-  //   }
-  //   if (btnType === "next") {
-  //     //console.log(addWeeks(currentMonth, 1));
-  //     setCurrentMonth(addWeeks(currentMonth, 1));
-  //     setCurrentWeek(getWeek(addWeeks(currentMonth, 1)));
-  //   }
-  // };
 
   const getContentByResult = (clickedDate) => {
     const contentObject = result?.filter((item) => item.date === clickedDate);
@@ -89,6 +70,10 @@ const MemoCalendar = ({
     } else {
       return contentObject[0].id;
     }
+  };
+
+  const isAvailableDate = (date) => {
+    return today < new Date(date) ? false : true;
   };
 
   const onDateClickHandle = (day, dayStr) => {
@@ -127,25 +112,38 @@ const MemoCalendar = ({
                 <span className="number">{formattedDate}</span>
               </div>
             </div>
-            <div
-              className="memo"
-              onClick={() =>
-                handleMemoClick(clickedDate, getDiaryIdByResult(clickedDate))
-              }
-            >
-              <div className="memo-deco"></div>
-              <div className="memo-content">
-                <p className="memo-text">{getContentByResult(clickedDate)}</p>
-                <IconButton className="memo-arrow-right">
-                  <Image
-                    width="20px"
-                    height="20px"
-                    src="/img/calendar/icon-arrow-right.svg"
-                    alt=""
-                  />
-                </IconButton>
+
+            {isAvailableDate(clickedDate) ? (
+              <div
+                className="memo"
+                onClick={() =>
+                  handleMemoClick(clickedDate, getDiaryIdByResult(clickedDate))
+                }
+              >
+                <div className="memo-deco"></div>
+                <div className="memo-content">
+                  <p className="memo-text">{getContentByResult(clickedDate)}</p>
+
+                  <IconButton className="memo-arrow-right">
+                    <Image
+                      width="20px"
+                      height="20px"
+                      src="/img/calendar/icon-arrow-right.svg"
+                      alt=""
+                    />
+                  </IconButton>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="memo-outdated memo">
+                <div className="memo-deco"></div>
+                <div className="memo-content">
+                  <p className="memo-outdated-text memo-text">
+                    {getDiaryDateDiff(clickedDate) + "일 후 작성 가능해요."}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         );
         day = addDays(day, 1);

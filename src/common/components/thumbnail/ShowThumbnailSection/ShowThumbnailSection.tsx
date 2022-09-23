@@ -32,7 +32,6 @@ const sx = {
   thumbnailSection: (isVisible: boolean) => css`
     width: 100%;
     height: 70px;
-    padding: 0 16px;
 
     display: ${isVisible ? "flex" : "none"};
     align-items: center;
