@@ -59,10 +59,10 @@ export const CommunityTab = () => {
 
 const sx = {
   container: css`
+    position: absolute;
     width: 100%;
     height: 50px;
 
-    position: fixed;
     top: 0;
     left: 0;
   `,
