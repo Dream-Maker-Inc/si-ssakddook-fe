@@ -1,4 +1,5 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
+import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { css } from "@emotion/react";
 import { useMyPostList } from "./useMyPostList";
 
@@ -11,7 +12,7 @@ export const MyPostList = () => {
           key={index}
           postId={it.posting.id}
           title={it.posting.title}
-          date={it.posting.createdAt}
+          date={getDateDiff(it.posting.createdAt)}
           nicknameOrTitle={it.member.nickname}
           category={it.posting.category}
           like={it.likedCount + ""}
