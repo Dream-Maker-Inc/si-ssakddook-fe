@@ -8,7 +8,7 @@ import { useCommunityDetailView } from "./useCommunityDetailView";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 
 export const CommunityDetailView = () => {
-  const { fetchState, models, postId } = useCommunityDetailView();
+  const { fetchState, result, postId } = useCommunityDetailView();
   if (fetchState.isLoading) return <CircularLoading />;
   if (fetchState.isError) return <CircularLoading />;
 
@@ -18,16 +18,20 @@ export const CommunityDetailView = () => {
         <div css={sx.container}>
           <DetailTab />
           <ContentSection
-            category={models.category}
-            title={models.title}
-            nickname={models.nickname}
-            date={models.date}
-            content={models.content}
-            attachments={models.attachments}
+            category={result.category}
+            title={result.title}
+            nickname={result.nickname}
+            date={result.date}
+            content={result.content}
+            attachments={result.attachments}
           />
           <ReactionSection
-            likeCount={models.likeCount}
-            commentCount={models.commentCount}
+            likeState={{
+              likeCount: result.likeCount,
+              onLike: result.onLike,
+              isLike: result.isLike,
+            }}
+            commentCount={result.commentCount}
           />
           <CommentSection postId={postId} />
         </div>

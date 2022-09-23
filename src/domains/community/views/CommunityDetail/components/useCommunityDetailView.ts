@@ -1,10 +1,16 @@
 import { useFindOneByPostId } from "@/data/apis/posting/usePostingApiHooks";
 import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export const useCommunityDetailView = () => {
   const router = useRouter();
   const postId = router.query.postId + "";
+
+  const [like, setLike] = useState(false);
+  const handleLikeChange = () => {
+    setLike(!like);
+  };
 
   const { data, isLoading, isError } = useFindOneByPostId(postId);
 
@@ -14,7 +20,7 @@ export const useCommunityDetailView = () => {
         isLoading: isLoading,
         isError: isError,
       },
-      models: {
+      result: {
         category: "",
         title: "",
         nickname: "",
@@ -22,6 +28,8 @@ export const useCommunityDetailView = () => {
         content: "",
         attachments: [],
         likeCount: 0,
+        onLike: handleLikeChange,
+        isLike: like,
         commentCount: 0,
       },
       postId: postId,
@@ -33,7 +41,7 @@ export const useCommunityDetailView = () => {
       isLoading: isLoading,
       isError: isError,
     },
-    models: {
+    result: {
       category: data.posting.category,
       title: data.posting.title,
       nickname: data.member.nickname,
@@ -41,6 +49,8 @@ export const useCommunityDetailView = () => {
       content: data.posting.content,
       attachments: data.posting.attachments,
       likeCount: data.likedCount,
+      onLike: handleLikeChange,
+      isLike: like,
       commentCount: data.commentCount,
     },
     postId: postId,
