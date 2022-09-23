@@ -1,4 +1,3 @@
-import { Title } from "@/common/components/title/Title";
 import { RoutePath } from "@/constants/Path";
 import { MemberAtom } from "@/recoil/Member/Member.atom";
 import { LightColor } from "@/themes/Color";
@@ -19,9 +18,9 @@ export const SignupSuccessView = () => {
       <div css={sx.container}>
         <div css={sx.img}>
           <Image
-            width="260px"
-            height="198px"
-            src="/img/find/signup-success.svg"
+            width="200px"
+            height="200px"
+            src="/img/auth/img-signup.svg"
             alt="img"
           />
         </div>
