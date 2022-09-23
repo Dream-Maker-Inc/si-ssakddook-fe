@@ -20,10 +20,12 @@ export const ContentSection = (props: ContentSectionProps) => {
       <Title>{props.title}</Title>
       <ContentInfos nickname={props.nickname} date={props.date} />
       <Content text={props.content} />
-      <ShowThumbnailSection
-        uploadImageList={props.attachments}
-        isVisible={true}
-      />
+      {props.attachments.length !== 0 && (
+        <ShowThumbnailSection
+          uploadImageList={props.attachments}
+          isVisible={true}
+        />
+      )}
     </div>
   );
 };
