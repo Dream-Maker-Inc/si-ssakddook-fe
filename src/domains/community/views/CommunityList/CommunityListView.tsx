@@ -25,6 +25,7 @@ export const CommunityListView = () => {
         {result.map((it, index) => (
           <BoardExpandedItem
             key={index}
+            postId={it.posting.id + ""}
             title={it.posting.title}
             date={getDateDiff(it.posting.createdAt)}
             nickname={it.member.nickname}
