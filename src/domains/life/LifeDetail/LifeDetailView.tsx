@@ -1,11 +1,12 @@
 import { css } from "@emotion/react";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
-import { Typography } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 import { LightColor } from "@/themes/Color";
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import Image from "next/image";
 import { useLifeDetailView } from "./useLifeDetailView";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
+import { ThumbnailSection } from "@/common/components/thumbnail";
 
 export const LifeDetailView = () => {
   const { fetchState, result } = useLifeDetailView();
@@ -21,7 +22,7 @@ export const LifeDetailView = () => {
           date={result.date}
           viewCount={result.viewCount}
         />
-        <ContentSection content={result.content} />
+        <ContentSection content={result.content} image={result.attachments} />
         <ImageSourceSection src={result.attachments} />
       </div>
     </PlainLayout>
@@ -85,6 +86,10 @@ const sx = {
     border-top: 1px solid ${LightColor.Gray500};
     z-index: 100;
   `,
+  image: css`
+    width: 100%;
+    text-align: center;
+  `,
   src: css`
     width: 100%;
     display: inline-block;
@@ -123,14 +128,18 @@ const TitleSection = ({ title, date, viewCount }: TitleSectionProps) => {
 
 export type ContentSectionProps = {
   content: string;
+  image: any;
 };
 
-const ContentSection = ({ content }: ContentSectionProps) => {
+const ContentSection = ({ content, image }: ContentSectionProps) => {
   return (
     <div css={sx.contentRoot}>
-      <Typography variant="body2" color="black">
+      <Typography variant="body2" color="black" mb="16px">
         {content}
       </Typography>
+      <div css={sx.image}>
+        <Image width="200px" height="200px" src={image} alt="image" />
+      </div>
     </div>
   );
 };

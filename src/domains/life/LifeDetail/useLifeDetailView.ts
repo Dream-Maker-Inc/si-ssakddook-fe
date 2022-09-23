@@ -8,10 +8,6 @@ export const useLifeDetailView = () => {
 
   const { data, isLoading, isError, error } = useFindOneLifeById(lifeId);
 
-  console.log("### life detail ###");
-  console.log(lifeId);
-  console.log(data);
-
   const date = getDateDiff(data?.createdAt!!);
 
   if (isError) {
