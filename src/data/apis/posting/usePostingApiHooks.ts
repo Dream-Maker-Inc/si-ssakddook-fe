@@ -54,7 +54,9 @@ export const useFindAllPostByCategory = (
 };
 
 export const useFindOneByPostId = (postId: string) => {
-  return useMutation(() => PostingApiService.findOneByPostId(postId));
+  return useQuery(["find-post-by-id", postId], () =>
+    PostingApiService.findOneByPostId(postId)
+  );
 };
 
 export const useDeleteCommentById = (
