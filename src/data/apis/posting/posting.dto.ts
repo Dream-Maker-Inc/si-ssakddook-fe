@@ -6,7 +6,7 @@ export type PostingItems = {
     title: string;
     content: string;
     viewCount: number;
-    attachments: [];
+    attachments: string[];
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date | null;
@@ -45,7 +45,7 @@ export type MyCommentItems = {
     title: string;
     content: string;
     viewCount: number;
-    attachments: [];
+    attachments: string[];
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date | null;
@@ -129,7 +129,7 @@ export type PostResponse = {
     title: string;
     content: string;
     viewCount: number;
-    attachments: [];
+    attachments: string[];
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date | null;
