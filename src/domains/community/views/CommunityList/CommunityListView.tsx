@@ -2,6 +2,7 @@ import { BoardExpandedItem } from "@/common/components/board/BoardExpandedItem";
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
+import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { css } from "@emotion/react";
 import { useCommunityListView } from "./useCommunityListView";
 
@@ -24,8 +25,9 @@ export const CommunityListView = () => {
         {result.map((it, index) => (
           <BoardExpandedItem
             key={index}
+            postId={it.posting.id + ""}
             title={it.posting.title}
-            date={it.posting.createdAt}
+            date={getDateDiff(it.posting.createdAt)}
             nickname={it.member.nickname}
             category={it.posting.category}
             like={it.likedCount + ""}

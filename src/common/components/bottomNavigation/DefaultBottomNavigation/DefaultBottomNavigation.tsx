@@ -77,8 +77,7 @@ const styles = {
     height: 50px;
 
     display: flex;
-
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
 

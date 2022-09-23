@@ -5,15 +5,19 @@ import { Typography } from "@mui/material";
 import { useRouter } from "next/router";
 
 type PreviewItemProps = {
+  id: string;
   title: string;
   desc: string;
   date: string;
 };
 
-export const PreviewItem = ({ title, desc, date }: PreviewItemProps) => {
+export const PreviewItem = ({ id, title, desc, date }: PreviewItemProps) => {
   const router = useRouter();
   const onClick = () => {
-    router.push(RoutePath.LifeDefail);
+    router.push({
+      pathname: RoutePath.LifeDefail,
+      query: { lifeId: id },
+    });
   };
   return (
     <div css={sx.itemContainer} onClick={onClick}>
@@ -25,7 +29,11 @@ export const PreviewItem = ({ title, desc, date }: PreviewItemProps) => {
           {desc}
         </Typography>
       </div>
-      <Typography variant="h5" sx={{ whiteSpace: "nowrap" }}>
+      <Typography
+        variant="h5"
+        color={LightColor.Gray100}
+        sx={{ whiteSpace: "nowrap" }}
+      >
         {date}
       </Typography>
     </div>

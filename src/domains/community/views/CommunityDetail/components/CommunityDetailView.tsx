@@ -1,15 +1,16 @@
-import { CommentWrite } from "@/domains/community/views/CommunityDetail/components/CommentWrite";
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { DetailTab } from "@/common/components/tab/DetailTab";
 import { css } from "@emotion/react";
-import Router from "next/router";
 import { CommentSection } from "./CommentSection";
 import { ContentSection } from "./ContentSection";
 import { ReactionSection } from "./ReactionSection";
 import { useCommunityDetailView } from "./useCommunityDetailView";
+import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 
 export const CommunityDetailView = () => {
-  const { models, postId } = useCommunityDetailView();
+  const { fetchState, result, postId } = useCommunityDetailView();
+  if (fetchState.isLoading) return <CircularLoading />;
+  if (fetchState.isError) return <CircularLoading />;
 
   return (
     <AppbarLayout hasCommentWriteSection={true}>
@@ -17,15 +18,20 @@ export const CommunityDetailView = () => {
         <div css={sx.container}>
           <DetailTab />
           <ContentSection
-            category={models?.posting.category}
-            title={models?.posting.title}
-            nickname={models?.member.nickname}
-            date={models?.posting.createdAt}
-            content={models?.posting.content}
+            category={result.category}
+            title={result.title}
+            nickname={result.nickname}
+            date={result.date}
+            content={result.content}
+            attachments={result.attachments}
           />
           <ReactionSection
-            likeCount={models?.likedCount}
-            commentCount={models?.commentCount}
+            likeState={{
+              likeCount: result.likeCount,
+              onLike: result.onLike,
+              isLike: result.isLike,
+            }}
+            commentCount={result.commentCount}
           />
           <CommentSection postId={postId} />
         </div>

@@ -1,8 +1,11 @@
+import { RoutePath } from "@/constants/Path";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/router";
 type BoardExpandedItemProps = {
+  postId: string;
   title: string;
   date: string;
   nickname: string;
@@ -12,6 +15,7 @@ type BoardExpandedItemProps = {
 };
 
 export const BoardExpandedItem = ({
+  postId,
   title,
   date,
   nickname,
@@ -19,14 +23,21 @@ export const BoardExpandedItem = ({
   like,
   comments,
 }: BoardExpandedItemProps) => {
+  const router = useRouter();
+  const handleBoxClick = () => {
+    router.push({
+      pathname: RoutePath.CommunityDetail,
+      query: { postId: postId },
+    });
+  };
   return (
-    <div css={sx.item}>
+    <div css={sx.item} onClick={handleBoxClick}>
       <div css={sx.rowWrapper}>
         <Typography variant="body2" lineHeight="1" color="black">
           {title}
         </Typography>
         <Typography fontSize="8px" lineHeight="1" color={LightColor.Gray100}>
-          {date}일전
+          {date}
         </Typography>
       </div>
       <div css={sx.rowWrapper}>
@@ -86,6 +97,8 @@ const sx = {
     border-bottom: 1px solid ${LightColor.Gray500};
 
     padding: 0 16px;
+
+    cursor: pointer;
   `,
   rowWrapper: css`
     width: 100%;

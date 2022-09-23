@@ -4,20 +4,25 @@ import { Typography } from "@mui/material";
 import { LightColor } from "@/themes/Color";
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import Image from "next/image";
-import { LifeDetailModel } from "../model/LifeModel";
+import { useLifeDetailView } from "./useLifeDetailView";
+import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 
 export const LifeDetailView = () => {
+  const { fetchState, result } = useLifeDetailView();
+  if (fetchState.isLoading) return <CircularLoading />;
+  if (fetchState.isError) return <CircularLoading />;
+
   return (
     <PlainLayout>
       <DefaultTab category="라이프" />
       <div css={sx.root}>
         <TitleSection
-          title={LifeDetailModel.titleSectionProps.title}
-          date={LifeDetailModel.titleSectionProps.date}
-          viewCount={LifeDetailModel.titleSectionProps.viewCount}
+          title={result.title}
+          date={result.date}
+          viewCount={result.viewCount}
         />
-        <ContentSection content={LifeDetailModel.contentSectionProps.content} />
-        <ImageSourceSection src={LifeDetailModel.imageSourceSectionProps.src} />
+        <ContentSection content={result.content} image={result.attachments} />
+        <ImageSourceSection src={result.attachments} />
       </div>
     </PlainLayout>
   );
@@ -80,6 +85,10 @@ const sx = {
     border-top: 1px solid ${LightColor.Gray500};
     z-index: 100;
   `,
+  image: css`
+    width: 100%;
+    text-align: center;
+  `,
   src: css`
     width: 100%;
     display: inline-block;
@@ -92,7 +101,7 @@ const sx = {
 export type TitleSectionProps = {
   title: string;
   date: string;
-  viewCount: string;
+  viewCount: number;
 };
 
 const TitleSection = ({ title, date, viewCount }: TitleSectionProps) => {
@@ -118,14 +127,18 @@ const TitleSection = ({ title, date, viewCount }: TitleSectionProps) => {
 
 export type ContentSectionProps = {
   content: string;
+  image: any;
 };
 
-const ContentSection = ({ content }: ContentSectionProps) => {
+const ContentSection = ({ content, image }: ContentSectionProps) => {
   return (
     <div css={sx.contentRoot}>
-      <Typography variant="body2" color="black">
+      <Typography variant="body2" color="black" mb="16px">
         {content}
       </Typography>
+      <div css={sx.image}>
+        <Image width="200px" height="200px" src={image} alt="image" />
+      </div>
     </div>
   );
 };

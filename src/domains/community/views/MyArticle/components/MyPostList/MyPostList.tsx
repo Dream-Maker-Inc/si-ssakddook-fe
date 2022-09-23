@@ -1,17 +1,23 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
+import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
+import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { css } from "@emotion/react";
 import { useMyPostList } from "./useMyPostList";
 
 export const MyPostList = () => {
-  const { models } = useMyPostList();
+  const { fetchState, result } = useMyPostList();
+
+  if (fetchState.isLoading) return <CircularLoading />;
+  if (fetchState.isError) return <CircularLoading />;
+
   return (
     <div css={sx.postRoot}>
-      {models?.map((it, index) => (
+      {result?.map((it, index) => (
         <BoardItem
           key={index}
           postId={it.posting.id}
           title={it.posting.title}
-          date={it.posting.createdAt}
+          date={getDateDiff(it.posting.createdAt)}
           nicknameOrTitle={it.member.nickname}
           category={it.posting.category}
           like={it.likedCount + ""}

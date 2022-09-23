@@ -4,6 +4,7 @@ import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { CommunityTab } from "@/common/components/tab/CommunityTab";
 import { LightColor } from "@/themes/Color";
+import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
@@ -55,7 +56,7 @@ export const CommunityMainView = () => {
                 key={index}
                 postId={it.posting.id}
                 title={it.posting.title}
-                date={it.posting.createdAt}
+                date={getDateDiff(it.posting.createdAt)}
                 nicknameOrTitle={it.member.nickname}
                 category={it.posting.category}
                 like={it.likedCount + ""}

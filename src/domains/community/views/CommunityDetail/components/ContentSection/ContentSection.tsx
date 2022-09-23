@@ -1,14 +1,16 @@
 import { CategoryChip } from "@/common/components/chip/CategoryChip";
+import { ShowThumbnailSection } from "@/common/components/thumbnail/ShowThumbnailSection";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography, TypographyProps } from "@mui/material";
 
 type ContentSectionProps = {
-  category: string | undefined;
-  title: string | undefined;
-  nickname: string | undefined;
-  date: string | undefined;
-  content: string | undefined;
+  category: string;
+  title: string;
+  nickname: string;
+  date: string;
+  content: string;
+  attachments: string[];
 };
 
 export const ContentSection = (props: ContentSectionProps) => {
@@ -18,6 +20,12 @@ export const ContentSection = (props: ContentSectionProps) => {
       <Title>{props.title}</Title>
       <ContentInfos nickname={props.nickname} date={props.date} />
       <Content text={props.content} />
+      {props.attachments.length !== 0 && (
+        <ShowThumbnailSection
+          uploadImageList={props.attachments}
+          isVisible={true}
+        />
+      )}
     </div>
   );
 };
@@ -56,7 +64,7 @@ const ContentInfos = ({ nickname, date }: ContentInfosProps) => {
     <Typography variant="h5" color={LightColor.Gray100}>
       {nickname}
       {" | "}
-      {date}분전
+      {date}
     </Typography>
   );
 };

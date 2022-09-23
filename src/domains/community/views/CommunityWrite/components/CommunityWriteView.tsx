@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import { CameraSection } from "./CameraSection/CameraSection";
 import { CategorySelection } from "./CategorySelection/CategorySelection";
 import { ContentSecton } from "./ContentSecton/ContentSection";
-import { ThumbnailSection } from "./ThumbnailSection/ThumbnailSection";
+import { CreateThumbnailSection } from "@/common/components/thumbnail/CreateThumbnailSection";
 import { TitleSection } from "./TitleSection";
 import { useCommunityWriteView } from "./useCommunityWriteView";
 
@@ -35,16 +35,9 @@ export const CommunityWriteView = () => {
             value={contentState.value}
             onChange={contentState.onChange}
           />
-          {imageState.value.length === 0 ? (
-            <ThumbnailSection
-              uploadImageList={imageState.value}
-              isVisible={false}
-              onDeleteClick={buttonState.onDelete}
-            />
-          ) : (
-            <ThumbnailSection
-              uploadImageList={imageState.value}
-              isVisible={true}
+          {imageState.value.length !== 0 && (
+            <CreateThumbnailSection
+              uploadImage={imageState.value}
               onDeleteClick={buttonState.onDelete}
             />
           )}

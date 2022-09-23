@@ -8,8 +8,8 @@ export const MoreView = () => {
   const models = useMoreView();
   return (
     <AppbarLayout>
+      <PlainTab category="더보기" />
       <div css={sx.root}>
-        <PlainTab category="더보기" />
         {models.map((it, index) => (
           <ClickBox
             key={index}

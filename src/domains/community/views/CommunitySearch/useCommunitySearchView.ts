@@ -1,23 +1,21 @@
-import { useFindAllPostByKeyword } from "./../../../../data/apis/posting/usePostingApiHooks";
 import { useState } from "react";
+import PostingApiService from "@/data/apis/posting/posting.api";
+import { useMutation } from "react-query";
 
 export const useCommunitySearchView = () => {
   const [search, setSearch] = useState("");
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
-
   const page = 1;
   const size = 30;
 
-  const { data, refetch, isLoading } = useFindAllPostByKeyword(
-    search,
-    page,
-    size
+  const { data, isLoading, mutate } = useMutation(() =>
+    PostingApiService.findAllPostByKeyword(search, page, size)
   );
 
   const handleKeywordSearch = () => {
-    refetch();
+    mutate();
   };
 
   if (!data) {

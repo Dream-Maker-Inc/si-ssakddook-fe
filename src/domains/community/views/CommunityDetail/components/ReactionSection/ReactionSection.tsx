@@ -4,14 +4,18 @@ import { IconButton, Typography, TypographyProps } from "@mui/material";
 import Image from "next/image";
 
 type ReactionSectionProps = {
-  likeCount: number | undefined;
-  commentCount: number | undefined;
+  commentCount: number;
+  likeState: LikeBoxProps;
 };
 
 export const ReactionSection = (props: ReactionSectionProps) => {
   return (
     <div css={sx.reactionContainer}>
-      <LikeBox>{props.likeCount}</LikeBox>
+      <LikeBox
+        likeCount={props.likeState.likeCount!!}
+        onLike={props.likeState.onLike}
+        isLike={props.likeState.isLike}
+      />
       <CommentBox>{props.commentCount}</CommentBox>
       <ReportBox />
     </div>
@@ -37,23 +41,40 @@ const sx = {
   `,
 };
 
-const LikeBox = (p: TypographyProps) => {
+type LikeBoxProps = {
+  likeCount: number;
+  onLike: () => void;
+  isLike: boolean;
+};
+
+const LikeBox = ({ likeCount, onLike, isLike }: LikeBoxProps) => {
   return (
     <div css={sx.box}>
-      <IconButton>
-        <Image
-          width="16px"
-          height="16px"
-          src="/img/icon-chat-heart.svg"
-          alt=""
-        />
+      <IconButton onClick={onLike}>
+        {isLike ? (
+          <Image
+            width="16px"
+            height="16px"
+            src="/img/icon-chat-heart-red.svg"
+            alt=""
+          />
+        ) : (
+          <Image
+            width="16px"
+            height="16px"
+            src="/img/icon-chat-heart.svg"
+            alt=""
+          />
+        )}
+
         <Typography
           variant="body2"
           lineHeight="1"
           color={LightColor.TextMain}
           ml="10px"
-          {...p}
-        />
+        >
+          {likeCount}
+        </Typography>
       </IconButton>
     </div>
   );
