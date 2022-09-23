@@ -1,17 +1,27 @@
 import { useFindAllPostById } from "@/data/apis/posting/usePostingApiHooks";
-import { useEffect } from "react";
 
 export const useMyPostList = () => {
   const page = "1";
   const size = "30";
 
-  const { mutate, data, isSuccess, isError } = useFindAllPostById(page, size);
-
-  useEffect(() => {
-    mutate();
-  }, []);
-
+  const { data, isLoading, isError } = useFindAllPostById(page, size);
   const models = data?.items;
 
-  return { models };
+  if (!data) {
+    return {
+      fetchState: {
+        isLoading: isLoading,
+        isError: isError,
+      },
+      result: models,
+    };
+  }
+
+  return {
+    fetchState: {
+      isLoading: isLoading,
+      isError: isError,
+    },
+    result: models,
+  };
 };

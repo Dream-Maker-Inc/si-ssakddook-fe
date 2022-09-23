@@ -1,17 +1,22 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
+import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
+import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { css } from "@emotion/react";
 import { useMyCommentList } from "./useMyCommentList";
 
 export const MyCommentList = () => {
-  const { models } = useMyCommentList();
+  const { fetchState, result } = useMyCommentList();
+
+  if (fetchState.isLoading) return <CircularLoading />;
+  if (fetchState.isError) return <CircularLoading />;
   return (
     <div css={sx.root}>
-      {models?.map((it, index) => (
+      {result?.map((it, index) => (
         <BoardItem
           key={index}
           postId={it.posting.id}
           title={it.comment.content}
-          date={it.comment.createdAt}
+          date={getDateDiff(it.comment.createdAt)}
           nicknameOrTitle={it.posting.title}
           category={it.posting.category}
           isInMyArticleList={true}

@@ -1,20 +1,27 @@
 import { useFindAllCommentById } from "@/data/apis/posting/usePostingApiHooks";
-import { useEffect } from "react";
 
 export const useMyCommentList = () => {
   const page = "1";
   const size = "30";
 
-  const { mutate, data, isSuccess, isError } = useFindAllCommentById(
-    page,
-    size
-  );
-
-  useEffect(() => {
-    mutate();
-  }, []);
-
+  const { data, isLoading, isError } = useFindAllCommentById(page, size);
   const models = data?.items;
-  console.log(models);
-  return { models };
+
+  if (!data) {
+    return {
+      fetchState: {
+        isLoading: isLoading,
+        isError: isError,
+      },
+      result: models,
+    };
+  }
+
+  return {
+    fetchState: {
+      isLoading: isLoading,
+      isError: isError,
+    },
+    result: models,
+  };
 };

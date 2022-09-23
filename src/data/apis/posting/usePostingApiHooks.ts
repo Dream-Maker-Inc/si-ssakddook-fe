@@ -26,11 +26,15 @@ export const useFindAllPostByKeyword = (
 };
 
 export const useFindAllPostById = (page: string, size: string) => {
-  return useMutation(() => PostingApiService.findAllPostById(page, size));
+  return useQuery(["find-all-post-by-id", page, size], () =>
+    PostingApiService.findAllPostById(page, size)
+  );
 };
 
 export const useFindAllCommentById = (page: string, size: string) => {
-  return useMutation(() => PostingApiService.findAllCommentById(page, size));
+  return useQuery(["find-all-cpmment-by-id", page, size], () =>
+    PostingApiService.findAllCommentById(page, size)
+  );
 };
 
 export const useFindAllCommentByPostId = (
