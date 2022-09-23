@@ -1,5 +1,6 @@
 import { BoardComment } from "@/common/components/board/BoardComment";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
+import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { CommentWrite } from "../CommentWrite";
 import { useCommentSection } from "./useCommentSection";
 
@@ -24,7 +25,7 @@ export const CommentSection = ({ postId }: CommentSectionProps) => {
           commentId={it.comment.id}
           content={it.comment.content}
           nickname={it.member.nickname}
-          date={it.comment.createdAt}
+          date={getDateDiff(it.comment.createdAt)}
           like={it.likedCount}
           onDelete={buttonState.onDelete}
         />

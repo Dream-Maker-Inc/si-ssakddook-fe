@@ -3,6 +3,7 @@ import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { SearchTab } from "@/common/components/tab/SearchTab";
 import { LightColor } from "@/themes/Color";
+import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import { useCommunitySearchView } from "./useCommunitySearchView";
@@ -30,8 +31,9 @@ export const CommunitySearchView = () => {
           result?.items.map((it, index) => (
             <BoardExpandedItem
               key={index}
+              postId={it.posting.id + ""}
               title={it.posting.title}
-              date={it.posting.createdAt}
+              date={getDateDiff(it.posting.createdAt)}
               nickname={it.member.nickname}
               category={it.posting.category}
               like={it.likedCount + ""}
