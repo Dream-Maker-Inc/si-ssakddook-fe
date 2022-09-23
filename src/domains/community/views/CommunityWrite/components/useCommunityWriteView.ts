@@ -13,14 +13,13 @@ export const useCommunityWriteView = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [content, setContent] = useState("");
-  const [img, setImage] = useState<ImageType[]>([]);
+  const [uploadedImage, setUploadedImage] = useState<any>(null);
+  const [img, setImage] = useState<string>("");
   const [count, setCount] = useState(0);
 
   const isTitleFilled = !title ? false : true;
   const isCategoryFilled = !category ? false : true;
   const isContentFilled = !content ? false : true;
-
-  const imgList: any[] = [];
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -34,24 +33,14 @@ export const useCommunityWriteView = () => {
     setContent(e.target.value);
   };
 
-  useEffect(() => {
-    console.log(img);
-  }, [img]);
-
   // image upload
   const imapgeUploadHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
 
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setImage((old) => [
-          ...old,
-          {
-            id: count,
-            src: reader.result as string,
-            value: e.target.files!![0],
-          },
-        ]);
+        setImage(reader.result as string);
+        setUploadedImage(e.target.files!![0]);
       }
     };
 
@@ -63,13 +52,14 @@ export const useCommunityWriteView = () => {
     setCount(count + 1);
   };
 
-  const handleRemoveImage = (index: number) => {
-    setImage(img.filter((item) => item.id !== index));
+  const handleRemoveImage = () => {
+    setImage("");
+    setUploadedImage(null);
   };
 
-  const handleImageList = () => {
-    img.map((it, index) => imgList.push(it.value));
-  };
+  // const handleImageList = () => {
+  //   img.map((it, index) => attachment.push(it.value));
+  // };
 
   // submit
   const { mutate, isSuccess, isError, data } = useCreatePost();
@@ -86,22 +76,11 @@ export const useCommunityWriteView = () => {
   }
 
   const onSubmit = () => {
-    handleImageList();
-
-    const body = {
-      category: category,
-      title: title,
-      content: content,
-      attachments: imgList,
-    };
-
     const fd = new FormData();
     fd.append("category", category);
     fd.append("title", title);
     fd.append("content", content);
-    imgList.forEach((file) => {
-      fd.append("attachments", file);
-    });
+    fd.append("attachments", uploadedImage);
 
     mutate(fd);
   };

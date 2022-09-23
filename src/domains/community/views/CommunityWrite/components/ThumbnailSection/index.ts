@@ -1,1 +1,0 @@
-export { ThumbnailSection } from "./ThumbnailSection";

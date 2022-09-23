@@ -9,12 +9,16 @@ import { useQuery } from "react-query";
 
 export const useChangePasswordView = () => {
   const router = useRouter();
+
   // member profile-image
   const defaultImage = useQuery("get-curr-member", useGetCurrentMember).data
     ?.profileImageUrl;
 
   const [img, setImage] = useState(defaultImage);
-  const [uploadImage, setUploadImage] = useState<any>(null);
+  const [uploadedImage, setUploadedImage] = useState<any>(null);
+
+  // form data
+  const fd = new FormData();
 
   const imapgeUploadHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
@@ -28,27 +32,24 @@ export const useChangePasswordView = () => {
       return;
     }
     reader.readAsDataURL(e.target.files[0]);
-    setUploadImage(e.target.files[0]);
+    setUploadedImage(e.target.files[0]);
   };
 
   // change profile-image api
   const { mutate, isSuccess, isError, data } = useUpdateProfileImage();
 
   if (isSuccess) {
-    console.log("change profile-image success");
     console.log(data);
     router.push(RoutePath.MyInformation);
   }
 
   if (isError) {
-    console.log("change profile-image failed");
     console.log(data);
   }
 
-  const onSubmit = () => {
-    const formData = new FormData();
-    formData.append("file", uploadImage);
-    mutate(formData);
+  const onSubmit = async () => {
+    await fd.append("file", uploadedImage);
+    await mutate(fd);
   };
 
   return {
@@ -56,10 +57,9 @@ export const useChangePasswordView = () => {
       value: img,
       onUpload: imapgeUploadHandler,
     },
-
     tabState: {
       title: "프로필 이미지 변경하기",
-      onActive: uploadImage === null ? false : true,
+      onActive: uploadedImage === null ? false : true,
       onClick: onSubmit,
     },
   };

@@ -1,12 +1,11 @@
 import { css } from "@emotion/react";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
-import { Avatar, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { LightColor } from "@/themes/Color";
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import Image from "next/image";
 import { useLifeDetailView } from "./useLifeDetailView";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
-import { ThumbnailSection } from "@/common/components/thumbnail";
 
 export const LifeDetailView = () => {
   const { fetchState, result } = useLifeDetailView();

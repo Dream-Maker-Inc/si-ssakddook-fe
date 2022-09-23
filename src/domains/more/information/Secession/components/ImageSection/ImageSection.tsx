@@ -15,9 +15,9 @@ export const ImageSection = () => {
         정말 탈퇴하시겠어요?
       </Typography>
       <Image
-        width="250px"
-        height="162px"
-        src="/img/more/secession/img-secession.svg"
+        width="200px"
+        height="200px"
+        src="/img/auth/img-secession.svg"
         alt=""
       />
     </div>

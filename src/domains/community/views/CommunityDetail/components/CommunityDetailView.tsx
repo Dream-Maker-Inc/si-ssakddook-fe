@@ -1,16 +1,16 @@
-import { CommentWrite } from "@/domains/community/views/CommunityDetail/components/CommentWrite";
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { DetailTab } from "@/common/components/tab/DetailTab";
 import { css } from "@emotion/react";
-import Router from "next/router";
 import { CommentSection } from "./CommentSection";
 import { ContentSection } from "./ContentSection";
 import { ReactionSection } from "./ReactionSection";
 import { useCommunityDetailView } from "./useCommunityDetailView";
-import { getDateDiff } from "@/utils/DateDif/DateDiff";
+import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 
 export const CommunityDetailView = () => {
-  const { models, postId } = useCommunityDetailView();
+  const { fetchState, models, postId } = useCommunityDetailView();
+  if (fetchState.isLoading) return <CircularLoading />;
+  if (fetchState.isError) return <CircularLoading />;
 
   return (
     <AppbarLayout hasCommentWriteSection={true}>
@@ -18,15 +18,16 @@ export const CommunityDetailView = () => {
         <div css={sx.container}>
           <DetailTab />
           <ContentSection
-            category={models?.posting.category}
-            title={models?.posting.title}
-            nickname={models?.member.nickname}
-            date={getDateDiff(models?.posting.createdAt!!)}
-            content={models?.posting.content}
+            category={models.category}
+            title={models.title}
+            nickname={models.nickname}
+            date={models.date}
+            content={models.content}
+            attachments={models.attachments}
           />
           <ReactionSection
-            likeCount={models?.likedCount}
-            commentCount={models?.commentCount}
+            likeCount={models.likeCount}
+            commentCount={models.commentCount}
           />
           <CommentSection postId={postId} />
         </div>
