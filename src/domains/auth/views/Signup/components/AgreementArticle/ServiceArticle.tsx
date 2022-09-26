@@ -34,6 +34,7 @@ export const AgreementArticle = ({ titleProps }: AgreementArticleProps) => {
           <CheckBox
             key={index}
             label={"에 동의합니다."}
+            value={it.id}
             hightlightText={it.title}
             necessary={it.isRequired}
             content={it.content}
@@ -108,6 +109,7 @@ const sx = {
 };
 
 type CustomCheckBoxProps = {
+  value: number;
   label: string;
   hightlightText: string;
   necessary: boolean;
@@ -115,6 +117,7 @@ type CustomCheckBoxProps = {
 };
 
 const CheckBox = ({
+  value,
   label,
   hightlightText,
   necessary = true,
@@ -132,6 +135,8 @@ const CheckBox = ({
             icon={<CheckBoxRoundedIcon />}
             checkedIcon={<CheckBoxRoundedIcon />}
             required={necessary ? true : false}
+            value={value}
+            name="termsIds"
             css={sx.chekcbox}
           />
         }

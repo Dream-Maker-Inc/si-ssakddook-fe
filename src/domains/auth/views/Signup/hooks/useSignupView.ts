@@ -83,21 +83,6 @@ export const useSignupView = () => {
     color: isConfirmPwError ? LightColor.Error : LightColor.PrimaryDark,
   };
 
-  // checkbox
-  const [firstCheck, setFirstCheck] = useState(false);
-  const [secondCheck, setSecondCheck] = useState(false);
-  const [thirdCheck, setThirdCheck] = useState(false);
-
-  const handleFirstCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstCheck(e.target.checked);
-  };
-  const handleSecondCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSecondCheck(e.target.checked);
-  };
-  const handleThirdCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setThirdCheck(e.target.checked);
-  };
-
   //submit button
   const isButtonDisabled =
     !isEmailValidationPassed ||
@@ -105,10 +90,7 @@ export const useSignupView = () => {
     !pw ||
     !confirmPw ||
     isPwError ||
-    isConfirmPwError ||
-    firstCheck === false ||
-    secondCheck === false;
-
+    isConfirmPwError;
   useEffect(() => {
     // 가맹점 식별 코드
     const StoreUid = "imp12349201";
@@ -124,20 +106,6 @@ export const useSignupView = () => {
     passwordState,
     confirmPasswordState,
 
-    checkState: {
-      firstCheck: {
-        value: firstCheck,
-        onChange: handleFirstCheckChange,
-      },
-      secondCheck: {
-        value: secondCheck,
-        onChange: handleSecondCheckChange,
-      },
-      thirdCheck: {
-        value: thirdCheck,
-        onChange: handleThirdCheckChange,
-      },
-    },
     buttonState: {
       disabled: isButtonDisabled,
       onClick: requestSignup,
