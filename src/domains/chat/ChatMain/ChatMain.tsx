@@ -22,13 +22,24 @@ import { CustomChannelList } from "./components/CustomChannelList";
 import { CustomLoadingIndicator } from "./components/CustomLoadingIndicator";
 import { CustomPreview } from "./components/CustomPreview";
 import { EveryChannelList } from "./components/EveryChannelList";
-import LocalStorage from "@/data/LocalStorage/LocalStorage";
-import { generateRandomString } from "@/utils/random/generateRandomString";
+import { CustomEmptyIndicator } from "./components/CustomEmptyIndicator";
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY!!;
-const user = {
-  id: LocalStorage.getItem("id")!!,
-  name: LocalStorage.getItem("nickname")!!,
+// const user = {
+//   id: LocalStorage.getItem("id")!!,
+//   name: LocalStorage.getItem("nickname")!!,
+//   image: "https://getstream.imgix.net/images/random_svg/FS.png",
+// };
+
+const user1 = {
+  id: "1",
+  name: "user1",
+  image: "https://getstream.imgix.net/images/random_svg/FS.png",
+};
+
+const user2 = {
+  id: "3",
+  name: "user3",
   image: "https://getstream.imgix.net/images/random_svg/FS.png",
 };
 
@@ -42,6 +53,8 @@ export const ChatMainView = () => {
     setName("");
   };
 
+  const sort = { last_message_at: -1 };
+
   const [isCreateChatVisible, setIsCreateChatVisible] = useState(false);
   const [isChannelListVisible, setIsChannelListVisible] =
     useRecoilState(ChatAtom);
@@ -49,45 +62,34 @@ export const ChatMainView = () => {
   useEffect(() => {
     async function init() {
       const chatClient = StreamChat.getInstance(apiKey);
-      await chatClient.connectUser(user, chatClient.devToken(user.id));
       await setClient(chatClient);
+      await chatClient.connectUser(user2, chatClient.devToken(user2.id));
     }
 
     init();
 
     if (client)
       return () => {
-        console.log("client disconnected");
-        console.log(client);
         client.disconnectUser();
       };
   }, []);
 
   if (!client) return <LoadingIndicator />;
 
-  const myChat = { members: { $in: [user.id] } };
-
-  const createChannel = async () => {
-    const channelId = generateRandomString(10);
-    const channel = client.channel("messaging", channelId, {
-      name: name,
-      members: [client.user!!.id],
-    });
-
-    await channel.create();
-    await channel.watch();
-    await setIsChannelListVisible(false);
-    await setIsCreateChatVisible(false);
-    handleNameReset;
-  };
+  const myChat = { members: { $in: [user2.id] } };
 
   return (
     <AppbarLayout>
       <Chat client={client} theme="messaging light">
         {isChannelListVisible ? (
           <ChatMainTab
+            chatName={name}
             onClick={() => setIsCreateChatVisible(true)}
-            onCreate={createChannel}
+            onCreate={() => {
+              setIsChannelListVisible(false);
+              setIsCreateChatVisible(false);
+              handleNameReset();
+            }}
             onBack={() => {
               setIsCreateChatVisible(false);
               handleNameReset();
@@ -111,6 +113,7 @@ export const ChatMainView = () => {
                       Preview: CustomPreview,
                       filters: myChat,
                       LoadingIndicator: CustomLoadingIndicator,
+                      EmptyStateIndicator: CustomEmptyIndicator,
                     }}
                   />
                 ),
