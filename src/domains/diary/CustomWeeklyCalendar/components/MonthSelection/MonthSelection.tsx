@@ -1,11 +1,8 @@
+import { DiaryLastClickedDateAtom } from "@/recoil/Diary/Diary.atom";
 import { css } from "@emotion/react";
-import {
-  FormControl,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from "@mui/material";
+import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { format } from "date-fns";
+import { useSetRecoilState } from "recoil";
 import { useMonthSelection } from "./useMonthSelection";
 
 export type MonthSelectionProps = {
@@ -19,7 +16,9 @@ export const MonthSelection = ({
   signupMonth,
   onChange,
 }: MonthSelectionProps) => {
+  const setLastDate = useSetRecoilState(DiaryLastClickedDateAtom);
   const { monthData } = useMonthSelection(signupMonth);
+
   const formattedDate = (date: Date) => {
     const year = format(date, "yyyy");
     const month = format(date, "MM");
@@ -37,7 +36,10 @@ export const MonthSelection = ({
       <Select
         value={formatToYYYYMM(currentMonth)}
         label="Age"
-        onChange={(e: SelectChangeEvent) => onChange(e.target.value)}
+        onChange={(e: SelectChangeEvent) => {
+          setLastDate("");
+          onChange(e.target.value);
+        }}
         variant={"standard"}
         disableUnderline
         css={sx.select}
