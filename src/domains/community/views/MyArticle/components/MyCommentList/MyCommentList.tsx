@@ -15,10 +15,9 @@ export const MyCommentList = () => {
         <BoardItem
           key={index}
           postId={it.posting.id}
-          title={it.comment.content}
-          date={getDateDiff(it.comment.createdAt)}
+          title={it.content}
+          date={getDateDiff(it.createdAt)}
           nicknameOrTitle={it.posting.title}
-          category={it.posting.category}
           isInMyArticleList={true}
           isPost={false}
         />

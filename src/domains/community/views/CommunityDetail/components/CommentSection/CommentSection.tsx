@@ -22,10 +22,11 @@ export const CommentSection = ({ postId }: CommentSectionProps) => {
       {models.map((it, index) => (
         <BoardComment
           key={index}
-          commentId={it.comment.id}
-          content={it.comment.content}
-          nickname={it.member.nickname}
-          date={getDateDiff(it.comment.createdAt)}
+          commentId={it.id}
+          content={it.content}
+          writerId={it.author.id + ""}
+          nickname={it.author.nickname}
+          date={getDateDiff(it.createdAt)}
           like={it.likedCount}
           onDelete={buttonState.onDelete}
         />

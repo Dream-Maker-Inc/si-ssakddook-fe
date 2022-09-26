@@ -9,7 +9,7 @@ type BoardItemProps = {
   title: string;
   date: string;
   nicknameOrTitle: string;
-  category: string;
+  category?: string;
   like?: string;
   comments?: string;
   isInMyArticleList?: boolean;
@@ -45,9 +45,13 @@ export const BoardItem = ({
         </Typography>
       </div>
       <div css={sx.rowWrapper}>
-        <Typography fontSize="8px" color={LightColor.Gray100}>
+        <Typography
+          fontSize="8px"
+          color={LightColor.Gray100}
+          css={sx.nicknameOrTitle}
+        >
           {nicknameOrTitle}
-          {" · "}
+          {category && " · "}
           {category}
         </Typography>
         {isPost && (
@@ -109,5 +113,16 @@ const sx = {
     display: flex;
     align-items: center;
     gap: 2px;
+  `,
+
+  nicknameOrTitle: css`
+    width: 90%;
+    display: inline-block;
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   `,
 };

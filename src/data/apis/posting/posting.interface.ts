@@ -1,41 +1,37 @@
 import { ApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import {
-  AllCommentResponse,
-  AllPostingResponse,
-  CommentResponse,
-  PostResponse,
+  CommentItemResponse,
+  CommentItemsResponse,
+  PostingItemResponse,
+  PostingItemsResponse,
 } from "./posting.dto";
 
 export interface PostingApiInterface {
   // post
   createPost(formData: any): Promise<ApiFailedResponse>;
-  findAllPost(
-    page: string,
-    size: string,
-    withDeleted: boolean
-  ): Promise<AllPostingResponse>;
-  findAllPostById(page: string, size: string): Promise<AllPostingResponse>;
+  findAllPost(page: string, size: string): Promise<PostingItemsResponse>;
+  findAllPostById(page: string, size: string): Promise<PostingItemsResponse>;
   findAllPostByCategory(
     category: string,
     page: string,
     size: string
-  ): Promise<AllPostingResponse>;
-  findOneByPostId(postId: string): Promise<PostResponse>;
+  ): Promise<PostingItemsResponse>;
+  findOneByPostId(postId: string): Promise<PostingItemResponse>;
   findAllPostByKeyword(
     keyword: string,
     page: number,
     size: number
-  ): Promise<AllPostingResponse>;
+  ): Promise<PostingItemsResponse>;
 
   // comment
-  createComment(body: any): Promise<CommentResponse>;
-  findAllCommentById(page: string, size: string): Promise<AllCommentResponse>;
+  createComment(body: any): Promise<CommentItemResponse>;
+  findAllCommentById(page: string, size: string): Promise<CommentItemsResponse>;
   findAllCommentByPostId(
     postId: string,
     page: string,
     size: string
-  ): Promise<CommentResponse>;
+  ): Promise<CommentItemsResponse>;
 
   // like
-  deleteCommentById(commentId: string): Promise<CommentResponse>;
+  deleteCommentById(commentId: string): Promise<CommentItemResponse>;
 }
