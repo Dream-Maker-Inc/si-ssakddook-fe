@@ -41,25 +41,23 @@ export const useValidationEmail = () => {
     setIsRequestedEmailValidation(true);
   };
 
+  // 서버 이메일 중복확인 성공 여부
+  const isEmailValidationPassed = data?.isValid ?? false;
+
   const getEmailHelperText = () => {
     if (email === "") return "";
-
     if (!isValidEmail) return "이메일 형식을 확인해주세요.";
-
     if (!isRequestedEmailValidation) return;
 
-    return isRequestedEmailValidation && data?.isValid
+    return isEmailValidationPassed
       ? "이메일을 사용할 수 있어요"
       : "이메일을 사용할 수 없어요";
   };
 
-  // 서버 이메일 중복확인 성공 여부
-  const isEmailValidationPassed = data?.isValid ?? false;
-
   // 이메일 텍스트 필드 헬퍼 텍스트
   const emailHelperText = getEmailHelperText();
   const emailHelperTextColor =
-    isRequestedEmailValidation && data?.isValid ? "primary" : "error";
+    isRequestedEmailValidation && isEmailValidationPassed ? "primary" : "error";
   const isEmailError = email !== "" && !isValidEmail;
 
   return {
