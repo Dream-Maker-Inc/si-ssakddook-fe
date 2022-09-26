@@ -39,8 +39,14 @@ class DiaryApiService implements DiaryApiInterface {
     return response.data;
   }
 
-  async findAllByMonth(month: string): Promise<DiaryItemsResponse> {
-    const response = await axiosClient.get(`/v1/diary-item?date=${month}`);
+  async findAllByMonth(
+    prevMonth: string,
+    currMonth: string,
+    nextMonth: string
+  ): Promise<DiaryItemsResponse> {
+    const response = await axiosClient.get(
+      `/v1/diary-item?date=${prevMonth}&date=${currMonth}&date=${nextMonth}`
+    );
     return response.data;
   }
 }

@@ -1,20 +1,27 @@
+import { DiaryItemResponse } from "@/data/apis/diary/diary.dto";
 import { useFindAllByMonth } from "@/data/apis/diary/useDiaryApiHooks";
-import { format } from "date-fns";
+import { addMonths, format, subMonths } from "date-fns";
 
-export const useMemoCalendar = () => {
+export const useMemoCalendar = (month: any) => {
+  const formattedDate = (date: any) => {
+    return format(date, "yyyy-MM");
+  };
+
   // diary api
-  const nowMonth = format(new Date(), "yyyy-MM");
-  const {
-    data: allDiaries,
-    isLoading,
-    isError,
-    refetch,
-  } = useFindAllByMonth(nowMonth);
+  const currMonth = formattedDate(month);
+  const nextMonth = formattedDate(addMonths(month, 1));
+  const prevMonth = formattedDate(subMonths(month, 1));
 
-  console.log("###");
-  console.log(allDiaries);
+  const { data, isLoading, isError, refetch } = useFindAllByMonth(
+    prevMonth,
+    currMonth,
+    nextMonth
+  );
 
-  if (!allDiaries) {
+  let allDiaries = <any>[];
+  data?.forEach((item) => allDiaries.push(...item.data));
+
+  if (!data) {
     return {
       refetchState: {
         isLoading: isLoading,

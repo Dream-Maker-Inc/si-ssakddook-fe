@@ -8,4 +8,7 @@ export type DiaryItemResponse = {
   deletedAt: string | null;
 };
 
-export type DiaryItemsResponse = DiaryItemResponse[];
+export type DiaryItemsResponse = {
+  yearMonth: string;
+  data: DiaryItemResponse[];
+}[];

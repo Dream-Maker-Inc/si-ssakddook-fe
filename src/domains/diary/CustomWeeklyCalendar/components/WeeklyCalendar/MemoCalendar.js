@@ -10,9 +10,7 @@ import { IconButton } from "@mui/material";
 import { useRouter } from "next/router";
 import { RoutePath } from "@/constants/Path";
 import { useMemoCalendar } from "./useMemoCalendar";
-import { useSetRecoilState } from "recoil";
-import { DiaryAtom } from "@/recoil/Diary/Diary.atom";
-import { getDateDiff, getDiaryDateDiff } from "@/utils/DateDif/DateDiff";
+import { getDiaryDateDiff } from "@/utils/DateDif/DateDiff";
 
 const MemoCalendar = ({
   showDetailsHandle,
@@ -24,12 +22,10 @@ const MemoCalendar = ({
   setCurrentWeek,
 }) => {
   const router = useRouter();
-  const setDiaryState = useSetRecoilState(DiaryAtom);
-
   const today = new Date();
 
   // diary api
-  const { refetchState, result } = useMemoCalendar();
+  const { refetchState, result } = useMemoCalendar(currentMonth);
 
   const handleMemoClick = (clickedDate, diaryId) => {
     if (!diaryId) {
