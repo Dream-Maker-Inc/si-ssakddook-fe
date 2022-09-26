@@ -6,8 +6,12 @@ export const useFindOneByDiaryId = (diaryId: string) => {
     PostingApiService.findOneByDiaryId(diaryId)
   );
 };
-export const useFindAllByMonth = (month: string) => {
-  return useQuery(["find-all-by-month", month], () =>
-    PostingApiService.findAllByMonth(month)
+export const useFindAllByMonth = (
+  prevMonth: string,
+  currMonth: string,
+  nextMonth: string
+) => {
+  return useQuery(["find-all-by-month", prevMonth, currMonth, nextMonth], () =>
+    PostingApiService.findAllByMonth(prevMonth, currMonth, nextMonth)
   );
 };

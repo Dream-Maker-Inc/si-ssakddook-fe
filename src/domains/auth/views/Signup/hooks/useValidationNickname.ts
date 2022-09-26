@@ -43,6 +43,9 @@ export const useValidationNickname = () => {
     setIsRequestedNicknameValidation(true);
   };
 
+  // 서버 닉네임 중복확인 성공 여부
+  const isNicknameValidationPassed = data?.isValid ?? false;
+
   const getNicknameHelperText = () => {
     if (nickname === "") return "";
 
@@ -50,17 +53,15 @@ export const useValidationNickname = () => {
 
     if (!isRequestedNicknameValidation) return;
 
-    return isRequestedNicknameValidation && data?.isValid
+    return isNicknameValidationPassed
       ? "닉네임을 사용할 수 있어요"
       : "닉네임을 사용할 수 없어요";
   };
 
-  // 서버 닉네임 중복확인 성공 여부
-  const isNicknameValidationPassed = data?.isValid ?? false;
-
   // 이메일 텍스트 필드 헬퍼 텍스트
   const nicknameHelperText = getNicknameHelperText();
-  const nicknameHelperTextColor = isValidNickname ? "primary" : "error";
+  const nicknameHelperTextColor =
+    isValidNickname && isNicknameValidationPassed ? "primary" : "error";
   const isNicknameError = nickname !== "" && !isValidNickname;
 
   return {

@@ -6,5 +6,9 @@ export interface DiaryApiInterface {
   deleteDiary(diaryId: number): Promise<ApiFailedResponse>;
   updateDiary(diaryId: string, content: string): Promise<ApiFailedResponse>;
   findOneByDiaryId(diaryId: string): Promise<DiaryItemResponse>;
-  findAllByMonth(month: string): Promise<DiaryItemsResponse>;
+  findAllByMonth(
+    prevMonth: string,
+    currMonth: string,
+    nextMonth: string
+  ): Promise<DiaryItemsResponse>;
 }

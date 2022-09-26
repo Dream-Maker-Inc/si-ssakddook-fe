@@ -1,3 +1,4 @@
+import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
@@ -6,6 +7,7 @@ type BoardCommentProps = {
   commentId: number;
   content: string;
   date: string;
+  writerId: string;
   nickname: string;
   like: number;
   onDelete: (e: string) => void;
@@ -15,10 +17,12 @@ export const BoardComment = ({
   commentId,
   content,
   date,
+  writerId,
   nickname,
   like,
   onDelete,
 }: BoardCommentProps) => {
+  const myId = LocalStorage.getItem("id");
   return (
     <div css={sx.item}>
       <div css={sx.row}>
@@ -27,14 +31,18 @@ export const BoardComment = ({
           {" · "}
           {date}
         </Typography>
-        <IconButton onClick={() => onDelete(commentId + "")}>
-          <Image
-            width="10px"
-            height="10px"
-            src="/img/icon-chat-close.svg"
-            alt=""
-          />
-        </IconButton>
+        {writerId == myId ? (
+          <IconButton onClick={() => onDelete(commentId + "")}>
+            <Image
+              width="10px"
+              height="10px"
+              src="/img/icon-chat-close.svg"
+              alt=""
+            />
+          </IconButton>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div css={sx.contentWrapper}>
         <p css={sx.content}>{content}</p>

@@ -16,7 +16,6 @@ export const SignupView = () => {
     nicknameState,
     passwordState,
     confirmPasswordState,
-    checkState,
     buttonState,
   } = useSignupView();
   return (
@@ -113,18 +112,6 @@ export const SignupView = () => {
               title: "이용 약관 동의",
               desc: "서비스 이용에 필요한 약관에 동의해 주세요.",
             }}
-            firstCheckboxProps={{
-              checked: checkState.firstCheck.value,
-              onChange: checkState.firstCheck.onChange,
-            }}
-            secondCheckboxProps={{
-              checked: checkState.secondCheck.value,
-              onChange: checkState.secondCheck.onChange,
-            }}
-            thirdCheckboxProps={{
-              checked: checkState.thirdCheck.value,
-              onChange: checkState.thirdCheck.onChange,
-            }}
           />
         </div>
 
@@ -132,8 +119,9 @@ export const SignupView = () => {
           fullWidth
           variant="contained"
           color="primary"
-          disabled={buttonState.disabled}
+          type="submit"
           onClick={buttonState.onClick}
+          disabled={buttonState.disabled}
         >
           <Typography variant="body1" color="white" lineHeight="1">
             다음

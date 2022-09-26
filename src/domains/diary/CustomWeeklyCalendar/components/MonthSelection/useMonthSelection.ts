@@ -1,6 +1,4 @@
-import { SelectChangeEvent } from "@mui/material";
-import { format, subMonths } from "date-fns";
-import { useState } from "react";
+import { subMonths } from "date-fns";
 
 export const useMonthSelection = (signupMonth: Date) => {
   let monthList = [];

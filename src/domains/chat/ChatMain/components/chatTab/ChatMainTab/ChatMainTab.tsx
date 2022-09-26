@@ -1,8 +1,11 @@
+import { generateRandomString } from "@/utils/random/generateRandomString";
 import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
+import { useChatContext } from "stream-chat-react";
 
 type ChatMainTabProps = {
+  chatName: string;
   onClick: () => void;
   onCreate: () => void;
   onBack: () => void;
@@ -10,11 +13,26 @@ type ChatMainTabProps = {
 };
 
 export const ChatMainTab = ({
+  chatName,
   onClick,
   onCreate,
   onBack,
   isCreateView,
 }: ChatMainTabProps) => {
+  const { client, setActiveChannel } = useChatContext();
+
+  const createChannel = async () => {
+    const channelId = generateRandomString(10);
+    const channel = client.channel("messaging", channelId, {
+      name: chatName,
+      members: [client.user!!.id],
+    });
+
+    await channel.create();
+    await channel.watch();
+    await setActiveChannel(channel);
+    await onCreate();
+  };
   return (
     <div css={sx.tabContainer}>
       <div css={sx.wrapper}>
@@ -44,7 +62,7 @@ export const ChatMainTab = ({
       </div>
       <div>
         {isCreateView ? (
-          <IconButton onClick={onCreate}>
+          <IconButton onClick={createChannel}>
             <Image
               width="24px"
               height="24px"

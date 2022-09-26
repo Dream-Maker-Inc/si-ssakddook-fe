@@ -28,8 +28,8 @@ export const useSignupService = () => {
             password: member.password,
             nickname: member.nickname,
             name: username,
-            phone,
             birthDay,
+            phone,
           },
           termsIds,
         });

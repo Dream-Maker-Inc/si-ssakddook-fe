@@ -10,9 +10,10 @@ import { IconButton } from "@mui/material";
 import { useRouter } from "next/router";
 import { RoutePath } from "@/constants/Path";
 import { useMemoCalendar } from "./useMemoCalendar";
+import { getDiaryDateDiff } from "@/utils/DateDif/DateDiff";
+import { DiaryLastClickedDateAtom } from "@/recoil/Diary/Diary.atom";
+import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { useSetRecoilState } from "recoil";
-import { DiaryAtom } from "@/recoil/Diary/Diary.atom";
-import { getDateDiff, getDiaryDateDiff } from "@/utils/DateDif/DateDiff";
 
 const MemoCalendar = ({
   showDetailsHandle,
@@ -24,12 +25,13 @@ const MemoCalendar = ({
   setCurrentWeek,
 }) => {
   const router = useRouter();
-  const setDiaryState = useSetRecoilState(DiaryAtom);
-
   const today = new Date();
 
   // diary api
-  const { refetchState, result } = useMemoCalendar();
+  const setLastDate = useSetRecoilState(DiaryLastClickedDateAtom);
+  const { refetchState, result } = useMemoCalendar(currentMonth);
+  if (refetchState.isLoading) return <CircularLoading />;
+  if (refetchState.isError) return <CircularLoading />;
 
   const handleMemoClick = (clickedDate, diaryId) => {
     if (!diaryId) {
@@ -84,6 +86,7 @@ const MemoCalendar = ({
   const renderCells = () => {
     const startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
     const endDate = lastDayOfWeek(currentMonth, { weekStartsOn: 1 });
+
     const dateFormat = "d";
     const monthDateFormat = "yyyy-MM-dd";
 
@@ -116,9 +119,10 @@ const MemoCalendar = ({
             {isAvailableDate(clickedDate) ? (
               <div
                 className="memo"
-                onClick={() =>
-                  handleMemoClick(clickedDate, getDiaryIdByResult(clickedDate))
-                }
+                onClick={() => {
+                  handleMemoClick(clickedDate, getDiaryIdByResult(clickedDate));
+                  setLastDate(clickedDate);
+                }}
               >
                 <div className="memo-deco"></div>
                 <div className="memo-content">

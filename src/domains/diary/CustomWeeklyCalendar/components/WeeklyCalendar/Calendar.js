@@ -1,3 +1,4 @@
+import { DiaryLastClickedDateAtom } from "@/recoil/Diary/Diary.atom";
 import {
   format,
   startOfWeek,
@@ -9,6 +10,7 @@ import {
   subWeeks,
 } from "date-fns";
 import Image from "next/image";
+import { useSetRecoilState } from "recoil";
 import { MonthSelection } from "../MonthSelection";
 
 const Calendar = ({
@@ -22,10 +24,12 @@ const Calendar = ({
   signupMonth,
   onSelectChange,
 }) => {
+  const setLastDate = useSetRecoilState(DiaryLastClickedDateAtom);
   const changeWeekHandle = (btnType) => {
     if (btnType === "prev" && getWeek(currentMonth) > getWeek(signupMonth)) {
       setCurrentMonth(subWeeks(currentMonth, 1));
       setCurrentWeek(getWeek(subWeeks(currentMonth, 1)));
+      setLastDate("");
     } else if (
       btnType === "prev" &&
       getWeek(currentMonth) <= getWeek(signupMonth)
@@ -35,6 +39,7 @@ const Calendar = ({
     if (btnType === "next" && getWeek(currentMonth) < getWeek(new Date())) {
       setCurrentMonth(addWeeks(currentMonth, 1));
       setCurrentWeek(getWeek(addWeeks(currentMonth, 1)));
+      setLastDate("");
     } else if (
       btnType === "next" &&
       getWeek(currentMonth) >= getWeek(new Date())
@@ -67,6 +72,7 @@ const Calendar = ({
     const dateFormat = "EEE";
     const days = [];
     let startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
+
     for (let i = 0; i < 7; i++) {
       days.push(
         <div className="col col-center col-weekdays" key={i}>
@@ -79,6 +85,7 @@ const Calendar = ({
   const renderCells = () => {
     const startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
     const endDate = lastDayOfWeek(currentMonth, { weekStartsOn: 1 });
+
     const dateFormat = "d";
     const rows = [];
     let days = [];

@@ -1,9 +1,12 @@
+import { useRecoilValue } from "recoil";
 import { getWeek } from "date-fns";
 import { useState } from "react";
+import { DiaryLastClickedDateAtom } from "@/recoil/Diary/Diary.atom";
 
 export const useWeeklyCalendar = () => {
   // calendar
   const now = new Date();
+  const lastDate = useRecoilValue(DiaryLastClickedDateAtom);
   const signupMonth = new Date("2022/03/17");
   const [showDetails, setShowDetails] = useState(false);
   const [data, setData] = useState("");
@@ -42,6 +45,7 @@ export const useWeeklyCalendar = () => {
   };
 
   return {
+    lastDate: lastDate,
     calendarState: calendarState,
     memoCalendarState: memoCalendarState,
   };

@@ -13,3 +13,8 @@ export const DiaryAtom = atom<DiaryItemResponse>({
     deletedAt: null,
   },
 });
+
+export const DiaryLastClickedDateAtom = atom<string>({
+  key: "diaryLastClickedDateAtom",
+  default: "",
+});

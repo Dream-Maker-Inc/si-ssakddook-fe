@@ -1,4 +1,4 @@
-import { axiosClient } from "@/constants/api/client/client";
+import { axiosBasicClient, axiosClient } from "@/constants/api/client/client";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { ApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import {
@@ -38,7 +38,7 @@ class MemberApiService implements MemberApiInterface {
   }
 
   async signup(body: MemberModel): Promise<ApiFailedResponse | any> {
-    const response = await axiosClient.post(
+    const response = await axiosBasicClient.post(
       "/v1/member/with-service-terms",
       body
     );

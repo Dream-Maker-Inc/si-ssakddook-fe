@@ -73,7 +73,9 @@ export const useCommunityMainView = () => {
   const size = "5";
   const page = "1";
   const withDeleted = false;
-  const { data, isLoading, isError } = useFindAllPost(page, size, withDeleted);
+  const { data, isLoading, isError } = useFindAllPost(page, size);
+
+  console.log(data);
 
   if (!data) {
     return {

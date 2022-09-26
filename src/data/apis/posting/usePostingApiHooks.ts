@@ -5,13 +5,9 @@ export const useCreatePost = () => {
   return useMutation((formData: any) => PostingApiService.createPost(formData));
 };
 
-export const useFindAllPost = (
-  page: string,
-  size: string,
-  withDeleted: boolean
-) => {
-  return useQuery(["find-all-post", page, size, withDeleted], () =>
-    PostingApiService.findAllPost(page, size, withDeleted)
+export const useFindAllPost = (page: string, size: string) => {
+  return useQuery(["find-all-post", page, size], () =>
+    PostingApiService.findAllPost(page, size)
   );
 };
 

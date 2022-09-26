@@ -31,11 +31,11 @@ export const CommunitySearchView = () => {
           result?.items.map((it, index) => (
             <BoardExpandedItem
               key={index}
-              postId={it.posting.id + ""}
-              title={it.posting.title}
-              date={getDateDiff(it.posting.createdAt)}
-              nickname={it.member.nickname}
-              category={it.posting.category}
+              postId={it.id + ""}
+              title={it.title}
+              date={getDateDiff(it.createdAt)}
+              nickname={it.author.nickname}
+              category={it.category}
               like={it.likedCount + ""}
               comments={it.commentCount + ""}
             />

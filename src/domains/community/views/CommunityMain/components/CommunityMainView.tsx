@@ -54,11 +54,11 @@ export const CommunityMainView = () => {
             {result.map((it, index) => (
               <BoardItem
                 key={index}
-                postId={it.posting.id}
-                title={it.posting.title}
-                date={getDateDiff(it.posting.createdAt)}
-                nicknameOrTitle={it.member.nickname}
-                category={it.posting.category}
+                postId={it.id}
+                title={it.title}
+                date={getDateDiff(it.createdAt)}
+                nicknameOrTitle={it.author.nickname}
+                category={it.category}
                 like={it.likedCount + ""}
                 comments={it.commentCount + ""}
               />
