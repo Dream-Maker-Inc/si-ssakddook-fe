@@ -3,6 +3,7 @@ import {
   Box,
   Checkbox,
   FormControlLabel,
+  IconButton,
   Modal,
   Typography,
 } from "@mui/material";
@@ -12,6 +13,7 @@ import CheckBoxRoundedIcon from "@mui/icons-material/CheckBoxRounded";
 import { useAgreement } from "../../hooks/useAgreement";
 import { useState } from "react";
 import { LightColor } from "@/themes/Color";
+import Image from "next/image";
 
 type AgreementArticleProps = {
   titleProps: FormTitleWithDescProps;
@@ -74,9 +76,34 @@ const sx = {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 100%;
+    height: 100%;
+
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
     background-color: white;
     border: 1px solid ${LightColor.Gray500};
+
+    padding: 16px 0;
+  `,
+
+  modalHr: css`
+    width: 100%;
+    height: 1px;
+    background-color: ${LightColor.Gray500};
+    margin: 16px 0;
+  `,
+
+  modalTitleWrapper: css`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 16px;
   `,
 };
 
@@ -145,7 +172,25 @@ const TermsContentModal = ({
     <div>
       <Modal open={open} onClose={onClose}>
         <Box css={sx.modal}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <div css={sx.modalTitleWrapper}>
+            <Typography variant="h2" color={LightColor.TextMain}>
+              이용약관
+            </Typography>
+            <IconButton onClick={onClose}>
+              <Image
+                width="24px"
+                height="24px"
+                src="/img/close/icon-close.svg"
+                alt="close"
+              />
+            </IconButton>
+          </div>
+          <div css={sx.modalHr}></div>
+          <Typography
+            variant="h4"
+            color={LightColor.TextMain}
+            sx={{ padding: "0 16px" }}
+          >
             {content}
           </Typography>
         </Box>
