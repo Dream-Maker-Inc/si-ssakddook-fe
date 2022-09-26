@@ -17,6 +17,6 @@ export const MemberAtom = atom<MemberModel>({
       birthDay: "",
       phone: "",
     },
-    termsIds: [1, 2, 3],
+    termsIds: [3],
   },
 });
