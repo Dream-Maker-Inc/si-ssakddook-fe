@@ -22,7 +22,8 @@ export enum RoutePath {
   CommunityWrite = "/community/write",
   CommunityDetail = "/community/detail",
   CommunityList = "/community/list",
-  CommunitySearch = "community/search",
+  CommunitySearch = "/community/search",
+  CommunityUpdate = "/community/update",
   MyArticle = "/community/my-article",
 
   // diary

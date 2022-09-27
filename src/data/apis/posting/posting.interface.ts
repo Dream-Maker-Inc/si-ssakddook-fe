@@ -22,6 +22,8 @@ export interface PostingApiInterface {
     page: number,
     size: number
   ): Promise<PostingItemsResponse>;
+  updatePost(postId: string, body: any): Promise<PostingItemResponse>;
+  deletePost(postId: string): Promise<PostingItemResponse>;
 
   // comment
   createComment(body: any): Promise<CommentItemResponse>;

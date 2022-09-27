@@ -2,7 +2,6 @@ import { axiosClient } from "@/constants/api/client/client";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { ApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import {
-  AllCommentResponse,
   CommentItemResponse,
   CommentItemsResponse,
   PostingItemResponse,
@@ -87,6 +86,16 @@ class PostingApiService implements PostingApiInterface {
     const response = await axiosClient.get(
       `/v1/posting?category=${category}&page=${page}&size=${size}`
     );
+    return response.data;
+  }
+
+  async updatePost(postId: string, body: any): Promise<PostingItemResponse> {
+    const response = await axiosClient.patch(`/v1/posting/${postId}`, body);
+    return response.data;
+  }
+
+  async deletePost(postId: string): Promise<PostingItemResponse> {
+    const response = await axiosClient.delete(`/v1/posting/${postId}`);
     return response.data;
   }
 

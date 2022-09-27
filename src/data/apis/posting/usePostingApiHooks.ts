@@ -75,3 +75,7 @@ export const useDeleteCommentById = (
 export const useCreateComment = (body: any) => {
   return useMutation(() => PostingApiService.createComment(body));
 };
+
+export const useUpdatePost = (postId: string, body: any) => {
+  return useMutation(() => PostingApiService.updatePost(postId, body));
+};

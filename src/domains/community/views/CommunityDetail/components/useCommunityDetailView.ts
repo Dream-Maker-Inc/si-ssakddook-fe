@@ -53,6 +53,8 @@ export const useCommunityDetailView = () => {
         isError: isError,
       },
       result: {
+        postId: 0,
+        authorId: 0,
         category: "",
         title: "",
         nickname: "",
@@ -74,6 +76,8 @@ export const useCommunityDetailView = () => {
       isError: isError,
     },
     result: {
+      postId: data.id,
+      authorId: data.author.id,
       category: data.category,
       title: data.title,
       nickname: data.author.nickname,

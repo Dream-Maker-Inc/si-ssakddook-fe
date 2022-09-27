@@ -16,7 +16,7 @@ export const CommunityDetailView = () => {
     <AppbarLayout hasCommentWriteSection={true}>
       <div css={sx.root}>
         <div css={sx.container}>
-          <DetailTab />
+          <DetailTab postId={result.postId} writerId={result.authorId} />
           <ContentSection
             category={result.category}
             title={result.title}

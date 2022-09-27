@@ -22,7 +22,6 @@ export const useDetailTab = (postId: number) => {
     () => PostingApiService.deletePost(postId + ""),
     {
       onSuccess: (res: any) => {
-        console.log(res);
         router.push(RoutePath.Community);
       },
       onError: (res: any) => {
