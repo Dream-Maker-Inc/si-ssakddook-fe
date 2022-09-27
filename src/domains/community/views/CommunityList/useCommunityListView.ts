@@ -3,9 +3,13 @@ import { useRouter } from "next/router";
 
 export const useCommunityListView = () => {
   const router = useRouter();
-  const category = router.query.category + "";
+  let category = router.query.category + "";
   const page = "1";
   const size = "30";
+
+  if (category == "undefined") {
+    category = "";
+  }
 
   const { data, isLoading, isError } = useFindAllPostByCategory(
     category,
@@ -24,7 +28,7 @@ export const useCommunityListView = () => {
   }
 
   return {
-    category: category,
+    category: category == "" ? "최근 게시글" : category,
     fetchState: {
       isLoading: isLoading,
       isError: isError,
