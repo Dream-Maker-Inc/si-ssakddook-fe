@@ -65,13 +65,11 @@ export const useCommunityWriteView = () => {
   const { mutate, isSuccess, isError, data } = useCreatePost();
 
   if (isSuccess) {
-    console.log("create post success");
     console.log(data);
     router.push(RoutePath.MyArticle);
   }
 
   if (isError) {
-    console.log("create post success");
     console.log(data);
   }
 
