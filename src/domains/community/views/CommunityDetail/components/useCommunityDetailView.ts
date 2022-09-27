@@ -8,17 +8,9 @@ export const useCommunityDetailView = () => {
   const router = useRouter();
   const postId = router.query.postId + "";
 
-  const handleLikeCreate = () => {
-    createLike();
-  };
-
-  const handleDeleteCreate = () => {
-    deleteLike();
-  };
-
   const { data, isLoading, isError, refetch } = useFindOneByPostId(postId);
   const { mutate: createLike } = useMutation(
-    () => LikeApiService.createLike(body),
+    () => LikeApiService.createLike(body!!),
     {
       onSuccess: (res: any) => {
         refetch();
@@ -30,23 +22,28 @@ export const useCommunityDetailView = () => {
   );
 
   const { mutate: deleteLike } = useMutation(
-    () => LikeApiService.deleteLike(data?.myLiked.id),
+    () => LikeApiService.deleteLike(data?.myLiked.id!!),
     {
       onSuccess: (res: any) => {
-        console.log("success");
-        console.log(res);
         refetch();
       },
       onError: (res: any) => {
-        console.log("failed");
         console.log(res);
       },
     }
   );
 
+  const isLike = data?.myLiked == null ? false : true;
   const body = {
     type: "posting",
     contentId: data?.id!!,
+  };
+
+  const handleLikeCreate = () => {
+    createLike();
+  };
+  const handleDeleteCreate = () => {
+    deleteLike();
   };
 
   if (!data) {
@@ -63,7 +60,7 @@ export const useCommunityDetailView = () => {
         content: "",
         attachments: [],
         likeCount: 0,
-        onLike: null,
+        onLike: () => null,
         isLike: false,
         commentCount: 0,
       },
@@ -84,8 +81,8 @@ export const useCommunityDetailView = () => {
       content: data.content,
       attachments: data.attachments,
       likeCount: data.likedCount,
-      onLike: data.myLiked == null ? handleLikeCreate : handleDeleteCreate,
-      isLike: data.myLiked == null ? false : true,
+      onLike: isLike ? handleDeleteCreate : handleLikeCreate,
+      isLike: isLike,
       commentCount: data.commentCount,
     },
     postId: postId,
