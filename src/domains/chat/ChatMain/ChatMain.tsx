@@ -23,23 +23,12 @@ import { CustomLoadingIndicator } from "./components/CustomLoadingIndicator";
 import { CustomPreview } from "./components/CustomPreview";
 import { EveryChannelList } from "./components/EveryChannelList";
 import { CustomEmptyIndicator } from "./components/CustomEmptyIndicator";
+import LocalStorage from "@/data/LocalStorage/LocalStorage";
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY!!;
-// const user = {
-//   id: LocalStorage.getItem("id")!!,
-//   name: LocalStorage.getItem("nickname")!!,
-//   image: "https://getstream.imgix.net/images/random_svg/FS.png",
-// };
-
-const user1 = {
-  id: "1",
-  name: "user1",
-  image: "https://getstream.imgix.net/images/random_svg/FS.png",
-};
-
-const user2 = {
-  id: "3",
-  name: "user3",
+const user = {
+  id: LocalStorage.getItem("id")!!,
+  name: LocalStorage.getItem("nickname")!!,
   image: "https://getstream.imgix.net/images/random_svg/FS.png",
 };
 
@@ -63,7 +52,7 @@ export const ChatMainView = () => {
     async function init() {
       const chatClient = StreamChat.getInstance(apiKey);
       await setClient(chatClient);
-      await chatClient.connectUser(user2, chatClient.devToken(user2.id));
+      await chatClient.connectUser(user, chatClient.devToken(user.id));
     }
 
     init();
@@ -76,7 +65,7 @@ export const ChatMainView = () => {
 
   if (!client) return <LoadingIndicator />;
 
-  const myChat = { members: { $in: [user2.id] } };
+  const myChat = { members: { $in: [user.id] } };
 
   return (
     <AppbarLayout>
