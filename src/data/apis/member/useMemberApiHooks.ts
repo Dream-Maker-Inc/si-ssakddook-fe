@@ -33,16 +33,3 @@ export const useUpdateProfileImage = () => {
     MemberApiService.updateProfileImage(formData)
   );
 };
-
-// const {
-//   mutate,
-//   isSuccess,
-//   data,
-//   isError,
-//   error,
-// } = await useMutation(() => SignupApiService.validateEmail(email));
-
-// return {
-//   mutateValidateEmail: mutate,
-//   valdiateEmailSuccess: isSuccess,
-// }

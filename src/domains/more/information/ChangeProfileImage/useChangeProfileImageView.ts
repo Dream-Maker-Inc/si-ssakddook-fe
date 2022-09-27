@@ -17,9 +17,6 @@ export const useChangePasswordView = () => {
   const [img, setImage] = useState(defaultImage);
   const [uploadedImage, setUploadedImage] = useState<any>(null);
 
-  // form data
-  const fd = new FormData();
-
   const imapgeUploadHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
     reader.onload = () => {
@@ -48,6 +45,8 @@ export const useChangePasswordView = () => {
   }
 
   const onSubmit = async () => {
+    // form data
+    const fd = new FormData();
     await fd.append("file", uploadedImage);
     await mutate(fd);
   };

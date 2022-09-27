@@ -72,10 +72,7 @@ class MemberApiService implements MemberApiInterface {
   }
 
   async updateProfileImage(formData: any): Promise<ApiFailedResponse | any> {
-    const response = await axiosClient.patch(
-      `/v1/member/${this.id}/profile`,
-      formData
-    );
+    const response = await axiosClient.patch(`/v1/member/profile`, formData);
 
     return response.data;
   }

@@ -1,6 +1,7 @@
 import { PrevButton } from "@/common/components/button/PrevButton";
 import { css } from "@emotion/react";
 import { Button, TextField, Typography } from "@mui/material";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useLoginView } from "./useLoginView";
@@ -9,6 +10,9 @@ export const LoginView = () => {
   const { emailState, pwState, login } = useLoginView();
   return (
     <div css={sx.root}>
+      <Head>
+        <meta name="viewport" content="user-scalable=yes" />
+      </Head>
       <div css={sx.container}>
         <PrevButton />
         <div css={sx.img}>

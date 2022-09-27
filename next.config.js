@@ -3,11 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["cdn.pixabay.com", "ureca.s3.ap-northeast-2.amazone.com"],
-    loader: "akamai",
-    path: "/",
+    domains: ["cdn.pixabay.com", "ureca.s3.ap-northeast-2.amazonaws.com"],
+    // loader: "akamai",
+    // path: "./",
   },
-  assetPrefix: "/",
 };
 
 module.exports = nextConfig;
