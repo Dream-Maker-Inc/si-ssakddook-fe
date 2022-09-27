@@ -11,12 +11,7 @@ export const LoginView = () => {
   return (
     <div css={sx.root}>
       <Head>
-        <Head>
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width, user-scalable=yes"
-          />
-        </Head>
+        <meta name="viewport" content="user-scalable=yes" />
       </Head>
       <div css={sx.container}>
         <PrevButton />
