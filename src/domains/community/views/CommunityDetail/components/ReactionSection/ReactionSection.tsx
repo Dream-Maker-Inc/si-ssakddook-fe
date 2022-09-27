@@ -105,7 +105,7 @@ const CommentBox = (p: TypographyProps) => {
 const ReportBox = () => {
   return (
     <div css={sx.box}>
-      <IconButton>
+      <IconButton onClick={() => alert("준비중입니다.")}>
         <Image
           width="16px"
           height="16px"
