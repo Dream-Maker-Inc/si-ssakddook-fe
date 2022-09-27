@@ -1,6 +1,9 @@
+import { RoutePath } from "@/constants/Path";
 import { useFindAllPost } from "@/data/apis/posting/usePostingApiHooks";
+import { useRouter } from "next/router";
 
 export const useCommunityMainView = () => {
+  const router = useRouter();
   const communitBoxInfos = [
     {
       imgSrc: "/img/community/boxIcons/icon-person.svg",
@@ -72,10 +75,11 @@ export const useCommunityMainView = () => {
 
   const size = "5";
   const page = "1";
-  const withDeleted = false;
   const { data, isLoading, isError } = useFindAllPost(page, size);
 
-  console.log(data);
+  const handlePostView = () => {
+    router.push(RoutePath.CommunityList);
+  };
 
   if (!data) {
     return {
@@ -93,5 +97,6 @@ export const useCommunityMainView = () => {
       isError,
     },
     result: data.items,
+    onRecentView: handlePostView,
   };
 };

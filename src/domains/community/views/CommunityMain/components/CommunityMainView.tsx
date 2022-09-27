@@ -6,7 +6,7 @@ import { CommunityTab } from "@/common/components/tab/CommunityTab";
 import { LightColor } from "@/themes/Color";
 import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { css } from "@emotion/react";
-import { Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { CommunityBox } from "./CommunityBox/CommunityBox";
@@ -14,7 +14,7 @@ import { NoticeBox } from "./NoticeBox";
 import { useCommunityMainView } from "./useCommunityMainView";
 
 export const CommunityMainView = () => {
-  const { boxData, result, fetchState } = useCommunityMainView();
+  const { boxData, result, fetchState, onRecentView } = useCommunityMainView();
 
   if (!result) return <div></div>;
   if (fetchState.isLoading) return <CircularLoading />;
@@ -38,15 +38,17 @@ export const CommunityMainView = () => {
               </Typography>
               <Link href="/main">
                 <div css={sx.more}>
-                  <Typography variant="h5" fontSize="8px">
-                    더보기
-                  </Typography>
-                  <Image
-                    width="11px"
-                    height="11px"
-                    src="/img/arrowIcon/icon-arrow-right-small.svg"
-                    alt=""
-                  />
+                  <IconButton onClick={onRecentView}>
+                    <Typography variant="h5" fontSize="8px">
+                      더보기
+                    </Typography>
+                    <Image
+                      width="11px"
+                      height="11px"
+                      src="/img/arrowIcon/icon-arrow-right-small.svg"
+                      alt=""
+                    />
+                  </IconButton>
                 </div>
               </Link>
             </div>
