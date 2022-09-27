@@ -1,9 +1,16 @@
+import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { css } from "@emotion/react";
-import { IconButton, Typography } from "@mui/material";
+import { IconButton, Popover, Typography } from "@mui/material";
 import Image from "next/image";
 import { BoardPrevButton } from "../../button/BoardPrevButton";
+import { useDetailTab } from "./useDetailTan";
 
-export const DetailTab = () => {
+type DetailTabProps = { postId: number; writerId: number };
+
+export const DetailTab = ({ postId, writerId }: DetailTabProps) => {
+  const myId = LocalStorage.getItem("id");
+  const { popoverState, onEdit, onDelete } = useDetailTab(postId);
+
   return (
     <div css={sx.tabContainer}>
       <div css={sx.tabWrapper}>
@@ -12,9 +19,40 @@ export const DetailTab = () => {
           커뮤니티
         </Typography>
       </div>
-      <IconButton>
-        <Image width="24px" height="24px" src="/img/tab/icon-etc.svg" alt="" />
-      </IconButton>
+      {myId == writerId + "" ? (
+        <div>
+          <IconButton onClick={popoverState.onOpen}>
+            <Image
+              width="24px"
+              height="24px"
+              src="/img/tab/icon-etc.svg"
+              alt=""
+            />
+          </IconButton>
+          <Popover
+            open={popoverState.isOpen}
+            anchorEl={popoverState.anchor}
+            onClose={popoverState.onClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+          >
+            <div css={sx.popoverContainer}>
+              <IconButton onClick={onEdit}>
+                <Typography variant="h4" mb={"16px"}>
+                  수정하기
+                </Typography>
+              </IconButton>
+              <IconButton onClick={onDelete}>
+                <Typography variant="h4">삭제하기</Typography>
+              </IconButton>
+            </div>
+          </Popover>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };
@@ -39,5 +77,10 @@ const sx = {
   tabWrapper: css`
     display: flex;
     align-items: center;
+  `,
+
+  popoverContainer: css`
+    width: 100px;
+    padding: 16px;
   `,
 };
