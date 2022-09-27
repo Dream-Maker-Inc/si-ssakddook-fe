@@ -3,6 +3,7 @@ import { MainTab } from "@/common/components/tab/MainTab";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
+import Head from "next/head";
 import Image from "next/image";
 import { useMainView } from "./useMainView";
 
@@ -10,6 +11,9 @@ export const MainView = () => {
   const { data, username } = useMainView();
   return (
     <AppbarLayout>
+      <Head>
+        <meta name="viewport" content="user-scalable=no" />
+      </Head>
       <MainTab username={username} />
       <div css={sx.root}>
         <div css={sx.container}>
