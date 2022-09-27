@@ -6,6 +6,7 @@ export default function Document() {
     <Html>
       <Head>
         <meta name="viewport" content="user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <Script
           src="https://code.jquery.com/jquery-1.12.4.min.js"
           strategy="beforeInteractive"
