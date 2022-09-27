@@ -1,5 +1,6 @@
 import { BoardComment } from "@/common/components/board/BoardComment";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
+import likeApi from "@/data/apis/like/like.api";
 import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { CommentWrite } from "../CommentWrite";
 import { useCommentSection } from "./useCommentSection";
@@ -9,7 +10,8 @@ type CommentSectionProps = {
 };
 
 export const CommentSection = ({ postId }: CommentSectionProps) => {
-  const { fetchState, result, commentState } = useCommentSection(postId);
+  const { fetchState, result, commentState, likeState } =
+    useCommentSection(postId);
 
   if (!result) return <div></div>;
   if (fetchState.isLoading) return <CircularLoading />;
@@ -27,7 +29,14 @@ export const CommentSection = ({ postId }: CommentSectionProps) => {
           writerId={it.author.id + ""}
           nickname={it.author.nickname}
           date={getDateDiff(it.createdAt)}
-          like={it.likedCount}
+          likeCount={it.likedCount}
+          isLike={it.myLiked == null ? false : true}
+          onLike={
+            it.myLiked == null
+              ? () =>
+                  likeState.createLike({ type: "comment", contentId: it.id })
+              : () => likeState.deleteLike(it.myLiked.id)
+          }
           onDelete={buttonState.onDelete}
         />
       ))}

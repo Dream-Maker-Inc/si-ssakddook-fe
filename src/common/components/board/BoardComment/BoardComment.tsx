@@ -9,7 +9,9 @@ type BoardCommentProps = {
   date: string;
   writerId: string;
   nickname: string;
-  like: number;
+  likeCount: number;
+  isLike: boolean;
+  onLike: () => void;
   onDelete: (e: string) => void;
 };
 
@@ -19,10 +21,13 @@ export const BoardComment = ({
   date,
   writerId,
   nickname,
-  like,
+  likeCount,
+  isLike,
+  onLike,
   onDelete,
 }: BoardCommentProps) => {
   const myId = LocalStorage.getItem("id");
+
   return (
     <div css={sx.item}>
       <div css={sx.row}>
@@ -48,14 +53,25 @@ export const BoardComment = ({
         <p css={sx.content}>{content}</p>
       </div>
       <div css={sx.wrapper}>
-        <Image
-          width="10px"
-          height="10px"
-          src="/img/icon-chat-heart.svg"
-          alt=""
-        />
+        <IconButton onClick={onLike}>
+          {isLike ? (
+            <Image
+              width="10px"
+              height="10px"
+              src="/img/icon-chat-heart-red.svg"
+              alt=""
+            />
+          ) : (
+            <Image
+              width="10px"
+              height="10px"
+              src="/img/icon-chat-heart.svg"
+              alt=""
+            />
+          )}
+        </IconButton>
         <Typography fontSize="8px" lineHeight="1" color={LightColor.Gray100}>
-          {like}
+          {likeCount}
         </Typography>
       </div>
     </div>

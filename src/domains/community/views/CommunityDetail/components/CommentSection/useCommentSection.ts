@@ -1,3 +1,4 @@
+import LikeApiService from "@/data/apis/like/like.api";
 import { useFindAllCommentByPostId } from "@/data/apis/posting/usePostingApiHooks";
 import { useMutation, useQuery } from "react-query";
 import PostingApiService from "@/data/apis/posting/posting.api";
@@ -12,18 +13,42 @@ export const useCommentSection = (postId: string) => {
     setComment(e.target.value);
   };
 
+  // find comment
   const { data, isLoading, isError, refetch } = useFindAllCommentByPostId(
     postId,
     page,
     size
   );
 
+  // delete comment
   const { mutate: deleteCommentMutate, data: deleteCommentData } = useMutation(
     (commentId: string) => PostingApiService.deleteCommentById(commentId),
     {
       onSuccess: (res) => {
         refetch();
       },
+    }
+  );
+
+  // create like
+  const { mutate: createLike } = useMutation(
+    (likeBody: any) => LikeApiService.createLike(likeBody),
+    {
+      onSuccess: (res: any) => {
+        refetch();
+      },
+      onError: (res: any) => {},
+    }
+  );
+
+  // delete like
+  const { mutate: deleteLike } = useMutation(
+    (id: number) => LikeApiService.deleteLike(id),
+    {
+      onSuccess: (res: any) => {
+        refetch();
+      },
+      onError: (res: any) => {},
     }
   );
 
@@ -74,6 +99,10 @@ export const useCommentSection = (postId: string) => {
       value: comment,
       onChange: handleCommentChange,
       onSubmit: onCommentSubmit,
+    },
+    likeState: {
+      createLike: createLike,
+      deleteLike: deleteLike,
     },
   };
 };
