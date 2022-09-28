@@ -8,6 +8,14 @@ import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 
 export const useLoginView = () => {
+  // 자동 로그인 해제
+  const memberId = LocalStorage.getItem("id");
+  if (memberId !== "undefined" || memberId !== null) {
+    LocalStorage.removeItem("id");
+    console.log("login");
+    console.log(LocalStorage.getItem("id"));
+  }
+
   const router = useRouter();
 
   const [email, setEmail] = useState("");

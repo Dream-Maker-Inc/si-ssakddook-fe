@@ -8,10 +8,14 @@ export const SplashView = () => {
   useEffect(() => {
     setTimeout(() => {
       const memberId = LocalStorage.getItem("id");
-      if (memberId !== "undefined") {
+      if (memberId !== "undefined" || memberId !== null) {
         Router.push(RoutePath.Main);
+        console.log("splash");
+        console.log(memberId);
       } else {
         Router.push(RoutePath.Home);
+        console.log("splash");
+        console.log(memberId);
       }
     }, 1500);
   }, []);
