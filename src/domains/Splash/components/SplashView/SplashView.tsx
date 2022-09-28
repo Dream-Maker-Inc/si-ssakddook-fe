@@ -10,12 +10,8 @@ export const SplashView = () => {
       const memberId = LocalStorage.getItem("id");
       if (memberId == "undefined" || memberId == "") {
         Router.push(RoutePath.Home);
-        console.log("splash");
-        console.log(memberId);
       } else {
         Router.push(RoutePath.Main);
-        console.log("splash");
-        console.log(memberId);
       }
     }, 1500);
   }, []);
