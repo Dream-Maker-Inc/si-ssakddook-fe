@@ -1,12 +1,17 @@
 import { RoutePath } from "@/constants/Path";
+import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { css } from "@emotion/react";
 import Image from "next/image";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 import { useEffect } from "react";
 export const SplashView = () => {
   useEffect(() => {
     setTimeout(() => {
-      Router.push(RoutePath.Home);
+      if (LocalStorage.getItem("id") !== null) {
+        Router.push(RoutePath.Main);
+      } else {
+        Router.push(RoutePath.Home);
+      }
     }, 1500);
   }, []);
 
