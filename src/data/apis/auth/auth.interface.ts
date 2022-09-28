@@ -1,3 +1,4 @@
+import { ApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { LoginApiResponse } from "./auth.dto";
 
 export interface AuthApiInterface {

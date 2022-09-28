@@ -1,4 +1,5 @@
 import { axiosBasicClient } from "@/constants/api/client/client";
+import { ApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { LoginApiResponse } from "./auth.dto";
 import { AuthApiInterface } from "./auth.interface";
 

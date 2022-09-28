@@ -11,13 +11,11 @@ export const useAgreement = () => {
     if (checked) {
       checkedItems.add(value);
       setCheckedItems(checkedItems);
-      console.log("add");
       setRecoil((old) => ({ ...old, termsIds: Array.from(checkedItems) }));
     } else if (!checked && checkedItems.has(value)) {
       checkedItems.delete(value);
       setCheckedItems(checkedItems);
       setRecoil((old) => ({ ...old, termsIds: Array.from(checkedItems) }));
-      console.log("delete");
     }
   };
 

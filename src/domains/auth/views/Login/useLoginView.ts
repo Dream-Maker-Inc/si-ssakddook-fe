@@ -1,9 +1,11 @@
 import { RoutePath } from "@/constants/Path";
-import { useLogin } from "@/data/apis/auth/useAuthApiHooks";
+import AuthApiService from "@/data/apis/auth/auth.api";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
+import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { validateEmail } from "@/utils/validation/Email/EmailValidation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useMutation } from "react-query";
 
 export const useLoginView = () => {
   const router = useRouter();
@@ -12,6 +14,7 @@ export const useLoginView = () => {
   const [pw, setPw] = useState("");
 
   const [isEmailNotValid, setEmailNotValid] = useState(false);
+
   const emailValidation = validateEmail(email);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,18 +24,22 @@ export const useLoginView = () => {
     setPw(e.target.value);
   };
 
-  const { mutate, isSuccess, isError, data } = useLogin(email, pw);
-
-  if (isSuccess) {
-    if (data.accessToken !== null) {
-      LocalStorage.setItem("jwt", data.accessToken);
-      router.push(RoutePath.Main);
-    } else {
-      console.log("로그인에 실패했습니다.");
+  const { mutate, isLoading } = useMutation(
+    () => AuthApiService.login(email, pw),
+    {
+      onSuccess: (res) => {
+        if (isApiFailedResponse(res)) {
+          alert("이메일과 비밀번호를 확인해주세요.");
+        } else {
+          LocalStorage.setItem("jwt", res.accessToken);
+          router.push(RoutePath.Main);
+        }
+      },
+      onError: (err) => {
+        console.log(err);
+      },
     }
-  } else if (isError) {
-    console.log(data);
-  }
+  );
 
   useEffect(() => {
     setEmailNotValid(false);
@@ -47,6 +54,9 @@ export const useLoginView = () => {
   };
 
   return {
+    refetchState: {
+      isLoading: isLoading,
+    },
     emailState: {
       value: email,
       onChange: handleEmailChange,

@@ -1,4 +1,5 @@
 import { PrevButton } from "@/common/components/button/PrevButton";
+import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { css } from "@emotion/react";
 import { Button, TextField, Typography } from "@mui/material";
 import Head from "next/head";
@@ -7,7 +8,10 @@ import Link from "next/link";
 import { useLoginView } from "./useLoginView";
 
 export const LoginView = () => {
-  const { emailState, pwState, login } = useLoginView();
+  const { refetchState, emailState, pwState, login } = useLoginView();
+
+  if (refetchState.isLoading) return <CircularLoading />;
+
   return (
     <div css={sx.root}>
       <Head>
