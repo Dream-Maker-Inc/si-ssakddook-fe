@@ -1,4 +1,5 @@
 import { PrevButton } from "@/common/components/button/PrevButton";
+import { WhiteCircularLoading } from "@/common/components/progress/WhiteCircularProgress/WhiteCircularLoading";
 import { css } from "@emotion/react";
 import { Button, TextField, Typography } from "@mui/material";
 import Head from "next/head";
@@ -11,9 +12,6 @@ export const LoginView = () => {
 
   return (
     <div css={sx.root}>
-      <Head>
-        <meta name="viewport" content="user-scalable=yes" />
-      </Head>
       <div css={sx.container}>
         <PrevButton />
         <div css={sx.img}>
@@ -46,11 +44,15 @@ export const LoginView = () => {
               variant="contained"
               color="primary"
               onClick={login.onClick}
-              disabled={login.disabled}
+              disabled={login.disabled || login.isLoading}
             >
-              <Typography variant="body1" color="white">
-                로그인
-              </Typography>
+              {login.isLoading ? (
+                <WhiteCircularLoading />
+              ) : (
+                <Typography variant="body1" color="white">
+                  로그인
+                </Typography>
+              )}
             </Button>
           </div>
           <div css={sx.link}>

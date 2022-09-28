@@ -12,8 +12,6 @@ export const useLoginView = () => {
   const memberId = LocalStorage.getItem("id");
   if (memberId !== "undefined" || memberId !== null) {
     LocalStorage.setItem("id", "");
-    console.log("login");
-    console.log(LocalStorage.getItem("id"));
   }
 
   const router = useRouter();
@@ -32,19 +30,22 @@ export const useLoginView = () => {
     setPw(e.target.value);
   };
 
-  const { mutate } = useMutation(() => AuthApiService.login(email, pw), {
-    onSuccess: (res) => {
-      if (isApiFailedResponse(res)) {
+  const { mutate, isLoading } = useMutation(
+    () => AuthApiService.login(email, pw),
+    {
+      onSuccess: (res) => {
+        if (isApiFailedResponse(res)) {
+          alert("이메일과 비밀번호를 확인해주세요.");
+        } else {
+          LocalStorage.setItem("jwt", res.accessToken);
+          router.push(RoutePath.Main);
+        }
+      },
+      onError: (err) => {
         alert("이메일과 비밀번호를 확인해주세요.");
-      } else {
-        LocalStorage.setItem("jwt", res.accessToken);
-        router.push(RoutePath.Main);
-      }
-    },
-    onError: (err) => {
-      console.log(err);
-    },
-  });
+      },
+    }
+  );
 
   useEffect(() => {
     setEmailNotValid(false);
@@ -71,6 +72,7 @@ export const useLoginView = () => {
     login: {
       disabled: !email || !pw || isEmailNotValid,
       onClick: handleLoginClick,
+      isLoading: isLoading,
     },
   };
 };
