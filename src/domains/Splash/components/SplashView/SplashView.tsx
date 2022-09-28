@@ -7,7 +7,8 @@ import { useEffect } from "react";
 export const SplashView = () => {
   useEffect(() => {
     setTimeout(() => {
-      if (LocalStorage.getItem("id") !== null) {
+      const memberId = LocalStorage.getItem("id");
+      if (memberId !== "undefined") {
         Router.push(RoutePath.Main);
       } else {
         Router.push(RoutePath.Home);
