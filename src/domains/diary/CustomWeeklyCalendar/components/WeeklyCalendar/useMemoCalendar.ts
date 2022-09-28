@@ -19,7 +19,7 @@ export const useMemoCalendar = (month: any) => {
   );
 
   let allDiaries = <any>[];
-  data?.forEach((item) => allDiaries.push(...item.data));
+  data?.map((item) => allDiaries.push(...item.data));
 
   if (!data) {
     return {
