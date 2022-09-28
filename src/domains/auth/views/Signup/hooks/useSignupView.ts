@@ -1,6 +1,7 @@
 import { LightColor } from "@/themes/Color";
 import { useEffect, useState } from "react";
 import { useSignupService } from "./useIamportService";
+import { useAgreement } from "./useServiceArticle";
 import { useValidatePw } from "./useValidatePw";
 import { useValidationEmail } from "./useValidationEmail";
 import { useValidationNickname } from "./useValidationNickname";
@@ -75,12 +76,21 @@ export const useSignupView = () => {
     isError: isPwError,
     helperText: isPwError && "비밀번호 조건을 확인해주세요.",
   };
+
   const confirmPasswordState = {
     value: confirmPw,
     onChange: handleConfirmPwChange,
     isError: isConfirmPwError,
     helperText: getConfrimPwHelperText,
     color: isConfirmPwError ? LightColor.Error : LightColor.PrimaryDark,
+  };
+
+  // service terms
+  const { result, checkedItemHandler, isValidationPassed } = useAgreement();
+
+  const checkboxState = {
+    result: result,
+    checkedHandler: checkedItemHandler,
   };
 
   //submit button
@@ -90,7 +100,9 @@ export const useSignupView = () => {
     !pw ||
     !confirmPw ||
     isPwError ||
-    isConfirmPwError;
+    isConfirmPwError ||
+    !isValidationPassed;
+
   useEffect(() => {
     // 가맹점 식별 코드
     const StoreUid = "imp12349201";
@@ -105,6 +117,7 @@ export const useSignupView = () => {
     nicknameState,
     passwordState,
     confirmPasswordState,
+    checkboxState,
 
     buttonState: {
       disabled: isButtonDisabled,

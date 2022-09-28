@@ -16,10 +16,14 @@ export const SignupView = () => {
     nicknameState,
     passwordState,
     confirmPasswordState,
+    checkboxState,
     buttonState,
   } = useSignupView();
 
-  const handleSubmit = (e: React.FormEvent) => {};
+  const handleSubmit = (e: React.FormEvent) => {
+    buttonState.onClick();
+    e.preventDefault;
+  };
   return (
     <div css={sx.root}>
       <div css={sx.container}>
@@ -114,6 +118,8 @@ export const SignupView = () => {
               title: "이용 약관 동의",
               desc: "서비스 이용에 필요한 약관에 동의해 주세요.",
             }}
+            result={checkboxState.result!!}
+            checkedHandler={checkboxState.checkedHandler}
           />
         </div>
 
@@ -122,8 +128,8 @@ export const SignupView = () => {
           variant="contained"
           color="primary"
           type="submit"
-          onClick={buttonState.onClick}
           disabled={buttonState.disabled}
+          onClick={buttonState.onClick}
         >
           <Typography variant="body1" color="white" lineHeight="1">
             다음

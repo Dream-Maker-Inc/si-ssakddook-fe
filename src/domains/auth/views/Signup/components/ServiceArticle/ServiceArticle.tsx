@@ -10,18 +10,22 @@ import {
 import { FormTitleWithDesc } from "../FormTitleWithDesc";
 import { FormTitleWithDescProps } from "../FormTitleWithDesc/FormTitleWithDesc";
 import CheckBoxRoundedIcon from "@mui/icons-material/CheckBoxRounded";
-import { useAgreement } from "../../hooks/useServiceArticle";
 import { useState } from "react";
 import { LightColor } from "@/themes/Color";
 import Image from "next/image";
+import { TermsItemsResponse } from "@/data/apis/terms/terms.dto";
 
 type AgreementArticleProps = {
   titleProps: FormTitleWithDescProps;
+  result: TermsItemsResponse;
+  checkedHandler: (value: number, checked: any) => void;
 };
 
-export const AgreementArticle = ({ titleProps }: AgreementArticleProps) => {
-  const { result, checkedItemHandler } = useAgreement();
-
+export const AgreementArticle = ({
+  titleProps,
+  result,
+  checkedHandler,
+}: AgreementArticleProps) => {
   return (
     <div css={sx.container}>
       <FormTitleWithDesc
@@ -38,7 +42,7 @@ export const AgreementArticle = ({ titleProps }: AgreementArticleProps) => {
             hightlightText={it.title}
             necessary={it.isRequired}
             content={it.content}
-            checkedItemHandler={checkedItemHandler}
+            checkedItemHandler={checkedHandler}
           />
         ))}
       </div>
