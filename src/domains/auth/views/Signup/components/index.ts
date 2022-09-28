@@ -1,4 +1,4 @@
-export * from "./AgreementArticle";
+export * from "./ServiceArticle";
 export * from "./FormTitleWithDesc";
 export * from "./PasswordArticle";
 export * from "./SignupTitleWithDesc";

@@ -10,7 +10,7 @@ import {
 import { FormTitleWithDesc } from "../FormTitleWithDesc";
 import { FormTitleWithDescProps } from "../FormTitleWithDesc/FormTitleWithDesc";
 import CheckBoxRoundedIcon from "@mui/icons-material/CheckBoxRounded";
-import { useAgreement } from "../../hooks/useAgreement";
+import { useAgreement } from "../../hooks/useServiceArticle";
 import { useState } from "react";
 import { LightColor } from "@/themes/Color";
 import Image from "next/image";
@@ -20,7 +20,7 @@ type AgreementArticleProps = {
 };
 
 export const AgreementArticle = ({ titleProps }: AgreementArticleProps) => {
-  const { result } = useAgreement();
+  const { result, checkedItemHandler } = useAgreement();
 
   return (
     <div css={sx.container}>
@@ -38,6 +38,7 @@ export const AgreementArticle = ({ titleProps }: AgreementArticleProps) => {
             hightlightText={it.title}
             necessary={it.isRequired}
             content={it.content}
+            checkedItemHandler={checkedItemHandler}
           />
         ))}
       </div>
@@ -46,6 +47,11 @@ export const AgreementArticle = ({ titleProps }: AgreementArticleProps) => {
 };
 
 const sx = {
+  root: css`
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+  `,
   container: css`
     width: 100%;
     display: flex;
@@ -114,6 +120,7 @@ type CustomCheckBoxProps = {
   hightlightText: string;
   necessary: boolean;
   content: string;
+  checkedItemHandler: (value: number, checked: any) => void;
 };
 
 const CheckBox = ({
@@ -122,10 +129,18 @@ const CheckBox = ({
   hightlightText,
   necessary = true,
   content,
+  checkedItemHandler,
 }: CustomCheckBoxProps) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const checkHandler = (value: number, checked: any) => {
+    setIsChecked(!isChecked);
+    checkedItemHandler(value, checked);
+  };
 
   return (
     <div>
@@ -138,6 +153,8 @@ const CheckBox = ({
             value={value}
             name="termsIds"
             css={sx.chekcbox}
+            checked={isChecked}
+            onChange={(e) => checkHandler(value, e.target.checked)}
           />
         }
         label={
@@ -175,7 +192,7 @@ const TermsContentModal = ({
 }: TermsContentModalProps) => {
   return (
     <div>
-      <Modal open={open} onClose={onClose}>
+      <Modal open={open} onClose={onClose} css={sx.root}>
         <Box css={sx.modal}>
           <div css={sx.modalTitleWrapper}>
             <Typography variant="h2" color={LightColor.TextMain}>

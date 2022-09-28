@@ -18,6 +18,8 @@ export const SignupView = () => {
     confirmPasswordState,
     buttonState,
   } = useSignupView();
+
+  const handleSubmit = (e: React.FormEvent) => {};
   return (
     <div css={sx.root}>
       <div css={sx.container}>
