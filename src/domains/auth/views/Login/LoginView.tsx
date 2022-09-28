@@ -8,9 +8,7 @@ import Link from "next/link";
 import { useLoginView } from "./useLoginView";
 
 export const LoginView = () => {
-  const { refetchState, emailState, pwState, login } = useLoginView();
-
-  if (refetchState.isLoading) return <CircularLoading />;
+  const { emailState, pwState, login } = useLoginView();
 
   return (
     <div css={sx.root}>

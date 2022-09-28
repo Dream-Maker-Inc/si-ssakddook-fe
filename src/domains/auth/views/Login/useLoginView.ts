@@ -24,22 +24,19 @@ export const useLoginView = () => {
     setPw(e.target.value);
   };
 
-  const { mutate, isLoading } = useMutation(
-    () => AuthApiService.login(email, pw),
-    {
-      onSuccess: (res) => {
-        if (isApiFailedResponse(res)) {
-          alert("이메일과 비밀번호를 확인해주세요.");
-        } else {
-          LocalStorage.setItem("jwt", res.accessToken);
-          router.push(RoutePath.Main);
-        }
-      },
-      onError: (err) => {
-        console.log(err);
-      },
-    }
-  );
+  const { mutate } = useMutation(() => AuthApiService.login(email, pw), {
+    onSuccess: (res) => {
+      if (isApiFailedResponse(res)) {
+        alert("이메일과 비밀번호를 확인해주세요.");
+      } else {
+        LocalStorage.setItem("jwt", res.accessToken);
+        router.push(RoutePath.Main);
+      }
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
 
   useEffect(() => {
     setEmailNotValid(false);
@@ -54,9 +51,6 @@ export const useLoginView = () => {
   };
 
   return {
-    refetchState: {
-      isLoading: isLoading,
-    },
     emailState: {
       value: email,
       onChange: handleEmailChange,
