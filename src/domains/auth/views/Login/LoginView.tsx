@@ -1,5 +1,4 @@
 import { PrevButton } from "@/common/components/button/PrevButton";
-import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { css } from "@emotion/react";
 import { Button, TextField, Typography } from "@mui/material";
 import Head from "next/head";
