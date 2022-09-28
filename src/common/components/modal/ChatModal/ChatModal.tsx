@@ -4,15 +4,23 @@ import { Box, IconButton, Modal, Typography } from "@mui/material";
 
 export type ChatModalProps = {
   isOpen: boolean;
+  title: string;
+  continueText: string;
   onClose: () => void;
   onContinue: () => void;
 };
 
-export const ChatModal = ({ isOpen, onClose, onContinue }: ChatModalProps) => {
+export const ChatModal = ({
+  isOpen,
+  title,
+  continueText,
+  onClose,
+  onContinue,
+}: ChatModalProps) => {
   return (
     <Modal open={isOpen} onClose={onClose}>
       <Box css={sx.modalBox}>
-        <Typography variant="h4">대화방에 참여하시겠습니까?</Typography>
+        <Typography variant="h4">{title}</Typography>
         <div css={sx.modalButtonWrapper}>
           <Typography
             variant="h4"
@@ -29,7 +37,7 @@ export const ChatModal = ({ isOpen, onClose, onContinue }: ChatModalProps) => {
             sx={{ cursor: "pointer" }}
             onClick={onContinue}
           >
-            참여하기
+            {continueText}
           </Typography>
         </div>
       </Box>

@@ -1,29 +1,42 @@
-import { ChatAtom } from "@/recoil/Navigation/Navigation.atom";
+import { ChatModal } from "@/common/components/modal/ChatModal/ChatModal";
 import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
-import { useRecoilState } from "recoil";
+import { useChatTab } from "./useChatTab";
 
 export const ChatRoomTab = () => {
-  const [isChannelListVisible, setIsChannelListVisible] =
-    useRecoilState(ChatAtom);
+  const { tabState, modalState } = useChatTab();
 
-  const handleBackToChannelList = () => {
-    setIsChannelListVisible(true);
-  };
   return (
     <div css={sx.tabContainer}>
-      <IconButton onClick={handleBackToChannelList}>
+      <div css={sx.tab}>
+        <IconButton onClick={tabState.onPrev}>
+          <Image
+            width="24px"
+            height="24px"
+            src="/img/arrowIcon/prev-icon.svg"
+            alt="logo"
+          />
+        </IconButton>
+        <Typography variant="h2" lineHeight="1" ml="12px">
+          채팅방
+        </Typography>
+      </div>
+      <IconButton onClick={modalState.onOpen}>
         <Image
           width="24px"
           height="24px"
-          src="/img/arrowIcon/prev-icon.svg"
+          src="/img/icon-logout.svg"
           alt="logo"
         />
       </IconButton>
-      <Typography variant="h2" lineHeight="1" ml="12px">
-        채팅방
-      </Typography>
+      <ChatModal
+        isOpen={modalState.isOpen}
+        title="채팅방에서 나가시겠습니까?"
+        continueText="나가기"
+        onClose={modalState.onClose}
+        onContinue={modalState.onContinue}
+      />
     </div>
   );
 };
@@ -37,10 +50,16 @@ const sx = {
     top: 0px;
 
     display: flex;
+    justify-content: space-between;
     align-items: center;
 
     padding: 0 16px;
 
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  `,
+
+  tab: css`
+    display: flex;
+    align-items: center;
   `,
 };

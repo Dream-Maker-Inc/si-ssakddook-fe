@@ -27,6 +27,8 @@ export const PublicChannelItem = ({ channel }: PublicChannelItemProps) => {
       )}
       <ChatModal
         isOpen={modalState.isOpen}
+        title="채팅방에 참여하시겠습니까?"
+        continueText="참여하기"
         onClose={modalState.onClose}
         onContinue={modalState.onContinue}
       />
