@@ -30,6 +30,7 @@ const MemoCalendar = ({
   // diary api
   const setLastDate = useSetRecoilState(DiaryLastClickedDateAtom);
   const { refetchState, result } = useMemoCalendar(currentMonth);
+
   if (refetchState.isLoading) return <CircularLoading />;
   if (refetchState.isError) return <CircularLoading />;
 
@@ -48,7 +49,7 @@ const MemoCalendar = ({
   };
 
   const getContentByResult = (clickedDate) => {
-    const contentObject = result?.filter((item) => item.date === clickedDate);
+    const contentObject = result?.filter((item) => item.date == clickedDate);
 
     if (
       contentObject == null ||
