@@ -2,8 +2,8 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { useChatContext } from "stream-chat-react";
-import { CustomLoadingIndicator } from "../CustomLoadingIndicator";
-import { PublicChannelItem } from "../PublicChannelItem";
+import { CustomLoadingIndicator } from "../../indicator/CustomLoadingIndicator";
+import { PublicChannelItem } from "../../preview/PublicChannelItem";
 
 export const EveryChannelList = () => {
   const { client } = useChatContext();
@@ -13,7 +13,6 @@ export const EveryChannelList = () => {
   const filter = {
     type: "messaging",
     member_count: { $eq: 1 },
-    joined: false,
   };
 
   useEffect(() => {
