@@ -2,6 +2,7 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { IconButton, TextField } from "@mui/material";
 import Image from "next/image";
+import SendIcon from "public/img/icon-send.svg";
 
 type CommentWriteProps = {
   value: string;
@@ -29,12 +30,7 @@ export const CommentWrite = ({
           disableUnderline: true,
           endAdornment: (
             <IconButton onClick={onCommentSubmit}>
-              <Image
-                width="24px"
-                height="24px"
-                src="/img/icon-send.svg"
-                alt=""
-              />
+              <Image width="24px" height="24px" src={SendIcon} alt="" />
             </IconButton>
           ),
         }}

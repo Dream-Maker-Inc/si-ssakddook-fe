@@ -12,6 +12,8 @@ import {
 import Image from "next/image";
 import { useSetRecoilState } from "recoil";
 import { MonthSelection } from "../MonthSelection";
+import LeftScrollIcon from "public/img/calendar/icon-left-scroll.svg";
+import RightScrollIcon from "public/img/calendar/icon-right-scroll.svg";
 
 const Calendar = ({
   showDetailsHandle,
@@ -126,21 +128,11 @@ const Calendar = ({
       <div className="footer row">
         <div className="col-start">
           <div className="icon" onClick={() => changeWeekHandle("prev")}>
-            <Image
-              width="20px"
-              height="20px"
-              src="/img/calendar/icon-left-scroll.svg"
-              alt=""
-            />
+            <Image width="20px" height="20px" src={LeftScrollIcon} alt="" />
           </div>
         </div>
         <div className="col-end" onClick={() => changeWeekHandle("next")}>
-          <Image
-            width="20px"
-            height="20px"
-            src="/img/calendar/icon-right-scroll.svg"
-            alt=""
-          />
+          <Image width="20px" height="20px" src={RightScrollIcon} alt="" />
         </div>
       </div>
     );

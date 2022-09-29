@@ -3,6 +3,10 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
+import ChatCloseIcon from "@/img/icon-chat-close.svg";
+import HeartIcon from "@/img/icon-chat-heart-red.svg";
+import RedHeartIcon from "@/img/icon-chat-heart.svg";
+
 type BoardCommentProps = {
   commentId: number;
   content: string;
@@ -38,12 +42,7 @@ export const BoardComment = ({
         </Typography>
         {writerId == myId ? (
           <IconButton onClick={() => onDelete(commentId + "")}>
-            <Image
-              width="10px"
-              height="10px"
-              src="/img/icon-chat-close.svg"
-              alt=""
-            />
+            <Image width="10px" height="10px" src={ChatCloseIcon} alt="" />
           </IconButton>
         ) : (
           <div></div>
@@ -55,19 +54,9 @@ export const BoardComment = ({
       <div css={sx.wrapper}>
         <IconButton onClick={onLike}>
           {isLike ? (
-            <Image
-              width="10px"
-              height="10px"
-              src="/img/icon-chat-heart-red.svg"
-              alt=""
-            />
+            <Image width="10px" height="10px" src={RedHeartIcon} alt="" />
           ) : (
-            <Image
-              width="10px"
-              height="10px"
-              src="/img/icon-chat-heart.svg"
-              alt=""
-            />
+            <Image width="10px" height="10px" src={HeartIcon} alt="" />
           )}
         </IconButton>
         <Typography fontSize="8px" lineHeight="1" color={LightColor.Gray100}>

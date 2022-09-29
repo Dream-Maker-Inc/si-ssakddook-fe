@@ -3,6 +3,7 @@ import { IconButton, Typography } from "@mui/material";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import Image from "next/image";
 import { LightColor } from "@/themes/Color";
+import MainLoco from "@/img/main/logo.svg";
 
 type MainTabProps = {
   username: string;
@@ -11,7 +12,7 @@ export const MainTab = ({ username }: MainTabProps) => {
   return (
     <div css={sx.container}>
       <IconButton>
-        <Image width="24px" height="16px" src="/img/main/logo.svg" alt="logo" />
+        <Image width="24px" height="16px" src={MainLoco} alt="logo" />
       </IconButton>
       <Typography variant="h2" ml="12px" sx={{ flexGrow: 1 }}>
         {username}님, 환영해요.

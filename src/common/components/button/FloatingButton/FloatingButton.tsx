@@ -2,12 +2,13 @@ import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
 import Image from "next/image";
 import Link from "next/link";
+import EditIcon from "@/img/icon-edit.svg";
 
 export const FloatingButton = () => {
   return (
     <Link href={RoutePath.CommunityWrite}>
       <div css={sx.container}>
-        <Image width="24px" height="24px" src="/img/icon-edit.svg" alt="" />
+        <Image width="24px" height="24px" src={EditIcon} alt="" />
       </div>
     </Link>
   );

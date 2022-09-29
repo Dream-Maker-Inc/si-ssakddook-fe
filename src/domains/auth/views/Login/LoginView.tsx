@@ -6,6 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useLoginView } from "./useLoginView";
+import MainImg from "public/img/logo/main.svg";
 
 export const LoginView = () => {
   const { emailState, pwState, login } = useLoginView();
@@ -15,12 +16,7 @@ export const LoginView = () => {
       <div css={sx.container}>
         <PrevButton />
         <div css={sx.img}>
-          <Image
-            width="60px"
-            height="40px"
-            alt={"img"}
-            src={"/img/logo/main.svg"}
-          />
+          <Image width="60px" height="40px" alt={"img"} src={MainImg} />
         </div>
         <div css={sx.loginBoxContainer}>
           <Typography variant="h1">로그인</Typography>

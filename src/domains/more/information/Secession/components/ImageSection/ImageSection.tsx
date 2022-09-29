@@ -2,6 +2,7 @@ import { LightColor } from "@/themes/Color";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import { css } from "@emotion/react";
+import SecessionImg from "@/img/auth/img-secession.svg";
 
 export const ImageSection = () => {
   return (
@@ -14,12 +15,7 @@ export const ImageSection = () => {
       >
         정말 탈퇴하시겠어요?
       </Typography>
-      <Image
-        width="200px"
-        height="200px"
-        src="/img/auth/img-secession.svg"
-        alt=""
-      />
+      <Image width="200px" height="200px" src={SecessionImg} alt="" />
     </div>
   );
 };

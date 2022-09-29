@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import HeartIcon from "public/img/community/icon-heart.svg";
 
 export const NoticeBox = () => {
   const router = useRouter();
@@ -16,12 +17,7 @@ export const NoticeBox = () => {
         운영자가 추천하는 취미!
         <span css={sx.span}> 싹둑 라이프와 함께하세요.</span>
       </Typography>
-      <Image
-        width="20px"
-        height="20px"
-        src="/img/community/icon-heart.svg"
-        alt=""
-      />
+      <Image width="20px" height="20px" src={HeartIcon} alt="" />
     </div>
   );
 };

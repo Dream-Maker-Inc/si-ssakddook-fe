@@ -2,6 +2,7 @@ import Image from "next/image";
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
 import { IconButton } from "@mui/material";
+import SubmitIcon from "@/img/icon-submit.svg";
 
 type TSubmitButton = {
   location?: string;
@@ -13,7 +14,7 @@ export const SubmitButton = ({ location }: TSubmitButton) => {
   };
   return (
     <IconButton onClick={nextLocation} css={sx.img}>
-      <Image width="24px" height="24px" src="/img/icon-submit.svg" alt="" />
+      <Image width="24px" height="24px" src={SubmitIcon} alt="" />
     </IconButton>
   );
 };

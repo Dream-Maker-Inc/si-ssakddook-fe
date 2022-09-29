@@ -2,18 +2,14 @@ import { Title } from "@/common/components/title/Title";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
+import IdSuccessImg from "public/img/find/id-success.svg";
 
 export const FindIdSuccessView = () => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
         <Title>아이디 찾기 완료</Title>
-        <Image
-          width="250px"
-          height="160px"
-          src="/img/find/id-success.svg"
-          alt="img"
-        />
+        <Image width="250px" height="160px" src={IdSuccessImg} alt="img" />
         <Typography variant="h4" textAlign={"center"} mt="20px">
           입력하신 휴대폰 번호와 일치하는 아이디를 찾았어요.
         </Typography>

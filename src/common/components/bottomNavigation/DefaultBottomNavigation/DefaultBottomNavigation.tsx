@@ -4,6 +4,16 @@ import Image from "next/image";
 import { IconButton } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { NavigationAtom } from "@/recoil/Navigation/Navigation.atom";
+import MainUnselected from "@/img/bottomNavigation/inActive/icon-home.svg";
+import MainSelected from "@/img/bottomNavigation/active/icon-home-active.svg";
+import ChatUnselected from "@/img/bottomNavigation/inActive/icon-chat.svg";
+import ChatSelected from "@/img/bottomNavigation/active/icon-chat-active.svg";
+import CommunityUnselected from "@/img/bottomNavigation/inActive/icon-bamboo.svg";
+import CommunitySelected from "@/img/bottomNavigation/active/icon-bamboo-active.svg";
+import DiaryUnselected from "@/img/bottomNavigation/inActive/icon-diary.svg";
+import DiarySelected from "@/img/bottomNavigation/active/icon-diary-active.svg";
+import MoreUnselected from "@/img/bottomNavigation/inActive/icon-more.svg";
+import MoreSelected from "@/img/bottomNavigation/active/icon-more-active.svg";
 
 type DefaultBottomNavigationProps = {
   onPageChange: (e: string) => void;
@@ -23,29 +33,29 @@ export const DefaultBottomNavigation = ({
   const navigationItems = [
     {
       routingAddress: main,
-      unselected: "/img/bottomNavigation/inActive/icon-home.svg",
-      selected: "/img/bottomNavigation/active/icon-home-active.svg",
+      unselected: MainUnselected,
+      selected: MainSelected,
     },
     {
       routingAddress: chat,
-      unselected: "/img/bottomNavigation/inActive/icon-chat.svg",
-      selected: "/img/bottomNavigation/active/icon-chat-active.svg",
+      unselected: ChatUnselected,
+      selected: ChatSelected,
     },
     {
       routingAddress: community,
-      unselected: "/img/bottomNavigation/inActive/icon-bamboo.svg",
-      selected: "/img/bottomNavigation/active/icon-bamboo-active.svg",
+      unselected: CommunityUnselected,
+      selected: CommunitySelected,
     },
     {
       routingAddress: diary,
 
-      unselected: "/img/bottomNavigation/inActive/icon-diary.svg",
-      selected: "/img/bottomNavigation/active/icon-diary-active.svg",
+      unselected: DiaryUnselected,
+      selected: DiarySelected,
     },
     {
       routingAddress: more,
-      unselected: "/img/bottomNavigation/inActive/icon-more.svg",
-      selected: "/img/bottomNavigation/active/icon-more-active.svg",
+      unselected: MoreUnselected,
+      selected: MoreSelected,
     },
   ];
 

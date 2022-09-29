@@ -4,6 +4,7 @@ import { IconButton, Popover, Typography } from "@mui/material";
 import Image from "next/image";
 import { BoardPrevButton } from "../../button/BoardPrevButton";
 import { useDetailTab } from "./useDetailTan";
+import EtcIcon from "@/img/tab/icon-etc.svg";
 
 type DetailTabProps = { postId: number; writerId: number };
 
@@ -22,12 +23,7 @@ export const DetailTab = ({ postId, writerId }: DetailTabProps) => {
       {myId == writerId + "" ? (
         <div>
           <IconButton onClick={popoverState.onOpen}>
-            <Image
-              width="24px"
-              height="24px"
-              src="/img/tab/icon-etc.svg"
-              alt=""
-            />
+            <Image width="24px" height="24px" src={EtcIcon} alt="" />
           </IconButton>
           <Popover
             open={popoverState.isOpen}

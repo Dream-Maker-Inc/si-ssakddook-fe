@@ -1,5 +1,4 @@
 import { css } from "@emotion/react";
-
 import { LightColor } from "@/themes/Color";
 import { Typography } from "@mui/material";
 import Image from "next/image";

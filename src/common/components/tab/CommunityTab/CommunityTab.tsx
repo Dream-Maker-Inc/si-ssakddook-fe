@@ -3,6 +3,9 @@ import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import MainLogo from "@/img/main/logo.svg";
+import SearchIcon from "@/img/tab/icon-search.svg";
+import NotificationIcon from "@/img/tab/icon-notification.svg";
 
 export const CommunityTab = () => {
   const router = useRouter();
@@ -20,32 +23,17 @@ export const CommunityTab = () => {
       <div css={sx.container}>
         <div css={sx.appbarContainer}>
           <IconButton>
-            <Image
-              width="24px"
-              height="16px"
-              src="/img/main/logo.svg"
-              alt="logo"
-            />
+            <Image width="24px" height="16px" src={MainLogo} alt="logo" />
           </IconButton>
           <Typography variant="h2" ml="12px" sx={{ flexGrow: 1 }}>
             커뮤니티
           </Typography>
           <div css={sx.buttonWrapper}>
             <IconButton onClick={onSearch}>
-              <Image
-                width="16px"
-                height="16px"
-                src="/img/tab/icon-search.svg"
-                alt=""
-              />
+              <Image width="16px" height="16px" src={SearchIcon} alt="" />
             </IconButton>
             <IconButton>
-              <Image
-                width="18px"
-                height="18px"
-                src="/img/tab/icon-notification.svg"
-                alt=""
-              />
+              <Image width="18px" height="18px" src={NotificationIcon} alt="" />
             </IconButton>
             <IconButton onClick={onMyClick}>
               <Typography variant="h2">MY</Typography>

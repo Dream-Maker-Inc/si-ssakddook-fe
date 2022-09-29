@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { BoardPrevButton } from "../../button/BoardPrevButton";
 import { PrevModal } from "../../modal/PrevModal/PrevModal";
+import SubmitIcon from "@/img/icon-submit.svg";
+import SubmitDisabledIcon from "@/img/icon-submit-disabled.svg";
 
 type WritingTabProps = {
   title?: string;
@@ -39,9 +41,7 @@ export const WritingTab = ({
         <Image
           width="24px"
           height="24px"
-          src={
-            onActive ? "/img/icon-submit.svg" : "/img/icon-submit-disabled.svg"
-          }
+          src={onActive ? SubmitIcon : SubmitDisabledIcon}
           alt=""
         />
       </IconButton>

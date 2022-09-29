@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { PrevModal } from "../../modal/PrevModal/PrevModal";
+import SubmitIcon from "@/img/icon-submit.svg";
 
 type CreateDiaryTabProps = {
   title: string;
@@ -49,7 +50,7 @@ export const CreateDiaryTab = ({
         </Typography>
       </div>
       <IconButton onClick={writingState.onSubmitClick}>
-        <Image width="24px" height="24px" src="/img/icon-submit.svg" alt="" />
+        <Image width="24px" height="24px" src={SubmitIcon} alt="" />
       </IconButton>
       <PrevModal
         key={"modal"}

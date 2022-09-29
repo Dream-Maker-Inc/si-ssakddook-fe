@@ -3,6 +3,10 @@ import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import { useChatContext } from "stream-chat-react";
+import PrevIconImg from "public/img/arrowIcon/prev-icon.svg";
+import LogoImg from "public/img/main/logo.svg";
+import SubmitIconImg from "public/img/icon-submit.svg";
+import AddCHatIconImg from "public/img/tab/icon-add-chat.svg";
 
 type ChatMainTabProps = {
   chatName: string;
@@ -38,21 +42,11 @@ export const ChatMainTab = ({
       <div css={sx.wrapper}>
         {isCreateView ? (
           <IconButton onClick={onBack}>
-            <Image
-              width="24px"
-              height="24px"
-              src="/img/arrowIcon/prev-icon.svg"
-              alt="logo"
-            />
+            <Image width="24px" height="24px" src={PrevIconImg} alt="logo" />
           </IconButton>
         ) : (
           <IconButton>
-            <Image
-              width="24px"
-              height="16px"
-              src="/img/main/logo.svg"
-              alt="logo"
-            />
+            <Image width="24px" height="16px" src={LogoImg} alt="logo" />
           </IconButton>
         )}
 
@@ -63,21 +57,11 @@ export const ChatMainTab = ({
       <div>
         {isCreateView ? (
           <IconButton onClick={createChannel}>
-            <Image
-              width="24px"
-              height="24px"
-              src="/img/icon-submit.svg"
-              alt=""
-            />
+            <Image width="24px" height="24px" src={SubmitIconImg} alt="" />
           </IconButton>
         ) : (
           <IconButton onClick={onClick}>
-            <Image
-              width="18px"
-              height="18px"
-              src="/img/tab/icon-add-chat.svg"
-              alt=""
-            />
+            <Image width="18px" height="18px" src={AddCHatIconImg} alt="" />
           </IconButton>
         )}
       </div>

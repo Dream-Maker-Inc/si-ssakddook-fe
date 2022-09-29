@@ -1,6 +1,5 @@
 import { BoardComment } from "@/common/components/board/BoardComment";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
-import likeApi from "@/data/apis/like/like.api";
 import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { CommentWrite } from "../CommentWrite";
 import { useCommentSection } from "./useCommentSection";

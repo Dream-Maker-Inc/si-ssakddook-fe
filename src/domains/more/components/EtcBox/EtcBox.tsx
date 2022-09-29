@@ -4,6 +4,7 @@ import { Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { EtcBoxProps } from "../../types/MoreType.type";
+import ArrowRightIcon from "@/img/more/etc/icon-etc-arrow-right.svg";
 
 export const EtcBox = ({ title, iconSrc, onClickPath }: EtcBoxProps) => {
   const router = useRouter();
@@ -19,12 +20,7 @@ export const EtcBox = ({ title, iconSrc, onClickPath }: EtcBoxProps) => {
         </Typography>
       </div>
       <div css={sx.arrow}>
-        <Image
-          width="24px"
-          height="24px"
-          src="/img/more/etc/icon-etc-arrow-right.svg"
-          alt=""
-        />
+        <Image width="24px" height="24px" src={ArrowRightIcon} alt="" />
       </div>
     </div>
   );

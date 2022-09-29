@@ -2,6 +2,7 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { IconButton } from "@mui/material";
 import Image from "next/image";
+import ThumbnailIcon from "@/img/community/icon-thumbnail-close.svg";
 
 type ThumbnailSectionProps = {
   uploadImage: string;
@@ -23,12 +24,7 @@ export const CreateThumbnailSection = ({
           css={sx.img}
         />
         <IconButton onClick={() => onDeleteClick()} css={sx.thumbnailCloseBtn}>
-          <Image
-            width="10px"
-            height="10px"
-            src="/img/community/icon-thumbnail-close.svg"
-            alt=""
-          />
+          <Image width="10px" height="10px" src={ThumbnailIcon} alt="" />
         </IconButton>
       </div>
     </div>

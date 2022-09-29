@@ -6,6 +6,7 @@ import { Button, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
+import ImgSignup from "public/img/auth/img-signup.svg";
 
 export const SignupSuccessView = () => {
   const router = useRouter();
@@ -17,12 +18,7 @@ export const SignupSuccessView = () => {
     <div css={sx.root}>
       <div css={sx.container}>
         <div css={sx.img}>
-          <Image
-            width="200px"
-            height="200px"
-            src="/img/auth/img-signup.svg"
-            alt="img"
-          />
+          <Image width="200px" height="200px" src={ImgSignup} alt="img" />
         </div>
         <Typography variant="h1" mt="60px" mb="60px">
           회원가입 완료!

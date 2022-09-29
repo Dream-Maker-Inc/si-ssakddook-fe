@@ -1,5 +1,4 @@
 import { CloseButton } from "@/common/components/button/CloseButton";
-import { PrevButton } from "@/common/components/button/PrevButton";
 import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";

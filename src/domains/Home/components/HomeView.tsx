@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
+import MainImg from "public/img/logo/main.svg";
 import { useHomeView } from "./useIntroView";
 export const HomeView = () => {
   const { signup, login } = useHomeView();
@@ -9,13 +10,7 @@ export const HomeView = () => {
     <div css={sx.root}>
       <div css={sx.container}>
         <div css={sx.img}>
-          <Image
-            width="60px"
-            height="40px"
-            alt={"img"}
-            // src={"/img/logo/main.svg"}
-            src={"/main.svg"}
-          />
+          <Image width="60px" height="40px" alt={"img"} src={MainImg} />
         </div>
 
         <Typography

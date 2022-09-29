@@ -6,6 +6,7 @@ import { Typography } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
 import { useMainView } from "./useMainView";
+import LeafImg from "@/img/main/leaf.svg";
 
 export const MainView = () => {
   const { data, username } = useMainView();
@@ -24,12 +25,7 @@ export const MainView = () => {
             {data}
           </Typography>
           <div css={sx.img}>
-            <Image
-              width="93px"
-              height="516px"
-              src="/img/main/leaf.svg"
-              alt=""
-            />
+            <Image width="93px" height="516px" src={LeafImg} alt="" />
           </div>
         </div>
       </div>

@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { PrevModal } from "../../modal/PrevModal/PrevModal";
+import SubmitIcon from "@/img/icon-submit.svg";
+import EditIcon from "@/img/diary/icon-edit.svg";
 
 type DiaryTabProps = {
   title: string;
@@ -47,16 +49,11 @@ export const DiaryTab = ({ title, writingState }: DiaryTabProps) => {
       </div>
       {writingState.isWritingState ? (
         <IconButton onClick={writingState.onSubmitClick}>
-          <Image width="24px" height="24px" src="/img/icon-submit.svg" alt="" />
+          <Image width="24px" height="24px" src={SubmitIcon} alt="" />
         </IconButton>
       ) : (
         <IconButton onClick={writingState.onEditlick}>
-          <Image
-            width="24px"
-            height="24px"
-            src="/img/diary/icon-edit.svg"
-            alt=""
-          />
+          <Image width="24px" height="24px" src={EditIcon} alt="" />
         </IconButton>
       )}
       <PrevModal

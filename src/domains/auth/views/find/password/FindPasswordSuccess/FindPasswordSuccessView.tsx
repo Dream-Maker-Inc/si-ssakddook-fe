@@ -1,19 +1,15 @@
 import { Title } from "@/common/components/title/Title";
 import { css } from "@emotion/react";
-import { Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Image from "next/image";
+import PasswordSuccessImg from "public/img/find/password=success.svg";
 
 export const FindPasswordSuccessView = () => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
         <Title>이메일을 확인해주세요.</Title>
-        <Image
-          width="100px"
-          height="90px"
-          src="/img/find/password-success.svg"
-          alt="img"
-        />
+        <Image width="100px" height="90px" src={PasswordSuccessImg} alt="img" />
         <Typography variant="h4" textAlign={"center"} mt="60px">
           비밀번호 변경 관련 이메일을 발송해드렸어요. <br />
           <span css={sx.span}>

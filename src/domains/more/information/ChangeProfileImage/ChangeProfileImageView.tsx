@@ -5,6 +5,7 @@ import { Avatar, Badge, Typography } from "@mui/material";
 import { LightColor } from "@/themes/Color";
 import Image from "next/image";
 import { useChangePasswordView } from "./useChangeProfileImageView";
+import AddProfileImg from "@/img/badge/icon-add-avatar.svg";
 
 export const ChangeProfileImageView = () => {
   const { imageState, tabState } = useChangePasswordView();
@@ -44,7 +45,7 @@ export const ChangeProfileImageView = () => {
                   <Image
                     width="36px"
                     height="36px"
-                    src="/img/badge/icon-add-avatar.svg"
+                    src={AddProfileImg}
                     alt=""
                   />
                 </label>

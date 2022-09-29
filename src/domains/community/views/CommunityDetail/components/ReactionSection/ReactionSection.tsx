@@ -2,6 +2,10 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { IconButton, Typography, TypographyProps } from "@mui/material";
 import Image from "next/image";
+import CommentIcon from "@/img/icon-chat-comment.svg";
+import ReportIcon from "@/img/icon-chat-report.svg";
+import HeartIcon from "@/img/icon-chat-heart.svg";
+import RedHeartIcon from "@/img/icon-chat-heart-red.svg";
 
 type ReactionSectionProps = {
   commentCount: number;
@@ -52,19 +56,9 @@ const LikeBox = ({ likeCount, onLike, isLike }: LikeBoxProps) => {
     <div css={sx.box}>
       <IconButton onClick={onLike}>
         {isLike ? (
-          <Image
-            width="16px"
-            height="16px"
-            src="/img/icon-chat-heart-red.svg"
-            alt=""
-          />
+          <Image width="16px" height="16px" src={RedHeartIcon} alt="" />
         ) : (
-          <Image
-            width="16px"
-            height="16px"
-            src="/img/icon-chat-heart.svg"
-            alt=""
-          />
+          <Image width="16px" height="16px" src={HeartIcon} alt="" />
         )}
 
         <Typography
@@ -84,12 +78,7 @@ const CommentBox = (p: TypographyProps) => {
   return (
     <div css={sx.box}>
       <IconButton>
-        <Image
-          width="16px"
-          height="16px"
-          src="/img/icon-chat-comment.svg"
-          alt=""
-        />
+        <Image width="16px" height="16px" src={CommentIcon} alt="" />
         <Typography
           variant="body2"
           lineHeight="1"
@@ -106,12 +95,7 @@ const ReportBox = () => {
   return (
     <div css={sx.box}>
       <IconButton onClick={() => alert("준비중입니다.")}>
-        <Image
-          width="16px"
-          height="16px"
-          src="/img/icon-chat-report.svg"
-          alt=""
-        />
+        <Image width="16px" height="16px" src={ReportIcon} alt="" />
 
         <Typography
           variant="body2"

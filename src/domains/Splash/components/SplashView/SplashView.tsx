@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import Image from "next/image";
 import Router from "next/router";
 import { useEffect } from "react";
+import Logo from "@/img/home/main-logo.png";
 export const SplashView = () => {
   useEffect(() => {
     setTimeout(() => {
@@ -18,12 +19,7 @@ export const SplashView = () => {
 
   return (
     <div css={sx.root}>
-      <Image
-        width="100px"
-        height="61px"
-        alt={"img"}
-        src={"/img/home/main-logo.png"}
-      />
+      <Image width="100px" height="61px" alt={"img"} src={Logo} />
     </div>
   );
 };

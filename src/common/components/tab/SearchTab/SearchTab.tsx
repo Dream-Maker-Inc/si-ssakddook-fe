@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import { IconButton, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import { BoardPrevButton } from "../../button/BoardPrevButton";
+import SearchIcon from "@/img/tab/icon-search.svg";
 
 type SearchTabProps = {
   value: string;
@@ -24,12 +25,7 @@ export const SearchTab = ({ value, onChange, onSearch }: SearchTabProps) => {
           disableUnderline: true,
           endAdornment: (
             <IconButton onClick={onSearch}>
-              <Image
-                width="16px"
-                height="16px"
-                src="/img/tab/icon-search.svg"
-                alt=""
-              />
+              <Image width="16px" height="16px" src={SearchIcon} alt="" />
             </IconButton>
           ),
         }}

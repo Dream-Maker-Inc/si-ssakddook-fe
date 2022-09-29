@@ -8,6 +8,8 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import ArrowIcon from "public/img/arrowIcon/icon-arrow-down.svg";
+import CategoryIcon from "public/img/selection/icon-category.svg";
 
 type CategorySelectionProps = {
   categoryList: string[];
@@ -32,23 +34,13 @@ export const CategorySelection = ({
           disableUnderline
           css={sx.select}
           IconComponent={() => (
-            <Image
-              width="24px"
-              height="24px"
-              src="/img/arrowIcon/icon-arrow-down.svg"
-              alt="dropdown"
-            />
+            <Image width="24px" height="24px" src={ArrowIcon} alt="dropdown" />
           )}
           renderValue={(selected) => {
             if (selected.length === 0) {
               return (
                 <div css={sx.outer}>
-                  <Image
-                    width="20px"
-                    height="20px"
-                    src="/img/selection/icon-category.svg"
-                    alt=""
-                  />
+                  <Image width="20px" height="20px" src={CategoryIcon} alt="" />
                   <Typography
                     variant="body1"
                     lineHeight="1"

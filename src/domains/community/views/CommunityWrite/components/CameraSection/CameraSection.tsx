@@ -1,6 +1,7 @@
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import Image from "next/image";
+import CameraIcon from "public/img/community/icon-camera.svg";
 
 type CameraSectionProps = {
   onUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -18,12 +19,7 @@ export const CameraSection = ({ onUpload }: CameraSectionProps) => {
         onChange={onUpload}
       />
       <label htmlFor="board-img-upload">
-        <Image
-          width="24px"
-          height="24px"
-          src="/img/community/icon-camera.svg"
-          alt=""
-        />
+        <Image width="24px" height="24px" src={CameraIcon} alt="" />
       </label>
     </div>
   );

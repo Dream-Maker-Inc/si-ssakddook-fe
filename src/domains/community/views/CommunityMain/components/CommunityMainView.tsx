@@ -12,6 +12,7 @@ import Link from "next/link";
 import { CommunityBox } from "./CommunityBox/CommunityBox";
 import { NoticeBox } from "./NoticeBox";
 import { useCommunityMainView } from "./useCommunityMainView";
+import ArrowRightSamllIcon from "public/img/arrowIcon/icon-arrow-right-small.svg";
 
 export const CommunityMainView = () => {
   const { boxData, result, fetchState, onRecentView } = useCommunityMainView();
@@ -45,7 +46,7 @@ export const CommunityMainView = () => {
                     <Image
                       width="11px"
                       height="11px"
-                      src="/img/arrowIcon/icon-arrow-right-small.svg"
+                      src={ArrowRightSamllIcon}
                       alt=""
                     />
                   </IconButton>

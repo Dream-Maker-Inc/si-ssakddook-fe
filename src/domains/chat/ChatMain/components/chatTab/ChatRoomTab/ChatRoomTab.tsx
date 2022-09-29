@@ -3,6 +3,8 @@ import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import { useChatTab } from "./useChatTab";
+import PrevIconImg from "public/img/arrowIcon/prev-icon.svg";
+import LogoutImg from "public/img/icon-logout.svg";
 
 export const ChatRoomTab = () => {
   const { tabState, modalState } = useChatTab();
@@ -11,24 +13,14 @@ export const ChatRoomTab = () => {
     <div css={sx.tabContainer}>
       <div css={sx.tab}>
         <IconButton onClick={tabState.onPrev}>
-          <Image
-            width="24px"
-            height="24px"
-            src="/img/arrowIcon/prev-icon.svg"
-            alt="logo"
-          />
+          <Image width="24px" height="24px" src={PrevIconImg} alt="logo" />
         </IconButton>
         <Typography variant="h2" lineHeight="1" ml="12px">
           채팅방
         </Typography>
       </div>
       <IconButton onClick={modalState.onOpen}>
-        <Image
-          width="24px"
-          height="24px"
-          src="/img/icon-logout.svg"
-          alt="logo"
-        />
+        <Image width="24px" height="24px" src={LogoutImg} alt="logo" />
       </IconButton>
       <ChatModal
         isOpen={modalState.isOpen}

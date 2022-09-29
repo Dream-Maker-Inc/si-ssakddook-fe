@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
+import MainLogo from "@/img/main/logo.svg";
 
 type DefaultTabProps = {
   category: string;
@@ -10,7 +11,7 @@ export const PlainTab = ({ category }: DefaultTabProps) => {
   return (
     <div css={sx.tabContainer}>
       <IconButton>
-        <Image width="24px" height="16px" src="/img/main/logo.svg" alt="logo" />
+        <Image width="24px" height="16px" src={MainLogo} alt="logo" />
       </IconButton>
       <Typography variant="h2" lineHeight="1" ml="12px">
         {category}

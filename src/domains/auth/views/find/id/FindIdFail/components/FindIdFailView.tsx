@@ -2,18 +2,14 @@ import { Title } from "@/common/components/title/Title";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
+import IdFailImg from "public/img/find/id-fail.svg";
 
 export const FindIdFailView = () => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
         <Title>아이디 검색 실패</Title>
-        <Image
-          width="250px"
-          height="160px"
-          src="/img/find/id-fail.svg"
-          alt="img"
-        />
+        <Image width="250px" height="160px" src={IdFailImg} alt="img" />
         <Typography variant="h4" textAlign={"center"} mt="60px">
           입력하신 휴대폰 번호와 일치하는 아이디를 찾지 못했어요.
           <br />

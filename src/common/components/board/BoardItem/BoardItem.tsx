@@ -4,6 +4,8 @@ import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import HeartIcon from "@/img/icon-chat-heart.svg";
+import CommentIcon from "@/img/icon-chat-comment.svg";
 type BoardItemProps = {
   postId: number;
   title: string;
@@ -57,23 +59,13 @@ export const BoardItem = ({
         {isPost && (
           <div css={sx.chatWrapper}>
             <div css={sx.wrapper}>
-              <Image
-                width="10px"
-                height="10px"
-                src="/img/icon-chat-heart.svg"
-                alt=""
-              />
+              <Image width="10px" height="10px" src={HeartIcon} alt="" />
               <Typography fontSize="8px" color={LightColor.Gray100}>
                 {like}
               </Typography>
             </div>
             <div css={sx.wrapper}>
-              <Image
-                width="10px"
-                height="10px"
-                src="/img/icon-chat-comment.svg"
-                alt=""
-              />
+              <Image width="10px" height="10px" src={CommentIcon} alt="" />
               <Typography fontSize="8px" color={LightColor.Gray100}>
                 {comments}
               </Typography>

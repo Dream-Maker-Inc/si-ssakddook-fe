@@ -2,7 +2,7 @@ import Image from "next/image";
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
 import { IconButton } from "@mui/material";
-import { Url } from "url";
+import CloseIcon from "@/img/close/icon-close.svg";
 
 type CloseButton = {
   location?: string;
@@ -14,12 +14,7 @@ export const CloseButton = ({ location }: CloseButton) => {
   };
   return (
     <IconButton onClick={nextLocation} css={sx.img}>
-      <Image
-        width="24px"
-        height="24px"
-        src="/img/close/icon-close.svg"
-        alt=""
-      />
+      <Image width="24px" height="24px" src={CloseIcon} alt="" />
     </IconButton>
   );
 };
