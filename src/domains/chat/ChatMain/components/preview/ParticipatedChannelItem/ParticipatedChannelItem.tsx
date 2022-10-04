@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import { useParticipatedChannelItem } from "./useParticipatedChannelItem";
-import ArrowRightIcon from "public/img/arrowIcon/icon-arrow-right.svg";
+import ArrowRightIcon from "@/img/arrowIcon/icon-arrow-right.svg";
 
 type ParticipatedChannelItemProps = {
   channel: any;

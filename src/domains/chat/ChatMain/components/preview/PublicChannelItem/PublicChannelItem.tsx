@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import { usePublicChannelItem } from "./usePublicChannelItem";
-import ArrowRightIcon from "public/img/arrowIcon/icon-arrow-right.svg";
+import ArrowRightIcon from "@/img/arrowIcon/icon-arrow-right.svg";
 
 type PublicChannelItemProps = {
   channel: any;
