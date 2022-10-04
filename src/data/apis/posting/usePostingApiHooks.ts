@@ -1,5 +1,12 @@
 import PostingApiService from "./posting.api";
-import { useMutation, useQuery } from "react-query";
+import {
+  QueryFunctionContext,
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+} from "react-query";
+import { axiosClient } from "@/constants/api/client/client";
+import { PostingItemsResponse } from "./posting.dto";
 
 export const useCreatePost = () => {
   return useMutation((formData: any) => PostingApiService.createPost(formData));
@@ -45,11 +52,10 @@ export const useFindAllCommentByPostId = (
 
 export const useFindAllPostByCategory = (
   category: string,
-  page: string,
-  size: string
+  pageParam: number
 ) => {
-  return useQuery(["find-all-post-by-category", category, page, size], () =>
-    PostingApiService.findAllPostByCategory(category, page, size)
+  return useQuery(["find-all-post-by-category", category, pageParam], () =>
+    PostingApiService.findAllPostByCategory(category, pageParam)
   );
 };
 
@@ -79,3 +85,19 @@ export const useCreateComment = (body: any) => {
 export const useUpdatePost = (postId: string, body: any) => {
   return useMutation(() => PostingApiService.updatePost(postId, body));
 };
+
+export const useFetchAllPostByCategory = (category: string, size: number) =>
+  useInfiniteQuery(
+    ["all-post-by-category"],
+    ({ pageParam = 1 }: QueryFunctionContext) =>
+      axiosClient.get<PostingItemsResponse>("/v1/posting", {
+        params: { page: pageParam, size },
+      }),
+    {
+      getNextPageParam: ({ data: { metaData } }) =>
+        metaData.isLast ? undefined : metaData.pageNumber + 1,
+      onSuccess(data) {
+        console.log(data);
+      },
+    }
+  );

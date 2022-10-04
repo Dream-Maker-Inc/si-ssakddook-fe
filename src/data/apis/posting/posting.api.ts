@@ -80,12 +80,12 @@ class PostingApiService implements PostingApiInterface {
 
   async findAllPostByCategory(
     category: string,
-    page: string,
-    size: string
+    pageParam: number
   ): Promise<PostingItemsResponse> {
-    const response = await axiosClient.get(
-      `/v1/posting?category=${category}&page=${page}&size=${size}`
-    );
+    const response = await axiosClient.get(`/v1/posting`, {
+      params: { category, page: pageParam, size: 15 },
+    });
+    console.log(response.data);
     return response.data;
   }
 

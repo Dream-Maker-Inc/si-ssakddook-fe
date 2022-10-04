@@ -7,10 +7,10 @@ import { css } from "@emotion/react";
 import { useCommunityListView } from "./useCommunityListView";
 
 export const CommunityListView = () => {
-  const { category, fetchState, result } = useCommunityListView();
+  const { category, fetchState, result, ref } = useCommunityListView();
   if (fetchState.isLoading)
     return (
-      <PlainLayout>
+      <PlainLayout isBttomMarginNecessary={false}>
         <DefaultTab category={category} />
         <CircularLoading />
       </PlainLayout>
@@ -19,35 +19,41 @@ export const CommunityListView = () => {
   if (!result) return <div></div>;
 
   return (
-    <PlainLayout>
+    <PlainLayout isBttomMarginNecessary={true}>
       <DefaultTab category={category} />
-      <div css={sx.root}>
-        {result.map((it, index) => (
-          <BoardExpandedItem
-            key={index}
-            postId={it.id + ""}
-            title={it.title}
-            date={getDateDiff(it.createdAt)}
-            nickname={it.author.nickname}
-            category={it.category}
-            like={it.likedCount + ""}
-            comments={it.commentCount + ""}
-          />
+      <div css={sx.container}>
+        {result.pages.map((page, index) => (
+          <div key={index}>
+            {page.data.items.map((it, index) => (
+              <BoardExpandedItem
+                key={index}
+                postId={it.id + ""}
+                title={it.title}
+                date={getDateDiff(it.createdAt)}
+                nickname={it.author.nickname}
+                category={it.category}
+                like={it.likedCount + ""}
+                comments={it.commentCount + ""}
+              />
+            ))}
+          </div>
         ))}
+        <div css={sx.target} ref={ref}></div>
       </div>
     </PlainLayout>
   );
 };
 
 const sx = {
-  root: css`
+  container: css`
     width: 100%;
     height: 100%;
-    position: relative;
-
     overflow-y: scroll;
-    ::-webkit-scrollbar {
-      display: none;
-    }
+  `,
+
+  target: css`
+    width: 100%;
+    height: 1px;
+    background-color: transparent;
   `,
 };

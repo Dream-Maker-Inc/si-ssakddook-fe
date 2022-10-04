@@ -13,8 +13,7 @@ export interface PostingApiInterface {
   findAllPostById(page: string, size: string): Promise<PostingItemsResponse>;
   findAllPostByCategory(
     category: string,
-    page: string,
-    size: string
+    pageParam: number
   ): Promise<PostingItemsResponse>;
   findOneByPostId(postId: string): Promise<PostingItemResponse>;
   findAllPostByKeyword(

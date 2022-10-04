@@ -1,21 +1,32 @@
-import { useFindAllPostByCategory } from "@/data/apis/posting/usePostingApiHooks";
 import { useRouter } from "next/router";
+
+import { useInView } from "react-intersection-observer";
+import { useEffect, useMemo } from "react";
+
+import { useFetchAllPostByCategory } from "@/data/apis/posting/usePostingApiHooks";
 
 export const useCommunityListView = () => {
   const router = useRouter();
   let category = router.query.category + "";
-  const page = "1";
-  const size = "30";
+  const size = 14;
 
   if (category == "undefined") {
     category = "";
   }
 
-  const { data, isLoading, isError } = useFindAllPostByCategory(
-    category,
-    page,
-    size
-  );
+  const { ref, inView } = useInView();
+  const { data, isLoading, isError, isFetching, fetchNextPage } =
+    useFetchAllPostByCategory(category, size);
+
+  if (isError) {
+    console.log(data);
+  }
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView]);
 
   if (!data) {
     return {
@@ -24,6 +35,7 @@ export const useCommunityListView = () => {
         isError: isError,
       },
       result: null,
+      ref: ref,
     };
   }
 
@@ -32,7 +44,9 @@ export const useCommunityListView = () => {
     fetchState: {
       isLoading: isLoading,
       isError: isError,
+      isFetching: isFetching,
     },
-    result: data?.items,
+    result: data,
+    ref: ref,
   };
 };
