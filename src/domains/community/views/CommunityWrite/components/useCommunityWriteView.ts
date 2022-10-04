@@ -21,6 +21,8 @@ export const useCommunityWriteView = () => {
   const isCategoryFilled = !category ? false : true;
   const isContentFilled = !content ? false : true;
 
+  const maxSize = 3 * 1000000;
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
@@ -45,6 +47,13 @@ export const useCommunityWriteView = () => {
     };
 
     if (!e.target.files) {
+      return;
+    }
+
+    const fileSize = e.target.files[0].size;
+
+    if (fileSize > maxSize) {
+      alert("이미지 사이즈는 3MB 이하만 첨부할 수 있습니다.");
       return;
     }
 

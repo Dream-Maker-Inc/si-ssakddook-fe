@@ -3,6 +3,7 @@ import {
   useGetCurrentMember,
   useUpdateProfileImage,
 } from "@/data/apis/member/useMemberApiHooks";
+import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useQuery } from "react-query";
@@ -17,6 +18,8 @@ export const useChangePasswordView = () => {
   const [img, setImage] = useState(defaultImage);
   const [uploadedImage, setUploadedImage] = useState<any>(null);
 
+  const maxSize = 3 * 1000000;
+
   const imapgeUploadHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
     reader.onload = () => {
@@ -28,6 +31,13 @@ export const useChangePasswordView = () => {
     if (!e.target.files) {
       return;
     }
+
+    const fileSize = e.target.files[0].size;
+
+    if (fileSize > maxSize) {
+      alert("이미지 사이즈는 3MB 이하만 첨부할 수 있습니다.");
+      return;
+    }
     reader.readAsDataURL(e.target.files[0]);
     setUploadedImage(e.target.files[0]);
   };
@@ -36,7 +46,7 @@ export const useChangePasswordView = () => {
   const { mutate, isSuccess, isError, data } = useUpdateProfileImage();
 
   if (isSuccess) {
-    console.log(data);
+    LocalStorage.setItem("profileImage", data.profileImageUrl);
     router.push(RoutePath.MyInformation);
   }
 
