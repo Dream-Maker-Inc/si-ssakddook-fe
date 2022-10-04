@@ -1,0 +1,1 @@
+export { ParticipatedChannelItem } from "./ParticipatedChannelItem";
