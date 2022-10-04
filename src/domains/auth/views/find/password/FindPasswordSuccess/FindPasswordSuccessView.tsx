@@ -2,7 +2,7 @@ import { Title } from "@/common/components/title/Title";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
-import PasswordSuccessImg from "public/img/find/password-success.svg";
+import PasswordSuccessImg from "@/img/find/password-success.svg";
 
 export const FindPasswordSuccessView = () => {
   return (
