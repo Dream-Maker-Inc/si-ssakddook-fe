@@ -46,7 +46,7 @@ export const useLoginView = () => {
           const deviceInfo = await handleGetDeviceInfo(window);
           axiosBasicClient
             .post(
-              "v1/device",
+              "/v1/device",
               {
                 uuid: deviceInfo.uuid,
                 modelName: deviceInfo.model,
