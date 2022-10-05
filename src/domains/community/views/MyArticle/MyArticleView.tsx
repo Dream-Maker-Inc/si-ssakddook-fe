@@ -6,9 +6,10 @@ import { MyPostList } from "./components/MyPostList";
 
 export const MyArticleView = () => {
   return (
-    <PlainLayout>
+    <PlainLayout isBttomMarginNecessary={false}>
       <DefaultTab category="내가 작성한 글" />
       <BoardTab
+        isBottomMarginNecessary={false}
         firstTabInfo={{ title: "글", children: <MyPostList /> }}
         secondTabInfo={{ title: "댓글", children: <MyCommentList /> }}
       />

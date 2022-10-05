@@ -7,6 +7,7 @@ type BoardTabProps = {
   firstTabInfo: TabModel;
   secondTabInfo: TabModel;
   isVisible?: boolean;
+  isBottomMarginNecessary?: boolean;
 };
 
 type TabModel = {
@@ -18,6 +19,7 @@ export const BoardTab = ({
   firstTabInfo,
   secondTabInfo,
   isVisible = true,
+  isBottomMarginNecessary = true,
 }: BoardTabProps) => {
   const [value, setValue] = useState(0);
 
@@ -33,16 +35,24 @@ export const BoardTab = ({
           onChange={handleChange}
           textColor="inherit"
           indicatorColor="primary"
-          sx={{ minHeight: "40px" }}
+          sx={{ height: "40px", minHeight: "40px" }}
         >
           <Tab label={firstTabInfo.title} {...a11yProps(0)} css={sx.tab} />
           <Tab label={secondTabInfo.title} {...a11yProps(1)} css={sx.tab} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
+      <TabPanel
+        value={value}
+        index={0}
+        isBottomMarginNecessary={isBottomMarginNecessary}
+      >
         {firstTabInfo.children}
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel
+        value={value}
+        index={1}
+        isBottomMarginNecessary={isBottomMarginNecessary}
+      >
         {secondTabInfo.children}
       </TabPanel>
     </Box>
@@ -52,10 +62,11 @@ interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
+  isBottomMarginNecessary: boolean;
 }
 
 function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, isBottomMarginNecessary } = props;
 
   return (
     <div
@@ -63,10 +74,9 @@ function TabPanel(props: TabPanelProps) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      css={sx.panelContainer}
-      {...other}
+      css={sx.panelContainer(isBottomMarginNecessary)}
     >
-      {value === index && <Box css={sx.panelContainer}>{children}</Box>}
+      {value === index && <Box css={sx.panelInnerContainer}>{children}</Box>}
     </div>
   );
 }
@@ -86,7 +96,6 @@ const sx = {
   `,
   tabContainer: css`
     width: 100%;
-
     border-bottom: 1px solid ${LightColor.Gray500};
   `,
   tab: css`
@@ -104,14 +113,15 @@ const sx = {
     }
   `,
 
-  panelContainer: css`
+  panelContainer: (isBottomMarginNecessary: boolean) => css`
     width: 100%;
-    height: 100%;
+    height: calc(100% - 41px);
     overflow-y: scroll;
     ::-webkit-scrollbar {
       display: none;
     }
 
-    padding-bottom: 50px;
+    padding-bottom: ${isBottomMarginNecessary ? "50px" : "0px"};
   `,
+  panelInnerContainer: css``,
 };

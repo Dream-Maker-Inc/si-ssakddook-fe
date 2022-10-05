@@ -1,11 +1,23 @@
-import { useFindAllCommentById } from "@/data/apis/posting/usePostingApiHooks";
+import { useFetchAllCommentById } from "@/data/apis/posting/usePostingApiHooks";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 export const useMyCommentList = () => {
-  const page = "1";
-  const size = "30";
+  const size = 15;
 
-  const { data, isLoading, isError } = useFindAllCommentById(page, size);
-  const models = data?.items;
+  const { ref, inView } = useInView();
+  const { data, isLoading, isError, error, isFetching, fetchNextPage } =
+    useFetchAllCommentById(size);
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView]);
+
+  if (isError) {
+    console.log(error);
+  }
 
   if (!data) {
     return {
@@ -13,7 +25,7 @@ export const useMyCommentList = () => {
         isLoading: isLoading,
         isError: isError,
       },
-      result: models,
+      result: null,
     };
   }
 
@@ -22,6 +34,7 @@ export const useMyCommentList = () => {
       isLoading: isLoading,
       isError: isError,
     },
-    result: models,
+    result: data,
+    ref: ref,
   };
 };

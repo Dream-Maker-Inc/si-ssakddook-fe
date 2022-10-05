@@ -6,7 +6,7 @@ import {
   useQuery,
 } from "react-query";
 import { axiosClient } from "@/constants/api/client/client";
-import { PostingItemsResponse } from "./posting.dto";
+import { CommentItemsResponse, PostingItemsResponse } from "./posting.dto";
 
 export const useCreatePost = () => {
   return useMutation((formData: any) => PostingApiService.createPost(formData));
@@ -25,18 +25,6 @@ export const useFindAllPostByKeyword = (
 ) => {
   return useQuery(["find-all-post-by-keyword", keyword, page, size], () =>
     PostingApiService.findAllPostByKeyword(keyword, page, size)
-  );
-};
-
-export const useFindAllPostById = (page: string, size: string) => {
-  return useQuery(["find-all-post-by-id", page, size], () =>
-    PostingApiService.findAllPostById(page, size)
-  );
-};
-
-export const useFindAllCommentById = (page: string, size: string) => {
-  return useQuery(["find-all-cpmment-by-id", page, size], () =>
-    PostingApiService.findAllCommentById(page, size)
   );
 };
 
@@ -92,6 +80,35 @@ export const useFetchAllPostByCategory = (category: string, size: number) =>
     ({ pageParam = 1 }: QueryFunctionContext) =>
       axiosClient.get<PostingItemsResponse>("/v1/posting", {
         params: { category, page: pageParam, size },
+      }),
+    {
+      getNextPageParam: ({ data: { metaData } }) =>
+        metaData.isLast ? undefined : metaData.pageNumber + 1,
+      onSuccess(data) {
+        console.log(data);
+      },
+    }
+  );
+
+export const useFetchAllCommentById = (size: number) =>
+  useInfiniteQuery(
+    ["all-comment-by-id"],
+    ({ pageParam = 1 }: QueryFunctionContext) =>
+      axiosClient.get<CommentItemsResponse>("v1/comment/mine", {
+        params: { page: pageParam, size },
+      }),
+    {
+      getNextPageParam: ({ data: { metaData } }) =>
+        metaData.isLast ? undefined : metaData.pageNumber + 1,
+    }
+  );
+
+export const useFetchAllPostsById = (size: number) =>
+  useInfiniteQuery(
+    ["all-posts-by-id"],
+    ({ pageParam = 1 }: QueryFunctionContext) =>
+      axiosClient.get<PostingItemsResponse>("v1/posting/mine", {
+        params: { page: pageParam, size },
       }),
     {
       getNextPageParam: ({ data: { metaData } }) =>
