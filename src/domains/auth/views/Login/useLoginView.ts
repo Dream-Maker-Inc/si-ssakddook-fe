@@ -45,17 +45,21 @@ export const useLoginView = () => {
 
           const deviceInfo = await handleGetDeviceInfo(window);
           axiosBasicClient
-            .post("v1/device", {
-              params: {
+            .post(
+              "v1/device",
+              {
                 uuid: deviceInfo.uuid,
                 modelName: deviceInfo.model,
                 deviceToken: deviceInfo.token,
               },
-              headers: {
-                Authorization: "Bearer " + res.accessToken,
-              },
-            })
-            .then((res) => alert("good"));
+              {
+                headers: {
+                  Authorization: "Bearer " + res.accessToken,
+                },
+              }
+            )
+            .then((res) => alert("good"))
+            .catch((e) => alert(e));
         }
       },
       onError: (err) => {
