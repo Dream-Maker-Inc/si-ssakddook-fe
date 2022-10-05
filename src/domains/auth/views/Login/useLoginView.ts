@@ -1,3 +1,4 @@
+import { handleGetDeviceInfo } from "@/common/flutter-bridge/flutter-bridge";
 import { RoutePath } from "@/constants/Path";
 import AuthApiService from "@/data/apis/auth/auth.api";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
@@ -38,7 +39,8 @@ export const useLoginView = () => {
           alert("이메일과 비밀번호를 확인해주세요.");
         } else {
           LocalStorage.setItem("jwt", res.accessToken);
-          router.push(RoutePath.Main);
+          // router.push(RoutePath.Main);
+          handleGetDeviceInfo(window);
         }
       },
       onError: (err) => {
