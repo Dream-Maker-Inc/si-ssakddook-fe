@@ -1,9 +1,11 @@
 import { handleGetDeviceInfo } from "@/common/flutter-bridge/flutter-bridge";
+import { axiosBasicClient, axiosClient } from "@/constants/api/client/client";
 import { RoutePath } from "@/constants/Path";
 import AuthApiService from "@/data/apis/auth/auth.api";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { validateEmail } from "@/utils/validation/Email/EmailValidation";
+import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
@@ -34,13 +36,26 @@ export const useLoginView = () => {
   const { mutate, isLoading } = useMutation(
     () => AuthApiService.login(email, pw),
     {
-      onSuccess: (res) => {
+      onSuccess: async (res) => {
         if (isApiFailedResponse(res)) {
           alert("이메일과 비밀번호를 확인해주세요.");
         } else {
           LocalStorage.setItem("jwt", res.accessToken);
           // router.push(RoutePath.Main);
-          handleGetDeviceInfo(window);
+
+          const deviceInfo = await handleGetDeviceInfo(window);
+          axiosBasicClient
+            .post("v1/device", {
+              params: {
+                uuid: deviceInfo.uuid,
+                modelName: deviceInfo.model,
+                deviceToken: deviceInfo.token,
+              },
+              headers: {
+                Authorization: "Bearer " + res.accessToken,
+              },
+            })
+            .then((res) => alert("good"));
         }
       },
       onError: (err) => {

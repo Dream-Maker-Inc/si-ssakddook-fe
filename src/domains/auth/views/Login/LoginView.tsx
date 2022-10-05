@@ -2,7 +2,6 @@ import { PrevButton } from "@/common/components/button/PrevButton";
 import { WhiteCircularLoading } from "@/common/components/progress/WhiteCircularProgress/WhiteCircularLoading";
 import { css } from "@emotion/react";
 import { Button, TextField, Typography } from "@mui/material";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useLoginView } from "./useLoginView";

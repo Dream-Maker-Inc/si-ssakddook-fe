@@ -1,9 +1,7 @@
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { ChatAtom } from "@/recoil/Navigation/Navigation.atom";
-import { generateRandomString } from "@/utils/random/generateRandomString";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { useChatContext } from "stream-chat-react";
 
 export const useChatMainView = () => {
   const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY!!;
