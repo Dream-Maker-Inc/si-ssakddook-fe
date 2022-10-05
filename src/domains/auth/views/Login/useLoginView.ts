@@ -41,7 +41,6 @@ export const useLoginView = () => {
           alert("이메일과 비밀번호를 확인해주세요.");
         } else {
           LocalStorage.setItem("jwt", res.accessToken);
-          // router.push(RoutePath.Main);
 
           const deviceInfo = await handleGetDeviceInfo(window);
           axiosBasicClient
@@ -58,7 +57,7 @@ export const useLoginView = () => {
                 },
               }
             )
-            .then((res) => alert("good"))
+            .then((res) => router.push(RoutePath.Main))
             .catch((e) => console.log(e));
         }
       },
