@@ -4,6 +4,7 @@ import { Typography } from "@mui/material";
 import Image from "next/image";
 import { useParticipatedChannelItem } from "./useParticipatedChannelItem";
 import ArrowRightIcon from "@/img/arrowIcon/icon-arrow-right.svg";
+import { getDateFromNow } from "@/utils/moment/DateMoment";
 
 type ParticipatedChannelItemProps = {
   channel: any;
@@ -28,8 +29,10 @@ export const ParticipatedChannelItem = ({
       </Typography>
       <p className="channel-preview__content-message">{renderMessageText()}</p>
 
-      <div css={sx.join}>
-        <Image width="24px" height="24px" src={ArrowRightIcon} alt="" />
+      <div css={sx.date}>
+        <Typography variant="h5" color={LightColor.Gray600}>
+          {getDateFromNow(channel.data.created_at)}
+        </Typography>
       </div>
     </div>
   );
@@ -49,7 +52,7 @@ const sx = {
     position: relative;
   `,
 
-  join: css`
+  date: css`
     position: absolute;
     top: 50%;
     right: 16px;

@@ -2,41 +2,45 @@ import { generateRandomString } from "@/utils/random/generateRandomString";
 import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
-import { useChatContext } from "stream-chat-react";
 import PrevIconImg from "public/img/arrowIcon/prev-icon.svg";
 import LogoImg from "public/img/main/logo.svg";
 import SubmitIconImg from "public/img/icon-submit.svg";
 import AddCHatIconImg from "public/img/tab/icon-add-chat.svg";
+import { useChatContext } from "stream-chat-react";
 
 type ChatMainTabProps = {
-  chatName: string;
+  name: string;
+  desc: string;
   onClick: () => void;
-  onCreate: () => void;
   onBack: () => void;
+  onChangeTabState: () => void;
   isCreateView: boolean;
 };
 
 export const ChatMainTab = ({
-  chatName,
+  name,
+  desc,
   onClick,
-  onCreate,
   onBack,
+  onChangeTabState,
   isCreateView,
 }: ChatMainTabProps) => {
   const { client, setActiveChannel } = useChatContext();
 
-  const createChannel = async () => {
+  const handleCreateChat = async () => {
     const channelId = generateRandomString(10);
     const channel = client.channel("messaging", channelId, {
-      name: chatName,
+      name,
+      desc,
       members: [client.user!!.id],
     });
 
     await channel.create();
     await channel.watch();
     await setActiveChannel(channel);
-    await onCreate();
+    await onChangeTabState();
   };
+
   return (
     <div css={sx.tabContainer}>
       <div css={sx.wrapper}>
@@ -56,7 +60,7 @@ export const ChatMainTab = ({
       </div>
       <div>
         {isCreateView ? (
-          <IconButton onClick={createChannel}>
+          <IconButton onClick={handleCreateChat}>
             <Image width="24px" height="24px" src={SubmitIconImg} alt="" />
           </IconButton>
         ) : (
