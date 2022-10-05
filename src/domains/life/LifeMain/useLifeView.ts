@@ -1,13 +1,19 @@
-import { getDateDiff } from "@/utils/DateDif/DateDiff";
-import { useFindAllLife } from "./../../../data/apis/life/useLifeApiHooks";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { useFetchAllLife } from "./../../../data/apis/life/useLifeApiHooks";
+
 export const useLifeView = () => {
-  let page = 1;
-  let size = 30;
+  const size = 15;
 
-  const { data, isLoading, isError, error } = useFindAllLife(page, size);
+  const { ref, inView } = useInView();
+  const { data, isLoading, isError, error, isFetching, fetchNextPage } =
+    useFetchAllLife(size);
 
-  console.log("### life ###");
-  console.log(data);
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView]);
 
   if (isError) {
     console.log(error);
@@ -27,8 +33,10 @@ export const useLifeView = () => {
     fetchState: {
       isLoading: isLoading,
       isError: isError,
+      isFetching: isFetching,
     },
 
-    result: data.items,
+    result: data,
+    ref: ref,
   };
 };

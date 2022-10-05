@@ -91,7 +91,7 @@ export const useFetchAllPostByCategory = (category: string, size: number) =>
     ["all-post-by-category"],
     ({ pageParam = 1 }: QueryFunctionContext) =>
       axiosClient.get<PostingItemsResponse>("/v1/posting", {
-        params: { page: pageParam, size },
+        params: { category, page: pageParam, size },
       }),
     {
       getNextPageParam: ({ data: { metaData } }) =>

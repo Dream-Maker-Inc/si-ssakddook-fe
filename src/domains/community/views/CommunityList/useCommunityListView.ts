@@ -1,32 +1,30 @@
 import { useRouter } from "next/router";
-
 import { useInView } from "react-intersection-observer";
-import { useEffect, useMemo } from "react";
-
+import { useEffect } from "react";
 import { useFetchAllPostByCategory } from "@/data/apis/posting/usePostingApiHooks";
 
 export const useCommunityListView = () => {
   const router = useRouter();
   let category = router.query.category + "";
-  const size = 14;
+  const size = 15;
 
   if (category == "undefined") {
     category = "";
   }
 
   const { ref, inView } = useInView();
-  const { data, isLoading, isError, isFetching, fetchNextPage } =
+  const { data, isLoading, isError, error, isFetching, fetchNextPage } =
     useFetchAllPostByCategory(category, size);
-
-  if (isError) {
-    console.log(data);
-  }
 
   useEffect(() => {
     if (inView) {
       fetchNextPage();
     }
   }, [inView]);
+
+  if (isError) {
+    console.log(error);
+  }
 
   if (!data) {
     return {

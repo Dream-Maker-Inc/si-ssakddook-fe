@@ -15,14 +15,13 @@ export const CommunityListView = () => {
         <CircularLoading />
       </PlainLayout>
     );
-  if (fetchState.isError) return <div></div>;
-  if (!result) return <div></div>;
+  if (fetchState.isError) return <div>에러가 발생했습니다.</div>;
 
   return (
     <PlainLayout isBttomMarginNecessary={true}>
       <DefaultTab category={category} />
-      <div css={sx.container}>
-        {result.pages.map((page, index) => (
+      <div css={sx.root}>
+        {result?.pages.map((page, index) => (
           <div key={index}>
             {page.data.items.map((it, index) => (
               <BoardExpandedItem
@@ -45,12 +44,15 @@ export const CommunityListView = () => {
 };
 
 const sx = {
-  container: css`
+  root: css`
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
-  `,
 
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  `,
   target: css`
     width: 100%;
     height: 1px;
