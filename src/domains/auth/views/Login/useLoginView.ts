@@ -59,7 +59,7 @@ export const useLoginView = () => {
               }
             )
             .then((res) => alert("good"))
-            .catch((e) => alert(e));
+            .catch((e) => console.log(e));
         }
       },
       onError: (err) => {
