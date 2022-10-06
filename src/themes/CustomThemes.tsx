@@ -142,6 +142,14 @@ export const lightTheme = createTheme({
         },
       },
     },
+
+    MuiSwitch: {
+      styleOverrides: {
+        track: {
+          backgroundColor: "#A4A4A4",
+        },
+      },
+    },
   },
 });
 
