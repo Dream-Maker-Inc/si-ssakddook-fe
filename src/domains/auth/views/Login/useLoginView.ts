@@ -58,7 +58,7 @@ export const useLoginView = () => {
               }
             )
             .then((res) => router.push(RoutePath.Main))
-            .catch((e) => console.log(e));
+            .catch((e) => alert(e));
         }
       },
       onError: (err) => {

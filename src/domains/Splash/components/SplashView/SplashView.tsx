@@ -9,7 +9,7 @@ export const SplashView = () => {
   useEffect(() => {
     setTimeout(() => {
       const memberId = LocalStorage.getItem("id");
-      if (memberId == "undefined" || memberId == "") {
+      if (memberId === "undefined" || memberId == "" || memberId == null) {
         Router.push(RoutePath.Home);
       } else {
         Router.push(RoutePath.Main);
