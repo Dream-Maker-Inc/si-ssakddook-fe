@@ -5,7 +5,7 @@ import { css } from "@emotion/react";
 import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
-import { CommentWrite } from "../CommentWrite";
+import { CommentWrite } from "../../../components/CommentWrite";
 import { useCommentSection } from "./useCommentSection";
 import { LightColor } from "@/themes/Color";
 
@@ -25,7 +25,7 @@ export const CommentSection = ({ postId }: CommentSectionProps) => {
 
   return (
     <div>
-      {models.map((it, index) => (
+      {models.slice(0, 10).map((it, index) => (
         <BoardComment
           key={index}
           commentId={it.id}
@@ -44,7 +44,9 @@ export const CommentSection = ({ postId }: CommentSectionProps) => {
           onDelete={buttonState.onDelete}
         />
       ))}
-      <CommentDetailViewButton postId={postId} />
+
+      {models.length >= 10 && <CommentDetailViewButton postId={postId} />}
+
       <CommentWrite
         value={commentState.value}
         onChange={commentState.onChange}

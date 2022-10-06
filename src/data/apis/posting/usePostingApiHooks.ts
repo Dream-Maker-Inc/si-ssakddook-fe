@@ -84,9 +84,6 @@ export const useFetchAllPostByCategory = (category: string, size: number) =>
     {
       getNextPageParam: ({ data: { metaData } }) =>
         metaData.isLast ? undefined : metaData.pageNumber + 1,
-      onSuccess(data) {
-        console.log(data);
-      },
     }
   );
 
@@ -109,6 +106,19 @@ export const useFetchAllPostsById = (size: number) =>
     ({ pageParam = 1 }: QueryFunctionContext) =>
       axiosClient.get<PostingItemsResponse>("v1/posting/mine", {
         params: { page: pageParam, size },
+      }),
+    {
+      getNextPageParam: ({ data: { metaData } }) =>
+        metaData.isLast ? undefined : metaData.pageNumber + 1,
+    }
+  );
+
+export const useFetchAllCommentsByPostId = (size: number, postId: string) =>
+  useInfiniteQuery(
+    ["all-comments-by-post-id"],
+    ({ pageParam = 1 }: QueryFunctionContext) =>
+      axiosClient.get<CommentItemsResponse>("v1/comment", {
+        params: { page: pageParam, size, postingId: postId },
       }),
     {
       getNextPageParam: ({ data: { metaData } }) =>

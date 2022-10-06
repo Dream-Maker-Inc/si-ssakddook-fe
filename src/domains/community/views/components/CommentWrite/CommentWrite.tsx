@@ -2,7 +2,8 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { IconButton, TextField } from "@mui/material";
 import Image from "next/image";
-import SendIcon from "public/img/icon-send.svg";
+import SendIcon from "@/img/icon-send.svg";
+import ActivatedSendIcon from "@/img/icon-send-activate.svg";
 
 type CommentWriteProps = {
   value: string;
@@ -26,11 +27,19 @@ export const CommentWrite = ({
         css={sx.searchField}
         InputProps={{
           disableUnderline: true,
-          endAdornment: (
-            <IconButton onClick={onCommentSubmit}>
+          endAdornment:
+            value !== "" ? (
+              <IconButton onClick={onCommentSubmit}>
+                <Image
+                  width="24px"
+                  height="24px"
+                  src={ActivatedSendIcon}
+                  alt=""
+                />
+              </IconButton>
+            ) : (
               <Image width="24px" height="24px" src={SendIcon} alt="" />
-            </IconButton>
-          ),
+            ),
         }}
       />
     </div>

@@ -59,6 +59,7 @@ export const useCommentSection = (postId: string) => {
     content: comment,
   };
 
+  // create comment
   const { mutate: createCommentMutate, data: createCommentData } = useMutation(
     (body: any) => PostingApiService.createComment(body),
     {

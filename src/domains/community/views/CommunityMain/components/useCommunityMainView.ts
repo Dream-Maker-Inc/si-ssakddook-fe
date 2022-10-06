@@ -77,7 +77,7 @@ export const useCommunityMainView = () => {
   const page = "1";
   const { data, isLoading, isError } = useFindAllPost(page, size);
 
-  const handlePostView = () => {
+  const handleViewRecentPost = () => {
     router.push(RoutePath.CommunityList);
   };
 
@@ -97,6 +97,6 @@ export const useCommunityMainView = () => {
       isError,
     },
     result: data.items,
-    onRecentView: handlePostView,
+    onRecentView: handleViewRecentPost,
   };
 };
