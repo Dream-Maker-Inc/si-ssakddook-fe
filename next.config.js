@@ -5,8 +5,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["cdn.pixabay.com", "ureca.s3.ap-northeast-2.amazonaws.com"],
-    // loader: "akamai",
+    domains: ["cdn.pixabay.com", "ssakduk-fe.s3.ap-northeast-2.amazonaws.com"],
+    //loader: "akamai",
     // path: "",
   },
   trailingSlash: true,
