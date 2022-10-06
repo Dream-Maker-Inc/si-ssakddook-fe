@@ -4,8 +4,8 @@ import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import ChatCloseIcon from "@/img/icon-chat-close.svg";
-import HeartIcon from "@/img/icon-chat-heart-red.svg";
-import RedHeartIcon from "@/img/icon-chat-heart.svg";
+import RedHeartIcon from "@/img/icon-chat-heart-red.svg";
+import HeartIcon from "@/img/icon-chat-heart.svg";
 
 type BoardCommentProps = {
   commentId: number;
