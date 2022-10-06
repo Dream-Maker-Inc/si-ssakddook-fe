@@ -8,10 +8,6 @@ export const useCommunityListView = () => {
   let category = router.query.category + "";
   const size = 15;
 
-  if (category === "undefined") {
-    category = "";
-  }
-
   const { ref, inView } = useInView();
   const { data, isLoading, isError, error, isFetching, fetchNextPage } =
     useFetchAllPostByCategory(category, size);

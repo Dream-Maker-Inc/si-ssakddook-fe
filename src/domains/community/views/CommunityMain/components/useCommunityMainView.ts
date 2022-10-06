@@ -78,7 +78,7 @@ export const useCommunityMainView = () => {
   const { data, isLoading, isError } = useFindAllPost(page, size);
 
   const handleViewRecentPost = () => {
-    router.push(RoutePath.CommunityList);
+    router.push({ pathname: RoutePath.CommunityList, query: { category: "" } });
   };
 
   if (!data) {
