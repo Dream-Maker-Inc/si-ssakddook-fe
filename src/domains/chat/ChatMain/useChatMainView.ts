@@ -6,17 +6,17 @@ import { useRecoilState } from "recoil";
 export const useChatMainView = () => {
   const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY!!;
 
-  const user = {
-    id: LocalStorage.getItem("id")!!,
-    name: LocalStorage.getItem("nickname")!!,
-    image: LocalStorage.getItem("profileImage")!!,
-  };
-
   // const user = {
-  //   id: "emily",
-  //   name: "emily",
-  //   image: null,
+  //   id: LocalStorage.getItem("id")!!,
+  //   name: LocalStorage.getItem("nickname")!!,
+  //   image: LocalStorage.getItem("profileImage")!!,
   // };
+
+  const user = {
+    id: "emily",
+    name: "emily",
+    image: null,
+  };
 
   const [isCreateChatVisible, setIsCreateChatVisible] = useState(false);
   const [isChannelListVisible, setIsChannelListVisible] =

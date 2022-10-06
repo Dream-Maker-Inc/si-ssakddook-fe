@@ -4,6 +4,7 @@ import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { useEffect, useState } from "react";
 import { StreamChat } from "stream-chat";
 import {
+  ChannelHeader,
   Chat,
   LoadingIndicator,
   MessageInput,
