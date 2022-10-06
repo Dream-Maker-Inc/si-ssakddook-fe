@@ -49,6 +49,10 @@ const sx = {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    &:hover {
+      background-color: ${LightColor.Gray500};
+    }
   `,
   container: css`
     display: flex;

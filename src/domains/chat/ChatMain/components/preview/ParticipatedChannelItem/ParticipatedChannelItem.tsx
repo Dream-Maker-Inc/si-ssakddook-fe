@@ -1,9 +1,7 @@
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
-import Image from "next/image";
 import { useParticipatedChannelItem } from "./useParticipatedChannelItem";
-import ArrowRightIcon from "@/img/arrowIcon/icon-arrow-right.svg";
 import { getDateFromNow } from "@/utils/moment/DateMoment";
 
 type ParticipatedChannelItemProps = {
@@ -50,6 +48,12 @@ const sx = {
     justify-content: center;
 
     position: relative;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${LightColor.Gray500};
+    }
   `,
 
   date: css`
