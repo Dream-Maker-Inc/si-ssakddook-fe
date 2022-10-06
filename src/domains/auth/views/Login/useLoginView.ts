@@ -5,7 +5,6 @@ import AuthApiService from "@/data/apis/auth/auth.api";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { validateEmail } from "@/utils/validation/Email/EmailValidation";
-import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
@@ -40,8 +39,6 @@ export const useLoginView = () => {
         if (isApiFailedResponse(res)) {
           alert("이메일과 비밀번호를 확인해주세요.");
         } else {
-          LocalStorage.setItem("jwt", res.accessToken);
-
           const deviceInfo = await handleGetDeviceInfo(window);
           axiosBasicClient
             .post(
@@ -57,7 +54,10 @@ export const useLoginView = () => {
                 },
               }
             )
-            .then((res) => router.push(RoutePath.Main))
+            .then((e) => {
+              LocalStorage.setItem("jwt", res.accessToken);
+              router.push(RoutePath.Main);
+            })
             .catch((e) => alert(e));
         }
       },
