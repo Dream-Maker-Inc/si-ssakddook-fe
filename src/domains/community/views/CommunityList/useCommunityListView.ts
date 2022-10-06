@@ -8,7 +8,7 @@ export const useCommunityListView = () => {
   let category = router.query.category + "";
   const size = 15;
 
-  if (category == "undefined") {
+  if (category === "undefined") {
     category = "";
   }
 
