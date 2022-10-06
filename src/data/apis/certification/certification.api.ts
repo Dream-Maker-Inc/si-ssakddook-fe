@@ -14,7 +14,7 @@ class IamCertificationApiService implements IamCertificationApiInterface {
   ) {
     return window.IMP.certification(
       {
-        popup: false,
+        popup: true,
       },
       isSuccess,
       isError
