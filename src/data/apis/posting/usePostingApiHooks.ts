@@ -84,6 +84,12 @@ export const useFetchAllPostByCategory = (category: string, size: number) =>
     {
       getNextPageParam: ({ data: { metaData } }) =>
         metaData.isLast ? undefined : metaData.pageNumber + 1,
+      onSuccess: (res) => {
+        console.log(res);
+      },
+      onError: (err) => {
+        console.log(err);
+      },
     }
   );
 
