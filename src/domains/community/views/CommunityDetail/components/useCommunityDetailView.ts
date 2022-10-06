@@ -74,6 +74,7 @@ export const useCommunityDetailView = () => {
     fetchState: {
       isLoading: isLoading,
       isError: isError,
+      refetch: refetch,
     },
     result: {
       postId: data.id,

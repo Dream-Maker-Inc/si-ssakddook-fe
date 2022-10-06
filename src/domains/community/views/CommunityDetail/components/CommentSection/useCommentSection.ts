@@ -1,5 +1,8 @@
 import LikeApiService from "@/data/apis/like/like.api";
-import { useFindAllCommentByPostId } from "@/data/apis/posting/usePostingApiHooks";
+import {
+  useFindAllCommentByPostId,
+  useFindOneByPostId,
+} from "@/data/apis/posting/usePostingApiHooks";
 import { useMutation, useQuery } from "react-query";
 import PostingApiService from "@/data/apis/posting/posting.api";
 import { useState } from "react";
@@ -60,12 +63,15 @@ export const useCommentSection = (postId: string) => {
   };
 
   // create comment
+  const { refetch: postRefetch } = useFindOneByPostId(postId);
+
   const { mutate: createCommentMutate, data: createCommentData } = useMutation(
     (body: any) => PostingApiService.createComment(body),
     {
       onSuccess: (res) => {
-        refetch();
         setComment("");
+        postRefetch();
+        refetch();
       },
     }
   );

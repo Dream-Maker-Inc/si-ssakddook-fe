@@ -5,7 +5,7 @@ import { useSetRecoilState } from "recoil";
 import { useChatContext } from "stream-chat-react";
 
 export const useChatTab = () => {
-  const { channel } = useChatContext();
+  const { channel, client } = useChatContext();
   const setIsChannelListVisible = useSetRecoilState(ChatAtom);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -16,10 +16,21 @@ export const useChatTab = () => {
     setIsChannelListVisible(true);
   };
 
+  channel?.on("message.deleted", (event) => {
+    console.log("event", event);
+    console.log("channel.state", channel.state);
+  });
+
+  channel?.on((event) => {
+    console.log("event", event);
+    console.log("channel.state", channel.state);
+  });
+
   const handleChatExit = async () => {
     setModalOpen(false);
-
     await channel?.removeMembers([LocalStorage.getItem("id")!!]);
+    //await channel?.removeMembers(["emily"]);
+    await channel?.stopWatching;
     await setIsChannelListVisible(true);
   };
   return {
