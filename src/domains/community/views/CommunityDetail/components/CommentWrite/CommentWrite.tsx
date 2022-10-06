@@ -7,14 +7,12 @@ import SendIcon from "public/img/icon-send.svg";
 type CommentWriteProps = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  postId: string;
   onCommentSubmit: () => void;
 };
 
 export const CommentWrite = ({
   value,
   onChange,
-  postId,
   onCommentSubmit,
 }: CommentWriteProps) => {
   return (

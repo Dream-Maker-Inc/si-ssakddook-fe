@@ -31,13 +31,15 @@ export const useCommentSection = (postId: string) => {
   );
 
   // create like
-  const { mutate: createLike } = useMutation(
+  const { mutate: createLike, data: commentLike } = useMutation(
     (likeBody: any) => LikeApiService.createLike(likeBody),
     {
       onSuccess: (res: any) => {
         refetch();
       },
-      onError: (res: any) => {},
+      onError: (err: any) => {
+        console.log(err);
+      },
     }
   );
 

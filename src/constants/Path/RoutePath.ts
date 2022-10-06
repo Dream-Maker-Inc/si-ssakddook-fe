@@ -21,6 +21,7 @@ export enum RoutePath {
   Community = "/community",
   CommunityWrite = "/community/write",
   CommunityDetail = "/community/detail",
+  CommunintyCommentDetail = "/community/comment/detail",
   CommunityList = "/community/list",
   CommunitySearch = "/community/search",
   CommunityUpdate = "/community/update",
