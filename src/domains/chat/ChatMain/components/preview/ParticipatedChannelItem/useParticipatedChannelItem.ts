@@ -3,11 +3,10 @@ import { useSetRecoilState } from "recoil";
 import { useChatContext } from "stream-chat-react";
 
 export const useParticipatedChannelItem = (channel: any) => {
-  const { client, setActiveChannel } = useChatContext();
+  const { setActiveChannel } = useChatContext();
   const setIsChannelListVisible = useSetRecoilState(ChatAtom);
 
   const handleChatJoin = async () => {
-    await channel.addMembers([client.user?.id]);
     await channel.watch();
     await setActiveChannel(channel);
     await setIsChannelListVisible(false);
