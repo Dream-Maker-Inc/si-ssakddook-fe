@@ -4,7 +4,6 @@ import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { useEffect, useState } from "react";
 import { StreamChat } from "stream-chat";
 import {
-  ChannelHeader,
   Chat,
   LoadingIndicator,
   MessageInput,
@@ -86,10 +85,9 @@ export const ChatMainView = () => {
             />
             <CustomChannel isVisible={!channelListState.visible}>
               <Window>
-                <MessageList />
+                <MessageList messageActions={[]} />
                 <MessageInput />
               </Window>
-              <Thread />
             </CustomChannel>
           </div>
         )}
