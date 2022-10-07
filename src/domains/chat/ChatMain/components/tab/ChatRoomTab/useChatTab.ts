@@ -2,10 +2,11 @@ import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { ChatAtom } from "@/recoil/Navigation/Navigation.atom";
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
-import { Message, useChatContext } from "stream-chat-react";
+import { useChannelActionContext, useChatContext } from "stream-chat-react";
 
 export const useChatTab = () => {
   const { channel, client } = useChatContext();
+
   const setIsChannelListVisible = useSetRecoilState(ChatAtom);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -17,10 +18,12 @@ export const useChatTab = () => {
   };
 
   const handleChatExit = async () => {
-    setModalOpen(false);
-    //await channel?.removeMembers([LocalStorage.getItem("id")!!]);
-    await channel?.removeMembers(["emily"]);
-    await channel?.stopWatching;
+    await setModalOpen(false);
+    await channel?.removeMembers([LocalStorage.getItem("id")!!], {
+      text: `${client.user?.nickname}님이 나가셨습니다.`,
+    });
+
+    await channel!!.stopWatching;
     await setIsChannelListVisible(true);
   };
   return {
