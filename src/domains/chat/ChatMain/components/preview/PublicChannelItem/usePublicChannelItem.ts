@@ -5,7 +5,6 @@ import { useChannelActionContext, useChatContext } from "stream-chat-react";
 
 export const usePublicChannelItem = (channel: any) => {
   const { client, setActiveChannel } = useChatContext();
-  const { sendMessage } = useChannelActionContext();
 
   const setIsChannelListVisible = useSetRecoilState(ChatAtom);
 
@@ -17,10 +16,9 @@ export const usePublicChannelItem = (channel: any) => {
   const handleChatJoin = async () => {
     setModalOpen(false);
 
-    await channel.addMembers(
-      [client.user?.id],
-      sendMessage({ text: `${client.user?.name} 님이 입장했습니다.` })
-    );
+    await channel.addMembers([client.user?.id], {
+      text: `${client.user?.name} 님이 입장했습니다.`,
+    });
 
     await channel.watch();
     await setActiveChannel(channel);
