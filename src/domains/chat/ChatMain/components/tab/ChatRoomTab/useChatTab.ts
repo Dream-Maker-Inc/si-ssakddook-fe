@@ -20,10 +20,10 @@ export const useChatTab = () => {
   const handleChatExit = async () => {
     await setModalOpen(false);
     await channel?.removeMembers([LocalStorage.getItem("id")!!], {
-      text: `${client.user?.nickname}님이 나가셨습니다.`,
+      text: `${client.user?.name}님이 나가셨습니다.`,
     });
 
-    await channel!!.stopWatching;
+    await channel?.stopWatching();
     await setIsChannelListVisible(true);
   };
   return {

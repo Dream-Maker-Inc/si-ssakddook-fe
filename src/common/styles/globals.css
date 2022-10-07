@@ -495,7 +495,6 @@ header #logo .icon {
   white-space: nowrap;
 }
 
-.str-chat__loading-channels {
-  min-width: unset;
-  width: 100%;
+.str-chat__container .str-chat__message-simple-status {
+  display: none;
 }
