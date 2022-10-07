@@ -1,10 +1,12 @@
 import { ChatAtom } from "@/recoil/Navigation/Navigation.atom";
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
-import { useChatContext } from "stream-chat-react";
+import { useChannelActionContext, useChatContext } from "stream-chat-react";
 
 export const usePublicChannelItem = (channel: any) => {
   const { client, setActiveChannel } = useChatContext();
+  const { sendMessage } = useChannelActionContext();
+
   const setIsChannelListVisible = useSetRecoilState(ChatAtom);
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -15,7 +17,11 @@ export const usePublicChannelItem = (channel: any) => {
   const handleChatJoin = async () => {
     setModalOpen(false);
 
-    await channel.addMembers([client.user?.id]);
+    await channel.addMembers(
+      [client.user?.id],
+      sendMessage({ text: `${client.user?.name} 님이 입장했습니다.` })
+    );
+
     await channel.watch();
     await setActiveChannel(channel);
     await setIsChannelListVisible(false);
