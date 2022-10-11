@@ -3,7 +3,7 @@ export type LifeItemResponse = {
   title: string;
   content: string;
   viewCount: number;
-  attachments: string;
+  attachments: string[];
   link: string;
   createdAt: Date;
   updateAt: Date;

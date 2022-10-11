@@ -3,7 +3,6 @@ import { ShowThumbnailSection } from "@/common/components/thumbnail/ShowThumbnai
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography, TypographyProps } from "@mui/material";
-import { useCallback, useState } from "react";
 
 type ContentSectionProps = {
   category: string;

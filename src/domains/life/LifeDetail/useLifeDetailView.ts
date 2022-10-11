@@ -26,7 +26,8 @@ export const useLifeDetailView = () => {
         date: "",
         viewCount: 0,
         content: "",
-        attachments: "",
+        attachments: [],
+        link: "",
       },
     };
   }
@@ -43,6 +44,7 @@ export const useLifeDetailView = () => {
       viewCount: data.viewCount,
       content: data.content,
       attachments: data.attachments,
+      link: data.link,
     },
   };
 };

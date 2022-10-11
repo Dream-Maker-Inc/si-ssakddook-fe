@@ -13,7 +13,6 @@ import { CommunityBox } from "./CommunityBox/CommunityBox";
 import { NoticeBox } from "./NoticeBox";
 import { useCommunityMainView } from "./useCommunityMainView";
 import ArrowRightSamllIcon from "@/img/arrowIcon/icon-arrow-right-small.svg";
-import { RoutePath } from "@/constants/Path";
 
 export const CommunityMainView = () => {
   const { boxData, result, fetchState, onRecentView } = useCommunityMainView();

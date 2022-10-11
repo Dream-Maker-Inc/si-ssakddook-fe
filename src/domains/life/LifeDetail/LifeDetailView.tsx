@@ -6,6 +6,7 @@ import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import Image from "next/image";
 import { useLifeDetailView } from "./useLifeDetailView";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
+import { ShowThumbnailSection } from "@/common/components/thumbnail/ShowThumbnailSection";
 
 export const LifeDetailView = () => {
   const { fetchState, result } = useLifeDetailView();
@@ -21,8 +22,8 @@ export const LifeDetailView = () => {
           date={result.date}
           viewCount={result.viewCount}
         />
-        <ContentSection content={result.content} image={result.attachments} />
-        <ImageSourceSection src={result.attachments} />
+        <ContentSection content={result.content} images={result.attachments} />
+        <ImageSourceSection link={result.link} />
       </div>
     </PlainLayout>
   );
@@ -127,32 +128,38 @@ const TitleSection = ({ title, date, viewCount }: TitleSectionProps) => {
 
 export type ContentSectionProps = {
   content: string;
-  image: any;
+  images: string[];
 };
 
-const ContentSection = ({ content, image }: ContentSectionProps) => {
+const ContentSection = ({ content, images }: ContentSectionProps) => {
   return (
     <div css={sx.contentRoot}>
       <Typography variant="body2" color="black" mb="16px">
         {content}
       </Typography>
-      <div css={sx.image}>
-        <Image width="200px" height="200px" src={image} alt="image" />
-      </div>
+      {images.length !== 0 && (
+        <ShowThumbnailSection uploadImageList={images} isVisible={true} />
+      )}
     </div>
   );
 };
 
 export type ImageSourceSectionProps = {
-  src: string;
+  link: string;
 };
 
-const ImageSourceSection = ({ src }: ImageSourceSectionProps) => {
+const ImageSourceSection = ({ link }: ImageSourceSectionProps) => {
   return (
     <div css={sx.sourceRoot}>
       <Image width="12px" height="12px" src="/img/icon-img-link.svg" alt="" />
-      <Typography variant="body2" color={LightColor.Gray100} css={sx.src}>
-        {src}
+      <Typography
+        component="a"
+        variant="body2"
+        color={LightColor.Gray100}
+        href={link}
+        css={sx.src}
+      >
+        {link}
       </Typography>
     </div>
   );
