@@ -6,6 +6,7 @@ import { axiosBasicClient, axiosClient } from "@/constants/api/client/client";
 import { RoutePath } from "@/constants/Path";
 import AuthApiService from "@/data/apis/auth/auth.api";
 import { LoginApiResponse } from "@/data/apis/auth/auth.dto";
+import { useRegisterDevice } from "@/data/apis/device/useDeviceApiHooks";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { validateEmail } from "@/utils/validation/Email/EmailValidation";
@@ -56,9 +57,9 @@ export const useLoginView = () => {
       return saveJwtAndGoMain(res.accessToken);
     }
 
-    //
+    // 유저 디바이스 정보 서버로 전달
     const deviceInfo = await handleGetDeviceInfo(window);
-    await registerUserDevice(res.accessToken, deviceInfo)
+    await useRegisterDevice(res.accessToken, deviceInfo)
       .then(() => saveJwtAndGoMain(res.accessToken))
       .catch((e) => alert(e));
   };
@@ -103,21 +104,4 @@ export const useLoginView = () => {
       isLoading: isLoading,
     },
   };
-};
-
-// 유저 디바이스 정보 서버로 전달
-const registerUserDevice = (accessToken: string, deviceInfo: DeviceInfo) => {
-  return axiosBasicClient.post(
-    "/v1/device",
-    {
-      uuid: deviceInfo.uuid,
-      modelName: deviceInfo.model,
-      deviceToken: deviceInfo.token,
-    },
-    {
-      headers: {
-        Authorization: "Bearer " + accessToken,
-      },
-    }
-  );
 };
