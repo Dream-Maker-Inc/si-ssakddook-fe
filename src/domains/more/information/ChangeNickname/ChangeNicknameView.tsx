@@ -24,7 +24,7 @@ export const ChangeNicknameView = () => {
             fullWidth
             value={nicknameState.value}
             onChange={nicknameState.onChange}
-            placeholder="고독한 강아지"
+            placeholder={nicknameState.currValue}
           />
         </div>
       </div>

@@ -52,7 +52,7 @@ class MemberApiService implements MemberApiInterface {
   }
 
   async updateNickname(nickname: string): Promise<ApiFailedResponse | any> {
-    const response = await axiosClient.patch(`/v1/member/${this.id}`, {
+    const response = await axiosClient.patch(`/v1/member`, {
       nickname,
     });
 

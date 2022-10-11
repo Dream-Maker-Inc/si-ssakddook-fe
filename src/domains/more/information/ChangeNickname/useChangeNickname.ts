@@ -1,33 +1,55 @@
 import { RoutePath } from "@/constants/Path";
-import { useUpdateNickname } from "@/data/apis/member/useMemberApiHooks";
+import MemberApiService from "@/data/apis/member/member.api";
+import {
+  useGetCurrentMember,
+  useUpdateNickname,
+} from "@/data/apis/member/useMemberApiHooks";
+import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useMutation, useQuery } from "react-query";
 
 export const useChangeNickname = () => {
   const router = useRouter();
 
-  const [nickname, setNickname] = useState("");
+  const [newNickname, setNewNickname] = useState("");
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNickname(e.target.value);
+    setNewNickname(e.target.value);
   };
-  const onActive = nickname !== "" ? true : false;
+  const onActive = newNickname !== "" ? true : false;
+
+  // get current member
+  const { data } = useQuery("get-curr-member", useGetCurrentMember);
 
   // change nickname api
-  const { mutate, isSuccess, isError } = useUpdateNickname(nickname);
-  if (isSuccess) {
-    console.log("nickname change success");
-    router.push(RoutePath.MyInformation);
-  }
-  if (isError) {
-    console.log("nickname change failed");
-  }
+  const { mutate, isLoading, isError } = useMutation(
+    () => MemberApiService.updateNickname(newNickname),
+    {
+      onSuccess: async (res) => {
+        if (isApiFailedResponse(res)) {
+          alert("중복된 닉네임입니다.");
+        } else {
+          router.push(RoutePath.MyInformation);
+        }
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    }
+  );
+
   const onSubmit = () => {
     mutate();
   };
 
   return {
+    refetch: {
+      isLoading: isLoading,
+      isError: isError,
+    },
     nicknameState: {
-      value: nickname,
+      currValue: data?.nickname,
+      value: newNickname,
       onChange: handleNicknameChange,
     },
 
