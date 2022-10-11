@@ -14,7 +14,7 @@ import { getDiaryDateDiff } from "@/utils/DateDif/DateDiff";
 import { DiaryLastClickedDateAtom } from "@/recoil/Diary/Diary.atom";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { useSetRecoilState } from "recoil";
-import ArrowRightIcon from "public/img/calendar/icon-arrow-right.svg";
+import ArrowRightIcon from "@/img/calendar/icon-arrow-right.svg";
 
 const MemoCalendar = ({
   showDetailsHandle,

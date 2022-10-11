@@ -6,7 +6,7 @@ import { Button, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
-import ImgSignup from "public/img/auth/img-signup.svg";
+import ImgSignup from "@/img/auth/img-signup.svg";
 
 export const SignupSuccessView = () => {
   const router = useRouter();

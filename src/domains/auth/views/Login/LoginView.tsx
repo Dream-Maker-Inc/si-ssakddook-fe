@@ -5,7 +5,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useLoginView } from "./useLoginView";
-import MainImg from "public/img/logo/main.svg";
+import MainImg from "@/img/logo/main.svg";
 
 export const LoginView = () => {
   const { emailState, pwState, login } = useLoginView();

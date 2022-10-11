@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
-import MainImg from "public/img/logo/main.svg";
+import MainImg from "@/img/logo/main.svg";
 import { useHomeView } from "./useIntroView";
 export const HomeView = () => {
   const { signup, login } = useHomeView();

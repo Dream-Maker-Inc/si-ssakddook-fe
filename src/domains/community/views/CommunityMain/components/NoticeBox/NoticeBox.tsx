@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import HeartIcon from "public/img/community/icon-heart.svg";
+import HeartIcon from "@/img/community/icon-heart.svg";
 
 export const NoticeBox = () => {
   const router = useRouter();

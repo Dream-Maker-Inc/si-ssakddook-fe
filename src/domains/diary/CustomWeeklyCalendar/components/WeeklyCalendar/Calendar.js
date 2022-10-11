@@ -12,8 +12,8 @@ import {
 import Image from "next/image";
 import { useSetRecoilState } from "recoil";
 import { MonthSelection } from "../MonthSelection";
-import LeftScrollIcon from "public/img/calendar/icon-left-scroll.svg";
-import RightScrollIcon from "public/img/calendar/icon-right-scroll.svg";
+import LeftScrollIcon from "@/img/calendar/icon-left-scroll.svg";
+import RightScrollIcon from "@/img/calendar/icon-right-scroll.svg";
 
 const Calendar = ({
   showDetailsHandle,

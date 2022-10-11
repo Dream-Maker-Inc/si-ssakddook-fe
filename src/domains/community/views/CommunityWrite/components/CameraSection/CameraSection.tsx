@@ -1,7 +1,7 @@
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import Image from "next/image";
-import CameraIcon from "public/img/community/icon-camera.svg";
+import CameraIcon from "@/img/community/icon-camera.svg";
 
 type CameraSectionProps = {
   onUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;

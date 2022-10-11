@@ -2,10 +2,10 @@ import { generateRandomString } from "@/utils/random/generateRandomString";
 import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
-import PrevIconImg from "public/img/arrowIcon/prev-icon.svg";
-import LogoImg from "public/img/main/logo.svg";
-import SubmitIconImg from "public/img/icon-submit.svg";
-import AddCHatIconImg from "public/img/tab/icon-add-chat.svg";
+import PrevIconImg from "@/img/arrowIcon/prev-icon.svg";
+import LogoImg from "@/img/main/logo.svg";
+import SubmitIconImg from "@/img/icon-submit.svg";
+import AddCHatIconImg from "@/img/tab/icon-add-chat.svg";
 import { useChatContext } from "stream-chat-react";
 
 type ChatMainTabProps = {

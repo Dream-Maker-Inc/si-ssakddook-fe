@@ -2,7 +2,7 @@ import { Title } from "@/common/components/title/Title";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
-import IdFailImg from "public/img/find/id-fail.svg";
+import IdFailImg from "@/img/find/id-fail.svg";
 
 export const FindIdFailView = () => {
   return (

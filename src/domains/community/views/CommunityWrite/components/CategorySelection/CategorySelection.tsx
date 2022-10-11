@@ -8,8 +8,8 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import ArrowIcon from "public/img/arrowIcon/icon-arrow-down.svg";
-import CategoryIcon from "public/img/selection/icon-category.svg";
+import ArrowIcon from "@/img/arrowIcon/icon-arrow-down.svg";
+import CategoryIcon from "@/img/selection/icon-category.svg";
 
 type CategorySelectionProps = {
   categoryList: string[];

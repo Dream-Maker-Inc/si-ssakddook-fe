@@ -12,7 +12,7 @@ import Link from "next/link";
 import { CommunityBox } from "./CommunityBox/CommunityBox";
 import { NoticeBox } from "./NoticeBox";
 import { useCommunityMainView } from "./useCommunityMainView";
-import ArrowRightSamllIcon from "public/img/arrowIcon/icon-arrow-right-small.svg";
+import ArrowRightSamllIcon from "@/img/arrowIcon/icon-arrow-right-small.svg";
 import { RoutePath } from "@/constants/Path";
 
 export const CommunityMainView = () => {
