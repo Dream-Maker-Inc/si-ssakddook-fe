@@ -2,6 +2,7 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
+import ImageViewer from "react-simple-image-viewer";
 
 type ThumbnailSectionProps = {
   uploadImageList: string[];
@@ -28,7 +29,7 @@ export const ShowThumbnailSection = ({
   return (
     <div css={sx.thumbnailSection(isVisible)}>
       {uploadImageList?.map((it, index) => (
-        <div css={sx.thumbnail} key={index}>
+        <div css={sx.thumbnail} onClick={() => openImageViewer(index)}>
           <Image
             width="50px"
             height="50px"
@@ -38,6 +39,16 @@ export const ShowThumbnailSection = ({
           />
         </div>
       ))}
+      {isViewerOpen && (
+        <ImageViewer
+          src={uploadImageList}
+          currentIndex={currentImage}
+          onClose={closeImageViewer}
+          backgroundStyle={{
+            backgroundColor: "rgba(0,0,0,0.9)",
+          }}
+        />
+      )}
     </div>
   );
 };

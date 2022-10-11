@@ -3,10 +3,11 @@ import { css } from "@emotion/react";
 import { IconButton } from "@mui/material";
 import Image from "next/image";
 import ThumbnailIcon from "@/img/community/icon-thumbnail-close.svg";
+import { ImageType } from "@/domains/community/views/CommunityWrite/types/communityImage.type";
 
 type ThumbnailSectionProps = {
-  uploadImage: string;
-  onDeleteClick: () => void;
+  uploadImage: ImageType[];
+  onDeleteClick: (id: number) => void;
 };
 
 export const CreateThumbnailSection = ({
@@ -15,18 +16,24 @@ export const CreateThumbnailSection = ({
 }: ThumbnailSectionProps) => {
   return (
     <div css={sx.thumbnailSection}>
-      <div css={sx.thumbnail}>
-        <Image
-          width="50px"
-          height="50px"
-          src={uploadImage}
-          alt="thumbnail"
-          css={sx.img}
-        />
-        <IconButton onClick={() => onDeleteClick()} css={sx.thumbnailCloseBtn}>
-          <Image width="10px" height="10px" src={ThumbnailIcon} alt="" />
-        </IconButton>
-      </div>
+      {uploadImage.map((it, index) => (
+        <div css={sx.thumbnail}>
+          <Image
+            key={index}
+            width="50px"
+            height="50px"
+            src={it.src}
+            alt="thumbnail"
+            css={sx.img}
+          />
+          <IconButton
+            onClick={() => onDeleteClick(it.id)}
+            css={sx.thumbnailCloseBtn}
+          >
+            <Image width="10px" height="10px" src={ThumbnailIcon} alt="" />
+          </IconButton>
+        </div>
+      ))}
     </div>
   );
 };

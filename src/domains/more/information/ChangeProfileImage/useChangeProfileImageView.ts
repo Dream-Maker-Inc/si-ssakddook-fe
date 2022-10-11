@@ -38,6 +38,7 @@ export const useChangePasswordView = () => {
       alert("이미지 사이즈는 3MB 이하만 첨부할 수 있습니다.");
       return;
     }
+
     reader.readAsDataURL(e.target.files[0]);
     setUploadedImage(e.target.files[0]);
   };
