@@ -3,6 +3,7 @@ import { ShowThumbnailSection } from "@/common/components/thumbnail/ShowThumbnai
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography, TypographyProps } from "@mui/material";
+import { useCallback, useState } from "react";
 
 type ContentSectionProps = {
   category: string;
@@ -14,6 +15,19 @@ type ContentSectionProps = {
 };
 
 export const ContentSection = (props: ContentSectionProps) => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+
+  const openImageViewer = useCallback((index: number) => {
+    setCurrentImage(index);
+    setIsViewerOpen(true);
+  }, []);
+
+  const closeImageViewer = () => {
+    setCurrentImage(0);
+    setIsViewerOpen(false);
+  };
+
   return (
     <div css={sx.contentRoot}>
       <CategoryChip>{props.category}</CategoryChip>
