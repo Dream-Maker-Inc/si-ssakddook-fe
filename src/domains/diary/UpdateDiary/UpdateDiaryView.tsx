@@ -5,6 +5,7 @@ import { css } from "@emotion/react";
 import { TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import { useUpdateDiaryView } from "./useUpdateDiaryView";
+import CheerImg from "@/img/diary/img-cheer-text.svg";
 
 export const UpdateDiaryView = () => {
   const { tabState, diaryState } = useUpdateDiaryView();
@@ -115,12 +116,7 @@ const LastUpdated = ({ date }: LastUpdatedProps) => {
 const CheerImage = () => {
   return (
     <div css={sx.cheerImg}>
-      <Image
-        width="162px"
-        height="80px"
-        src="/img/diary/img-cheer-text.svg"
-        alt=""
-      />
+      <Image width="162px" height="80px" src={CheerImg} alt="" />
     </div>
   );
 };

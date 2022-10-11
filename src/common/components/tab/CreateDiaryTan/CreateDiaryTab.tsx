@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { PrevModal } from "../../modal/PrevModal/PrevModal";
 import SubmitIcon from "@/img/icon-submit.svg";
+import PrevIcon from "@/img/arrowIcon/prev-icon.svg";
 
 type CreateDiaryTabProps = {
   title: string;
@@ -93,12 +94,7 @@ type TDiaryPrevButton = {
 const DiaryPrevButton = ({ onClick }: TDiaryPrevButton) => {
   return (
     <IconButton onClick={onClick}>
-      <Image
-        width="24px"
-        height="24px"
-        src="/img/arrowIcon/prev-icon.svg"
-        alt=""
-      />
+      <Image width="24px" height="24px" src={PrevIcon} alt="" />
     </IconButton>
   );
 };
