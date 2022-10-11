@@ -29,7 +29,11 @@ export const ShowThumbnailSection = ({
   return (
     <div css={sx.thumbnailSection(isVisible)}>
       {uploadImageList?.map((it, index) => (
-        <div css={sx.thumbnail} onClick={() => openImageViewer(index)}>
+        <div
+          css={sx.thumbnail}
+          key={index}
+          onClick={() => openImageViewer(index)}
+        >
           <Image
             width="50px"
             height="50px"

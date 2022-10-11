@@ -17,9 +17,8 @@ export const CreateThumbnailSection = ({
   return (
     <div css={sx.thumbnailSection}>
       {uploadImage.map((it, index) => (
-        <div css={sx.thumbnail}>
+        <div css={sx.thumbnail} key={index}>
           <Image
-            key={index}
             width="50px"
             height="50px"
             src={it.src}
