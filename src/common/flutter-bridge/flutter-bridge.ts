@@ -1,7 +1,7 @@
 // 디바이스 정보 얻기
 // result type { uuid: string, model: string, token: string}
 
-type DeviceInfo = {
+export type DeviceInfo = {
   uuid: string;
   model: string;
   token: string;
