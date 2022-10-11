@@ -21,7 +21,10 @@ export const useUpdateDiaryView = () => {
       onSuccess(data) {
         setContent(data.content);
         setLastDate(
-          format(new Date(data.updatedAt), "yyyy년 MM월 dd일 a h시 mm분")
+          format(
+            new Date(data.updatedAt.replace(/Z$/, "")),
+            "yyyy년 MM월 dd일 a h시 mm분"
+          )
         );
       },
       onError(err) {},
