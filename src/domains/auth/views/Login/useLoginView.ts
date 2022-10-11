@@ -1,12 +1,7 @@
-import {
-  DeviceInfo,
-  handleGetDeviceInfo,
-} from "@/common/flutter-bridge/flutter-bridge";
-import { axiosBasicClient, axiosClient } from "@/constants/api/client/client";
+import { handleGetDeviceInfo } from "@/common/flutter-bridge/flutter-bridge";
 import { RoutePath } from "@/constants/Path";
 import AuthApiService from "@/data/apis/auth/auth.api";
 import { LoginApiResponse } from "@/data/apis/auth/auth.dto";
-import { useRegisterDevice } from "@/data/apis/device/useDeviceApiHooks";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { validateEmail } from "@/utils/validation/Email/EmailValidation";
@@ -14,6 +9,7 @@ import { AxiosError } from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
+import DeviceApiService from "@/data/apis/device/device.api";
 
 export const useLoginView = () => {
   // 자동 로그인 해제
@@ -59,7 +55,7 @@ export const useLoginView = () => {
 
     // 유저 디바이스 정보 서버로 전달
     const deviceInfo = await handleGetDeviceInfo(window);
-    await useRegisterDevice(res.accessToken, deviceInfo)
+    await DeviceApiService.registerDevice(res.accessToken, deviceInfo)
       .then(() => saveJwtAndGoMain(res.accessToken))
       .catch((e) => alert(e));
   };
