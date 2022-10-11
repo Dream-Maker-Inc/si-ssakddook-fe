@@ -24,10 +24,8 @@ class PostingApiService implements PostingApiInterface {
     return response.data;
   }
 
-  async findAllPost(page: string, size: string): Promise<PostingItemsResponse> {
-    const response = await axiosClient.get(
-      `/v1/posting?page=${page}&size=${size}`
-    );
+  async findAllPost(size: number): Promise<PostingItemsResponse> {
+    const response = await axiosClient.get(`/v1/posting?page=1&size=${size}`);
     return response.data;
   }
 

@@ -9,7 +9,7 @@ import {
 export interface PostingApiInterface {
   // post
   createPost(formData: any): Promise<ApiFailedResponse>;
-  findAllPost(page: string, size: string): Promise<PostingItemsResponse>;
+  findAllPost(size: number): Promise<PostingItemsResponse>;
   findAllPostById(page: string, size: string): Promise<PostingItemsResponse>;
   findAllPostByCategory(
     category: string,

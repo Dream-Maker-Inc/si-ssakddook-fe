@@ -12,9 +12,9 @@ export const useCreatePost = () => {
   return useMutation((formData: any) => PostingApiService.createPost(formData));
 };
 
-export const useFindAllPost = (page: string, size: string) => {
-  return useQuery(["find-all-post", page, size], () =>
-    PostingApiService.findAllPost(page, size)
+export const useFindAllPost = (size: number) => {
+  return useQuery(["find-all-post", size], () =>
+    PostingApiService.findAllPost(size)
   );
 };
 
