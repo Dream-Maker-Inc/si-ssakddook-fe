@@ -45,7 +45,7 @@ export const useMyInformationView = () => {
       desc: "로그아웃하면, 다음 접속 시 다시 로그인하셔야 해요.",
       iconSrc: IconUnsmile,
       nextButtonState: true,
-      onClickPath: RoutePath.Login,
+      onClickPath: RoutePath.Home,
     },
     {
       title: "회원 탈퇴",
