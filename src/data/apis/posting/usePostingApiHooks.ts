@@ -1,5 +1,6 @@
 import PostingApiService from "./posting.api";
 import {
+  QueryClient,
   QueryFunctionContext,
   useInfiniteQuery,
   useMutation,
@@ -7,6 +8,7 @@ import {
 } from "react-query";
 import { axiosClient } from "@/constants/api/client/client";
 import { CommentItemsResponse, PostingItemsResponse } from "./posting.dto";
+import { queryClient } from "@/pages/_app";
 
 export const useCreatePost = () => {
   return useMutation((formData: any) => PostingApiService.createPost(formData));
@@ -76,7 +78,7 @@ export const useUpdatePost = (postId: string, body: any) => {
 
 export const useFetchAllPostByCategory = (category: string, size: number) =>
   useInfiniteQuery(
-    ["all-post-by-category"],
+    ["all-post-by-category", category, size],
     ({ pageParam = 1 }: QueryFunctionContext) =>
       axiosClient.get<PostingItemsResponse>("/v1/posting", {
         params: { category, page: pageParam, size },
@@ -86,9 +88,6 @@ export const useFetchAllPostByCategory = (category: string, size: number) =>
         metaData.isLast ? undefined : metaData.pageNumber + 1,
       onSuccess: (res) => {
         console.log(res);
-      },
-      onError: (err) => {
-        console.log(err);
       },
     }
   );
