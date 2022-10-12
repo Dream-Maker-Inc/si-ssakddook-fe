@@ -4,10 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import EditIcon from "@/img/icon-edit.svg";
 
-export const FloatingButton = () => {
+type FloatingButtonProps = {
+  isCategoryListView?: boolean;
+};
+
+export const FloatingButton = ({
+  isCategoryListView = false,
+}: FloatingButtonProps) => {
   return (
     <Link href={RoutePath.CommunityWrite}>
-      <div css={sx.container}>
+      <div css={sx.container(isCategoryListView)}>
         <Image width="24px" height="24px" src={EditIcon} alt="" />
       </div>
     </Link>
@@ -15,10 +21,10 @@ export const FloatingButton = () => {
 };
 
 const sx = {
-  container: css`
+  container: (isCategoryListView: boolean) => css`
     position: fixed;
     right: 16px;
-    bottom: 66px;
+    bottom: ${isCategoryListView ? "16px" : "66px"};
 
     width: 40px;
     height: 40px;

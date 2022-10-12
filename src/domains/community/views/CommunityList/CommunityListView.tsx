@@ -1,4 +1,5 @@
 import { BoardExpandedItem } from "@/common/components/board/BoardExpandedItem";
+import { FloatingButton } from "@/common/components/button/FloatingButton";
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
@@ -38,6 +39,7 @@ export const CommunityListView = () => {
           </div>
         ))}
         <div css={sx.target} ref={ref}></div>
+        <FloatingButton isCategoryListView={true} />
       </div>
     </PlainLayout>
   );
