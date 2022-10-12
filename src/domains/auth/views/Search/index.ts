@@ -1,1 +1,1 @@
-export { IdPasswordSearchView } from "./components/IdPasswordSearchView";
+export { IdPasswordSearchView } from "./IdPasswordSearchView";

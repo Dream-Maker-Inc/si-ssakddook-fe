@@ -1,8 +1,8 @@
-import { FindPasswordView } from "@/domains/auth/views/find/password/FiindPassword";
+import { InputEmailView } from "@/domains/auth/views/find/InputEmail";
 import { NextPage } from "next";
 
-const FindPasswordPage: NextPage = () => {
-  return <FindPasswordView />;
+const InputEmailPage: NextPage = () => {
+  return <InputEmailView />;
 };
 
-export default FindPasswordPage;
+export default InputEmailPage;

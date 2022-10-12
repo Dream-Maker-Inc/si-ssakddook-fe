@@ -1,1 +1,0 @@
-export { IdPasswordSearchView } from "./IdPasswordSearchView";

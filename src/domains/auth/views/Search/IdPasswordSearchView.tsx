@@ -3,27 +3,26 @@ import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
+import { useIdPasswordSearchView } from "./useIdPasswordSearchView";
+import IconNext from "@/img/arrowIcon/icon-button-next.svg";
 
 export const IdPasswordSearchView = () => {
+  const { titleState, idFieldState, pwFieldState } = useIdPasswordSearchView();
   return (
     <div css={sx.root}>
       <div css={sx.container}>
         <CloseButton />
-        <TitleWithDesc
-          title="회원 정보 찾기"
-          desc="찾으실 회원 정보를 선택해 주세요."
-        />
+        <TitleWithDesc title={titleState.title} desc={titleState.desc} />
         <div css={sx.searchBoxWrapper}>
           <SearchBox
-            title="아이디 (이메일) 찾기"
-            desc="휴대폰 번호를 통해 아이디 (이메일) 을 찾을 수 있어요."
-            location="/auth/find/id"
+            title={idFieldState.title}
+            desc={idFieldState.desc}
+            onClick={idFieldState.onClick}
           />
           <SearchBox
-            title="비밀번호 찾기"
-            desc="휴대폰 번호를 통해 비밀번호를 찾을 수 있어요."
-            location="/auth/find/password"
+            title={pwFieldState.title}
+            desc={pwFieldState.desc}
+            onClick={pwFieldState.onClick}
           />
         </div>
       </div>
@@ -87,24 +86,17 @@ const sx = {
 type SearchBox = {
   title: string;
   desc: string;
-  location: string;
+  onClick: () => void;
 };
 
-const SearchBox = ({ title, desc, location }: SearchBox) => {
+const SearchBox = ({ title, desc, onClick }: SearchBox) => {
   return (
-    <Link href={location}>
-      <Button css={sx.boxContainer}>
-        <Typography variant="h2">{title}</Typography>
-        <Typography variant="caption">{desc}</Typography>
-        <div css={sx.img}>
-          <Image
-            width="24px"
-            height="24px"
-            src="/img/arrowIcon/icon-button-next.svg"
-            alt=""
-          />
-        </div>
-      </Button>
-    </Link>
+    <Button css={sx.boxContainer} onClick={onClick}>
+      <Typography variant="h2">{title}</Typography>
+      <Typography variant="caption">{desc}</Typography>
+      <div css={sx.img}>
+        <Image width="24px" height="24px" src={IconNext} alt="" />
+      </div>
+    </Button>
   );
 };
