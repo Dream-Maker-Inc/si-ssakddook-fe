@@ -35,7 +35,7 @@ export const BoardComment = ({
   return (
     <div css={sx.item}>
       <div css={sx.row}>
-        <Typography variant="h5" lineHeight="1" color={LightColor.Gray100}>
+        <Typography variant="h4" lineHeight="1" color={LightColor.Gray100}>
           {nickname}
           {" · "}
           {date}
@@ -49,7 +49,7 @@ export const BoardComment = ({
         )}
       </div>
       <div css={sx.contentWrapper}>
-        <Typography variant="h4" color="black" css={sx.content}>
+        <Typography variant="h3" color="black" css={sx.content}>
           {content}
         </Typography>
       </div>

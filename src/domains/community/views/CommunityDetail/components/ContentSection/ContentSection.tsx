@@ -41,7 +41,6 @@ const sx = {
   `,
 
   contentText: css`
-    line-height: 16.65px;
     white-space: break-spaces;
     text-align: left;
   `,
@@ -58,7 +57,7 @@ type ContentInfosProps = {
 
 const ContentInfos = ({ nickname, date }: ContentInfosProps) => {
   return (
-    <Typography variant="h5" color={LightColor.Gray100}>
+    <Typography variant="h4" color={LightColor.Gray100}>
       {nickname}
       {" | "}
       {date}
@@ -73,7 +72,7 @@ type ContentProps = {
 const Content = ({ text }: ContentProps) => {
   return (
     <div css={sx.contentContainer}>
-      <Typography variant="h2" color={LightColor.TextMain} css={sx.contentText}>
+      <Typography variant="h3" color={LightColor.TextMain} css={sx.contentText}>
         {text}
       </Typography>
     </div>
