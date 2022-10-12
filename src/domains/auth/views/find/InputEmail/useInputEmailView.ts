@@ -43,10 +43,20 @@ export const useInputEmailView = () => {
     );
   };
 
+  const isTextFilled = email.length == 0;
+
   const handleSubmit = () => {};
   return {
-    value: email,
-    onChange: handleChangeEmail,
-    onSubmit: handleSubmit,
+    fieldState: {
+      title: "아이디 (이메일) 입력",
+      desc: "회원가입 시 등록한 아이디 (이메일) 을 입력해 주세요.",
+      value: email,
+      onChange: handleChangeEmail,
+      onSubmit: handleSubmit,
+    },
+    buttonState: {
+      onSubmit: handleRequestPw,
+      disabled: isTextFilled ? true : false,
+    },
   };
 };

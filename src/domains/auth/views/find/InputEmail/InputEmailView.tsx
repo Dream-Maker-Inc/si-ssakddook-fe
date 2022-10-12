@@ -3,18 +3,25 @@ import { SubmitButton } from "@/common/components/button/SubmitButton";
 import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
 import { css } from "@emotion/react";
 import { TextField } from "@mui/material";
+import { useInputEmailView } from "./useInputEmailView";
 
 export const InputEmailView = () => {
+  const { fieldState, buttonState } = useInputEmailView();
   return (
     <div css={sx.root}>
       <div css={sx.container}>
         <PrevButton />
-        <SubmitButton />
-        <TitleWithDesc
-          title="아이디 (이메일) 입력"
-          desc="회원가입 시 등록한 아이디 (이메일) 을 입력해 주세요."
+        <SubmitButton
+          disabled={buttonState.disabled}
+          onSubmit={buttonState.onSubmit}
         />
-        <TextField fullWidth placeholder="account@ssakduk.com" />
+        <TitleWithDesc title={fieldState.title} desc={fieldState.desc} />
+        <TextField
+          fullWidth
+          value={fieldState.value}
+          onChange={(e) => fieldState.onChange(e.target.value)}
+          placeholder="account@ssakduk.com"
+        />
       </div>
     </div>
   );
