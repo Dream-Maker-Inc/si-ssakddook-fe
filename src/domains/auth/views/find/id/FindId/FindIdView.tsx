@@ -2,7 +2,6 @@ import { PrevButton } from "@/common/components/button/PrevButton";
 import { SubmitButton } from "@/common/components/button/SubmitButton";
 import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
 import { css } from "@emotion/react";
-import { TextField } from "@mui/material";
 
 export const FindIdView = () => {
   return (

@@ -17,6 +17,18 @@ class AuthApiService implements AuthApiInterface {
 
     return response.data;
   }
+
+  async findId(token: string): Promise<ApiFailedResponse | any> {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const response = await axiosBasicClient.get("/v1/member/email", config);
+
+    return response.data;
+  }
 }
 
 export default AuthApiService.Instance;

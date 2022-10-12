@@ -3,8 +3,16 @@ import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
 import IdSuccessImg from "@/img/find/id-success.svg";
+import { useRouter } from "next/router";
+import { RoutePath } from "@/constants/Path";
 
 export const FindIdSuccessView = () => {
+  const router = useRouter();
+  const email = router.query.email + "";
+
+  const onLogin = () => {
+    router.push(RoutePath.Login);
+  };
   return (
     <div css={sx.root}>
       <div css={sx.container}>
@@ -15,7 +23,7 @@ export const FindIdSuccessView = () => {
         </Typography>
         <div css={sx.idBox}>
           <Typography variant="h4" color="#333333">
-            dreamaker
+            {email}
           </Typography>
         </div>
 
@@ -24,7 +32,12 @@ export const FindIdSuccessView = () => {
           하단의 <span css={sx.span}>로그인하러 가기</span> 버튼을 눌러 주세요.
         </Typography>
         <div css={sx.buttonWrapper}>
-          <Button fullWidth variant="contained" color="primary">
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={onLogin}
+          >
             <Typography variant="body1" color="white">
               로그인하러 가기
             </Typography>

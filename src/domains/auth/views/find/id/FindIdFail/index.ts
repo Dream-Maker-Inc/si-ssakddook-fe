@@ -1,1 +1,1 @@
-export { FindIdFailView } from "./components/FindIdFailView";
+export { FindIdFailView } from "./FindIdFailView";
