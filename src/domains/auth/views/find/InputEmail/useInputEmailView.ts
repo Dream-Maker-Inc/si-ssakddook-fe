@@ -24,17 +24,12 @@ export const useInputEmailView = () => {
         const res = await authApi.findId(certificationToken);
 
         if (isApiFailedResponse(res)) {
-          router.push(RoutePath.FindIdFail);
+          return router.push(RoutePath.FindIdFail);
         } else {
-          router.push(
-            {
-              pathname: RoutePath.FindIdSuccess,
-              query: {
-                email: res.email,
-              },
-            },
-            RoutePath.FindIdSuccess
-          );
+          if (res.email == email) {
+            return router.push(RoutePath.FindPasswordSuccess);
+          }
+          return router.push(RoutePath.FindIdFail);
         }
       },
       (error) => {

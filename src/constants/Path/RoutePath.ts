@@ -7,6 +7,7 @@ export enum RoutePath {
   FindIdSuccess = "/auth/find/id/success",
   FindIdFail = "/auth/find/id/fail",
   FindPassword = "/auth/find/password",
+  FindPasswordSuccess = "/auth/find/password/success",
 
   Login = "/auth/login",
 
