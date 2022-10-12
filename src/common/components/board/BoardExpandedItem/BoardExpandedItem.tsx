@@ -38,12 +38,12 @@ export const BoardExpandedItem = ({
         <Typography variant="body2" lineHeight="1" color="black">
           {title}
         </Typography>
-        <Typography fontSize="8px" lineHeight="1" color={LightColor.Gray100}>
+        <Typography variant="h5" lineHeight="1" color={LightColor.Gray100}>
           {date}
         </Typography>
       </div>
       <div css={sx.rowWrapper}>
-        <Typography fontSize="8px" lineHeight="1" color={LightColor.Gray100}>
+        <Typography variant="h5" lineHeight="1" color={LightColor.Gray100}>
           {nickname}
           {" · "}
           {category}
@@ -52,21 +52,13 @@ export const BoardExpandedItem = ({
         <div css={sx.chatWrapper}>
           <div css={sx.wrapper}>
             <Image width="10px" height="10px" src={HeartIcon} alt="" />
-            <Typography
-              fontSize="8px"
-              lineHeight="1"
-              color={LightColor.Gray100}
-            >
+            <Typography variant="h5" lineHeight="1" color={LightColor.Gray100}>
               {like}
             </Typography>
           </div>
           <div css={sx.wrapper}>
             <Image width="10px" height="10px" src={CommentIcon} alt="" />
-            <Typography
-              fontSize="8px"
-              lineHeight="1"
-              color={LightColor.Gray100}
-            >
+            <Typography variant="h5" lineHeight="1" color={LightColor.Gray100}>
               {comments}
             </Typography>
           </div>

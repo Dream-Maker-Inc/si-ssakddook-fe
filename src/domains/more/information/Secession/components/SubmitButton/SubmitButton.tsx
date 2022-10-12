@@ -6,7 +6,7 @@ export const SubmitButton = (p: ButtonProps) => {
       fullWidth
       variant="contained"
       color="primary"
-      sx={{ fontSize: "12px" }}
+      sx={{ fontSize: "14px" }}
       {...p}
     >
       <Typography variant="body1" color="white" lineHeight="1">

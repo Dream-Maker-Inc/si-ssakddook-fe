@@ -63,13 +63,13 @@ const sx = {
   `,
 
   searchField: css`
-    font-size: 16px;
+    font-size: 18px;
 
     input {
-      font-size: 12px;
+      font-size: 14px;
 
       ::placeholder {
-        font-size: 12px;
+        font-size: 14px;
       }
     }
   `,

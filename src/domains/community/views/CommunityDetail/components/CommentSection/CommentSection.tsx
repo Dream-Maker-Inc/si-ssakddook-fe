@@ -60,7 +60,7 @@ const sx = {
   button: css`
     padding: 0 20px;
     border-color: transparent;
-    font-size: 10px;
+    font-size: 12px;
     color: ${LightColor.Gray100};
 
     &:hover {

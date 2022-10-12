@@ -35,7 +35,7 @@ export const useMyInformationView = () => {
     },
     {
       title: "비밀번호 변경",
-      desc: "비밀번호를 잊으셨나요? 새로운 비밀번호로 변경할 수 있어요.",
+      desc: "새로운 비밀번호로 변경할 수 있어요.",
       iconSrc: IconPassword,
       nextButtonState: true,
       onClickPath: RoutePath.ChangePassword,

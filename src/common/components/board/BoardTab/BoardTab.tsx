@@ -104,7 +104,7 @@ const sx = {
     max-width: 50%;
     min-height: 40px;
 
-    font-size: 12px;
+    font-size: 14px;
 
     & .str-chat {
       position: relative;

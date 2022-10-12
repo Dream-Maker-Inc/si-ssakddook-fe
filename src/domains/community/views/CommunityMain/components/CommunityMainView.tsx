@@ -40,9 +40,7 @@ export const CommunityMainView = () => {
               <Link href="/main">
                 <div css={sx.more}>
                   <IconButton onClick={onRecentView}>
-                    <Typography variant="h5" fontSize="8px">
-                      더보기
-                    </Typography>
+                    <Typography variant="h5">더보기</Typography>
                     <Image
                       width="11px"
                       height="11px"

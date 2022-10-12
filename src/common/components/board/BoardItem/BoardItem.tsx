@@ -42,13 +42,13 @@ export const BoardItem = ({
         <Typography variant="body2" color="black">
           {title}
         </Typography>
-        <Typography fontSize="8px" color={LightColor.Gray100}>
+        <Typography variant="h5" color={LightColor.Gray100}>
           {date.slice(0, 10)}
         </Typography>
       </div>
       <div css={sx.rowWrapper}>
         <Typography
-          fontSize="8px"
+          variant="h5"
           color={LightColor.Gray100}
           css={sx.nicknameOrTitle}
         >
@@ -60,13 +60,13 @@ export const BoardItem = ({
           <div css={sx.chatWrapper}>
             <div css={sx.wrapper}>
               <Image width="10px" height="10px" src={HeartIcon} alt="" />
-              <Typography fontSize="8px" color={LightColor.Gray100}>
+              <Typography variant="h5" color={LightColor.Gray100}>
                 {like}
               </Typography>
             </div>
             <div css={sx.wrapper}>
               <Image width="10px" height="10px" src={CommentIcon} alt="" />
-              <Typography fontSize="8px" color={LightColor.Gray100}>
+              <Typography variant="h5" color={LightColor.Gray100}>
                 {comments}
               </Typography>
             </div>

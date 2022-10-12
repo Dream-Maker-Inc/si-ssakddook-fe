@@ -41,11 +41,8 @@ const sx = {
   `,
 
   contentText: css`
-    font-size: 10px;
     line-height: 16.65px;
-    color: ${LightColor.TextMain};
     white-space: break-spaces;
-
     text-align: left;
   `,
 };
@@ -76,7 +73,9 @@ type ContentProps = {
 const Content = ({ text }: ContentProps) => {
   return (
     <div css={sx.contentContainer}>
-      <p css={sx.contentText}>{text}</p>
+      <Typography variant="h2" color={LightColor.TextMain} css={sx.contentText}>
+        {text}
+      </Typography>
     </div>
   );
 };

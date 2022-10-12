@@ -76,7 +76,7 @@ const sx = {
     flex-direction: column;
     gap: 16px;
 
-    font-size: 12px;
+    font-size: 14px;
 
     position: absolute;
     bottom: 0px;

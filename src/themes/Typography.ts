@@ -13,7 +13,7 @@ const baseTypographyOptions: TypographyOptions = {
   },
   h3: {
     fontSize: "16px",
-    lineHeight: "16.65px",
+    lineHeight: "20px",
   },
 
   h4: {
@@ -28,14 +28,14 @@ const baseTypographyOptions: TypographyOptions = {
   },
   body1: {
     fontSize: "14px",
-    lineHeight: "20px", // 12px
+    lineHeight: "16.65px",
   },
   body2: {
-    fontSize: "12px", //10px
+    fontSize: "12px",
     lineHeight: "16.65px",
   },
   caption: {
-    fontSize: "12px", //10px
+    fontSize: "12px",
     lineHeight: "16.65px",
     color: LightColor.Gray100,
   },

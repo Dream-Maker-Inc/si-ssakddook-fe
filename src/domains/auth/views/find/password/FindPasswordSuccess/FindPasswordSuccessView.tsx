@@ -18,7 +18,7 @@ export const FindPasswordSuccessView = () => {
         </Typography>
         <div css={sx.alarm}>
           <Typography
-            fontSize="8px"
+            variant="h5"
             lineHeight={"166.5%"}
             color="#999999"
             textAlign={"center"}
@@ -61,7 +61,7 @@ const sx = {
     flex-direction: column;
     gap: 16px;
 
-    font-size: 12px;
+    font-size: 14px;
 
     position: absolute;
     bottom: 0px;

@@ -49,7 +49,9 @@ export const BoardComment = ({
         )}
       </div>
       <div css={sx.contentWrapper}>
-        <p css={sx.content}>{content}</p>
+        <Typography variant="h4" color="black" css={sx.content}>
+          {content}
+        </Typography>
       </div>
       <div css={sx.wrapper}>
         <IconButton onClick={onLike}>
@@ -59,7 +61,7 @@ export const BoardComment = ({
             <Image width="10px" height="10px" src={HeartIcon} alt="" />
           )}
         </IconButton>
-        <Typography fontSize="8px" lineHeight="1" color={LightColor.Gray100}>
+        <Typography variant="h5" lineHeight="1" color={LightColor.Gray100}>
           {likeCount}
         </Typography>
       </div>
@@ -92,10 +94,6 @@ const sx = {
     margin-bottom: 10px;
   `,
   content: css`
-    font-size: 10px;
-    line-height: 16.65px;
-    color: black;
-
     text-align: left;
   `,
 };

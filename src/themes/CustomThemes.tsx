@@ -40,7 +40,7 @@ export const lightTheme = createTheme({
           boxShadow: "none",
           margin: "0px",
           padding: "0px",
-          fontSize: "12px",
+          fontSize: "14px",
           lineHeight: "20px",
         },
       },
@@ -57,24 +57,24 @@ export const lightTheme = createTheme({
           },
 
           input: {
-            fontSize: "12px",
+            fontSize: "14px",
 
             // placeholder
             "::placeholder": {
               color: "#CCCCCC",
               opacity: 1,
-              fontSize: "12px",
+              fontSize: "14px",
             },
           },
 
           textarea: {
-            fontSize: "12px",
+            fontSize: "14px",
             lineHeight: "20px",
             // placeholder
             "::placeholder": {
               color: "#CCCCCC",
               opacity: 1,
-              fontSize: "12px",
+              fontSize: "14px",
               lineHeight: "20px",
             },
           },
@@ -111,7 +111,7 @@ export const lightTheme = createTheme({
             },
 
             "& textarea": {
-              fontSize: "12px",
+              fontSize: "14px",
             },
           },
 
@@ -130,14 +130,14 @@ export const lightTheme = createTheme({
         },
 
         input: {
-          fontSize: "12px",
+          fontSize: "14px",
           lineHeight: "20px",
 
           // placeholder
           "::placeholder": {
             color: "#A4A4A4",
             opacity: 1,
-            fontSize: "12px",
+            fontSize: "14px",
           },
         },
       },

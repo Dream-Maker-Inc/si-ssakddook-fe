@@ -84,7 +84,7 @@ const sx = {
     padding: 0px 0px 0px 8px;
 
     & .MuiSvgIcon-root {
-      font-size: 14px;
+      font-size: 16px;
     }
   `,
 };

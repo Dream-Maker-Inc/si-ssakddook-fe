@@ -68,7 +68,7 @@ const sx = {
 
   select: css`
     & .MuiSelect-select {
-      font-size: 14px;
+      font-size: 16px;
     }
   `,
 };

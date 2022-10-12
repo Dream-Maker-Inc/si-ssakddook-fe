@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLoginView } from "./useLoginView";
 import MainImg from "@/img/logo/main.svg";
+import { LightColor } from "@/themes/Color";
 
 export const LoginView = () => {
   const { emailState, pwState, login } = useLoginView();
@@ -52,7 +53,13 @@ export const LoginView = () => {
           </div>
           <div css={sx.link}>
             <Link href="/auth/search">
-              <a css={sx.lostAccount}>회원정보를 잊으셨나요?</a>
+              <Typography
+                variant="h4"
+                color={LightColor.Gray100}
+                css={sx.lostAccount}
+              >
+                회원정보를 잊으셨나요?
+              </Typography>
             </Link>
           </div>
         </div>
@@ -96,9 +103,6 @@ const sx = {
   `,
 
   lostAccount: css`
-    font-size: 10px;
-    line-height: 16.65px;
-    color: #999999;
     text-decoration: underline;
     margin-top: 3.12px;
   `,
