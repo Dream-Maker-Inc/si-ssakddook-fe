@@ -32,9 +32,6 @@ export const CommunityTab = () => {
             <IconButton onClick={onSearch}>
               <Image width="16px" height="16px" src={SearchIcon} alt="" />
             </IconButton>
-            <IconButton>
-              <Image width="18px" height="18px" src={NotificationIcon} alt="" />
-            </IconButton>
             <IconButton onClick={onMyClick}>
               <Typography variant="h2">MY</Typography>
             </IconButton>
