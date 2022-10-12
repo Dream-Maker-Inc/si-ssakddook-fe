@@ -31,7 +31,6 @@ export const ChatCreateView = ({
         value={titleProps.value}
         onChange={(e) => titleProps.onChange(e.target.value)}
         css={sx.titlefield}
-        inputProps={{ maxLength: 25 }}
       />
       <TextField
         fullWidth
@@ -43,7 +42,6 @@ export const ChatCreateView = ({
         value={descProps.value}
         onChange={(e) => descProps.onChange(e.target.value)}
         css={sx.descfield}
-        inputProps={{ maxLength: 30 }}
       />
     </div>
   );
