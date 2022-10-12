@@ -17,12 +17,6 @@ export const MainTab = ({ username }: MainTabProps) => {
       <Typography variant="h2" ml="12px" sx={{ flexGrow: 1 }}>
         {username}님, 환영해요.
       </Typography>
-      <IconButton size="large" edge="start" color="inherit" aria-label="menu">
-        <NotificationsOutlinedIcon
-          color="secondary"
-          sx={{ color: LightColor.TextMain }}
-        />
-      </IconButton>
     </div>
   );
 };

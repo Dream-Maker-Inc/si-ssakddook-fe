@@ -15,6 +15,7 @@ import { DiaryLastClickedDateAtom } from "@/recoil/Diary/Diary.atom";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { useSetRecoilState } from "recoil";
 import ArrowRightIcon from "@/img/calendar/icon-arrow-right.svg";
+import { css } from "@emotion/react";
 
 const MemoCalendar = ({
   showDetailsHandle,
@@ -130,7 +131,12 @@ const MemoCalendar = ({
                 <div className="memo-content">
                   <p className="memo-text">{getContentByResult(clickedDate)}</p>
 
-                  <IconButton className="memo-arrow-right">
+                  <IconButton
+                    css={css`
+                      position: relative;
+                      right: 16px;
+                    `}
+                  >
                     <Image
                       width="20px"
                       height="20px"
