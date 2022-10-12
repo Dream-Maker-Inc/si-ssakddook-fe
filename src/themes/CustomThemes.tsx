@@ -161,7 +161,7 @@ export enum ThemeTypes {
 export const findTheme = (theme: ThemeTypes) => {
   switch (theme) {
     default:
-      return responsiveFontSizes(lightTheme);
+      return lightTheme;
   }
 };
 
