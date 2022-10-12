@@ -14,6 +14,7 @@ import { useState } from "react";
 import { LightColor } from "@/themes/Color";
 import Image from "next/image";
 import { TermsItemsResponse } from "@/data/apis/terms/terms.dto";
+import IconClose from "@/img/close/icon-close.svg";
 
 type AgreementArticleProps = {
   titleProps: FormTitleWithDescProps;
@@ -83,10 +84,6 @@ const sx = {
   `,
 
   modal: css`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
 
@@ -101,11 +98,25 @@ const sx = {
     padding: 16px 0;
   `,
 
+  modalContainer: css`
+    width: 100%;
+    height: 100%;
+  `,
+  modalHeader: css`
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    background-color: white;
+
+    z-index: 99;
+  `,
+
   modalHr: css`
     width: 100%;
     height: 1px;
     background-color: ${LightColor.Gray500};
-    margin: 16px 0;
   `,
 
   modalTitleWrapper: css`
@@ -114,7 +125,7 @@ const sx = {
     justify-content: space-between;
     align-items: center;
 
-    padding: 0 16px;
+    padding: 16px;
   `,
 };
 
@@ -198,27 +209,31 @@ const TermsContentModal = ({
     <div>
       <Modal open={open} onClose={onClose} css={sx.root}>
         <Box css={sx.modal}>
-          <div css={sx.modalTitleWrapper}>
-            <Typography variant="h2" color={LightColor.TextMain}>
-              이용약관
+          <div css={sx.modalContainer}>
+            <div css={sx.modalHeader}>
+              <div css={sx.modalTitleWrapper}>
+                <Typography variant="h2" color={LightColor.TextMain}>
+                  이용약관
+                </Typography>
+                <IconButton onClick={onClose}>
+                  <Image
+                    width="24px"
+                    height="24px"
+                    src={IconClose}
+                    alt="close"
+                  />
+                </IconButton>
+              </div>
+              <div css={sx.modalHr}></div>
+            </div>
+            <Typography
+              variant="h4"
+              color={LightColor.TextMain}
+              sx={{ padding: "50px 16px 0 16px" }}
+            >
+              {content}
             </Typography>
-            <IconButton onClick={onClose}>
-              <Image
-                width="24px"
-                height="24px"
-                src="/img/close/icon-close.svg"
-                alt="close"
-              />
-            </IconButton>
           </div>
-          <div css={sx.modalHr}></div>
-          <Typography
-            variant="h4"
-            color={LightColor.TextMain}
-            sx={{ padding: "0 16px" }}
-          >
-            {content}
-          </Typography>
         </Box>
       </Modal>
     </div>
