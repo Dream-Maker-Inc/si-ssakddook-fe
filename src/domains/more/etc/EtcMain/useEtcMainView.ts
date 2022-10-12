@@ -1,20 +1,23 @@
 import { EtcBoxProps } from "../../types/MoreType.type";
+import IconNotice from "@/img/more/etc/icon-notice.svg";
+import IconCompany from "@/img/more/etc/icon-company.svg";
+import IconService from "@/img/more/etc/icon-policy.svg";
 
 export const useEtcMainView = () => {
   const models: EtcBoxProps[] = [
     {
       title: "공지 사항",
-      iconSrc: "/img/more/etc/icon-notice.svg",
+      iconSrc: IconNotice,
       onClickPath: "",
     },
     {
       title: "회사 소개",
-      iconSrc: "/img/more/etc/icon-company.svg",
+      iconSrc: IconCompany,
       onClickPath: "",
     },
     {
       title: "약관 및 정책",
-      iconSrc: "/img/more/etc/icon-policy.svg",
+      iconSrc: IconService,
       onClickPath: "",
     },
   ];
