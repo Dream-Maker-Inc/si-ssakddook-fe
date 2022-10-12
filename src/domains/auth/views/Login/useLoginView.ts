@@ -3,13 +3,17 @@ import { RoutePath } from "@/constants/Path";
 import AuthApiService from "@/data/apis/auth/auth.api";
 import { LoginApiResponse } from "@/data/apis/auth/auth.dto";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
-import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
+import {
+  ApiFailedResponse,
+  isApiFailedResponse,
+} from "@/data/statusCode/FailedResponse";
 import { validateEmail } from "@/utils/validation/Email/EmailValidation";
 import { AxiosError } from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import DeviceApiService from "@/data/apis/device/device.api";
+import { StatusCode } from "@/data/statusCode/StatusCode.enum";
 
 export const useLoginView = () => {
   // 자동 로그인 해제
@@ -41,10 +45,14 @@ export const useLoginView = () => {
   };
 
   // 로그인 성공 핸들링
-  const handleLoginSuccess = async (res: LoginApiResponse) => {
+  const handleLoginSuccess = async (res: LoginApiResponse | any) => {
     // 로그인 실패
     if (isApiFailedResponse(res)) {
-      return alert("이메일과 비밀번호를 확인해주세요.");
+      if (res.statusCode == StatusCode.BLIND_MEMBER) {
+        return alert("사용이 차단된 계정입니다.");
+      } else {
+        return alert("이메일과 비밀번호를 확인해주세요.");
+      }
     }
 
     // flutter 웹뷰가 아닌 경우
