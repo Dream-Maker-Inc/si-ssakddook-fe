@@ -37,21 +37,18 @@ export const CommunityMainView = () => {
               <Typography variant="h3" color="black">
                 최근 게시글
               </Typography>
-              <Link href="/main">
-                <div css={sx.more}>
-                  <IconButton onClick={onRecentView}>
-                    <Typography variant="h5">더보기</Typography>
-                    <Image
-                      width="11px"
-                      height="11px"
-                      src={ArrowRightSamllIcon}
-                      alt=""
-                    />
-                  </IconButton>
-                </div>
-              </Link>
+              <div css={sx.more}>
+                <IconButton onClick={onRecentView}>
+                  <Typography variant="h5">더보기</Typography>
+                  <Image
+                    width="11px"
+                    height="11px"
+                    src={ArrowRightSamllIcon}
+                    alt=""
+                  />
+                </IconButton>
+              </div>
             </div>
-
             {result.map((it, index) => (
               <BoardItem
                 key={index}
