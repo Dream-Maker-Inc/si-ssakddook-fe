@@ -120,7 +120,7 @@ export const useFetchAllPostsById = (size: number) =>
 
 export const useFetchAllCommentsByPostId = (size: number, postId: string) =>
   useInfiniteQuery(
-    ["all-comments-by-post-id"],
+    ["all-comments-by-post-id", postId, size],
     ({ pageParam = 1 }: QueryFunctionContext) =>
       axiosClient.get<CommentItemsResponse>("v1/comment", {
         params: { page: pageParam, size, postingId: postId },
