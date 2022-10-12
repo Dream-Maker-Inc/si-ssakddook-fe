@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { useMutation } from "react-query";
 import DiaryApiService from "@/data/apis/diary/diary.api";
 import { format } from "date-fns";
+import { RoutePath } from "@/constants/Path";
 
 export const useCreateDiaryView = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ export const useCreateDiaryView = () => {
     (body: any) => DiaryApiService.createDiary(body),
     {
       onSuccess: (res) => {
-        router.back();
+        router.push(RoutePath.Main);
       },
       onError: (err) => {
         console.log(newDiaryData);
