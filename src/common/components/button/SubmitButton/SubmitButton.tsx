@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { css } from "@emotion/react";
-import { useRouter } from "next/router";
 import { IconButton } from "@mui/material";
 import IconSubmit from "@/img/icon-submit.svg";
 import IconDisabledSubmit from "@/img/icon-submit-disabled.svg";
