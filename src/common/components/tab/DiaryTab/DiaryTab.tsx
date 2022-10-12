@@ -7,6 +7,7 @@ import { PrevModal } from "../../modal/PrevModal/PrevModal";
 import SubmitIcon from "@/img/icon-submit.svg";
 import EditIcon from "@/img/diary/icon-edit.svg";
 import PrevButtno from "@/img/arrowIcon/prev-icon.svg";
+import { RoutePath } from "@/constants/Path";
 
 type DiaryTabProps = {
   title: string;
@@ -29,7 +30,7 @@ export const DiaryTab = ({ title, writingState }: DiaryTabProps) => {
   const handleModalClose = () => setModalOpen(false);
 
   const moveToDiaryPage = () => {
-    router.back();
+    router.push(RoutePath.Main);
   };
   const moveToDiaryUpdatePage = () => {
     handleModalClose();
