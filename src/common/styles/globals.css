@@ -405,7 +405,7 @@ header #logo .icon {
   position: relative;
 
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
   text-align: left;
 }
@@ -427,14 +427,6 @@ header #logo .icon {
 
 .memo-outdated-text {
   color: #999999;
-}
-
-.memo-arrow-right {
-  position: absolute;
-  top: 50%;
-  right: 16px;
-
-  transform: translateY(-50%);
 }
 
 /* stream talk */
