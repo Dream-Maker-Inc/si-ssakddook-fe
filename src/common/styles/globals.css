@@ -67,6 +67,11 @@ main {
   font-feature-settings: "liga";
 }
 
+* {
+  /* 모바일에서 터치시 하이라이트 효과 제거 */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 /* VARIABLES */
 
 :root {
