@@ -1,8 +1,6 @@
-import Image from "next/image";
-import { css } from "@emotion/react";
-import { useRouter } from "next/router";
+import { ArrowBackRounded } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import PrevIcon from "@/img/arrowIcon/prev-icon.svg";
+import { useRouter } from "next/router";
 
 type TPrevButton = {
   location?: string;
@@ -13,16 +11,8 @@ export const PrevButton = ({ location }: TPrevButton) => {
     location == null ? router.back() : router.push(location);
   };
   return (
-    <IconButton onClick={nextLocation} css={sx.img}>
-      <Image width="24px" height="24px" src={PrevIcon} alt="" />
+    <IconButton onClick={nextLocation} edge={"start"}>
+      <ArrowBackRounded />
     </IconButton>
   );
-};
-
-const sx = {
-  img: css`
-    width: fit-content;
-    display: flex;
-    justify-content: start;
-  `,
 };

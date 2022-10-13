@@ -1,18 +1,14 @@
-import { CloseButton } from "@/common/components/button/CloseButton";
-import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
+import IconNext from "@/img/arrowIcon/icon-button-next.svg";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
 import { useIdPasswordSearchView } from "./useIdPasswordSearchView";
-import IconNext from "@/img/arrowIcon/icon-button-next.svg";
 
 export const IdPasswordSearchView = () => {
   const { titleState, idFieldState, pwFieldState } = useIdPasswordSearchView();
   return (
     <div css={sx.root}>
       <div css={sx.container}>
-        <CloseButton />
-        <TitleWithDesc title={titleState.title} desc={titleState.desc} />
         <div css={sx.searchBoxWrapper}>
           <SearchBox
             title={idFieldState.title}

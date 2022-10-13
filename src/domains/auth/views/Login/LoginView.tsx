@@ -113,9 +113,14 @@ const sx = {
   lostAccount: css`
     text-decoration: underline;
     margin-top: 3.12px;
+    width: fit-content;
+    cursor: pointer;
   `,
 
   link: css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
   `,
 };

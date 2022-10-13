@@ -12,12 +12,6 @@ export const MainView = () => {
   const { data, username } = useMainView();
   return (
     <AppbarLayout>
-      <Head>
-        <meta
-          name="viewport"
-          content="initial-scale=1.0, width=device-width, user-scalable=no"
-        />
-      </Head>
       <MainTab username={username} />
       <div css={sx.root}>
         <div css={sx.container}>

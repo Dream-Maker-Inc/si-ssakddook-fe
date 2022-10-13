@@ -82,14 +82,6 @@ export const lightTheme = createTheme({
       },
     },
 
-    MuiIconButton: {
-      styleOverrides: {
-        root: {
-          padding: "0px",
-        },
-      },
-    },
-
     MuiInputBase: {
       styleOverrides: {
         root: {

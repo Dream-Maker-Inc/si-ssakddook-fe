@@ -1,8 +1,6 @@
-import Image from "next/image";
-import { css } from "@emotion/react";
-import { useRouter } from "next/router";
+import { CloseRounded } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import CloseIcon from "@/img/close/icon-close.svg";
+import { useRouter } from "next/router";
 
 type CloseButton = {
   location?: string;
@@ -13,16 +11,8 @@ export const CloseButton = ({ location }: CloseButton) => {
     location == null ? router.back() : router.push(location);
   };
   return (
-    <IconButton onClick={nextLocation} css={sx.img}>
-      <Image width="24px" height="24px" src={CloseIcon} alt="" />
+    <IconButton onClick={nextLocation} edge={"start"} sx={{ padding: "4px" }}>
+      <CloseRounded />
     </IconButton>
   );
-};
-
-const sx = {
-  img: css`
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  `,
 };
