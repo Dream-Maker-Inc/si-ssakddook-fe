@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import { LightColor } from "@/themes/Color";
-import { IconButton, Typography } from "@mui/material";
+import { Button, IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import { RoutePath } from "@/constants/Path";
 import { useRouter } from "next/router";
@@ -20,7 +20,7 @@ export const CommunityBox = ({ img, content }: CommunityBoxProps) => {
     });
   };
   return (
-    <IconButton onClick={handleViewCategory}>
+    <Button onClick={handleViewCategory} css={sx.button}>
       <div css={sx.boxContainer}>
         <div css={sx.img}>
           <Image width="20px" height="20px" src={img} alt="" />
@@ -29,7 +29,7 @@ export const CommunityBox = ({ img, content }: CommunityBoxProps) => {
           {content}
         </Typography>
       </div>
-    </IconButton>
+    </Button>
   );
 };
 
@@ -58,5 +58,13 @@ const sx = {
     bottom: 10px;
     word-break: keep-all;
     white-space: nowrap;
+  `,
+
+  button: css`
+    height: unset;
+    min-height: unset;
+    width: unset;
+    min-width: unset;
+    padding: 0;
   `,
 };
