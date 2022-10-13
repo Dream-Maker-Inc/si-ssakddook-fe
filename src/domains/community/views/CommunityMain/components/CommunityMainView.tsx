@@ -54,11 +54,11 @@ export const CommunityMainView = () => {
                 key={index}
                 postId={it.id}
                 title={it.title}
-                date={getDateDiff(it.createdAt)}
-                nicknameOrTitle={it.author.nickname}
+                date={it.date}
+                nicknameOrTitle={it.nickname}
                 category={it.category}
-                like={it.likedCount + ""}
-                comments={it.commentCount + ""}
+                like={it.likedCount}
+                comments={it.commentCount}
               />
             ))}
           </div>

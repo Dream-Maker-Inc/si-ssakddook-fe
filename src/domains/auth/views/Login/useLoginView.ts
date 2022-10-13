@@ -32,7 +32,9 @@ export const useLoginView = () => {
   const emailValidation = validateEmail(email);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    const value = e.target.value;
+
+    setEmail(value.trim());
   };
   const handlePwChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPw(e.target.value);
@@ -87,6 +89,7 @@ export const useLoginView = () => {
   const handleLoginClick = () => {
     if (!emailValidation) {
       setEmailNotValid(true);
+      alert("이메일 형식을 확인해주세요.");
     } else {
       mutate();
     }

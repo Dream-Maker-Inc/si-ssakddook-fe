@@ -2,6 +2,9 @@ import { useRouter } from "next/router";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { useFetchAllPostByCategory } from "@/data/apis/posting/usePostingApiHooks";
+import { PostingItemResponse } from "@/data/apis/posting/posting.dto";
+import { getDateDiff } from "@/utils/DateDif/DateDiff";
+import _ from "lodash";
 
 export const useCommunityListView = () => {
   const router = useRouter();
@@ -33,6 +36,8 @@ export const useCommunityListView = () => {
     };
   }
 
+  const result = data.pages.map((page) => mapToPostings(page.data.items));
+
   return {
     category: category == "" ? "최근 게시글" : category,
     fetchState: {
@@ -40,7 +45,21 @@ export const useCommunityListView = () => {
       isError: isError,
       isFetching: isFetching,
     },
-    result: data,
+    result,
     ref: ref,
   };
+};
+
+const mapToPostings = (postingItemResponses: PostingItemResponse[]) => {
+  const postings = postingItemResponses.map((it) => ({
+    id: it.id,
+    title: _.truncate(it.title),
+    date: getDateDiff(it.createdAt),
+    nickname: it.author.nickname,
+    category: it.category,
+    likedCount: `${it.likedCount}`,
+    commentCount: `${it.commentCount}`,
+  }));
+
+  return postings;
 };

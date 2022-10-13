@@ -12,6 +12,9 @@ import IconGift from "@/img/community/boxIcons/icon-gift.svg";
 import IconStar from "@/img/community/boxIcons/icon-star.svg";
 import IconConcern from "@/img/community/boxIcons/icon-concern.svg";
 import IconEtc from "@/img/community/boxIcons/icon-etc.svg";
+import { PostingItemResponse } from "@/data/apis/posting/posting.dto";
+import _ from "lodash";
+import { getDateDiff } from "@/utils/DateDif/DateDiff";
 
 export const useCommunityMainView = () => {
   const router = useRouter();
@@ -100,13 +103,31 @@ export const useCommunityMainView = () => {
       result: null,
     };
   }
+
+  const postings = mapToPostings(data.items);
+
+  //
   return {
     boxData: communitBoxInfos,
     fetchState: {
       isLoading,
       isError,
     },
-    result: data.items,
+    result: postings,
     onRecentView: handleViewRecentPost,
   };
+};
+
+const mapToPostings = (postingItemResponses: PostingItemResponse[]) => {
+  const postings = postingItemResponses.map((it) => ({
+    id: it.id,
+    title: _.truncate(it.title),
+    date: getDateDiff(it.createdAt),
+    nickname: it.author.nickname,
+    category: it.category,
+    likedCount: `${it.likedCount}`,
+    commentCount: `${it.commentCount}`,
+  }));
+
+  return postings;
 };

@@ -22,18 +22,18 @@ export const CommunityListView = () => {
     <PlainLayout isBttomMarginNecessary={true}>
       <DefaultTab category={category} />
       <div css={sx.root}>
-        {result?.pages.map((page, index) => (
+        {result?.map((postings, index) => (
           <div key={index}>
-            {page.data.items.map((it, index) => (
+            {postings.map((it, index) => (
               <BoardExpandedItem
                 key={index}
                 postId={it.id + ""}
                 title={it.title}
-                date={getDateDiff(it.createdAt)}
-                nickname={it.author.nickname}
+                date={it.date}
+                nickname={it.nickname}
                 category={it.category}
-                like={it.likedCount + ""}
-                comments={it.commentCount + ""}
+                like={it.likedCount}
+                comments={it.commentCount}
               />
             ))}
           </div>

@@ -25,15 +25,19 @@ export const useChatMainView = () => {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
 
-  const handleNameChange = (e: string) => {
-    setName(e);
+  const handleNameChange = (v: string) => {
+    if (v.length >= 25) return;
+
+    setName(v);
   };
   const handleNameReset = () => {
     setName("");
   };
 
-  const handleDescChange = (e: string) => {
-    setDesc(e);
+  const handleDescChange = (v: string) => {
+    if (v.length >= 30) return;
+
+    setDesc(v);
   };
   const handleDescReset = () => {
     setDesc("");
