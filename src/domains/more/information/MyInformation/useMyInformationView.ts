@@ -1,15 +1,14 @@
 import { RoutePath } from "@/constants/Path";
 import { useGetCurrentMember } from "@/data/apis/member/useMemberApiHooks";
+import { logoutAndGoSplash } from "@/domains/auth/functions/auth.func";
+import IconExit from "@/img/more/icon-exit.svg";
+import IconId from "@/img/more/icon-id.svg";
+import IconPassword from "@/img/more/icon-password.svg";
+import IconSmile from "@/img/more/icon-smile.svg";
+import IconUnsmile from "@/img/more/icon-unsmile.svg";
+import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { ClickBoxProps } from "../../types/MoreType.type";
-import IconId from "@/img/more/icon-id.svg";
-import IconSmile from "@/img/more/icon-smile.svg";
-import IconPassword from "@/img/more/icon-password.svg";
-import IconUnsmile from "@/img/more/icon-unsmile.svg";
-import IconExit from "@/img/more/icon-exit.svg";
-import { useRouter } from "next/router";
-import { restartWebApp } from "@/common/flutter-bridge/flutter-bridge";
-import LocalStorage from "@/data/LocalStorage/LocalStorage";
 
 export const useMyInformationView = () => {
   const router = useRouter();
@@ -17,10 +16,7 @@ export const useMyInformationView = () => {
   const { data } = useQuery("get-curr-member", useGetCurrentMember);
 
   const handleLogout = () => {
-    LocalStorage.removeItem("jwt");
-    LocalStorage.removeItem("id");
-    restartWebApp(window);
-    router.push("/");
+    logoutAndGoSplash();
   };
 
   const models: ClickBoxProps[] = [

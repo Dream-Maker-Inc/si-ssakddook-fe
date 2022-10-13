@@ -1,10 +1,10 @@
-import { useRouter } from "next/router";
-import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
-import { useFetchAllPostByCategory } from "@/data/apis/posting/usePostingApiHooks";
 import { PostingItemResponse } from "@/data/apis/posting/posting.dto";
+import { useFetchAllPostByCategory } from "@/data/apis/posting/usePostingApiHooks";
 import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import _ from "lodash";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 export const useCommunityListView = () => {
   const router = useRouter();
