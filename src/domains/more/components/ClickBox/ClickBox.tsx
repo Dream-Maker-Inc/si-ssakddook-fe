@@ -2,7 +2,6 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { ClickBoxProps } from "../../types/MoreType.type";
 
 export const ClickBox = ({
@@ -10,14 +9,10 @@ export const ClickBox = ({
   desc,
   iconSrc,
   nextButtonState = true,
-  onClickPath,
+  onClick,
 }: ClickBoxProps) => {
-  const router = useRouter();
-  const handleBoxClick = (path: string) => {
-    router.push(path);
-  };
   return (
-    <div css={sx.root} onClick={() => handleBoxClick(onClickPath)}>
+    <div css={sx.root} onClick={onClick}>
       <div css={sx.container}>
         <div>
           <Image width="18px" height="18px" src={iconSrc} alt="" />

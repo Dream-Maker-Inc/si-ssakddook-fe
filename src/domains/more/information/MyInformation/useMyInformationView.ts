@@ -7,9 +7,21 @@ import IconSmile from "@/img/more/icon-smile.svg";
 import IconPassword from "@/img/more/icon-password.svg";
 import IconUnsmile from "@/img/more/icon-unsmile.svg";
 import IconExit from "@/img/more/icon-exit.svg";
+import { useRouter } from "next/router";
+import { restartWebApp } from "@/common/flutter-bridge/flutter-bridge";
+import LocalStorage from "@/data/LocalStorage/LocalStorage";
 
 export const useMyInformationView = () => {
+  const router = useRouter();
+
   const { data } = useQuery("get-curr-member", useGetCurrentMember);
+
+  const handleLogout = () => {
+    LocalStorage.removeItem("jwt");
+    LocalStorage.removeItem("id");
+    restartWebApp(window);
+    router.push("/");
+  };
 
   const models: ClickBoxProps[] = [
     {
@@ -17,42 +29,42 @@ export const useMyInformationView = () => {
       desc: data?.email as string,
       iconSrc: IconId,
       nextButtonState: false,
-      onClickPath: RoutePath.MyInformation,
+      onClick: () => router.push(RoutePath.MyInformation),
     },
     {
       title: "닉네임",
       desc: data?.nickname as string,
       iconSrc: IconSmile,
       nextButtonState: true,
-      onClickPath: RoutePath.ChangeNickname,
+      onClick: () => router.push(RoutePath.ChangeNickname),
     },
     {
       title: "프로필 이미지",
       desc: "프로필 이미지를 변경할 수 있어요.",
       iconSrc: IconSmile,
       nextButtonState: true,
-      onClickPath: RoutePath.ChangeProfileImage,
+      onClick: () => router.push(RoutePath.ChangeProfileImage),
     },
     {
       title: "비밀번호 변경",
       desc: "새로운 비밀번호로 변경할 수 있어요.",
       iconSrc: IconPassword,
       nextButtonState: true,
-      onClickPath: RoutePath.ChangePassword,
+      onClick: () => router.push(RoutePath.ChangePassword),
     },
     {
       title: "로그아웃",
       desc: "로그아웃하면, 다음 접속 시 다시 로그인하셔야 해요.",
       iconSrc: IconUnsmile,
       nextButtonState: true,
-      onClickPath: RoutePath.Home,
+      onClick: handleLogout,
     },
     {
       title: "회원 탈퇴",
       desc: "더이상 싹둑을 사용하지 않으시려면, 회원 탈퇴가 가능해요.",
       iconSrc: IconExit,
       nextButtonState: true,
-      onClickPath: RoutePath.Secession,
+      onClick: () => router.push(RoutePath.Secession),
     },
   ];
 

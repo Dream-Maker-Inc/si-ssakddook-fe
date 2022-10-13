@@ -10,3 +10,8 @@ export type DeviceInfo = {
 export const handleGetDeviceInfo = async (window: any): Promise<DeviceInfo> => {
   return window?.flutter_inappwebview?.callHandler("getDeviceInfo", "");
 };
+
+// webview cache 지우기
+export const restartWebApp = async (window: any) => {
+  return window?.flutter_inappwebview?.callHandler("restartApp");
+};
