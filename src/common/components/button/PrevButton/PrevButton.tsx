@@ -21,7 +21,7 @@ export const PrevButton = ({ location }: TPrevButton) => {
 
 const sx = {
   img: css`
-    width: 100%;
+    width: fit-content;
     display: flex;
     justify-content: start;
   `,

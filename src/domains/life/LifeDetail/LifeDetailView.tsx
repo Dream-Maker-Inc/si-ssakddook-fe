@@ -137,7 +137,7 @@ const ContentSection = ({ content, images }: ContentSectionProps) => {
       <Typography variant="body2" color="black" mb="16px">
         {content}
       </Typography>
-      {images.length !== 0 && (
+      {images?.length !== 0 && (
         <ShowThumbnailSection uploadImageList={images} isVisible={true} />
       )}
     </div>
