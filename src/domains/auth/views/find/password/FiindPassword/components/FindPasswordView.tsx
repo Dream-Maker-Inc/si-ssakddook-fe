@@ -7,8 +7,10 @@ export const FindPasswordView = () => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
-        <PrevButton />
-        <SubmitButton />
+        <div css={sx.header}>
+          <PrevButton />
+          <SubmitButton />
+        </div>
         <TitleWithDesc
           title="본인 인증"
           desc="비밀번호 찾기를 위해 본인 인증을 진행해 주세요."
@@ -34,5 +36,11 @@ const sx = {
     text-align: center;
 
     position: relative;
+  `,
+  header: css`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
   `,
 };

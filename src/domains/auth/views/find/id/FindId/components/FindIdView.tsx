@@ -2,14 +2,16 @@ import { PrevButton } from "@/common/components/button/PrevButton";
 import { SubmitButton } from "@/common/components/button/SubmitButton";
 import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
 import { css } from "@emotion/react";
-import { TextField } from "@mui/material";
 
 export const FindIdView = () => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
-        <PrevButton />
-        <SubmitButton />
+        <div css={sx.header}>
+          <PrevButton />
+          <SubmitButton />
+        </div>
+
         <TitleWithDesc
           title="본인 인증"
           desc="아이디 (이메일) 찾기를 위해 본인 인증을 진행해 주세요."
@@ -35,5 +37,11 @@ const sx = {
     text-align: center;
 
     position: relative;
+  `,
+  header: css`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
   `,
 };

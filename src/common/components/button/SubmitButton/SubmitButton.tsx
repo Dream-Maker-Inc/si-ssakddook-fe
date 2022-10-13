@@ -1,8 +1,6 @@
-import Image from "next/image";
-import { css } from "@emotion/react";
-import { useRouter } from "next/router";
+import { CheckRounded } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import SubmitIcon from "@/img/icon-submit.svg";
+import { useRouter } from "next/router";
 
 type TSubmitButton = {
   location?: string;
@@ -13,16 +11,8 @@ export const SubmitButton = ({ location }: TSubmitButton) => {
     location == null ? router.back() : router.push(location);
   };
   return (
-    <IconButton onClick={nextLocation} css={sx.img}>
-      <Image width="24px" height="24px" src={SubmitIcon} alt="" />
+    <IconButton onClick={nextLocation} edge={"end"}>
+      <CheckRounded color="success" />
     </IconButton>
   );
-};
-
-const sx = {
-  img: css`
-    position: absolute;
-    top: 0;
-    right: 0;
-  `,
 };

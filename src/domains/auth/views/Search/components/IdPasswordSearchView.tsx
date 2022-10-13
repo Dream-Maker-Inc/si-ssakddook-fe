@@ -9,7 +9,14 @@ export const IdPasswordSearchView = () => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
-        <CloseButton />
+        <div
+          css={css`
+            padding-left: 4px;
+          `}
+        >
+          <CloseButton />
+        </div>
+
         <TitleWithDesc
           title="회원 정보 찾기"
           desc="찾으실 회원 정보를 선택해 주세요."
