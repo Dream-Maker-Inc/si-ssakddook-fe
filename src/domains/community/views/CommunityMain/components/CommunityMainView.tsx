@@ -34,12 +34,12 @@ export const CommunityMainView = () => {
           </div>
           <div>
             <div css={sx.recentContentTitle}>
-              <Typography variant="h3" color="black">
+              <Typography variant="h2" color="black">
                 최근 게시글
               </Typography>
               <div css={sx.more}>
                 <IconButton onClick={onRecentView}>
-                  <Typography variant="h5">더보기</Typography>
+                  <Typography variant="h4">더보기</Typography>
                   <Image
                     width="11px"
                     height="11px"
@@ -88,13 +88,11 @@ const sx = {
   `,
   boxContainer: css`
     width: 100%;
+    margin-bottom: 40px;
 
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    row-gap: 7px;
-    column-gap: 7px;
-
-    margin-bottom: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 16px;
   `,
 
   recentContentTitle: css`
@@ -109,9 +107,6 @@ const sx = {
   more: css`
     width: 49px;
     height: 20px;
-
-    background-color: ${LightColor.Gray500};
-    border-radius: 8px;
 
     display: flex;
     justify-content: center;
