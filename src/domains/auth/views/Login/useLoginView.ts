@@ -3,10 +3,7 @@ import { RoutePath } from "@/constants/Path";
 import AuthApiService from "@/data/apis/auth/auth.api";
 import { LoginApiResponse } from "@/data/apis/auth/auth.dto";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
-import {
-  ApiFailedResponse,
-  isApiFailedResponse,
-} from "@/data/statusCode/FailedResponse";
+import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { validateEmail } from "@/utils/validation/Email/EmailValidation";
 import { AxiosError } from "axios";
 import { useRouter } from "next/router";
