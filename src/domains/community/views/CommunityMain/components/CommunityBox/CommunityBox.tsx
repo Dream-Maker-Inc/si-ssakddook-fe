@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import { LightColor } from "@/themes/Color";
-import { Button, IconButton, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import Image from "next/image";
 import { RoutePath } from "@/constants/Path";
 import { useRouter } from "next/router";
@@ -20,12 +20,10 @@ export const CommunityBox = ({ img, content }: CommunityBoxProps) => {
     });
   };
   return (
-    <Button onClick={handleViewCategory} css={sx.button}>
-      <div css={sx.boxContainer}>
-        <div css={sx.img}>
-          <Image width="20px" height="20px" src={img} alt="" />
-        </div>
-        <Typography variant="h5" color={LightColor.Gray100} css={sx.text}>
+    <Button css={sx.root} onClick={handleViewCategory}>
+      <div css={sx.categoryContainer}>
+        <Image width="24px" height="24px" src={img} alt="" />
+        <Typography variant="h4" color={LightColor.Gray100} css={sx.text}>
           {content}
         </Typography>
       </div>
@@ -34,30 +32,34 @@ export const CommunityBox = ({ img, content }: CommunityBoxProps) => {
 };
 
 const sx = {
-  boxContainer: css`
+  root: css`
+    width: initial;
+    height: initial;
+    min-width: 10px;
+  `,
+  categoryContainer: css`
     width: 100%;
-    height: 60px;
+    height: 100%;
 
     background-color: ${LightColor.Gray500};
     border-radius: 8px;
 
-    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px;
+
     cursor: pointer;
   `,
 
-  img: css`
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 10px;
-  `,
   text: css`
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 10px;
+    max-width: 60px;
+    text-align: center;
+    width: 100%;
     word-break: keep-all;
-    white-space: nowrap;
+
+    margin-top: 16px;
   `,
 
   button: css`
