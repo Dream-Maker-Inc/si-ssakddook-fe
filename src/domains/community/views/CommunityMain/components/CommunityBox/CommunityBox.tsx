@@ -35,9 +35,11 @@ const sx = {
   root: css`
     width: initial;
     height: initial;
+    min-width: 10px;
   `,
   categoryContainer: css`
     width: 100%;
+    height: 100%;
     background-color: ${LightColor.Gray500};
     border-radius: 8px;
   
@@ -49,8 +51,10 @@ const sx = {
     cursor: pointer;
   `,
   text: css`
+    max-width: 60px;
+    text-align: center;
+    width: 100%;
+    word-break: keep-all;
     margin-top: 16px;
-    word-break: break-word;
-    white-space: nowrap;
   `,
 };
