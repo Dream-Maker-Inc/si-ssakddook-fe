@@ -94,7 +94,7 @@ export const useFetchAllPostByCategory = (category: string, size: number) =>
 
 export const useFetchAllCommentById = (size: number) =>
   useInfiniteQuery(
-    ["all-comment-by-id"],
+    ["all-comment-by-id", size],
     ({ pageParam = 1 }: QueryFunctionContext) =>
       axiosClient.get<CommentItemsResponse>("v1/comment/mine", {
         params: { page: pageParam, size },
@@ -107,7 +107,7 @@ export const useFetchAllCommentById = (size: number) =>
 
 export const useFetchAllPostsById = (size: number) =>
   useInfiniteQuery(
-    ["all-posts-by-id"],
+    ["all-posts-by-id", size],
     ({ pageParam = 1 }: QueryFunctionContext) =>
       axiosClient.get<PostingItemsResponse>("v1/posting/mine", {
         params: { page: pageParam, size },

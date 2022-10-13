@@ -5,3 +5,7 @@ export type LoginApiResponse = {
 export type findIdResponse = {
   email: string;
 };
+
+export type findPasswordResponse = {
+  newPassword: string;
+};

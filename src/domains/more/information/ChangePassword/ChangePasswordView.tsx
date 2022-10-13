@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { WritingTab } from "@/common/components/tab/WritingTab";
-import { PasswordBox } from "./components/PasswordBox/PasswordBox";
+import { PasswordBox } from "@/common/components/field/PasswordBox/PasswordBox";
 import { useChangePasswordView } from "./useChangePasswordView";
 
 export const ChangePasswordView = () => {

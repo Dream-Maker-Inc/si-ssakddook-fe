@@ -1,6 +1,11 @@
 import { MemberModel } from "@/data/apis/member/type/member.model";
 import { atom } from "recoil";
 
+export const CertificationTokenAtom = atom({
+  key: "certificationTokenAtom",
+  default: "",
+});
+
 export const JwtAtom = atom({
   key: "jwtAtom",
   default: "",

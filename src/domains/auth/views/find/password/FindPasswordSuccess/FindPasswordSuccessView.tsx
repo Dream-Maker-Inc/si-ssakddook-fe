@@ -1,37 +1,48 @@
-import { Title } from "@/common/components/title/Title";
 import { css } from "@emotion/react";
-import { Typography } from "@mui/material";
-import Image from "next/image";
-import PasswordSuccessImg from "@/img/find/password-success.svg";
+import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
+import { WritingTab } from "@/common/components/tab/WritingTab";
+import { useFindPasswordSuccessView } from "./useFindPasswordSuccessView";
+import { PasswordBox } from "@/common/components/field/PasswordBox/PasswordBox";
 
 export const FindPasswordSuccessView = () => {
+  const { tabState, newPwState, confirmPwState } = useFindPasswordSuccessView();
+
   return (
-    <div css={sx.root}>
-      <div css={sx.container}>
-        <Title>이메일을 확인해주세요.</Title>
-        <Image width="100px" height="90px" src={PasswordSuccessImg} alt="img" />
-        <Typography variant="h4" textAlign={"center"} mt="60px">
-          비밀번호 변경 관련 이메일을 발송해드렸어요. <br />
-          <span css={sx.span}>
-            이메일을 확인하시고 해당 절차에 따라 진행해 주세요.
-          </span>
-        </Typography>
-        <div css={sx.alarm}>
-          <Typography
-            variant="h5"
-            lineHeight={"166.5%"}
-            color="#999999"
-            textAlign={"center"}
-          >
-            <span css={sx.underline}>메일이 안 보이시나요? </span>
-            <br />
-            프로모션 보관함, 스팸 보관함 등을 확인해 주세요.
-            <br />
-            상황에 따라 메일 발송이 지연될 수도 있어요.
-          </Typography>
+    <AppbarLayout>
+      <WritingTab
+        title={tabState.title}
+        onActive={tabState.onActive}
+        onClick={tabState.onClick}
+      />
+      <div css={sx.root}>
+        <div css={sx.container}>
+          <PasswordBox
+            titleProps={{
+              title: "변경할 비밀번호",
+              desc: "변경할 비밀번호를 입력해 주세요.",
+            }}
+            fieldProps={{
+              value: newPwState.value,
+              onChange: newPwState.onChange,
+              error: newPwState.error,
+              helperText: newPwState.helperText,
+            }}
+          />
+          <PasswordBox
+            titleProps={{
+              title: "변경할 비밀번호 확인",
+              desc: "변경할 비밀번호를 한번 더 입력해 주세요.",
+            }}
+            fieldProps={{
+              value: confirmPwState.value,
+              onChange: confirmPwState.onChange,
+              error: confirmPwState.error,
+              helperText: confirmPwState.helperText,
+            }}
+          />
         </div>
       </div>
-    </div>
+    </AppbarLayout>
   );
 };
 
@@ -39,39 +50,15 @@ const sx = {
   root: css`
     width: 100%;
     height: 100%;
-    padding: 16px;
+    padding: 20px 16px;
   `,
+
   container: css`
     width: 100%;
     height: 100%;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
-
-    position: relative;
-  `,
-
-  span: css`
-    color: #5a8835;
-  `,
-
-  buttonWrapper: css`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    font-size: 14px;
-
-    position: absolute;
-    bottom: 0px;
-  `,
-
-  alarm: css`
-    position: absolute;
-    bottom: 56px;
-  `,
-  underline: css`
-    text-decoration: underline;
+    gap: 40px;
   `,
 };

@@ -2,7 +2,7 @@ import { PrevButton } from "@/common/components/button/PrevButton";
 import { SubmitButton } from "@/common/components/button/SubmitButton";
 import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
 import { css } from "@emotion/react";
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { useInputEmailView } from "./useInputEmailView";
 
 export const InputEmailView = () => {
@@ -21,6 +21,12 @@ export const InputEmailView = () => {
           value={fieldState.value}
           onChange={(e) => fieldState.onChange(e.target.value)}
           placeholder="account@ssakduk.com"
+          helperText={
+            <Typography variant="caption" color={fieldState.color}>
+              {fieldState.helperText}
+            </Typography>
+          }
+          error={fieldState.error}
         />
       </div>
     </div>

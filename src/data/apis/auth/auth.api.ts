@@ -29,6 +29,25 @@ class AuthApiService implements AuthApiInterface {
 
     return response.data;
   }
+
+  async findPassword(
+    token: string,
+    newPassword: string
+  ): Promise<ApiFailedResponse | any> {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const response = await axiosBasicClient.patch(
+      "/v1/member/password-with-certification",
+      { newPassword: newPassword },
+      config
+    );
+
+    return response.data;
+  }
 }
 
 export default AuthApiService.Instance;
