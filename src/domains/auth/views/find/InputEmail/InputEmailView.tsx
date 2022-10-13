@@ -10,11 +10,13 @@ export const InputEmailView = () => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
-        <PrevButton />
-        <SubmitButton
-          disabled={buttonState.disabled}
-          onSubmit={buttonState.onSubmit}
-        />
+        <div css={sx.header}>
+          <PrevButton />
+          <SubmitButton
+            disabled={buttonState.disabled}
+            onSubmit={buttonState.onSubmit}
+          />
+        </div>
         <TitleWithDesc title={fieldState.title} desc={fieldState.desc} />
         <TextField
           fullWidth
@@ -49,5 +51,10 @@ const sx = {
     text-align: center;
 
     position: relative;
+  `,
+  header: css`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   `,
 };
