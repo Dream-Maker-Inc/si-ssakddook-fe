@@ -229,7 +229,7 @@ const TermsContentModal = ({
             <Typography
               variant="h4"
               color={LightColor.TextMain}
-              sx={{ padding: "50px 16px 0 16px" }}
+              sx={{ marginTop: 2, padding: "50px 16px 0 16px", lineHeight: 2 }}
             >
               {content}
             </Typography>
