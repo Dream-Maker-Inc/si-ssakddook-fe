@@ -6,6 +6,7 @@ import Image from "next/image";
 import ChatCloseIcon from "@/img/icon-chat-close.svg";
 import RedHeartIcon from "@/img/icon-chat-heart-red.svg";
 import HeartIcon from "@/img/icon-chat-heart.svg";
+import { CloseRounded } from "@mui/icons-material";
 
 type BoardCommentProps = {
   commentId: number;
@@ -32,6 +33,8 @@ export const BoardComment = ({
 }: BoardCommentProps) => {
   const myId = LocalStorage.getItem("id");
 
+  const likedIcon = isLike ? RedHeartIcon : HeartIcon;
+
   return (
     <div css={sx.item}>
       <div css={sx.row}>
@@ -40,13 +43,14 @@ export const BoardComment = ({
           {" · "}
           {date}
         </Typography>
-        {writerId == myId ? (
-          <IconButton onClick={() => onDelete(commentId + "")}>
-            <Image width="10px" height="10px" src={ChatCloseIcon} alt="" />
-          </IconButton>
-        ) : (
-          <div></div>
-        )}
+
+        <div>
+          {writerId == myId && (
+            <IconButton size={"small"} onClick={() => onDelete(commentId + "")}>
+              <CloseRounded css={sx.miniIcon} />
+            </IconButton>
+          )}
+        </div>
       </div>
       <div css={sx.contentWrapper}>
         <Typography variant="h3" color="black" css={sx.content}>
@@ -55,11 +59,7 @@ export const BoardComment = ({
       </div>
       <div css={sx.wrapper}>
         <IconButton onClick={onLike}>
-          {isLike ? (
-            <Image width="10px" height="10px" src={RedHeartIcon} alt="" />
-          ) : (
-            <Image width="10px" height="10px" src={HeartIcon} alt="" />
-          )}
+          <Image width="10px" height="10px" src={likedIcon} alt="" />
         </IconButton>
         <Typography variant="h5" lineHeight="1" color={LightColor.Gray100}>
           {likeCount}
@@ -81,6 +81,7 @@ const sx = {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   `,
 
   wrapper: css`
@@ -95,5 +96,10 @@ const sx = {
   `,
   content: css`
     text-align: left;
+  `,
+  miniIcon: css`
+    width: 10px;
+    height: auto;
+    aspect-ratio: 1;
   `,
 };

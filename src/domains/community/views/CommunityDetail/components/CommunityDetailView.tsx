@@ -33,7 +33,7 @@ export const CommunityDetailView = () => {
             }}
             commentCount={result.commentCount}
           />
-          <CommentSection postId={postId} />
+          {!!result.commentCount && <CommentSection postId={postId} />}
         </div>
       </div>
     </AppbarLayout>
