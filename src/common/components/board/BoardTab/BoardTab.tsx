@@ -46,14 +46,14 @@ export const BoardTab = ({
         index={0}
         isBottomMarginNecessary={isBottomMarginNecessary}
       >
-        {firstTabInfo.children}
+        {value === 0 && firstTabInfo.children}
       </TabPanel>
       <TabPanel
         value={value}
         index={1}
         isBottomMarginNecessary={isBottomMarginNecessary}
       >
-        {secondTabInfo.children}
+        {value === 1 && secondTabInfo.children}
       </TabPanel>
     </Box>
   );
