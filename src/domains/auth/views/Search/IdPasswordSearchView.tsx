@@ -1,3 +1,5 @@
+import { CloseButton } from "@/common/components/button/CloseButton";
+import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
 import IconNext from "@/img/arrowIcon/icon-button-next.svg";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
@@ -9,6 +11,11 @@ export const IdPasswordSearchView = () => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
+        <div>
+          <CloseButton />
+          <TitleWithDesc title={titleState.title} desc={titleState.desc} />
+        </div>
+
         <div css={sx.searchBoxWrapper}>
           <SearchBox
             title={idFieldState.title}

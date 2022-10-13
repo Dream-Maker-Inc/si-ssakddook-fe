@@ -60,7 +60,8 @@ export const useInputEmailView = () => {
 
   // 이메일 텍스트 필드 헬퍼 텍스트
   const emailHelperText = getEmailHelperText();
-  const isEmailError = (email !== "" && !isValidEmail) || !isEmailExisted;
+  const isEmailEmpty = email === "";
+  const isEmailError = (!isEmailEmpty && !isValidEmail) || !isEmailExisted;
   const emailHelperTextColor =
     isEmailError || !isEmailExisted ? "error" : "primary";
 
@@ -107,7 +108,7 @@ export const useInputEmailView = () => {
     },
     buttonState: {
       onSubmit: handleExistedEmailCheck,
-      disabled: isEmailError,
+      disabled: isEmailEmpty || isEmailError,
     },
   };
 };

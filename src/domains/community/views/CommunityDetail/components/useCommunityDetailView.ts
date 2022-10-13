@@ -1,14 +1,17 @@
 import LikeApiService from "@/data/apis/like/like.api";
-import { useFindOneByPostId } from "@/data/apis/posting/usePostingApiHooks";
+import PostingApiService from "@/data/apis/posting/posting.api";
 import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { useRouter } from "next/router";
-import { useMutation } from "react-query";
+import { useEffect } from "react";
+import { useMutation, useQuery } from "react-query";
+import { PostingItemResponse } from "./../../../../../data/apis/posting/posting.dto";
 
 export const useCommunityDetailView = () => {
   const router = useRouter();
   const postId = router.query.postId + "";
 
-  const { data, isLoading, isError, refetch } = useFindOneByPostId(postId);
+  const { data, isLoading, isError, refetch } = useGetPostingDetail(postId);
+
   const { mutate: createLike } = useMutation(
     () => LikeApiService.createLike(body!!),
     {
@@ -46,7 +49,7 @@ export const useCommunityDetailView = () => {
     deleteLike();
   };
 
-  if (!data) {
+  if (!data || data?.deletedAt) {
     return {
       fetchState: {
         isLoading: isLoading,
@@ -74,7 +77,6 @@ export const useCommunityDetailView = () => {
     fetchState: {
       isLoading: isLoading,
       isError: isError,
-      refetch: refetch,
     },
     result: {
       postId: data.id,
@@ -92,4 +94,30 @@ export const useCommunityDetailView = () => {
     },
     postId: postId,
   };
+};
+
+const useGetPostingDetail = (postId: string) => {
+  const router = useRouter();
+
+  const handleSuccess = (data: PostingItemResponse) => {
+    if (data.deletedAt) {
+      alert("삭제된 게시글입니다.");
+      router.back();
+    }
+  };
+
+  const query = useQuery(
+    ["getPostingDetail", postId],
+    () => PostingApiService.findOneByPostId(postId),
+    {
+      onSuccess: handleSuccess,
+      enabled: false,
+    }
+  );
+
+  useEffect(() => {
+    query.refetch();
+  }, []);
+
+  return query;
 };

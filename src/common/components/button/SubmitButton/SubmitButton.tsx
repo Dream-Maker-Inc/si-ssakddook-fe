@@ -8,7 +8,7 @@ type TSubmitButton = {
 export const SubmitButton = ({ onSubmit, disabled }: TSubmitButton) => {
   return (
     <IconButton onClick={onSubmit} disabled={disabled} edge={"end"}>
-      <CheckRounded color="success" />
+      <CheckRounded color={disabled ? "inherit" : "success"} />
     </IconButton>
   );
 };

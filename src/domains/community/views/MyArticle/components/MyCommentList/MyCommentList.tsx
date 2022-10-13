@@ -11,15 +11,15 @@ export const MyCommentList = () => {
   if (fetchState.isError) return <div>에러가 발생했습니다.</div>;
   return (
     <div css={sx.root}>
-      {result?.pages.map((page, index) => (
+      {result?.map((comments, index) => (
         <div key={index}>
-          {page.data.items.map((it, index) => (
+          {comments.map((it, index) => (
             <BoardItem
               key={index}
-              postId={it.posting.id}
+              postId={it.postingId}
               title={it.content}
-              date={getDateDiff(it.createdAt)}
-              nicknameOrTitle={it.posting.title}
+              date={it.date}
+              nicknameOrTitle={it.postingTitle}
               isInMyArticleList={true}
               isPost={false}
             />

@@ -13,8 +13,8 @@ export const NoticeBox = () => {
   };
   return (
     <div css={sx.noticeContainer} onClick={handleBoxClick}>
-      <Typography variant="caption" color="rgba(90, 136, 53, 0.6)">
-        운영자가 추천하는 취미!
+      <Typography variant="body1" color="rgba(90, 136, 53, 0.6)">
+        {'운영자가 추천하는 취미! '}
         <span css={sx.span}>싹둑 라이프와 함께하세요.</span>
       </Typography>
       <Image width="20px" height="20px" src={HeartIcon} alt="" />
@@ -40,6 +40,7 @@ const sx = {
     cursor: pointer;
   `,
   span: css`
+    word-break: keep-all;
     color: ${LightColor.PrimaryDark};
   `,
 };

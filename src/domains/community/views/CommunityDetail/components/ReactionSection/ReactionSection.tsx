@@ -1,11 +1,11 @@
+import CommentIcon from "@/img/icon-chat-comment.svg";
+import RedHeartIcon from "@/img/icon-chat-heart-red.svg";
+import HeartIcon from "@/img/icon-chat-heart.svg";
+import ReportIcon from "@/img/icon-chat-report.svg";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
-import { Button, IconButton, Typography, TypographyProps } from "@mui/material";
+import { Button, Typography, TypographyProps } from "@mui/material";
 import Image from "next/image";
-import CommentIcon from "@/img/icon-chat-comment.svg";
-import ReportIcon from "@/img/icon-chat-report.svg";
-import HeartIcon from "@/img/icon-chat-heart.svg";
-import RedHeartIcon from "@/img/icon-chat-heart-red.svg";
 
 type ReactionSectionProps = {
   commentCount: number;

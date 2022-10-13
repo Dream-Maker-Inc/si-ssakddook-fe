@@ -11,7 +11,7 @@ export const CloseButton = ({ location }: CloseButton) => {
     location == null ? router.back() : router.push(location);
   };
   return (
-    <IconButton onClick={nextLocation} edge={"start"} sx={{ padding: "4px" }}>
+    <IconButton onClick={nextLocation} edge={"start"}>
       <CloseRounded />
     </IconButton>
   );

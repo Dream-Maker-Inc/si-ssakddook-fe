@@ -1,11 +1,11 @@
 import LikeApiService from "@/data/apis/like/like.api";
+import PostingApiService from "@/data/apis/posting/posting.api";
 import {
   useFindAllCommentByPostId,
   useFindOneByPostId,
 } from "@/data/apis/posting/usePostingApiHooks";
-import { useMutation, useQuery } from "react-query";
-import PostingApiService from "@/data/apis/posting/posting.api";
 import { useState } from "react";
+import { useMutation } from "react-query";
 
 export const useCommentSection = (postId: string) => {
   const page = "1";
