@@ -3,7 +3,7 @@ export type ClickBoxProps = {
   desc: string;
   iconSrc: string;
   nextButtonState: boolean;
-  onClickPath: string;
+  onClick: () => void;
 };
 
 export type EtcBoxProps = {

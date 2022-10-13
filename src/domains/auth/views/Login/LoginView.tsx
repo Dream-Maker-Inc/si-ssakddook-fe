@@ -14,7 +14,10 @@ export const LoginView = () => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
-        <PrevButton />
+        <div css={sx.prevButtonWrapper}>
+          <PrevButton />
+        </div>
+
         <div css={sx.img}>
           <Image width="60px" height="40px" alt={"img"} src={MainImg} />
         </div>
@@ -84,6 +87,11 @@ const sx = {
     text-align: center;
 
     position: relative;
+  `,
+  prevButtonWrapper: css`
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
   `,
   img: css`
     margin-top: 6.87vh;

@@ -17,7 +17,7 @@ export const MyInformationView = () => {
             desc={it.desc}
             iconSrc={it.iconSrc}
             nextButtonState={it.nextButtonState}
-            onClickPath={it.onClickPath}
+            onClick={it.onClick}
           />
         ))}
       </div>
