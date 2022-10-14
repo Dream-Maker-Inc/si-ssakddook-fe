@@ -1,8 +1,10 @@
 import { ChatMainView } from "@/domains/chat/ChatMain";
+import { useUserSession } from "@/recoil/session/user-session.atom";
 import { NextPage } from "next";
 
 const ChatMainPage: NextPage = () => {
-  return <ChatMainView />;
+  const { user } = useUserSession();
+  return user && <ChatMainView />;
 };
 
 export default ChatMainPage;
