@@ -8,12 +8,18 @@ type SearchTabProps = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSearch: () => void;
+  onBack: () => void;
 };
 
-export const SearchTab = ({ value, onChange, onSearch }: SearchTabProps) => {
+export const SearchTab = ({
+  value,
+  onChange,
+  onSearch,
+  onBack,
+}: SearchTabProps) => {
   return (
     <div css={sx.tabContainer}>
-      <BoardPrevButton />
+      <BoardPrevButton onClick={onBack} />
       <TextField
         value={value}
         onChange={onChange}

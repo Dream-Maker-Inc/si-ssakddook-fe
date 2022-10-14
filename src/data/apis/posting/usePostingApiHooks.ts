@@ -1,6 +1,5 @@
 import PostingApiService from "./posting.api";
 import {
-  QueryClient,
   QueryFunctionContext,
   useInfiniteQuery,
   useMutation,
@@ -8,7 +7,6 @@ import {
 } from "react-query";
 import { axiosClient } from "@/constants/api/client/client";
 import { CommentItemsResponse, PostingItemsResponse } from "./posting.dto";
-import { queryClient } from "@/pages/_app";
 
 export const useCreatePost = () => {
   return useMutation((formData: any) => PostingApiService.createPost(formData));
@@ -86,8 +84,22 @@ export const useFetchAllPostByCategory = (category: string, size: number) =>
     {
       getNextPageParam: ({ data: { metaData } }) =>
         metaData.isLast ? undefined : metaData.pageNumber + 1,
-      onSuccess: (res) => {
-        console.log(res);
+    }
+  );
+
+export const useFetchAllPostByKeyword = (keyword: string, size: number) =>
+  useInfiniteQuery(
+    ["all-post-by-keyword"],
+    ({ pageParam = 1 }: QueryFunctionContext) =>
+      axiosClient.get<PostingItemsResponse>("/v1/posting", {
+        params: { keyword, page: pageParam, size },
+      }),
+    {
+      getNextPageParam: ({ data: { metaData } }) =>
+        metaData.isLast ? undefined : metaData.pageNumber + 1,
+      enabled: false,
+      onSuccess(data) {
+        console.log(data);
       },
     }
   );
@@ -128,8 +140,5 @@ export const useFetchAllCommentsByPostId = (size: number, postId: string) =>
     {
       getNextPageParam: ({ data: { metaData } }) =>
         metaData.isLast ? undefined : metaData.pageNumber + 1,
-      onSuccess(data) {
-        console.log(data);
-      },
     }
   );

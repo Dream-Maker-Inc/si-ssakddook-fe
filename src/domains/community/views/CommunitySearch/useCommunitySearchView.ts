@@ -1,21 +1,34 @@
-import { useState } from "react";
-import PostingApiService from "@/data/apis/posting/posting.api";
-import { useMutation } from "react-query";
+import { useCallback, useEffect, useState } from "react";
+import { useFetchAllPostByKeyword } from "@/data/apis/posting/usePostingApiHooks";
+import { useInView } from "react-intersection-observer";
+import { useRouter } from "next/router";
 
 export const useCommunitySearchView = () => {
+  const { ref, inView } = useInView();
   const [search, setSearch] = useState("");
+  const router = useRouter();
+
+  const size = 15;
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
-  const page = 1;
-  const size = 30;
 
-  const { data, isLoading, mutate } = useMutation(() =>
-    PostingApiService.findAllPostByKeyword(search, page, size)
-  );
+  const handleRemoveData = () => {
+    router.back();
+    remove();
+  };
 
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView]);
+
+  const { data, isLoading, refetch, fetchNextPage, remove } =
+    useFetchAllPostByKeyword(search, size);
   const handleKeywordSearch = () => {
-    mutate();
+    refetch();
   };
 
   if (!data) {
@@ -24,6 +37,7 @@ export const useCommunitySearchView = () => {
         value: search,
         onChange: handleSearchChange,
         onSearch: handleKeywordSearch,
+        onBack: handleRemoveData,
       },
       fetchState: {
         isLoading: isLoading,
@@ -37,10 +51,12 @@ export const useCommunitySearchView = () => {
       value: search,
       onChange: handleSearchChange,
       onSearch: handleKeywordSearch,
+      onBack: handleRemoveData,
     },
     fetchState: {
       isLoading: isLoading,
     },
     result: data,
+    ref: ref,
   };
 };

@@ -9,38 +9,43 @@ import { Typography } from "@mui/material";
 import { useCommunitySearchView } from "./useCommunitySearchView";
 
 export const CommunitySearchView = () => {
-  const { searchState, fetchState, result } = useCommunitySearchView();
-
+  const { searchState, fetchState, result, ref } = useCommunitySearchView();
   if (fetchState.isLoading) return <CircularLoading />;
 
   return (
-    <PlainLayout>
+    <PlainLayout isBottomMarginNecessary={false}>
       <SearchTab
         value={searchState.value}
         onChange={searchState.onChange}
         onSearch={searchState.onSearch}
+        onBack={searchState.onBack}
       />
       <div css={sx.root}>
-        {result?.items.length == 0 ? (
+        {result?.pages[0] !== undefined ? (
+          result?.pages.map((page, index) => (
+            <div key={index}>
+              {page.data.items.map((it, index) => (
+                <BoardExpandedItem
+                  key={index}
+                  postId={it.id + ""}
+                  title={it.title}
+                  date={getDateDiff(it.createdAt)}
+                  nickname={it.author.nickname}
+                  category={it.category}
+                  like={it.likedCount + ""}
+                  comments={it.commentCount + ""}
+                />
+              ))}
+            </div>
+          ))
+        ) : (
           <div css={sx.text}>
             <Typography variant="body1" color={LightColor.Gray100}>
               검색 정보가 없습니다.
             </Typography>
           </div>
-        ) : (
-          result?.items.map((it, index) => (
-            <BoardExpandedItem
-              key={index}
-              postId={it.id + ""}
-              title={it.title}
-              date={getDateDiff(it.createdAt)}
-              nickname={it.author.nickname}
-              category={it.category}
-              like={it.likedCount + ""}
-              comments={it.commentCount + ""}
-            />
-          ))
         )}
+        <div css={sx.target} ref={ref}></div>
       </div>
     </PlainLayout>
   );
@@ -57,11 +62,15 @@ const sx = {
       display: none;
     }
   `,
-
   text: css`
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  `,
+  target: css`
+    width: 100%;
+    height: 1px;
+    background-color: transparent;
   `,
 };
