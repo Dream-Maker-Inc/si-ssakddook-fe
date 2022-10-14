@@ -16,7 +16,7 @@ export const useLoginView = () => {
   // 자동 로그인 해제
   const memberId = LocalStorage.getItem("id");
   if (memberId !== "undefined" || memberId !== null) {
-    LocalStorage.setItem("id", "");
+    LocalStorage.removeItem("id");
   }
 
   const router = useRouter();
