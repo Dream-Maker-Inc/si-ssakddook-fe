@@ -21,77 +21,54 @@ import { ParticipatedChannelList } from "./components/channelList/PrticipatedCha
 import { useChatMainView } from "./useChatMainView";
 
 export const ChatMainView = () => {
-  const [client, setClient] = useState<any>(null);
-  const { userState, chatCreateState, channelListState } = useChatMainView();
-
-  useEffect(() => {
-    async function init() {
-      const chatClient = StreamChat.getInstance(userState.key);
-      await setClient(chatClient);
-      await chatClient.connectUser(
-        userState.user,
-        chatClient.devToken(userState.user.id)
-      );
-    }
-
-    init();
-
-    if (client)
-      return () => {
-        client.disconnectUser();
-      };
-  }, []);
-
-  if (!client) return <LoadingIndicator />;
+  const { chatCreateState, channelListState } = useChatMainView();
 
   return (
     <AppbarLayout>
-      <Chat client={client} theme="messaging light">
-        {channelListState.visible ? (
-          <ChatMainTab
-            name={chatCreateState.title.value}
-            desc={chatCreateState.desc.value}
-            onClick={chatCreateState.tab.onClick}
-            onBack={chatCreateState.tab.onBack}
-            onChangeTabState={chatCreateState.tab.onChangeTabState}
-            isCreateView={chatCreateState.visible}
-          />
-        ) : (
-          <ChatRoomTab />
-        )}
-        {chatCreateState.visible ? (
-          <ChatCreateView
-            titleProps={{
-              value: chatCreateState.title.value,
-              onChange: chatCreateState.title.onChange,
+      {channelListState.visible ? (
+        <ChatMainTab
+          name={chatCreateState.title.value}
+          desc={chatCreateState.desc.value}
+          onClick={chatCreateState.tab.onClick}
+          onBack={chatCreateState.tab.onBack}
+          onChangeTabState={chatCreateState.tab.onChangeTabState}
+          isCreateView={chatCreateState.visible}
+        />
+      ) : (
+        <ChatRoomTab />
+      )}
+      {chatCreateState.visible ? (
+        <ChatCreateView
+          titleProps={{
+            value: chatCreateState.title.value,
+            onChange: chatCreateState.title.onChange,
+          }}
+          descProps={{
+            value: chatCreateState.desc.value,
+            onChange: chatCreateState.desc.onChange,
+          }}
+        />
+      ) : (
+        <div css={sx.container}>
+          <BoardTab
+            isVisible={channelListState.visible}
+            firstTabInfo={{
+              title: "참여중",
+              children: <ParticipatedChannelList />,
             }}
-            descProps={{
-              value: chatCreateState.desc.value,
-              onChange: chatCreateState.desc.onChange,
+            secondTabInfo={{
+              title: "둘러보기",
+              children: <EveryChannelList />,
             }}
           />
-        ) : (
-          <div css={sx.container}>
-            <BoardTab
-              isVisible={channelListState.visible}
-              firstTabInfo={{
-                title: "참여중",
-                children: <ParticipatedChannelList />,
-              }}
-              secondTabInfo={{
-                title: "둘러보기",
-                children: <EveryChannelList />,
-              }}
-            />
-            <CustomChannel isVisible={!channelListState.visible}>
-              <Window>
-                <MessageList messageActions={[]} />
-                <MessageInput />
-              </Window>
-            </CustomChannel>
-          </div>
-        )}
-      </Chat>
+          <CustomChannel isVisible={!channelListState.visible}>
+            <Window>
+              <MessageList messageActions={[]} />
+              <MessageInput />
+            </Window>
+          </CustomChannel>
+        </div>
+      )}
     </AppbarLayout>
   );
 };

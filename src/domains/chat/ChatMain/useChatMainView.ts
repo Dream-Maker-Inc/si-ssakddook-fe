@@ -61,10 +61,6 @@ export const useChatMainView = () => {
   };
 
   return {
-    userState: {
-      user: user,
-      key: apiKey,
-    },
     chatCreateState: {
       title: {
         value: name,
