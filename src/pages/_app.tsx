@@ -1,3 +1,4 @@
+import { useFlutterBridgeListen } from "@/common/flutter-bridge/useFlutterbridgeListen";
 import "@/common/styles/globals.css";
 import { ChatProvider } from "@/domains/chat/ChatProvider";
 import { findTheme, ThemeTypes } from "@/themes/CustomThemes";
@@ -23,6 +24,8 @@ export const queryClient = new QueryClient({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useFlutterBridgeListen();
+
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
