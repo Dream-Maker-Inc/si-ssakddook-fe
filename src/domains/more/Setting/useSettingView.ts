@@ -20,7 +20,8 @@ export const useSettingView = () => {
     ["inactivate-push"],
     (notificationId: number) => PushApiService.deletePush(notificationId),
     {
-      onSuccess() {
+      onSuccess(res) {
+        console.log(res);
         refetch();
       },
     }
@@ -28,7 +29,8 @@ export const useSettingView = () => {
 
   const handleSwitchChange = (pushId: number, p: AgreedItem | null) => {
     if (p !== null) {
-      deleteMutate(pushId);
+      console.log(1);
+      deleteMutate(p.id);
     } else {
       postMutate(pushId);
     }
