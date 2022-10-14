@@ -1,5 +1,4 @@
 import { RoutePath } from "@/constants/Path";
-import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { css } from "@emotion/react";
 import Image from "next/image";
 import Router from "next/router";
@@ -8,7 +7,7 @@ import Logo from "@/img/home/main-logo.png";
 export const SplashView = () => {
   useEffect(() => {
     setTimeout(() => {
-      Router.push(RoutePath.Home);
+      Router.replace(RoutePath.Home);
     }, 1500);
   }, []);
 
