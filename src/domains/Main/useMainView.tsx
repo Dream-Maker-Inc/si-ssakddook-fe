@@ -15,10 +15,11 @@ export const useMainView = () => {
   LocalStorage.setItem("profileImage", data?.profileImageUrl + "");
 
   // user session 저장
-  const { setUser } = useUserSession();
+  const { user, setUser } = useUserSession();
 
   useEffect(() => {
     if (!data) return;
+    if (user?.id === `${data.id}`) return;
 
     setUser({
       id: `${data.id}`,
