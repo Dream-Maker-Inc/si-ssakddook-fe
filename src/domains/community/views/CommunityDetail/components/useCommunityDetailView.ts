@@ -101,7 +101,6 @@ const useGetPostingDetail = (postId: string) => {
 
   const handleSuccess = (data: PostingItemResponse) => {
     if (data.deletedAt) {
-      alert("삭제된 게시글입니다.");
       router.back();
     }
   };
