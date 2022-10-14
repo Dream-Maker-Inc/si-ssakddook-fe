@@ -28,7 +28,6 @@ export const useSettingView = () => {
 
   const handleSwitchChange = (pushId: number, p: AgreedItem | null) => {
     if (p !== null) {
-      console.log(1);
       deleteMutate(p.id);
     } else {
       postMutate(pushId);
