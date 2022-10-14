@@ -2,46 +2,33 @@ import { ChatModal } from "@/common/components/modal/ChatModal/ChatModal";
 import { css } from "@emotion/react";
 import { Box, Drawer, IconButton, Typography } from "@mui/material";
 import Image from "next/image";
-import { useChatTab } from "./useChatTab";
+import { useChatRoomTab } from "./useChatRoomTab";
 import PrevIconImg from "@/img/arrowIcon/prev-icon.svg";
 import LogoutImg from "@/img/icon-logout.svg";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
 import { LightColor } from "@/themes/Color";
-import { useChatContext } from "stream-chat-react";
 
 export const ChatRoomTab = () => {
-  const { channel } = useChatContext();
-  const { tabState, modalState } = useChatTab();
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  const toggleDrawer =
-    (open: boolean) => (e: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        e.type === "keydown" &&
-        ((e as React.KeyboardEvent).key === "Tab" ||
-          (e as React.KeyboardEvent).key === "Shift")
-      ) {
-        return;
-      }
-
-      setIsDrawerOpen(open);
-    };
+  const { tabState, channelState, drawerState, modalState } = useChatRoomTab();
 
   return (
-    <div css={sx.tabContainer}>
+    <div css={sx.root}>
       <div css={sx.tab}>
-        <IconButton onClick={tabState.onPrev}>
+        <IconButton onClick={tabState.onBack}>
           <Image width="24px" height="24px" src={PrevIconImg} alt="logo" />
         </IconButton>
         <Typography variant="h2" lineHeight="1" ml="12px">
           채팅방
         </Typography>
       </div>
-      <IconButton onClick={toggleDrawer(true)}>
+      <IconButton onClick={drawerState.onClose(true)}>
         <MenuIcon />
       </IconButton>
-      <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer(false)}>
+      <Drawer
+        anchor="right"
+        open={drawerState.isOpen}
+        onClose={drawerState.onClose(false)}
+      >
         <Box css={sx.drawerContainer} role="presentation">
           <div css={sx.chatHeaderSection}>
             <Typography variant="h3" color="black">
@@ -54,7 +41,7 @@ export const ChatRoomTab = () => {
                 제목
               </Typography>
               <Typography variant="body2" color="TextSub">
-                {channel?.data?.name}
+                {channelState.title}
               </Typography>
             </div>
 
@@ -63,7 +50,7 @@ export const ChatRoomTab = () => {
                 설명
               </Typography>
               <Typography variant="body2" color="TextSub">
-                {channel?.data?.desc + ""}
+                {channelState.desc}
               </Typography>
             </div>
 
@@ -72,7 +59,7 @@ export const ChatRoomTab = () => {
                 생성날짜
               </Typography>
               <Typography variant="body2" color="TextSub">
-                {(channel?.data?.created_at + "").slice(0, 10)}
+                {channelState.createdAt}
               </Typography>
             </div>
           </div>
@@ -95,7 +82,7 @@ export const ChatRoomTab = () => {
 };
 
 const sx = {
-  tabContainer: css`
+  root: css`
     position: absolute;
     width: 100%;
     height: 50px;
@@ -108,7 +95,7 @@ const sx = {
 
     padding: 0 16px;
 
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   `,
 
   tab: css`
@@ -118,7 +105,6 @@ const sx = {
 
   drawerContainer: css`
     width: 240px;
-    positoin: relative;
   `,
 
   content: css`

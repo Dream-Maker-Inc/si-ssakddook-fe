@@ -17,6 +17,7 @@ export enum RoutePath {
   // chat
   Chat = "/chat",
   ChatCreate = "/chat/create",
+  ChatRoom = "/chat/room",
 
   // life
   Life = "/life",

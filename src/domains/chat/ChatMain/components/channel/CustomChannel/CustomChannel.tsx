@@ -3,13 +3,12 @@ import { css } from "@emotion/react";
 import { Channel } from "stream-chat-react";
 
 type CustomChannelType = {
-  children: any;
   isVisible: boolean;
 };
-export const CustomChannel = ({ children, isVisible }: CustomChannelType) => {
+export const CustomChannel = ({ isVisible }: CustomChannelType) => {
   return (
     <div css={sx.root(isVisible)}>
-      <Channel>{children}</Channel>
+      <Channel></Channel>
     </div>
   );
 };

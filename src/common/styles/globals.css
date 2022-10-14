@@ -495,3 +495,22 @@ header #logo .icon {
 .str-chat__container .str-chat__message-simple-status {
   display: none;
 }
+
+.str-chat-channel {
+  height: unset !important;
+}
+
+.str-chat {
+  max-height: unset !important;
+  height: 100% !important;
+}
+
+.str-chat-channel.messaging .str-chat__main-panel {
+  padding: unset !important;
+}
+
+@media screen and (max-width: 960px) {
+  .str-chat-channel.messaging .str-chat__main-panel {
+    padding: unset !important;
+  }
+}

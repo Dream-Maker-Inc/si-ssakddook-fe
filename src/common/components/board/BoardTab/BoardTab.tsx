@@ -6,7 +6,6 @@ import { useState } from "react";
 type BoardTabProps = {
   firstTabInfo: TabModel;
   secondTabInfo: TabModel;
-  isVisible?: boolean;
   isBottomMarginNecessary?: boolean;
 };
 
@@ -18,7 +17,6 @@ type TabModel = {
 export const BoardTab = ({
   firstTabInfo,
   secondTabInfo,
-  isVisible = true,
   isBottomMarginNecessary = true,
 }: BoardTabProps) => {
   const [value, setValue] = useState(0);
@@ -28,7 +26,7 @@ export const BoardTab = ({
   };
 
   return (
-    <Box css={sx.root(isVisible)}>
+    <Box css={sx.root}>
       <Box css={sx.tabContainer}>
         <Tabs
           value={value}
@@ -89,10 +87,9 @@ function a11yProps(index: number) {
 }
 
 const sx = {
-  root: (isVisible: boolean) => css`
+  root: css`
     width: 100%;
     height: 100%;
-    display: ${isVisible ? "block" : "none"};
   `,
   tabContainer: css`
     width: 100%;

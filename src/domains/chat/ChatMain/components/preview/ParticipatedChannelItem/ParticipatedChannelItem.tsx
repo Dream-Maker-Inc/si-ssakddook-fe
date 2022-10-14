@@ -10,23 +10,14 @@ type ParticipatedChannelItemProps = {
 export const ParticipatedChannelItem = ({
   channel,
 }: ParticipatedChannelItemProps) => {
-  const { onOpen } = useParticipatedChannelItem(channel);
-
-  const renderMessageText = () => {
-    const lastMessageText =
-      channel.state.messages[channel.state.messages.length - 1];
-
-    const text = lastMessageText == null ? "" : lastMessageText.text;
-    return text.length < 60 ? text : `${text.slice(0, 70)}...`;
-  };
+  const { onOpen, messageTitle } = useParticipatedChannelItem(channel);
 
   return (
     <div css={sx.root} onClick={onOpen}>
       <Typography variant="body1" color="black">
         {channel.data.name}
       </Typography>
-      <p className="channel-preview__content-message">{renderMessageText()}</p>
-
+      <p className="channel-preview__content-message">{messageTitle()}</p>
       <div css={sx.date}>
         <Typography variant="h5" color={LightColor.Gray600}>
           {getDateFromNow(channel.data.created_at)}

@@ -1,12 +1,11 @@
-import { ChatAtom } from "@/recoil/Navigation/Navigation.atom";
+import { RoutePath } from "@/constants/Path";
+import { useRouter } from "next/router";
 import { useState } from "react";
-import { useSetRecoilState } from "recoil";
-import { useChannelActionContext, useChatContext } from "stream-chat-react";
+import { useChatContext } from "stream-chat-react";
 
 export const usePublicChannelItem = (channel: any) => {
+  const router = useRouter();
   const { client, setActiveChannel } = useChatContext();
-
-  const setIsChannelListVisible = useSetRecoilState(ChatAtom);
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -22,7 +21,7 @@ export const usePublicChannelItem = (channel: any) => {
 
     await channel.watch();
     await setActiveChannel(channel);
-    await setIsChannelListVisible(false);
+    await router.push(RoutePath.ChatRoom);
   };
 
   return {

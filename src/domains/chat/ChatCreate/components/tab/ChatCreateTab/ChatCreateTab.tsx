@@ -1,31 +1,29 @@
 import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
-import LogoImg from "@/img/main/logo.svg";
-import AddCHatIconImg from "@/img/tab/icon-add-chat.svg";
-import { useRouter } from "next/router";
-import { RoutePath } from "@/constants/Path";
+import PrevIconImg from "@/img/arrowIcon/prev-icon.svg";
+import SubmitIconImg from "@/img/icon-submit.svg";
 
-export const ChatMainTab = () => {
-  const router = useRouter();
-  const onClick = () => {
-    router.push(RoutePath.ChatCreate);
-  };
+type ChatMainTabProps = {
+  onBack: () => void;
+  onSubmit: () => void;
+};
 
+export const ChatCreateTab = ({ onBack, onSubmit }: ChatMainTabProps) => {
   return (
-    <div css={sx.tabContainer}>
+    <div css={sx.root}>
       <div css={sx.wrapper}>
-        <IconButton>
-          <Image width="24px" height="16px" src={LogoImg} alt="logo" />
+        <IconButton onClick={onBack}>
+          <Image width="24px" height="24px" src={PrevIconImg} alt="logo" />
         </IconButton>
 
         <Typography variant="h2" lineHeight="1" ml="12px">
-          톡
+          톡방 개설하기
         </Typography>
       </div>
       <div>
-        <IconButton onClick={onClick}>
-          <Image width="18px" height="18px" src={AddCHatIconImg} alt="" />
+        <IconButton onClick={onSubmit}>
+          <Image width="24px" height="24px" src={SubmitIconImg} alt="" />
         </IconButton>
       </div>
     </div>
@@ -33,7 +31,7 @@ export const ChatMainTab = () => {
 };
 
 const sx = {
-  tabContainer: css`
+  root: css`
     width: 100%;
     height: 50px;
     position: absolute;
