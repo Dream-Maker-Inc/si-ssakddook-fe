@@ -8,12 +8,7 @@ import Logo from "@/img/home/main-logo.png";
 export const SplashView = () => {
   useEffect(() => {
     setTimeout(() => {
-      const memberId = LocalStorage.getItem("id");
-      if (memberId === "undefined" || memberId == "" || memberId == null) {
-        Router.push(RoutePath.Home);
-      } else {
-        Router.push(RoutePath.Main);
-      }
+      Router.push(RoutePath.Home);
     }, 1500);
   }, []);
 

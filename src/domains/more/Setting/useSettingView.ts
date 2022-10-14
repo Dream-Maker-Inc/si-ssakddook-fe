@@ -35,8 +35,4 @@ export const useSettingView = () => {
   };
 
   return { result: data, onChange: handleSwitchChange };
-  // result: data,
-  // pushState: push,
-  // onActive: handleCheckAlarm,
-  // onInactive: handleUncheckAlarm,
 };

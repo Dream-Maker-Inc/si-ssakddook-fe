@@ -2,9 +2,12 @@ import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
 import MainImg from "@/img/logo/main.svg";
-import { useHomeView } from "./useIntroView";
+import { useHomeView } from "./useHomeView";
+import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 export const HomeView = () => {
-  const { signup, login } = useHomeView();
+  const { isLayoutLoading, signup, login } = useHomeView();
+
+  if (isLayoutLoading) return <CircularLoading />;
 
   return (
     <div css={sx.root}>
