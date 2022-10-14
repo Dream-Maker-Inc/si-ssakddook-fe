@@ -4,20 +4,21 @@ import { AlarmBox } from "../components/AlarmBox";
 import { useSettingView } from "./useSettingView";
 
 export const SettingView = () => {
-  // const { } = useSettingView();
+  const { result, onChange } = useSettingView();
   return (
     <PlainLayout isBttomMarginNecessary={false}>
       <DefaultTab category="설정" />
-      {/* 
+
       {result?.map((it, index) => (
         <AlarmBox
           key={index}
+          pushId={it.id}
           title={it.title}
           desc={it.description}
-          isChecked={pushState.filter(item => item.id === it.id)[0].check}
-          onChange={chatState.onChange}
+          isChecked={it.myAgreed}
+          onChange={onChange}
         />
-      ))} */}
+      ))}
     </PlainLayout>
   );
 };

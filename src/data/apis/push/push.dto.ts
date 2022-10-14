@@ -1,11 +1,21 @@
+export type AgreedItem = {
+  createdAt: Date;
+  updatedAt: FormDataEntryValue;
+  deletedAt: Date | null;
+  id: number;
+  memberId: number;
+  pushNotificationId: number;
+};
+
 export type PushItemResponse = {
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date | null;
+  deletedAt: null;
   id: number;
   title: string;
   description: string;
   type: string;
+  myAgreed: AgreedItem | null;
 };
 
 export type ActivatedPushItemResponse = {

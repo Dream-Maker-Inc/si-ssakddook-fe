@@ -1,9 +1,5 @@
-import { axiosBasicClient } from "@/constants/api/client/client";
-import {
-  ActivatedPushItemResponse,
-  ActivatedPushItemsResponse,
-  PushItemsResponse,
-} from "./push.dto";
+import { axiosBasicClient, axiosClient } from "@/constants/api/client/client";
+import { ActivatedPushItemResponse, PushItemsResponse } from "./push.dto";
 import { PushApiInterface } from "./push.interface";
 
 class PushApiService implements PushApiInterface {
@@ -13,26 +9,19 @@ class PushApiService implements PushApiInterface {
   }
 
   async findAllPush(): Promise<PushItemsResponse> {
-    const response = await axiosBasicClient.get(`/v1/push-notification`);
+    const response = await axiosClient.get(`/v1/push-notification`);
     return response.data;
   }
 
-  async findActivatedPush(): Promise<ActivatedPushItemsResponse> {
-    const response = await axiosBasicClient.get(`/v1/agreed-notifi`);
-    return response.data;
-  }
-
-  async activatePush(
-    notificationId: number
-  ): Promise<ActivatedPushItemResponse> {
-    const response = await axiosBasicClient.post(`/v1/agreed-notifi`, {
+  async postPush(notificationId: number): Promise<ActivatedPushItemResponse> {
+    const response = await axiosClient.post(`/v1/agreed-notifi`, {
       notificationId,
     });
     return response.data;
   }
 
   async deletePush(notificationId: number): Promise<ActivatedPushItemResponse> {
-    const response = await axiosBasicClient.delete(
+    const response = await axiosClient.delete(
       `/v1/agreed-notifi/${notificationId}`
     );
     return response.data;
