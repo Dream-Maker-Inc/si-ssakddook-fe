@@ -21,7 +21,6 @@ export const useSettingView = () => {
     (notificationId: number) => PushApiService.deletePush(notificationId),
     {
       onSuccess(res) {
-        console.log(res);
         refetch();
       },
     }
