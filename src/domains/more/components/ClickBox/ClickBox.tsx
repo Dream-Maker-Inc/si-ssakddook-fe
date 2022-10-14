@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import { ClickBoxProps } from "../../types/MoreType.type";
+import IconArrowRight from "@/img/arrowIcon/icon-arrow-right.svg";
 
 export const ClickBox = ({
   title,
@@ -28,12 +29,7 @@ export const ClickBox = ({
       </div>
       {nextButtonState && (
         <div css={sx.arrow}>
-          <Image
-            width="24px"
-            height="24px"
-            src="/img/arrowIcon/icon-arrow-right.svg"
-            alt=""
-          />
+          <Image width="24px" height="24px" src={IconArrowRight} alt="" />
         </div>
       )}
     </div>
