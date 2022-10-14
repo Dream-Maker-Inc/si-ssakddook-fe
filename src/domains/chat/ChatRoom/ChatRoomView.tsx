@@ -1,4 +1,3 @@
-import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import { css } from "@emotion/react";
 import { Channel, MessageInput, MessageList, Window } from "stream-chat-react";
