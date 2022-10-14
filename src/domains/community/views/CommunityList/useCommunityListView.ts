@@ -37,7 +37,6 @@ export const useCommunityListView = () => {
   }
 
   const result = data.pages.map((page) => mapToPostings(page.data.items));
-  console.log(result[0].length);
 
   return {
     category: category == "" ? "최근 게시글" : category,
@@ -48,7 +47,7 @@ export const useCommunityListView = () => {
     },
     result,
     emptyResultText:
-      "이 카테고리에는\n아직 글이 없어요.\n\n글 작성 페이지에서\n을 작성해 보세요.",
+      "이 카테고리에는\n아직 글이 없어요.\n\n글 작성 페이지에서\n글을 작성해 보세요.",
     ref: ref,
   };
 };
