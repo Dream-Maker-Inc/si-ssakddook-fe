@@ -3,9 +3,7 @@ import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { useChatContext } from "stream-chat-react";
 import { CustomLoadingIndicator } from "../../indicator/CustomLoadingIndicator";
-import { CustomPreview } from "../../preview/CustomPreview";
 import { ParticipatedChannelItem } from "../../preview/ParticipatedChannelItem";
-import { PublicChannelItem } from "../../preview/PublicChannelItem";
 
 export const ParticipatedChannelList = () => {
   const { client } = useChatContext();

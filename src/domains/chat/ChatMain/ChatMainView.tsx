@@ -1,14 +1,9 @@
 import { css } from "@emotion/react";
 import { BoardTab } from "@/common/components/board/BoardTab";
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
-import { useEffect, useState } from "react";
-import { StreamChat } from "stream-chat";
 import {
-  Chat,
-  LoadingIndicator,
   MessageInput,
   MessageList,
-  Thread,
   Window,
 } from "stream-chat-react";
 import "stream-chat-react/dist/css/index.css";
