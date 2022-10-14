@@ -20,7 +20,6 @@ export const ParticipatedChannelList = () => {
 
       setChannels(filteredChannels);
       setLoadingChannels(false);
-      await console.log(filteredChannels);
     };
 
     fetchChannels();
