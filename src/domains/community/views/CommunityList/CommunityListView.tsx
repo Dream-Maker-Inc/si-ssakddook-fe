@@ -12,7 +12,7 @@ export const CommunityListView = () => {
     useCommunityListView();
   if (fetchState.isLoading)
     return (
-      <PlainLayout isBttomMarginNecessary={false}>
+      <PlainLayout isBottomMarginNecessary={false}>
         <DefaultTab category={category} />
         <CircularLoading />
       </PlainLayout>
@@ -20,7 +20,7 @@ export const CommunityListView = () => {
   if (fetchState.isError) return <div>에러가 발생했습니다.</div>;
 
   return (
-    <PlainLayout isBttomMarginNecessary={true}>
+    <PlainLayout isBottomMarginNecessary={false}>
       <DefaultTab category={category} />
       <div css={sx.root}>
         {result!![0].length !== 0 ? (

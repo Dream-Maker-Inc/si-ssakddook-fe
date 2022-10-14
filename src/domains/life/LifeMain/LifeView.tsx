@@ -10,7 +10,7 @@ export const LifeView = () => {
   const { fetchState, result, ref } = useLifeView();
   if (fetchState.isLoading)
     return (
-      <PlainLayout isBttomMarginNecessary={false}>
+      <PlainLayout isBottomMarginNecessary={false}>
         <CircularLoading />
       </PlainLayout>
     );
@@ -18,7 +18,7 @@ export const LifeView = () => {
   if (fetchState.isError) return <div>에러가 발생했습니다.</div>;
 
   return (
-    <PlainLayout isBttomMarginNecessary={true}>
+    <PlainLayout isBottomMarginNecessary={true}>
       <DefaultTab category="라이프" />
       <div css={sx.root}>
         {result?.pages.map((page, index) => (

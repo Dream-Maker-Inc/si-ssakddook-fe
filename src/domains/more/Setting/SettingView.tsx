@@ -6,7 +6,7 @@ import { useSettingView } from "./useSettingView";
 export const SettingView = () => {
   const { result, onChange } = useSettingView();
   return (
-    <PlainLayout isBttomMarginNecessary={false}>
+    <PlainLayout isBottomMarginNecessary={false}>
       <DefaultTab category="설정" />
 
       {result?.map((it, index) => (

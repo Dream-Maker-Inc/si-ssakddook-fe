@@ -11,7 +11,7 @@ export const SecessionView = () => {
   const { checkboxState, passwordState, buttonState } = useSecessionView();
 
   return (
-    <PlainLayout isBttomMarginNecessary={false}>
+    <PlainLayout isBottomMarginNecessary={false}>
       <DefaultTab category="회원 탈퇴" />
       <div css={sx.root}>
         <div css={sx.container}>

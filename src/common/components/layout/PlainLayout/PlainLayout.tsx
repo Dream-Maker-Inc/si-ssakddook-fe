@@ -2,14 +2,14 @@ import { css } from "@emotion/react";
 
 type LayoutProps = {
   children: React.ReactNode;
-  isBttomMarginNecessary?: boolean;
+  isBottomMarginNecessary?: boolean;
 };
 
 export const PlainLayout = ({
   children,
-  isBttomMarginNecessary = true,
+  isBottomMarginNecessary = true,
 }: LayoutProps) => {
-  return <div css={sx.container(isBttomMarginNecessary)}>{children}</div>;
+  return <div css={sx.container(isBottomMarginNecessary)}>{children}</div>;
 };
 
 const sx = {
