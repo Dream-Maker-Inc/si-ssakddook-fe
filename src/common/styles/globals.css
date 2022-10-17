@@ -496,7 +496,7 @@ header #logo .icon {
   display: none;
 }
 
-.str-chat-channel {
+/* .str-chat-channel {
   height: unset !important;
 }
 
@@ -504,8 +504,9 @@ header #logo .icon {
   max-height: unset !important;
   height: 100% !important;
 }
+*/
 
-.str-chat-channel.messaging .str-chat__main-panel {
+/* .str-chat-channel.messaging .str-chat__main-panel {
   padding: unset !important;
 }
 
@@ -513,4 +514,4 @@ header #logo .icon {
   .str-chat-channel.messaging .str-chat__main-panel {
     padding: unset !important;
   }
-}
+} */
