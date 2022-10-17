@@ -2,14 +2,20 @@ import { css } from "@emotion/react";
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import PrevIconImg from "@/img/arrowIcon/prev-icon.svg";
-import SubmitIconImg from "@/img/icon-submit.svg";
+import IconSubmit from "@/img/icon-submit.svg";
+import IconDisabledSubmit from "@/img/icon-submit-disabled.svg";
 
 type ChatMainTabProps = {
   onBack: () => void;
   onSubmit: () => void;
+  disabled: boolean;
 };
 
-export const ChatCreateTab = ({ onBack, onSubmit }: ChatMainTabProps) => {
+export const ChatCreateTab = ({
+  onBack,
+  onSubmit,
+  disabled,
+}: ChatMainTabProps) => {
   return (
     <div css={sx.root}>
       <div css={sx.wrapper}>
@@ -22,9 +28,15 @@ export const ChatCreateTab = ({ onBack, onSubmit }: ChatMainTabProps) => {
         </Typography>
       </div>
       <div>
-        <IconButton onClick={onSubmit}>
-          <Image width="24px" height="24px" src={SubmitIconImg} alt="" />
-        </IconButton>
+        {disabled ? (
+          <IconButton>
+            <Image width="24px" height="24px" src={IconDisabledSubmit} alt="" />
+          </IconButton>
+        ) : (
+          <IconButton onClick={onSubmit}>
+            <Image width="24px" height="24px" src={IconSubmit} alt="" />
+          </IconButton>
+        )}
       </div>
     </div>
   );

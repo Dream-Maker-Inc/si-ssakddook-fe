@@ -43,6 +43,7 @@ export const useChatCreateView = () => {
     tabState: {
       onSubmit: handleCreateChat,
       onBack: onBack,
+      disabled: name == "" || desc == "",
     },
     titleState: {
       value: name,

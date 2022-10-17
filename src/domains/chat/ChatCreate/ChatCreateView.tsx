@@ -9,7 +9,11 @@ export const ChatCreateView = () => {
   const { tabState, titleState, descState } = useChatCreateView();
   return (
     <AppbarLayout>
-      <ChatCreateTab onBack={tabState.onBack} onSubmit={tabState.onSubmit} />
+      <ChatCreateTab
+        onBack={tabState.onBack}
+        onSubmit={tabState.onSubmit}
+        disabled={tabState.disabled}
+      />
       <div css={sx.root}>
         <TextField
           fullWidth
