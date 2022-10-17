@@ -23,7 +23,8 @@ export const useParticipatedChannelItem = (channel: any) => {
   };
 
   const lastMessageTime =
-    channel.data.last_message_at === undefined
+    channel.data.last_message_at === undefined ||
+    channel.data.last_message_at === null
       ? ""
       : getTimeFromNow(channel.data.last_message_at);
 
