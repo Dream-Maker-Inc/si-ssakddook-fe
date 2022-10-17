@@ -514,3 +514,14 @@ header #logo .icon {
     padding: unset !important;
   }
 }
+
+.str-chat__send-button svg path {
+  fill: #5a8835;
+}
+
+.str-chat__input-flat .str-chat__textarea > textarea:focus {
+  border: none;
+  color: var(--black);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 0 0 2px #5a8835 !important;
+}
