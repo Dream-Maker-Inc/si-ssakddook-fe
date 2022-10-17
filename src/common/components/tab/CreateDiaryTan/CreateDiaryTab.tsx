@@ -15,8 +15,8 @@ type CreateDiaryTabProps = {
 
 type CreateDiaryTabStateProps = {
   isWritingState?: boolean;
-  onSubmitClick: () => void;
-  onEditlick: () => void;
+  onSubmit: () => void;
+  onEdit: () => void;
   onRestate: () => void;
 };
 
@@ -31,7 +31,7 @@ export const CreateDiaryTab = ({
   const handleModalClose = () => setModalOpen(false);
 
   const moveToDiaryPage = () => {
-    router.push(RoutePath.Main);
+    router.replace(RoutePath.Main);
   };
   const moveToDiaryUpdatePage = () => {
     handleModalClose();
@@ -50,7 +50,7 @@ export const CreateDiaryTab = ({
           {title}
         </Typography>
       </div>
-      <IconButton onClick={writingState.onSubmitClick}>
+      <IconButton onClick={writingState.onSubmit}>
         <Image width="24px" height="24px" src={SubmitIcon} alt="" />
       </IconButton>
       <PrevModal
