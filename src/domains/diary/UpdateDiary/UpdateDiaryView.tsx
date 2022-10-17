@@ -17,8 +17,8 @@ export const UpdateDiaryView = () => {
           title={tabState.title}
           writingState={{
             isWritingState: tabState.isWritingState,
-            onSubmitClick: tabState.onSubmit,
-            onEditlick: tabState.onEdit,
+            onSubmit: tabState.onSubmit,
+            onEdit: tabState.onEdit,
             onRestate: tabState.onRestate,
           }}
         />

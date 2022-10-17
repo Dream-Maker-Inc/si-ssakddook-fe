@@ -16,8 +16,8 @@ type DiaryTabProps = {
 
 type DiaryTabStateProps = {
   isWritingState?: boolean;
-  onSubmitClick: () => void;
-  onEditlick: () => void;
+  onSubmit: () => void;
+  onEdit: () => void;
   onRestate: () => void;
 };
 
@@ -30,7 +30,7 @@ export const DiaryTab = ({ title, writingState }: DiaryTabProps) => {
   const handleModalClose = () => setModalOpen(false);
 
   const moveToDiaryPage = () => {
-    router.push(RoutePath.Main);
+    router.replace(RoutePath.Main);
   };
   const moveToDiaryUpdatePage = () => {
     handleModalClose();
@@ -50,11 +50,11 @@ export const DiaryTab = ({ title, writingState }: DiaryTabProps) => {
         </Typography>
       </div>
       {writingState.isWritingState ? (
-        <IconButton onClick={writingState.onSubmitClick}>
+        <IconButton onClick={writingState.onSubmit}>
           <Image width="24px" height="24px" src={SubmitIcon} alt="" />
         </IconButton>
       ) : (
-        <IconButton onClick={writingState.onEditlick}>
+        <IconButton onClick={writingState.onEdit}>
           <Image width="24px" height="24px" src={EditIcon} alt="" />
         </IconButton>
       )}
