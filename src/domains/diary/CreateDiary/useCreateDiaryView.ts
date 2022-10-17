@@ -27,7 +27,7 @@ export const useCreateDiaryView = () => {
   const { mutate, data: newDiaryData } = useMutation(
     (body: any) => DiaryApiService.createDiary(body),
     {
-      onSuccess: (res) => {
+      onSuccess: () => {
         router.push(RoutePath.Main);
       },
       onError: (err) => {
