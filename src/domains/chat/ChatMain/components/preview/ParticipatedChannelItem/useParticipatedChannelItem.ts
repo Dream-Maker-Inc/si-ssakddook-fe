@@ -1,15 +1,13 @@
 import { RoutePath } from "@/constants/Path";
-import { ChatAtom } from "@/recoil/Navigation/Navigation.atom";
+import { getTimeFromNow } from "@/utils/moment/DateMoment";
 import { useRouter } from "next/router";
-import { useSetRecoilState } from "recoil";
 import { useChatContext } from "stream-chat-react";
 
 export const useParticipatedChannelItem = (channel: any) => {
   const router = useRouter();
   const { setActiveChannel } = useChatContext();
-  const setIsChannelListVisible = useSetRecoilState(ChatAtom);
 
-  const renderMessageText = () => {
+  const lastMessage = () => {
     const lastMessageText =
       channel.state.messages[channel.state.messages.length - 1];
 
@@ -20,13 +18,22 @@ export const useParticipatedChannelItem = (channel: any) => {
   const handleChatJoin = async () => {
     await channel.watch();
     await setActiveChannel(channel);
-    //await setIsChannelListVisible(false);
 
     router.push(RoutePath.ChatRoom);
   };
 
+  const lastMessageTime =
+    channel.data.last_message_at === undefined
+      ? ""
+      : getTimeFromNow(channel.data.last_message_at);
+
   return {
     onOpen: handleChatJoin,
-    messageTitle: renderMessageText,
+    lastMessage: lastMessage,
+
+    channelState: {
+      title: channel.data.name,
+      lastDate: lastMessageTime,
+    },
   };
 };

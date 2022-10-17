@@ -2,7 +2,7 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import { useParticipatedChannelItem } from "./useParticipatedChannelItem";
-import { getDateFromNow } from "@/utils/moment/DateMoment";
+import { getDateFromNow, getTimeFromNow } from "@/utils/moment/DateMoment";
 
 type ParticipatedChannelItemProps = {
   channel: any;
@@ -10,17 +10,18 @@ type ParticipatedChannelItemProps = {
 export const ParticipatedChannelItem = ({
   channel,
 }: ParticipatedChannelItemProps) => {
-  const { onOpen, messageTitle } = useParticipatedChannelItem(channel);
+  const { onOpen, lastMessage, channelState } =
+    useParticipatedChannelItem(channel);
 
   return (
     <div css={sx.root} onClick={onOpen}>
       <Typography variant="body1" color="black">
-        {channel.data.name}
+        {channelState.title}
       </Typography>
-      <p className="channel-preview__content-message">{messageTitle()}</p>
+      <p className="channel-preview__content-message">{lastMessage()}</p>
       <div css={sx.date}>
         <Typography variant="h5" color={LightColor.Gray600}>
-          {getDateFromNow(channel.data.created_at)}
+          {channelState.lastDate}
         </Typography>
       </div>
     </div>
