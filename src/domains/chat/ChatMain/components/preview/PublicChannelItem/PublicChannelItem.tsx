@@ -13,7 +13,7 @@ export const PublicChannelItem = ({ channel }: PublicChannelItemProps) => {
   const { modalState, channelState } = usePublicChannelItem(channel);
   return (
     <div css={sx.join}>
-      {channelState.channelUserid == channelState.clientUserId || (
+      {channelState.isJoined || (
         <div css={sx.root} onClick={modalState.onOpen}>
           <div css={sx.container}>
             <Typography variant="body1" color="black">

@@ -15,15 +15,22 @@ export const usePublicChannelItem = (channel: any) => {
   const handleChatJoin = async () => {
     setModalOpen(false);
 
+    await channel.watch();
+
     await channel.addMembers([client.user?.id], {
       text: `${client.user?.name} 님이 입장했습니다.`,
       hide_history: true,
     });
 
-    await channel.watch();
     await setActiveChannel(channel);
     await router.push(RoutePath.ChatRoom);
   };
+
+  const participatedMembers = Object.values(channel.state.members).map(
+    (it: any) => it.user_id
+  );
+
+  const isJoined = participatedMembers.includes(client.user?.id!!);
 
   return {
     modalState: {
@@ -36,6 +43,7 @@ export const usePublicChannelItem = (channel: any) => {
     channelState: {
       channelUserid: channel.data.created_by.id,
       clientUserId: client.user?.id,
+      isJoined: isJoined,
     },
   };
 };
