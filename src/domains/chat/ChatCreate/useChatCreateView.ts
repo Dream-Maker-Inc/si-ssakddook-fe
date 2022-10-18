@@ -1,4 +1,5 @@
 import { RoutePath } from "@/constants/Path";
+import pushApi from "@/data/apis/push/push.api";
 import { generateRandomString } from "@/utils/random/generateRandomString";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -21,7 +22,7 @@ export const useChatCreateView = () => {
   };
 
   const handleCreateChat = async () => {
-    const channelId = client.user?.id!! + "-" + generateRandomString(10);
+    const channelId = generateRandomString(10);
     const channel = client.channel("messaging", channelId, {
       name,
       desc,
