@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import "moment/locale/ko";
 import { usePublicChannelItem } from "./usePublicChannelItem";
-import { getDateFromNow, getTimeFromNow } from "@/utils/moment/DateMoment";
+import { getTimeFromNow } from "@/utils/moment/DateMoment";
 
 type PublicChannelItemProps = {
   channel: any;
