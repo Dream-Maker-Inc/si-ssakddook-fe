@@ -22,7 +22,7 @@ export const useChatCreateView = () => {
   };
 
   const handleCreateChat = async () => {
-    const channelId = generateRandomString(10);
+    const channelId = client.user?.id + "-" + generateRandomString(10);
     const channel = client.channel("messaging", channelId, {
       name,
       desc,
