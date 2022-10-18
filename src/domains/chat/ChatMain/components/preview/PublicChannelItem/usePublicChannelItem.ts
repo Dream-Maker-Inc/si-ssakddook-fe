@@ -19,7 +19,6 @@ export const usePublicChannelItem = (channel: any) => {
 
     await channel.addMembers([client.user?.id], {
       text: `${client.user?.name} 님이 입장했습니다.`,
-      hide_history: true,
     });
 
     await setActiveChannel(channel);
