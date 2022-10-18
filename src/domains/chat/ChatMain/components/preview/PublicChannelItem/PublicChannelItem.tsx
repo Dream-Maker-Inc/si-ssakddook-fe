@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import "moment/locale/ko";
 import { usePublicChannelItem } from "./usePublicChannelItem";
-import { getDateFromNow } from "@/utils/moment/DateMoment";
+import { getDateFromNow, getTimeFromNow } from "@/utils/moment/DateMoment";
 
 type PublicChannelItemProps = {
   channel: any;
@@ -24,7 +24,7 @@ export const PublicChannelItem = ({ channel }: PublicChannelItemProps) => {
             </Typography>
           </div>
           <Typography variant="h5" color={LightColor.Gray600}>
-            {getDateFromNow(channel.data.created_at)}
+            {getTimeFromNow(channel.data.created_at)}
           </Typography>
         </div>
       )}
