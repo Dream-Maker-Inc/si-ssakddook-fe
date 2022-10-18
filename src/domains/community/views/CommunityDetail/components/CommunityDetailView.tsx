@@ -6,6 +6,7 @@ import { ContentSection } from "./ContentSection";
 import { ReactionSection } from "./ReactionSection";
 import { useCommunityDetailView } from "./useCommunityDetailView";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
+import { CommentWrite } from "../../components/CommentWrite";
 
 export const CommunityDetailView = () => {
   const { fetchState, result, postId } = useCommunityDetailView();
@@ -33,7 +34,7 @@ export const CommunityDetailView = () => {
             }}
             commentCount={result.commentCount}
           />
-          {!!result.commentCount && <CommentSection postId={postId} />}
+          <CommentSection postId={postId} />
         </div>
       </div>
     </AppbarLayout>
