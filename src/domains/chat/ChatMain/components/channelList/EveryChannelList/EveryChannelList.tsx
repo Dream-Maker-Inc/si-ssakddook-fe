@@ -13,6 +13,7 @@ export const EveryChannelList = () => {
   const filter = {
     type: "messaging",
     member_count: { $eq: 1 },
+    joined: { $eq: false },
   };
 
   useEffect(() => {
