@@ -2,7 +2,7 @@ import { LightColor } from "@/themes/Color";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import { css } from "@emotion/react";
-import SecessionImg from "@/img/auth/img-secession.svg";
+import SecessionImg from "@/img/auth/img-secession-png.png";
 
 export const ImageSection = () => {
   return (
@@ -10,7 +10,7 @@ export const ImageSection = () => {
       <Typography
         variant="h2"
         color={LightColor.PrimaryDark}
-        mb="60px"
+        mb="30px"
         textAlign="center"
       >
         정말 탈퇴하시겠어요?
@@ -23,6 +23,10 @@ export const ImageSection = () => {
 const sx = {
   imageSectionContainer: css`
     margin-top: 24px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
+  `,
+  image: css`
+    width: 200px;
+    height: 200px;
   `,
 };
