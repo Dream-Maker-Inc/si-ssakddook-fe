@@ -132,7 +132,7 @@ export const SignupView = () => {
           onClick={buttonState.onClick}
         >
           <Typography variant="body1" color="white" lineHeight="1">
-            다음
+            본인 인증하기
           </Typography>
         </Button>
       </div>
