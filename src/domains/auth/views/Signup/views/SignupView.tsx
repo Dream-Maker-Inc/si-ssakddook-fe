@@ -83,7 +83,7 @@ export const SignupView = () => {
           <PasswordArticle
             titleProps={{
               title: "비밀번호",
-              desc: "영문 대문자와 특수문자가 포함된 8자 이상의 비밀번호를 설정해 주세요.",
+              desc: "영문과 특수문자가 포함된 8자 이상의 비밀번호를 설정해 주세요.",
             }}
             fieldProps={{
               type: "password",
