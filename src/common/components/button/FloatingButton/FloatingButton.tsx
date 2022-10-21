@@ -3,20 +3,32 @@ import { css } from "@emotion/react";
 import Image from "next/image";
 import Link from "next/link";
 import EditIcon from "@/img/icon-edit.svg";
+import { IconButton } from "@mui/material";
+import { useRouter } from "next/router";
 
 type FloatingButtonProps = {
   isCategoryListView?: boolean;
+  category: string;
 };
 
 export const FloatingButton = ({
   isCategoryListView = false,
+  category,
 }: FloatingButtonProps) => {
+  const router = useRouter();
+  const onWrite = () => {
+    router.push({
+      pathname: RoutePath.CommunityWrite,
+      query: { category: category },
+    });
+  };
+
   return (
-    <Link href={RoutePath.CommunityWrite}>
+    <IconButton onClick={onWrite}>
       <div css={sx.container(isCategoryListView)}>
         <Image width="24px" height="24px" src={EditIcon} alt="" />
       </div>
-    </Link>
+    </IconButton>
   );
 };
 

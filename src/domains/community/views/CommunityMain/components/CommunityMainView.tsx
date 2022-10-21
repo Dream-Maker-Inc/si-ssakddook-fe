@@ -61,7 +61,7 @@ export const CommunityMainView = () => {
             ))}
           </div>
         </div>
-        <FloatingButton />
+        <FloatingButton category="" />
       </div>
     </AppbarLayout>
   );

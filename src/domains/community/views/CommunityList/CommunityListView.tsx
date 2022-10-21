@@ -46,7 +46,7 @@ export const CommunityListView = () => {
           </div>
         )}
         <div css={sx.target} ref={ref}></div>
-        <FloatingButton isCategoryListView={true} />
+        <FloatingButton isCategoryListView={true} category={category!!} />
       </div>
       )
     </PlainLayout>
