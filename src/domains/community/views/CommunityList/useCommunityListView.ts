@@ -1,3 +1,4 @@
+import { queryClient } from "./../../../../pages/_app";
 import { PostingItemResponse } from "@/data/apis/posting/posting.dto";
 import { useFetchAllPostByCategory } from "@/data/apis/posting/usePostingApiHooks";
 import { getDateDiff } from "@/utils/DateDif/DateDiff";
@@ -9,11 +10,10 @@ import { useInView } from "react-intersection-observer";
 export const useCommunityListView = () => {
   const router = useRouter();
   let category = router.query.category + "";
-  const size = 15;
 
   const { ref, inView } = useInView();
   const { data, isLoading, isError, error, isFetching, fetchNextPage } =
-    useFetchAllPostByCategory(category, size);
+    useFetchAllPostByCategory(category);
 
   useEffect(() => {
     if (inView) {

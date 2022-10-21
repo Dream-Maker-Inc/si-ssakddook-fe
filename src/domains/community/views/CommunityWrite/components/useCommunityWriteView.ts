@@ -1,17 +1,21 @@
+import { queryClient } from "./../../../../../pages/_app";
+import PostingApiService from "@/data/apis/posting/posting.api";
 import { CATEGORY_TYPE } from "./../../../types/CategoryType.enum";
 import { SelectChangeEvent } from "@mui/material";
 import { useState } from "react";
-import { useCreatePost } from "@/data/apis/posting/usePostingApiHooks";
 import { useRouter } from "next/router";
 import { RoutePath } from "@/constants/Path";
 import { ImageType } from "../types/communityImage.type";
+import { useMutation, useQueryClient } from "react-query";
 
 export const useCommunityWriteView = () => {
   const categoryList = Object.values(CATEGORY_TYPE);
   const router = useRouter();
+  const selectedCategory = router.query.category + "";
+  const queryClient = useQueryClient();
 
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(selectedCategory);
   const [content, setContent] = useState("");
   const [img, setImage] = useState<ImageType[]>([]);
   const [count, setCount] = useState(0);
@@ -82,15 +86,22 @@ export const useCommunityWriteView = () => {
   };
 
   // submit
-  const { mutate, isSuccess, isError, data } = useCreatePost();
+  const { mutate } = useMutation(
+    (formData: any) => PostingApiService.createPost(formData),
+    {
+      onSuccess() {
+        queryClient.clear();
 
-  if (isSuccess) {
-    router.replace(RoutePath.MyArticle);
-  }
-
-  if (isError) {
-    console.log(data);
-  }
+        router.replace({
+          pathname: RoutePath.CommunityList,
+          query: { category: category },
+        });
+      },
+      onError(err) {
+        console.log(err);
+      },
+    }
+  );
 
   const onSubmit = async () => {
     await handleImagePush();

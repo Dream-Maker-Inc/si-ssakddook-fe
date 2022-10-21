@@ -4,6 +4,7 @@ import {
   useInfiniteQuery,
   useMutation,
   useQuery,
+  useQueryClient,
 } from "react-query";
 import { axiosClient } from "@/constants/api/client/client";
 import { CommentItemsResponse, PostingItemsResponse } from "./posting.dto";
@@ -74,18 +75,29 @@ export const useUpdatePost = (postId: string, body: any) => {
   return useMutation(() => PostingApiService.updatePost(postId, body));
 };
 
-export const useFetchAllPostByCategory = (category: string, size: number) =>
-  useInfiniteQuery(
-    ["all-post-by-category", category, size],
-    ({ pageParam = 1 }: QueryFunctionContext) =>
-      axiosClient.get<PostingItemsResponse>("/v1/posting", {
-        params: { category, page: pageParam, size },
-      }),
-    {
-      getNextPageParam: ({ data: { metaData } }) =>
-        metaData.isLast ? undefined : metaData.pageNumber + 1,
-    }
-  );
+export const useFetchAllPostByCategory = (category: string) => {
+  const { data, isLoading, isError, error, isFetching, fetchNextPage } =
+    useInfiniteQuery(
+      ["find-all-post-by-category", category],
+      ({ pageParam = 1 }: QueryFunctionContext) =>
+        axiosClient.get<PostingItemsResponse>("/v1/posting", {
+          params: { category, page: pageParam, size: 15 },
+        }),
+      {
+        getNextPageParam: ({ data: { metaData } }) =>
+          metaData.isLast ? undefined : metaData.pageNumber + 1,
+      }
+    );
+
+  return {
+    data,
+    isLoading,
+    isError,
+    error,
+    isFetching,
+    fetchNextPage,
+  };
+};
 
 export const useFetchAllPostByKeyword = (keyword: string, size: number) =>
   useInfiniteQuery(
