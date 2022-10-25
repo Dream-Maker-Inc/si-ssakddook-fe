@@ -4,9 +4,11 @@ import { LightColor } from "@/themes/Color";
 import { useChatCreateView } from "./useChatCreateView";
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { ChatCreateTab } from "./components/tab/ChatCreateTab";
+import { CategorySelection } from "@/common/components/selection/CategorySelection";
 
 export const ChatCreateView = () => {
-  const { tabState, titleState, descState } = useChatCreateView();
+  const { tabState, categoryState, titleState, descState } =
+    useChatCreateView();
   return (
     <AppbarLayout>
       <ChatCreateTab
@@ -15,6 +17,11 @@ export const ChatCreateView = () => {
         disabled={tabState.disabled}
       />
       <div css={sx.root}>
+        <CategorySelection
+          categoryList={categoryState.list}
+          value={categoryState.value}
+          onChange={categoryState.onChange}
+        />
         <TextField
           fullWidth
           variant="standard"
