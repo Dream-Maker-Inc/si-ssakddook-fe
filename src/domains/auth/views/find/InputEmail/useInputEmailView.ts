@@ -19,6 +19,13 @@ export const useInputEmailView = () => {
     setEmail(e);
   };
 
+  useEffect(() => {
+    // 가맹점 식별 코드
+    const StoreUid = "imp12349201";
+    const imp = window.IMP;
+    imp.init(StoreUid);
+  }, []);
+
   // email 존재여부 api
   const { mutate, data } = useMutation(
     () => MemberApiService.validateEmail(email),
