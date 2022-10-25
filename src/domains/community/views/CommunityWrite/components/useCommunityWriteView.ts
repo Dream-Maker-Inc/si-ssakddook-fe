@@ -1,4 +1,3 @@
-import { queryClient } from "./../../../../../pages/_app";
 import PostingApiService from "@/data/apis/posting/posting.api";
 import { CATEGORY_TYPE } from "./../../../types/CategoryType.enum";
 import { SelectChangeEvent } from "@mui/material";

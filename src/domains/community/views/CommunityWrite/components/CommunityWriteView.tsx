@@ -2,7 +2,7 @@ import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { WritingTab } from "@/common/components/tab/WritingTab";
 import { css } from "@emotion/react";
 import { CameraSection } from "./CameraSection/CameraSection";
-import { CategorySelection } from "./CategorySelection/CategorySelection";
+import { CategorySelection } from "../../../../../common/components/selection/CategorySelection/CategorySelection";
 import { ContentSecton } from "./ContentSecton/ContentSection";
 import { CreateThumbnailSection } from "@/common/components/thumbnail/CreateThumbnailSection";
 import { TitleSection } from "./TitleSection";
