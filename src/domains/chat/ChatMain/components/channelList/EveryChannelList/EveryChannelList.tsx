@@ -11,7 +11,6 @@ export const EveryChannelList = () => {
   const [loadingChannels, setLoadingChannels] = useState(true);
 
   const filter = {
-    type: "messaging",
     member_count: { $eq: 1 },
   };
 

@@ -1,15 +1,22 @@
 import { RoutePath } from "@/constants/Path";
-import pushApi from "@/data/apis/push/push.api";
 import { generateRandomString } from "@/utils/random/generateRandomString";
+import { SelectChangeEvent } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useChatContext } from "stream-chat-react";
+import { CHAT_CATEGORY_TYPE } from "@/domains/chat/types/ChatCategoryType.enum";
 
 export const useChatCreateView = () => {
   const router = useRouter();
+  const categoryList = Object.values(CHAT_CATEGORY_TYPE);
   const { client, setActiveChannel } = useChatContext();
+  const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
+
+  const handleCategoryChange = (e: SelectChangeEvent) => {
+    setCategory(e.target.value);
+  };
 
   const handleNameChange = (v: string) => {
     if (v.length >= 25) return;
@@ -21,12 +28,21 @@ export const useChatCreateView = () => {
     setDesc(v);
   };
 
+  function getKeyByValue(value: string) {
+    const indexOfS = categoryList.indexOf(
+      value as unknown as CHAT_CATEGORY_TYPE
+    );
+    const key = Object.keys(CHAT_CATEGORY_TYPE)[indexOfS];
+    return key;
+  }
+
   const handleCreateChat = async () => {
     const channelId = client.user?.id + "-" + generateRandomString(10);
-    const channel = client.channel("messaging", channelId, {
+    const channel = client.channel(getKeyByValue(category), channelId, {
       name,
       desc,
       members: [client.user!!.id],
+      image: "https://getstream.imgix.net/images/random_svg/FS.png",
     });
 
     await channel.create();
@@ -43,8 +59,15 @@ export const useChatCreateView = () => {
     tabState: {
       onSubmit: handleCreateChat,
       onBack: onBack,
-      disabled: name == "" || desc == "",
+      disabled: name == "" || desc == "" || category == "",
     },
+
+    categoryState: {
+      list: categoryList,
+      value: category,
+      onChange: handleCategoryChange,
+    },
+
     titleState: {
       value: name,
       onChange: handleNameChange,

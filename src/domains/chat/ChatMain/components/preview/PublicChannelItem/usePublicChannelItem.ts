@@ -1,4 +1,5 @@
 import { RoutePath } from "@/constants/Path";
+import { CHAT_CATEGORY_TYPE } from "@/domains/chat/types/ChatCategoryType.enum";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useChatContext } from "stream-chat-react";
@@ -31,6 +32,10 @@ export const usePublicChannelItem = (channel: any) => {
 
   const isJoined = participatedMembers.includes(client.user?.id!!);
 
+  const channelType = channel.data.config.name;
+  const channelCategory =
+    CHAT_CATEGORY_TYPE[channelType as keyof typeof CHAT_CATEGORY_TYPE];
+
   return {
     modalState: {
       isOpen: modalOpen,
@@ -43,6 +48,7 @@ export const usePublicChannelItem = (channel: any) => {
       channelUserid: channel.data.created_by.id,
       clientUserId: client.user?.id,
       isJoined: isJoined,
+      channelCategory: channelCategory,
     },
   };
 };

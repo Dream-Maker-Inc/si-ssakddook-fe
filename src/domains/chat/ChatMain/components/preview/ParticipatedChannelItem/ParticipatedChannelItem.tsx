@@ -2,7 +2,6 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import { useParticipatedChannelItem } from "./useParticipatedChannelItem";
-import { getDateFromNow, getTimeFromNow } from "@/utils/moment/DateMoment";
 
 type ParticipatedChannelItemProps = {
   channel: any;
@@ -15,12 +14,16 @@ export const ParticipatedChannelItem = ({
 
   return (
     <div css={sx.root} onClick={onOpen}>
+      <Typography variant="caption" color={LightColor.PrimaryDark}>
+        #{channelState.channelCategory}
+      </Typography>
       <Typography variant="body1" color="black">
         {channelState.title}
       </Typography>
+
       <p className="channel-preview__content-message">{lastMessage()}</p>
       <div css={sx.date}>
-        <Typography variant="h5" color={LightColor.Gray600}>
+        <Typography variant="h5" color={LightColor.Gray600} textAlign="right">
           {channelState.lastDate}
         </Typography>
       </div>
@@ -53,7 +56,5 @@ const sx = {
     top: 50%;
     right: 16px;
     transform: translateY(-50%);
-
-    cursor: pointer;
   `,
 };

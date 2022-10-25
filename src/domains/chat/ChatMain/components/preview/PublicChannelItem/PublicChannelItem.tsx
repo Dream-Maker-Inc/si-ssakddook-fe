@@ -16,6 +16,9 @@ export const PublicChannelItem = ({ channel }: PublicChannelItemProps) => {
       {channelState.isJoined || (
         <div css={sx.root} onClick={modalState.onOpen}>
           <div css={sx.container}>
+            <Typography variant="caption" color={LightColor.PrimaryDark}>
+              #{channelState.channelCategory}
+            </Typography>
             <Typography variant="body1" color="black">
               {channel.data.name}
             </Typography>
