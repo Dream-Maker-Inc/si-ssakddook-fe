@@ -11,8 +11,10 @@ export const ParticipatedChannelList = () => {
   const [loadingChannels, setLoadingChannels] = useState(true);
 
   const filter = {
-    members: { $in: [client.user?.id!!] },
+    joined: true,
+    // members: { $in: [client.user?.id!!] },
   };
+  console.log(channels);
 
   useEffect(() => {
     const fetchChannels = async () => {

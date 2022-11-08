@@ -29,11 +29,14 @@ export const useChatRoomTab = () => {
 
   const handleChatExit = async () => {
     await setModalOpen(false);
+
+    await channel?.updatePartial({ set: { frozen: true } });
     await channel?.removeMembers([LocalStorage.getItem("id")!!], {
       text: `${client.user?.name}님이 나가셨습니다.`,
     });
 
     await channel?.stopWatching();
+
     router.replace(RoutePath.Main);
   };
 

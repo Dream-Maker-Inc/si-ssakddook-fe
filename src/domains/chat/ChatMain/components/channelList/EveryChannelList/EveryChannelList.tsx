@@ -12,6 +12,7 @@ export const EveryChannelList = () => {
 
   const filter = {
     member_count: { $eq: 1 },
+    frozen: false,
   };
 
   useEffect(() => {
