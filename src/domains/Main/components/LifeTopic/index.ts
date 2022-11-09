@@ -1,0 +1,1 @@
+export { LifeTopic } from "./LifeTopic";
