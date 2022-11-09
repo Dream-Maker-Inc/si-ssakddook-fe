@@ -1,1 +1,1 @@
-export { LifeBox } from "./LIfeBox";
+export { LifeBox } from "./LifeBox";
