@@ -22,13 +22,14 @@ export const LifeView = () => {
       <DefaultTab category="라이프" />
       <div css={sx.root}>
         {result?.pages.map((page, index) => (
-          <div key={index}>
+          <div key={index} css={sx.item}>
             {page.data.items.map((it, index) => (
               <PreviewItem
                 key={index}
                 id={it.id + ""}
                 title={it.title}
                 desc={it.content}
+                image={it.attachments[0]}
                 date={getDateDiff(it.createdAt)}
               />
             ))}
@@ -44,11 +45,13 @@ const sx = {
   root: css`
     width: 100%;
     height: 100%;
-
     overflow-y: scroll;
     ::-webkit-scrollbar {
       display: none;
     }
+  `,
+  item: css`
+    width: 100%;
   `,
   target: css`
     width: 100%;
