@@ -19,7 +19,7 @@ export const LifeTopic = ({ data }: LifeTopicProps) => {
       />
       <div css={sx.content}>
         <LifeBox topic="최근 등록된 글" models={data.lifePost} hasMore />
-        <LifeBox topic="좋아요 많은 글" models={data.lifePostByView} />
+        <LifeBox topic="조회수 높은 글" models={data.lifePostByView} />
       </div>
     </div>
   );
