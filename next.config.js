@@ -10,6 +10,7 @@ const nextConfig = {
       "ssakduk-fe.s3.ap-northeast-2.amazonaws.com",
       "ssakduk-admin-fe.s3.ap-northeast-2.amazonaws.com",
       "ssakduk-admin-front.s3.ap-northeast-2.amazonaws.com",
+      "ssakduk-front.s3.ap-northeast-2.amazonaws.com",
     ],
     //loader: "akamai",
     // path: "",
