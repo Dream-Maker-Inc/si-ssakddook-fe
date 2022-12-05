@@ -6,13 +6,13 @@ import { LifeTopic } from "./components/LifeTopic";
 import { CommunityTopic } from "./components/CommunityTopic";
 
 export const MainView = () => {
-  const { data, username } = useMainView();
+  const { result, username } = useMainView();
   return (
     <AppbarLayout>
       <MainTab username={username} />
       <div css={sx.root}>
-        <CommunityTopic />
-        <LifeTopic />
+        <CommunityTopic data={result.postData} />
+        <LifeTopic data={result.lifePostData} />
       </div>
     </AppbarLayout>
   );
@@ -23,9 +23,7 @@ const sx = {
     width: 100%;
     height: 100%;
     padding: 16px;
-
     overflow-y: scroll;
-
     ::-webkit-scrollbar {
       display: none;
     }

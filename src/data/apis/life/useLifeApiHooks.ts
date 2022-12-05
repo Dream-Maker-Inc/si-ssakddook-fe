@@ -9,6 +9,18 @@ export const useFindOneLifeById = (lifeId: string) => {
   );
 };
 
+export const useFindAllLife = (size: number) => {
+  return useQuery(["find-all-life", size], () =>
+    LifeApiService.findAllLife(size)
+  );
+};
+
+export const useFindAllLifeByViewCount = (size: number) => {
+  return useQuery(["find-all-life-by-viewcount", size], () =>
+    LifeApiService.findAllLifeByViewCount(size)
+  );
+};
+
 export const useFetchAllLife = (size: number) =>
   useInfiniteQuery(
     ["all-life"],

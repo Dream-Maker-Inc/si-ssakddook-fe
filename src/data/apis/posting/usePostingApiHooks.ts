@@ -29,6 +29,12 @@ export const useFindAllPostByKeyword = (
   );
 };
 
+export const useFindAllPostByLikeCount = () => {
+  return useQuery(["find-all-post-by-like"], () =>
+    PostingApiService.findAllPostByLikeCount()
+  );
+};
+
 export const useFindAllCommentByPostId = (
   postId: string,
   page: string,

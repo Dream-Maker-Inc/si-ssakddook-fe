@@ -1,36 +1,48 @@
+import { RoutePath } from "@/constants/Path";
+import { PostingItemResponse } from "@/data/apis/posting/posting.dto";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
-
-type CommunityTopicType = {
-  category: string;
-  title: string;
-};
+import { useRouter } from "next/router";
 
 type CommunityBoxProps = {
   topic: string;
-  models: CommunityTopicType[];
+  models: { data?: PostingItemResponse[]; isError: any };
+  hasMore?: boolean;
 };
 
-export const CommunityBox = ({ topic, models }: CommunityBoxProps) => {
+export const CommunityBox = ({
+  topic,
+  models,
+  hasMore = false,
+}: CommunityBoxProps) => {
+  const router = useRouter();
+  const onRecentView = () => {
+    router.push({ pathname: RoutePath.CommunityList, query: { category: "" } });
+  };
+
   return (
     <div css={sx.root}>
       <div css={sx.topicContainer}>
         <Typography variant="h3" color="black">
           {topic}
         </Typography>
-        <Typography
-          variant="h3"
-          color={LightColor.PrimaryDark}
-          onClick={() => alert("더보기")}
-          sx={{ cursor: "pointer" }}
-        >
-          {"더보기 >"}
-        </Typography>
+        {hasMore ? (
+          <Typography
+            variant="h3"
+            color={LightColor.PrimaryDark}
+            onClick={onRecentView}
+            sx={{ cursor: "pointer" }}
+          >
+            {"더보기 >"}
+          </Typography>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div css={sx.hr}></div>
       <div css={sx.contentContainer}>
-        {models.map((it, index) => (
+        {models.data?.map((it, index) => (
           <div css={sx.wrapper} key={index}>
             <Typography
               variant="body2"

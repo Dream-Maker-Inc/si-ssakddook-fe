@@ -29,6 +29,11 @@ class PostingApiService implements PostingApiInterface {
     return response.data;
   }
 
+  async findAllPostByLikeCount(): Promise<PostingItemsResponse> {
+    const response = await axiosClient.get(`/v1/posting/sortedLiked`);
+    return response.data;
+  }
+
   async findAllPostById(
     page: string,
     size: string

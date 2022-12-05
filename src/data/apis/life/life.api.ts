@@ -1,6 +1,6 @@
-import { axiosBasicClient } from "@/constants/api/client/client";
+import { axiosBasicClient, axiosClient } from "@/constants/api/client/client";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
-import { LifeItemResponse } from "./life.dto";
+import { LifeItemResponse, LifeItemsResponse } from "./life.dto";
 import { LifeApiInterface } from "./life.interface";
 
 class LifeApiService implements LifeApiInterface {
@@ -11,6 +11,20 @@ class LifeApiService implements LifeApiInterface {
 
   get id() {
     return LocalStorage.getItem("id");
+  }
+
+  async findAllLife(size: number): Promise<LifeItemsResponse> {
+    const response = await axiosClient.get(
+      `/v1/life-posting?page=1&size=${size}`
+    );
+    return response.data;
+  }
+
+  async findAllLifeByViewCount(size: number): Promise<LifeItemsResponse> {
+    const response = await axiosClient.get(
+      `/v1/life-posting?page=1&size=${size}&sortBy=viewCount`
+    );
+    return response.data;
   }
 
   async findOneLifeById(lifeId: string): Promise<LifeItemResponse> {

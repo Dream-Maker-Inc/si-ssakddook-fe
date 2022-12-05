@@ -2,41 +2,52 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
-import SampleImage from "@/img/temp/img-sample.svg";
-
-type LifeContentType = {
-  imgSrc?: string;
-  title: string;
-  desc: string;
-};
+import { LifeItemResponse } from "@/data/apis/life/life.dto";
+import { useRouter } from "next/router";
+import { RoutePath } from "@/constants/Path";
 
 type LifeBoxProps = {
   topic: string;
-  models: LifeContentType[];
+  models: { data?: LifeItemResponse[]; isError: any };
+  hasMore?: boolean;
 };
 
-export const LifeBox = ({ topic, models }: LifeBoxProps) => {
+export const LifeBox = ({ topic, models, hasMore = false }: LifeBoxProps) => {
+  const router = useRouter();
+  const onLifeView = () => {
+    router.push(RoutePath.Life);
+  };
   return (
     <div css={sx.root}>
       <div css={sx.topicContainer}>
         <Typography variant="h3" color="black">
           {topic}
         </Typography>
-        <Typography
-          variant="h3"
-          color={LightColor.PrimaryDark}
-          onClick={() => alert("더보기")}
-          sx={{ cursor: "pointer" }}
-        >
-          {"더보기 >"}
-        </Typography>
+
+        {hasMore ? (
+          <Typography
+            variant="h3"
+            color={LightColor.PrimaryDark}
+            onClick={onLifeView}
+            sx={{ cursor: "pointer" }}
+          >
+            {"더보기 >"}
+          </Typography>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div css={sx.hr}></div>
       <div css={sx.contentContainer}>
-        {models.map((it, index) => (
+        {models.data?.map((it, index) => (
           <div css={sx.wrapper} key={index}>
             <div css={sx.imageWrapper}>
-              <Image layout={"fill"} src={SampleImage} alt="" css={sx.image} />
+              <Image
+                layout={"fill"}
+                src={it.attachments[0]}
+                alt=""
+                css={sx.image}
+              />
             </div>
             <div css={sx.content}>
               <Typography variant="body2" color="black" css={sx.text}>
@@ -48,7 +59,7 @@ export const LifeBox = ({ topic, models }: LifeBoxProps) => {
                 fontWeight={400}
                 css={sx.text}
               >
-                {it.desc}
+                {it.content}
               </Typography>
             </div>
           </div>

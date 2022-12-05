@@ -11,6 +11,7 @@ export interface PostingApiInterface {
   createPost(formData: any): Promise<ApiFailedResponse>;
   findAllPost(size: number): Promise<PostingItemsResponse>;
   findAllPostById(page: string, size: string): Promise<PostingItemsResponse>;
+  findAllPostByLikeCount(): Promise<PostingItemsResponse>;
   findAllPostByCategory(
     category: string,
     pageParam: number
