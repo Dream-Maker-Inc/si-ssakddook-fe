@@ -21,6 +21,13 @@ export const CommunityBox = ({
     router.push({ pathname: RoutePath.CommunityList, query: { category: "" } });
   };
 
+  const onPostView = (postId: string) => {
+    router.push({
+      pathname: RoutePath.CommunityDetail,
+      query: { postId: postId },
+    });
+  };
+
   return (
     <div css={sx.root}>
       <div css={sx.topicContainer}>
@@ -43,7 +50,11 @@ export const CommunityBox = ({
       <div css={sx.hr}></div>
       <div css={sx.contentContainer}>
         {models.data?.map((it, index) => (
-          <div css={sx.wrapper} key={index}>
+          <div
+            css={sx.wrapper}
+            key={index}
+            onClick={() => onPostView(it.id + "")}
+          >
             <Typography
               variant="body2"
               color={LightColor.PrimaryDark}
@@ -93,6 +104,7 @@ const sx = {
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
   `,
 
   title: css`

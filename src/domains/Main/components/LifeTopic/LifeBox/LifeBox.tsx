@@ -17,6 +17,12 @@ export const LifeBox = ({ topic, models, hasMore = false }: LifeBoxProps) => {
   const onLifeView = () => {
     router.push(RoutePath.Life);
   };
+  const onLifeDetailView = (id: string) => {
+    router.push({
+      pathname: RoutePath.LifeDefail,
+      query: { lifeId: id },
+    });
+  };
   return (
     <div css={sx.root}>
       <div css={sx.topicContainer}>
@@ -40,7 +46,11 @@ export const LifeBox = ({ topic, models, hasMore = false }: LifeBoxProps) => {
       <div css={sx.hr}></div>
       <div css={sx.contentContainer}>
         {models.data?.map((it, index) => (
-          <div css={sx.wrapper} key={index}>
+          <div
+            css={sx.wrapper}
+            key={index}
+            onClick={() => onLifeDetailView(it.id + "")}
+          >
             <div css={sx.imageWrapper}>
               <Image
                 layout={"fill"}
@@ -101,6 +111,7 @@ const sx = {
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
   `,
 
   imageWrapper: css`
