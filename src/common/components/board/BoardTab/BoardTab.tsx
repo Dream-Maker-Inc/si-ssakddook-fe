@@ -17,7 +17,7 @@ type TabModel = {
 export const BoardTab = ({
   firstTabInfo,
   secondTabInfo,
-  isBottomMarginNecessary = true,
+  isBottomMarginNecessary = false,
 }: BoardTabProps) => {
   const [value, setValue] = useState(0);
 
