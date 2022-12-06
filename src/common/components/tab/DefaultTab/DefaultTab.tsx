@@ -12,7 +12,7 @@ export const DefaultTab = ({ category = "커뮤니티" }: DefaultTabProps) => {
   const router = useRouter();
 
   const onMoreView = () => {
-    router.push(RoutePath.More);
+    router.push(RoutePath.Main);
   };
   return (
     <div css={sx.tabContainer}>
