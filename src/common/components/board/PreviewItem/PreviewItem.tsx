@@ -30,8 +30,8 @@ export const PreviewItem = ({
   return (
     <div css={sx.itemContainer} onClick={onClick}>
       {image && (
-        <div css={sx.image}>
-          <Image layout="fill" src={image} alt="image" />
+        <div css={sx.imageWrapper}>
+          <Image layout="fill" src={image} alt="image" css={sx.image} />
         </div>
       )}
       <div css={sx.textWrapper}>
@@ -63,11 +63,14 @@ const sx = {
     border-bottom: 1px solid ${LightColor.Gray500};
     cursor: pointer;
   `,
-  image: css`
+  imageWrapper: css`
     position: relative;
     width: 56px;
     height: 56px;
     background-color: ${LightColor.Gray500};
+  `,
+
+  image: css`
     border-radius: 8px;
   `,
   textWrapper: css`
