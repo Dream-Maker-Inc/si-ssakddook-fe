@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useChatContext } from "stream-chat-react";
 import { CustomLoadingIndicator } from "../../indicator/CustomLoadingIndicator";
 import { PublicChannelItem } from "../../preview/PublicChannelItem";
+import { ChatCategorySection } from "./components/ChatCategorySectino";
 
 export const EveryChannelList = () => {
   const { client } = useChatContext();
@@ -28,6 +29,7 @@ export const EveryChannelList = () => {
 
   return (
     <div css={sx.root}>
+      <ChatCategorySection />
       {loadingChannels ? (
         <CustomLoadingIndicator />
       ) : (
