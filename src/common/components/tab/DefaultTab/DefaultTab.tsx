@@ -1,5 +1,7 @@
+import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
+import { useRouter } from "next/router";
 import { BoardPrevButton } from "../../button/BoardPrevButton";
 
 type DefaultTabProps = {
@@ -7,9 +9,14 @@ type DefaultTabProps = {
 };
 
 export const DefaultTab = ({ category = "커뮤니티" }: DefaultTabProps) => {
+  const router = useRouter();
+
+  const onMoreView = () => {
+    router.push(RoutePath.More);
+  };
   return (
     <div css={sx.tabContainer}>
-      <BoardPrevButton />
+      <BoardPrevButton onClick={onMoreView} />
       <Typography variant="h2" ml="12px">
         {category}
       </Typography>
