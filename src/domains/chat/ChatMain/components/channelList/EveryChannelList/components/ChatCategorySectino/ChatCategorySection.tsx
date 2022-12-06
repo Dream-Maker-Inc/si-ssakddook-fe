@@ -31,15 +31,17 @@ export const ChatCategorySection = ({
 const sx = {
   root: css`
     width: 100%;
-    padding: 16px;
+    padding: 12px 16px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 8px;
+    column-gap: 8px;
     border-bottom: 1px solid ${LightColor.Gray500};
+    background-color: white;
   `,
   chip: (isSelected: boolean) => css`
-    width: 60px;
-    height: 22px;
+    flex: 1;
+    height: 24px;
     background-color: ${isSelected
       ? "rgba(90, 136, 53, 0.1)"
       : LightColor.Gray500};
@@ -67,7 +69,7 @@ type CategoryChipProps = {
 const CategoryChip = ({ category, onClick, isSelected }: CategoryChipProps) => {
   return (
     <div css={sx.chip(isSelected)} onClick={onClick}>
-      <Typography variant="h5" css={sx.text(isSelected)}>
+      <Typography variant="body2" css={sx.text(isSelected)}>
         {category}
       </Typography>
     </div>
