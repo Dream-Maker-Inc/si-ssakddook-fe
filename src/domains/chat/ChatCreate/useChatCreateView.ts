@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useChatContext } from "stream-chat-react";
 import { CHAT_CATEGORY_TYPE } from "@/domains/chat/types/ChatCategoryType.enum";
+import { useQuery } from "react-query";
+import { useGetCurrentMember } from "@/data/apis/member/useMemberApiHooks";
 
 export const useChatCreateView = () => {
   const router = useRouter();
@@ -13,6 +15,10 @@ export const useChatCreateView = () => {
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
+
+  // member profile-image
+  const defaultImage = useQuery("get-curr-member", useGetCurrentMember).data
+    ?.profileImageUrl;
 
   const handleCategoryChange = (e: SelectChangeEvent) => {
     setCategory(e.target.value);
@@ -42,7 +48,7 @@ export const useChatCreateView = () => {
       name,
       desc,
       members: [client.user!!.id],
-      image: "https://getstream.imgix.net/images/random_svg/FS.png",
+      image: defaultImage,
     });
 
     await channel.create();

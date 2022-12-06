@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import "moment/locale/ko";
 import { usePublicChannelItem } from "./usePublicChannelItem";
-import { getTimeFromNow } from "@/utils/moment/DateMoment";
+import Image from "next/image";
 
 type PublicChannelItemProps = {
   channel: any;
@@ -16,19 +16,34 @@ export const PublicChannelItem = ({ channel }: PublicChannelItemProps) => {
       {channelState.isJoined || (
         <div css={sx.root} onClick={modalState.onOpen}>
           <div css={sx.container}>
-            <Typography variant="caption" color={LightColor.PrimaryDark}>
-              #{channelState.channelCategory}
-            </Typography>
-            <Typography variant="body1" color="black">
+            <Typography variant="h4" color="black" lineHeight={"16px"}>
               {channel.data.name}
             </Typography>
-            <Typography variant="body2" color={LightColor.Gray100}>
+            <Typography
+              variant="body2"
+              color={LightColor.Gray100}
+              lineHeight={"16px"}
+            >
               {channel.data.desc}
             </Typography>
+            <Typography
+              variant="h5"
+              color={LightColor.Gray100}
+              lineHeight={"13px"}
+            >
+              {channel.data.created_by.name}
+              {" · "}
+              {channelState.channelCategory}
+            </Typography>
           </div>
-          <Typography variant="h5" color={LightColor.Gray600}>
-            {getTimeFromNow(channel.data.created_at)}
-          </Typography>
+          <div css={sx.chatImageWrapper}>
+            <Image
+              layout="fill"
+              src={channel.data.image}
+              alt="profile-image"
+              css={sx.chatImage}
+            />
+          </div>
         </div>
       )}
       <ChatModal
@@ -45,10 +60,9 @@ export const PublicChannelItem = ({ channel }: PublicChannelItemProps) => {
 const sx = {
   root: css`
     width: 100%;
-    height: 71px;
+    height: 85px;
     border-bottom: 1px solid ${LightColor.Gray500};
     padding: 0 16px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -60,10 +74,23 @@ const sx = {
   container: css`
     display: flex;
     flex-direction: column;
+    gap: 4px;
   `,
-
+  wrapper: css`
+    display: flex;
+  `,
   join: css`
     width: 100%;
     cursor: pointer;
+  `,
+  chatImageWrapper: css`
+    position: relative;
+    width: 53px;
+    height: 53px;
+    /* background-color: #f1f1f1; */
+    border-radius: 8px;
+  `,
+  chatImage: css`
+    border-radius: 8px;
   `,
 };

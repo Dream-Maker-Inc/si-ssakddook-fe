@@ -44,11 +44,17 @@ export const useChangePasswordView = () => {
   };
 
   // change profile-image api
-  const { mutate, isSuccess, isError, data } = useUpdateProfileImage();
+  const { mutate, isSuccess, isError, data, isLoading } =
+    useUpdateProfileImage();
 
   if (isSuccess) {
+    console.log("success");
     LocalStorage.setItem("profileImage", data.profileImageUrl);
     router.push(RoutePath.MyInformation);
+  }
+
+  if (isLoading) {
+    console.log("loading");
   }
 
   if (isError) {
@@ -57,6 +63,7 @@ export const useChangePasswordView = () => {
 
   const onSubmit = async () => {
     // form data
+    console.log("click");
     const fd = new FormData();
     await fd.append("file", uploadedImage);
     await mutate(fd);
