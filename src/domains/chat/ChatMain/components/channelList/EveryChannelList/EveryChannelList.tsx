@@ -1,3 +1,4 @@
+import { CHAT_CATEGORY_TYPE } from "@/domains/chat/types/ChatCategoryType.enum";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
@@ -11,7 +12,22 @@ export const EveryChannelList = () => {
   const [channels, setChannels] = useState<any[]>([]);
   const [loadingChannels, setLoadingChannels] = useState(true);
 
+  // 카케도이 돰염 hook
+  const [selectedCategory, setSelectedCategory] = useState("직장 폭력");
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+  };
+  function getKeyByValue(category: string) {
+    const indexOfS = Object.values(CHAT_CATEGORY_TYPE).indexOf(
+      category as unknown as CHAT_CATEGORY_TYPE
+    );
+    const categoryKey = Object.keys(CHAT_CATEGORY_TYPE)[indexOfS];
+    return categoryKey;
+  }
+
+  // 보여줄 채팅방 필터 설정
   const filter = {
+    type: getKeyByValue(selectedCategory),
     member_count: { $eq: 1 },
     frozen: false,
   };
@@ -25,11 +41,14 @@ export const EveryChannelList = () => {
     };
 
     fetchChannels();
-  }, []);
+  }, [selectedCategory]);
 
   return (
     <div css={sx.root}>
-      <ChatCategorySection />
+      <ChatCategorySection
+        value={selectedCategory}
+        onChange={handleCategoryChange}
+      />
       {loadingChannels ? (
         <CustomLoadingIndicator />
       ) : (
@@ -44,7 +63,6 @@ export const EveryChannelList = () => {
 const sx = {
   root: css`
     width: 100%;
-
     & .str-chat {
       width: 100%;
       background-color: white !important;
@@ -78,11 +96,5 @@ const sx = {
         transition: 0.3s;
       }
     }
-  `,
-
-  channel: css`
-    width: 100%;
-    height: 200px;
-    background-color: red;
   `,
 };

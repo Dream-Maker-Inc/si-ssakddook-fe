@@ -2,25 +2,26 @@ import { CHAT_CATEGORY_TYPE } from "@/domains/chat/types/ChatCategoryType.enum";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
-import { useState } from "react";
 
-export const ChatCategorySection = () => {
-  const [selectedCategory, setSelectedCategory] = useState("직장 폭력");
+type ChatCategorySectionProps = {
+  value: string;
+  onChange: (v: string) => void;
+};
+
+export const ChatCategorySection = ({
+  value,
+  onChange,
+}: ChatCategorySectionProps) => {
   const categoryList = Object.values(CHAT_CATEGORY_TYPE);
 
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-  };
-
-  console.log(selectedCategory);
   return (
     <div css={sx.root}>
       {categoryList.map((it, index) => (
         <CategoryChip
           key={index}
           category={it}
-          onClick={() => handleCategoryChange(it)}
-          isSelected={it === selectedCategory}
+          onClick={() => onChange(it)}
+          isSelected={it === value}
         />
       ))}
     </div>
