@@ -3,8 +3,8 @@ import { css } from "@emotion/react";
 import { LightColor } from "@/themes/Color";
 import { useChatCreateView } from "./useChatCreateView";
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
-import { ChatCreateTab } from "./components/tab/ChatCreateTab";
-import { CategorySelection } from "@/common/components/selection/CategorySelection";
+import { ChatCreateTab } from "./components/ChatCreateTab";
+import { CategorySelection } from "@/domains/chat/ChatCreate/components/CategorySelection";
 
 export const ChatCreateView = () => {
   const { tabState, categoryState, titleState, descState } =
