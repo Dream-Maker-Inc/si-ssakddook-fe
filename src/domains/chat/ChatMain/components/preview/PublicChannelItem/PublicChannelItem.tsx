@@ -16,7 +16,7 @@ export const PublicChannelItem = ({ channel }: PublicChannelItemProps) => {
       {channelState.isJoined || (
         <div css={sx.root} onClick={modalState.onOpen}>
           <div css={sx.container}>
-            <Typography variant="h4" color="black" lineHeight={"16px"}>
+            <Typography variant="body1" color="black" lineHeight={"16px"}>
               {channel.data.name}
             </Typography>
             <Typography

@@ -14,7 +14,7 @@ export const ParticipatedChannelItem = ({
 
   return (
     <div css={sx.root} onClick={onOpen}>
-      <Typography variant="caption" color={LightColor.PrimaryDark}>
+      <Typography variant="h5" color={LightColor.PrimaryDark}>
         #{channelState.channelCategory}
       </Typography>
       <Typography variant="body1" color="black">
@@ -34,7 +34,7 @@ export const ParticipatedChannelItem = ({
 const sx = {
   root: css`
     width: 100%;
-    height: 71px;
+    height: 85px;
     border-bottom: 1px solid ${LightColor.Gray500};
     padding-left: 16px;
 
@@ -43,6 +43,7 @@ const sx = {
     justify-content: center;
 
     position: relative;
+    gap: 4px;
 
     cursor: pointer;
 
