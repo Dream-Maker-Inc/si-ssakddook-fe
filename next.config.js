@@ -13,9 +13,10 @@ const nextConfig = {
       "ssakduk-front.s3.ap-northeast-2.amazonaws.com",
       "getstream.imgix.net",
     ],
-    //loader: "akamai",
-    // path: "",
+    loader: "akamai",
+    path: "",
   },
+  assetPrefix: "/",
   trailingSlash: true,
 };
 

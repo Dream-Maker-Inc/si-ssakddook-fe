@@ -4,8 +4,7 @@ import { logoutAndGoSplash } from "@/domains/auth/functions/auth.func";
 import axios, { AxiosResponse } from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "https://ssakduk-api.ureca.im/api",
-  // baseURL: "http://192.168.0.32:3001/api",
+  baseURL: process.env.NEXT_PUBLIC_API_CLIENT,
 });
 
 axiosClient.interceptors.request.use(function (config) {
@@ -21,7 +20,7 @@ axiosClient.interceptors.response.use((res) => {
 });
 
 const axiosBasicClient = axios.create({
-  baseURL: "https://ssakduk-api.ureca.im/api",
+  baseURL: process.env.NEXT_PUBLIC_API_CLIENT,
 });
 
 // statusCode가 블라인드 이벤트 코드인 경우 처리
