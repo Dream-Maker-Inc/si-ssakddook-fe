@@ -18,4 +18,5 @@ export interface MemberApiInterface {
     newPassword: string
   ): Promise<ApiFailedResponse>;
   updateProfileImage(formData: any): Promise<ApiFailedResponse>;
+  deleteMember(): Promise<ApiFailedResponse>;
 }

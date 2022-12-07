@@ -76,6 +76,12 @@ class MemberApiService implements MemberApiInterface {
 
     return response.data;
   }
+
+  async deleteMember(): Promise<ApiFailedResponse | any> {
+    const response = await axiosClient.delete(`/v1/member`);
+
+    return response.data;
+  }
 }
 
 export default MemberApiService.Instance;

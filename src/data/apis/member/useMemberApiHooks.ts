@@ -33,3 +33,7 @@ export const useUpdateProfileImage = () => {
     MemberApiService.updateProfileImage(formData)
   );
 };
+
+export const useDeleteMember = () => {
+  return useMutation(() => MemberApiService.deleteMember());
+};
