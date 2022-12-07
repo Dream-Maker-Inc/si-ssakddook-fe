@@ -15,7 +15,6 @@ import ArrowRightSamllIcon from "@/img/arrowIcon/icon-arrow-right-small.svg";
 export const CommunityMainView = () => {
   const { boxData, result, fetchState, onRecentView } = useCommunityMainView();
 
-  if (!result) return <div></div>;
   if (fetchState.isLoading) return <CircularLoading />;
   if (fetchState.isError) return <div></div>;
 
@@ -25,9 +24,15 @@ export const CommunityMainView = () => {
       <div css={sx.root}>
         <div css={sx.container}>
           <NoticeBox />
+
           <div css={sx.boxContainer}>
-            {boxData.map((it, index) => (
-              <CommunityBox key={index} img={it.imgSrc} content={it.content} />
+            {boxData!!.map((it, index) => (
+              <CommunityBox
+                key={index}
+                img={it.imgSrc}
+                content={it.content}
+                queryString={it.queryString}
+              />
             ))}
           </div>
           <div>
@@ -47,18 +52,19 @@ export const CommunityMainView = () => {
                 </IconButton>
               </div>
             </div>
-            {result.map((it, index) => (
-              <BoardItem
-                key={index}
-                postId={it.id}
-                title={it.title}
-                date={it.date}
-                nicknameOrTitle={it.nickname}
-                category={it.category}
-                like={it.likedCount}
-                comments={it.commentCount}
-              />
-            ))}
+            {!result ||
+              result.map((it, index) => (
+                <BoardItem
+                  key={index}
+                  postId={it.id}
+                  title={it.title}
+                  date={it.date}
+                  nicknameOrTitle={it.nickname}
+                  category={it.category}
+                  like={it.likedCount}
+                  comments={it.commentCount}
+                />
+              ))}
           </div>
         </div>
         <FloatingButton category="" />
