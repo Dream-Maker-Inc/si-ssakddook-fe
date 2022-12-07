@@ -88,64 +88,48 @@ const sx = {
     height: 50px;
     left: 0px;
     top: 0px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 0 16px;
-
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   `,
-
   tab: css`
     display: flex;
     align-items: center;
   `,
-
   drawerContainer: css`
     width: 240px;
   `,
-
   content: css`
     width: 100%;
     border-bottom: 1px solid ${LightColor.Gray500};
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 8px;
-
     padding: 16px;
   `,
   chatHeaderSection: css`
     width: 100%;
     height: 50px;
-
     border-bottom: 1px solid ${LightColor.Gray500};
-
     display: flex;
     align-items: center;
-
     padding-left: 16px;
   `,
-
   chatContentSection: css`
     width: 100%;
   `,
-
   chatExitSection: css`
     width: 100%;
     height: 50px;
     position: absolute;
     left: 0;
     bottom: 0;
-
     border-top: 1px solid ${LightColor.Gray500};
-
     display: flex;
     align-items: center;
-
     padding-left: 16px;
   `,
 };
