@@ -5,6 +5,7 @@ import { Typography } from "@mui/material";
 import "moment/locale/ko";
 import { usePublicChannelItem } from "./usePublicChannelItem";
 import Image from "next/image";
+import LogoImage from "@/img/logo/main.svg";
 
 type PublicChannelItemProps = {
   channel: any;
@@ -36,14 +37,19 @@ export const PublicChannelItem = ({ channel }: PublicChannelItemProps) => {
               {channelState.channelCategory}
             </Typography>
           </div>
-          <div css={sx.chatImageWrapper}>
-            <Image
-              layout="fill"
-              src={channel.data.image}
-              alt="profile-image"
-              css={sx.chatImage}
-            />
-          </div>
+
+          {!channel.data.image ? (
+            <SampleImage />
+          ) : (
+            <div css={sx.chatImageWrapper}>
+              <Image
+                layout="fill"
+                src={channel.data.image}
+                alt="profile-image"
+                css={sx.chatImage}
+              />
+            </div>
+          )}
         </div>
       )}
       <ChatModal
@@ -87,10 +93,32 @@ const sx = {
     position: relative;
     width: 53px;
     height: 53px;
-    /* background-color: #f1f1f1; */
     border-radius: 8px;
   `,
   chatImage: css`
     border-radius: 8px;
   `,
+
+  samplgeImageWrapper: css`
+    width: 53px;
+    height: 53px;
+    border-radius: 8px;
+    border: 1px solid ${LightColor.Gray500};
+    padding: 8px;
+  `,
+  sampleImage: css`
+    position: relative;
+    width: 100%;
+    height: 100%;
+  `,
+};
+
+const SampleImage = () => {
+  return (
+    <div css={sx.samplgeImageWrapper}>
+      <div css={sx.sampleImage}>
+        <Image layout="fill" src={LogoImage} alt="profile-image" />
+      </div>
+    </div>
+  );
 };
