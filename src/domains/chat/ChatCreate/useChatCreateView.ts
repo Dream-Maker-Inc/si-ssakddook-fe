@@ -2,7 +2,7 @@ import { RoutePath } from "@/constants/Path";
 import { generateRandomString } from "@/utils/random/generateRandomString";
 import { SelectChangeEvent } from "@mui/material";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useChatContext } from "stream-chat-react";
 import { CHAT_CATEGORY_TYPE } from "@/domains/chat/types/ChatCategoryType.enum";
 import { useQuery } from "react-query";
@@ -17,8 +17,15 @@ export const useChatCreateView = () => {
   const [desc, setDesc] = useState("");
 
   // member profile-image
-  const defaultImage = useQuery("get-curr-member", useGetCurrentMember).data
-    ?.profileImageUrl;
+  const memberProfileImageData = useQuery(
+    "get-curr-member",
+    useGetCurrentMember
+  ).data?.profileImageUrl;
+
+  const memberProfileImage =
+    memberProfileImageData == "undefined" || memberProfileImageData == null
+      ? undefined
+      : memberProfileImageData;
 
   const handleCategoryChange = (e: SelectChangeEvent) => {
     setCategory(e.target.value);
@@ -48,7 +55,7 @@ export const useChatCreateView = () => {
       name,
       desc,
       members: [client.user!!.id],
-      image: defaultImage,
+      image: memberProfileImage,
     });
 
     await channel.create();
