@@ -53,17 +53,14 @@ const sx = {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-
     margin-bottom: 60px;
   `,
 
   descriptBox: css`
     width: 100%;
     height: 143px;
-
     background-color: ${LightColor.Gray500};
     border-radius: 8px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
