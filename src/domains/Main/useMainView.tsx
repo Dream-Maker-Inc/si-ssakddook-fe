@@ -2,13 +2,15 @@
 import { useGetCurrentMember } from "@/data/apis/member/useMemberApiHooks";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { useUserSession } from "@/recoil/session/user-session.atom";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useMainApi } from "./hooks/useMainApi";
 
 export const useMainView = () => {
+  // user 정보 불러오는 api
   const { data } = useQuery("get-curr-member", useGetCurrentMember);
 
+  // 게시글 데이터 불러오는 api
   const { post, postByLike, lifePost, lifePostByView } = useMainApi();
 
   const nickname = data?.nickname as string;
@@ -30,7 +32,6 @@ export const useMainView = () => {
       image: data.profileImageUrl,
     });
   }, [data]);
-  //
 
   return {
     result: {

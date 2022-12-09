@@ -7,6 +7,7 @@ import { CommunityTopic } from "./components/CommunityTopic";
 
 export const MainView = () => {
   const { result, username } = useMainView();
+
   return (
     <AppbarLayout>
       <MainTab username={username} />

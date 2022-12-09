@@ -18,6 +18,7 @@ export const useHomeView = () => {
       return;
     }
   }, []);
+
   const handleLoginClick = () => {
     router.push(RoutePath.Login);
   };
