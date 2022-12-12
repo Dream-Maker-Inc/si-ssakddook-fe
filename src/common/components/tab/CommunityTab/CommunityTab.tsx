@@ -55,8 +55,7 @@ const sx = {
   appbarContainer: css`
     width: 100%;
     height: 100%;
-    padding-right: 16px;
-    padding-left: 8px;
+    padding: 0 8px;
     background-color: white;
     box-shadow: 0px 1px 1px rgb(0 0 0 / 10%);
 
@@ -67,6 +66,5 @@ const sx = {
   buttonWrapper: css`
     display: flex;
     align-items: center;
-    gap: 13px;
   `,
 };

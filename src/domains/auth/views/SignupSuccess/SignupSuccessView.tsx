@@ -18,9 +18,9 @@ export const SignupSuccessView = () => {
     <div css={sx.root}>
       <div css={sx.container}>
         <div css={sx.img}>
-          <Image width="200px" height="200px" src={ImgSignup} alt="img" />
+          <Image layout="fill" src={ImgSignup} alt="img" />
         </div>
-        <Typography variant="h1" mt="60px" mb="60px">
+        <Typography variant="h1" mb="60px">
           회원가입 완료!
         </Typography>
         <div css={sx.wrapper}>
@@ -79,7 +79,9 @@ const sx = {
   `,
 
   img: css`
-    margin-top: 84px;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1.02;
   `,
 
   wrapper: css`

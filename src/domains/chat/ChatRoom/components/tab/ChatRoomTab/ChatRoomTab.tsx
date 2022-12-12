@@ -17,7 +17,7 @@ export const ChatRoomTab = () => {
         <IconButton onClick={tabState.onBack}>
           <Image width="24px" height="24px" src={PrevIconImg} alt="logo" />
         </IconButton>
-        <Typography variant="h2" lineHeight="1" ml="12px">
+        <Typography variant="h2" lineHeight="1" ml="4px">
           채팅방
         </Typography>
       </div>
@@ -91,7 +91,7 @@ const sx = {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 8px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   `,
   tab: css`

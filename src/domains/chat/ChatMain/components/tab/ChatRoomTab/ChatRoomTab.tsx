@@ -106,8 +106,7 @@ const sx = {
     justify-content: space-between;
     align-items: center;
 
-    padding-right: 16px;
-    padding-left: 8px;
+    padding: 8px;
 
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   `,
