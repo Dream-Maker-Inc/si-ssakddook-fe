@@ -15,7 +15,7 @@ export const LoginView = () => {
     <div css={sx.root}>
       <div css={sx.container}>
         <div css={sx.prevButtonWrapper}>
-          <PrevButton />
+          <PrevButton isPaddingEmpty />
         </div>
 
         <div css={sx.img}>

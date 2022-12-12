@@ -27,7 +27,7 @@ export const SignupView = () => {
   return (
     <div css={sx.root}>
       <div css={sx.container}>
-        <PrevButton location={RoutePath.Home} />
+        <PrevButton location={RoutePath.Home} isPaddingEmpty />
         <SignupTitleWithDesc
           title="회원가입"
           desc="회원가입을 위한 필수 정보를 입력해주세요."
