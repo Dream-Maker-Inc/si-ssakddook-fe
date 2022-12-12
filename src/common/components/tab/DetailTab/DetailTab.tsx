@@ -16,7 +16,7 @@ export const DetailTab = ({ postId, writerId }: DetailTabProps) => {
     <div css={sx.tabContainer}>
       <div css={sx.tabWrapper}>
         <BoardPrevButton />
-        <Typography variant="h2" ml="12px">
+        <Typography variant="h2" ml="4px">
           커뮤니티
         </Typography>
       </div>
@@ -36,9 +36,7 @@ export const DetailTab = ({ postId, writerId }: DetailTabProps) => {
           >
             <div css={sx.popoverContainer}>
               <IconButton onClick={onEdit}>
-                <Typography variant="h4" mb={"16px"}>
-                  수정하기
-                </Typography>
+                <Typography variant="h4">수정하기</Typography>
               </IconButton>
               <IconButton onClick={onDelete}>
                 <Typography variant="h4">삭제하기</Typography>
@@ -65,7 +63,8 @@ const sx = {
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 16px;
+    padding-right: 16px;
+    padding-left: 8px;
 
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   `,
@@ -77,6 +76,6 @@ const sx = {
 
   popoverContainer: css`
     width: 100px;
-    padding: 16px;
+    padding: 4px 2px;
   `,
 };

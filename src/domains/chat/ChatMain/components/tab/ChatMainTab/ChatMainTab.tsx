@@ -19,7 +19,7 @@ export const ChatMainTab = () => {
           <Image width="24px" height="16px" src={LogoImg} alt="logo" />
         </IconButton>
 
-        <Typography variant="h2" lineHeight="1" ml="12px">
+        <Typography variant="h2" lineHeight="1" ml="4px">
           톡
         </Typography>
       </div>
@@ -44,7 +44,8 @@ const sx = {
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 16px;
+    padding-right: 16px;
+    padding-left: 8px;
 
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   `,

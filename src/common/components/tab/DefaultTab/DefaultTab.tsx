@@ -17,7 +17,7 @@ export const DefaultTab = ({ category = "커뮤니티" }: DefaultTabProps) => {
   return (
     <div css={sx.tabContainer}>
       <BoardPrevButton onClick={onMoreView} />
-      <Typography variant="h2" ml="12px">
+      <Typography variant="h2" ml="4px">
         {category}
       </Typography>
     </div>
@@ -35,7 +35,8 @@ const sx = {
     display: flex;
     align-items: center;
 
-    padding: 0 16px;
+    padding-right: 16px;
+    padding-left: 8px;
 
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   `,

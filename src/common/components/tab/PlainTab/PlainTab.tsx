@@ -13,7 +13,7 @@ export const PlainTab = ({ category }: DefaultTabProps) => {
       <IconButton>
         <Image width="24px" height="16px" src={MainLogo} alt="logo" />
       </IconButton>
-      <Typography variant="h2" lineHeight="1" ml="12px">
+      <Typography variant="h2" lineHeight="1" ml="4px">
         {category}
       </Typography>
     </div>
@@ -31,7 +31,8 @@ const sx = {
     display: flex;
     align-items: center;
 
-    padding: 0 16px;
+    padding-right: 16px;
+    padding-left: 8px;
 
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   `,

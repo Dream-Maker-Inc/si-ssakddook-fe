@@ -50,9 +50,10 @@ const sx = {
 
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 4px;
 
-    padding: 0 16px;
+    padding-right: 16px;
+    padding-left: 8px;
 
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   `,

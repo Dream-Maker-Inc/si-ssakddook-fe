@@ -25,7 +25,7 @@ export const CommunityTab = () => {
           <IconButton>
             <Image width="24px" height="16px" src={MainLogo} alt="logo" />
           </IconButton>
-          <Typography variant="h2" ml="12px" sx={{ flexGrow: 1 }}>
+          <Typography variant="h2" ml="4px" sx={{ flexGrow: 1 }}>
             커뮤니티
           </Typography>
           <div css={sx.buttonWrapper}>
@@ -55,7 +55,8 @@ const sx = {
   appbarContainer: css`
     width: 100%;
     height: 100%;
-    padding: 0 16px;
+    padding-right: 16px;
+    padding-left: 8px;
     background-color: white;
     box-shadow: 0px 1px 1px rgb(0 0 0 / 10%);
 

@@ -45,7 +45,7 @@ export const DiaryTab = ({ title, writingState }: DiaryTabProps) => {
             writingState.isWritingState ? handleModalOpen : moveToDiaryPage
           }
         />
-        <Typography variant="h2" ml="12px">
+        <Typography variant="h2" ml="4px">
           {title}
         </Typography>
       </div>
@@ -82,7 +82,8 @@ const sx = {
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 16px;
+    padding-right: 16px;
+    padding-left: 8px;
 
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   `,
