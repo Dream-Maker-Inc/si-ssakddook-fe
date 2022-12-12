@@ -1,5 +1,6 @@
 import { CloseButton } from "@/common/components/button/CloseButton";
 import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
+import { RoutePath } from "@/constants/Path";
 import IconNext from "@/img/arrowIcon/icon-button-next.svg";
 import { css } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
@@ -12,7 +13,7 @@ export const IdPasswordSearchView = () => {
     <div css={sx.root}>
       <div css={sx.container}>
         <div>
-          <CloseButton />
+          <CloseButton location={RoutePath.Login} />
           <TitleWithDesc title={titleState.title} desc={titleState.desc} />
         </div>
 

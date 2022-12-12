@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useLoginView } from "./useLoginView";
 import MainImg from "@/img/logo/main.svg";
 import { LightColor } from "@/themes/Color";
+import { RoutePath } from "@/constants/Path";
 
 export const LoginView = () => {
   const { emailState, pwState, login } = useLoginView();
@@ -15,7 +16,7 @@ export const LoginView = () => {
     <div css={sx.root}>
       <div css={sx.container}>
         <div css={sx.prevButtonWrapper}>
-          <PrevButton isPaddingEmpty />
+          <PrevButton location={RoutePath.Home} isPaddingEmpty />
         </div>
 
         <div css={sx.img}>
