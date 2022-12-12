@@ -28,6 +28,7 @@ export const LifeTopic = ({ data }: LifeTopicProps) => {
 const sx = {
   root: css`
     width: 100%;
+    margin-bottom: 20px;
   `,
   content: css`
     width: 100%;
