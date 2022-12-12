@@ -36,7 +36,7 @@ const Calendar = ({
       btnType === "prev" &&
       getWeek(currentMonth) <= getWeek(signupMonth)
     ) {
-      alert("first week");
+      alert("더이상 뒤로 갈 수 없습니다.");
     }
     if (btnType === "next" && getWeek(currentMonth) < getWeek(new Date())) {
       setCurrentMonth(addWeeks(currentMonth, 1));
@@ -46,7 +46,7 @@ const Calendar = ({
       btnType === "next" &&
       getWeek(currentMonth) >= getWeek(new Date())
     ) {
-      alert("last week");
+      alert("마지막 주 입니다.");
     }
   };
 
