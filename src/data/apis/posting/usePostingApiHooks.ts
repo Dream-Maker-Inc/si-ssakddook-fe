@@ -4,7 +4,6 @@ import {
   useInfiniteQuery,
   useMutation,
   useQuery,
-  useQueryClient,
 } from "react-query";
 import { axiosClient } from "@/constants/api/client/client";
 import { CommentItemsResponse, PostingItemsResponse } from "./posting.dto";

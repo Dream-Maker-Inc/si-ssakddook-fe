@@ -9,7 +9,8 @@ export const useHomeView = () => {
 
   useLayoutEffect(() => {
     const memberId = LocalStorage.getItem("id");
-    if (memberId === null) {
+
+    if (memberId == null || memberId == "undefined") {
       setIsLayoutLoading(false);
       return;
     } else {
@@ -17,6 +18,7 @@ export const useHomeView = () => {
       return;
     }
   }, []);
+
   const handleLoginClick = () => {
     router.push(RoutePath.Login);
   };

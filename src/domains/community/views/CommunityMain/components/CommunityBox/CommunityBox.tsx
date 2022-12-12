@@ -9,14 +9,19 @@ type CommunityBoxProps = {
   img: string;
   hoverImg?: string;
   content: string;
+  queryString: string;
 };
 
-export const CommunityBox = ({ img, content }: CommunityBoxProps) => {
+export const CommunityBox = ({
+  img,
+  content,
+  queryString,
+}: CommunityBoxProps) => {
   const router = useRouter();
   const handleViewCategory = () => {
     router.push({
       pathname: RoutePath.CommunityList,
-      query: { category: content },
+      query: { category: queryString },
     });
   };
   return (
@@ -58,7 +63,6 @@ const sx = {
     text-align: center;
     width: 100%;
     word-break: keep-all;
-
     margin-top: 16px;
   `,
 

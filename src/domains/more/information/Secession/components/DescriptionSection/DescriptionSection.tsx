@@ -31,13 +31,15 @@ export const DescriptionSection = ({
         회원을 탈퇴하시면 다음 정보가 모두 영구 삭제됩니다.
       </Typography>
       <div css={sx.descriptBox}>
-        {descriptionModel.map((it, index) => (
-          <Description
-            key={index}
-            text={it.text}
-            highlightText={it.highlightText}
-          />
-        ))}
+        <div css={sx.descriptBoxContainer}>
+          {descriptionModel.map((it, index) => (
+            <Description
+              key={index}
+              text={it.text}
+              highlightText={it.highlightText}
+            />
+          ))}
+        </div>
       </div>
       <CustomCheckbox checked={check} onChange={onChange} />
     </div>
@@ -51,27 +53,29 @@ const sx = {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-
     margin-bottom: 60px;
   `,
 
   descriptBox: css`
     width: 100%;
     height: 143px;
-
     background-color: ${LightColor.Gray500};
     border-radius: 8px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  `,
 
+  descriptBoxContainer: css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     gap: 6px;
   `,
 
   descriptWrapper: css`
-    width: 208px;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -122,7 +126,7 @@ const Description = ({ text, highlightText }: DescriptionProps) => {
         src="/img/more/secession/icon-x.svg"
         alt=""
       />
-      <Typography variant="h4">
+      <Typography variant="h4" sx={{}}>
         {text} <span css={sx.span}>{highlightText}</span>
       </Typography>
     </div>

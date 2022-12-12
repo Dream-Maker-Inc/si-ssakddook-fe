@@ -8,7 +8,7 @@ import { SubmitButton } from "./components/SubmitButton";
 import { useSecessionView } from "./useSecessionView";
 
 export const SecessionView = () => {
-  const { checkboxState, passwordState, buttonState } = useSecessionView();
+  const { checkboxState, buttonState } = useSecessionView();
 
   return (
     <PlainLayout isBottomMarginNecessary={false}>
@@ -20,12 +20,13 @@ export const SecessionView = () => {
             check={checkboxState.check}
             onChange={checkboxState.onChange}
           />
-          <InputPasswordSection
+          {/* 비밀번호 필드 */}
+          {/* <InputPasswordSection
             value={passwordState.value}
             onChange={passwordState.onChange}
             error={passwordState.error}
             helperText={passwordState.helperText}
-          />
+          /> */}
           <SubmitButton
             disabled={buttonState.disable}
             onClick={buttonState.onClick}
