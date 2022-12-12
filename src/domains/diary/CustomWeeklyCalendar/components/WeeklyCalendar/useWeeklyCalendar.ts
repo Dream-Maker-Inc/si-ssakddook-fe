@@ -2,17 +2,22 @@ import { useRecoilValue } from "recoil";
 import { getWeek } from "date-fns";
 import { useState } from "react";
 import { DiaryLastClickedDateAtom } from "@/recoil/Diary/Diary.atom";
+import { useQuery } from "react-query";
+import { useGetCurrentMember } from "@/data/apis/member/useMemberApiHooks";
 
 export const useWeeklyCalendar = () => {
   // calendar
   const now = new Date();
   const lastDate = useRecoilValue(DiaryLastClickedDateAtom);
-  const signupMonth = new Date("2022/03/17");
   const [showDetails, setShowDetails] = useState(false);
   const [data, setData] = useState("");
   const [nowDate, setNowDate] = useState(now);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentWeek, setCurrentWeek] = useState(getWeek(currentMonth));
+
+  // getting for created-date of user account
+  const { data: memberData } = useQuery("get-curr-member", useGetCurrentMember);
+  const signupMonth = new Date(memberData?.createdAt!!);
 
   const handleMonthSelectChange = (e: string) => {
     setCurrentMonth(new Date(e));
