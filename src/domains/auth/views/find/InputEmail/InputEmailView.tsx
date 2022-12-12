@@ -11,7 +11,7 @@ export const InputEmailView = () => {
     <div css={sx.root}>
       <div css={sx.container}>
         <div css={sx.header}>
-          <PrevButton />
+          <PrevButton isPaddingEmpty />
           <SubmitButton
             disabled={buttonState.disabled}
             onSubmit={buttonState.onSubmit}
