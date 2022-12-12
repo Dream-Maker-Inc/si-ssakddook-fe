@@ -14,7 +14,10 @@ export const useCommunityWriteView = () => {
   const queryClient = useQueryClient();
 
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState(selectedCategory);
+  const [category, setCategory] = useState(
+    selectedCategory === "최근 게시글" ? "" : selectedCategory
+  );
+
   const [content, setContent] = useState("");
   const [img, setImage] = useState<ImageType[]>([]);
   const [count, setCount] = useState(0);
