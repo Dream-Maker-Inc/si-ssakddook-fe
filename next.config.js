@@ -11,11 +11,11 @@ const nextConfig = {
       "ssakduk-admin-frontend-test.s3.ap-northeast-2.amazonaws.com",
       "ssakduk-client-frontend-test.s3.ap-northeast-2.amazonaws.com",
     ],
-    // loader: "akamai",
-    // path: "",
+    loader: "akamai",
+    path: "",
   },
-  // assetPrefix: "/",
-  // trailingSlash: true,
+  assetPrefix: "/",
+  trailingSlash: true,
 };
 
 module.exports = nextConfig;
