@@ -132,6 +132,7 @@ const MemoCalendar = ({
                   <p className="memo-text">{getContentByResult(clickedDate)}</p>
 
                   <IconButton
+                    sx={{ padding: "0px" }}
                     css={css`
                       position: relative;
                       right: 16px;
