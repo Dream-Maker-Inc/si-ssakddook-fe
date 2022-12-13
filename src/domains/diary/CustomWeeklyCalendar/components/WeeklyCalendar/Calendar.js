@@ -23,18 +23,19 @@ const Calendar = ({
   setCurrentMonth,
   currentWeek,
   setCurrentWeek,
-  signupMonth,
+  signupDate,
   onSelectChange,
 }) => {
+  console.log(currentMonth);
   const setLastDate = useSetRecoilState(DiaryLastClickedDateAtom);
   const changeWeekHandle = (btnType) => {
-    if (btnType === "prev" && getWeek(currentMonth) > getWeek(signupMonth)) {
+    if (btnType === "prev" && getWeek(currentMonth) > getWeek(signupDate)) {
       setCurrentMonth(subWeeks(currentMonth, 1));
       setCurrentWeek(getWeek(subWeeks(currentMonth, 1)));
       setLastDate("");
     } else if (
       btnType === "prev" &&
-      getWeek(currentMonth) <= getWeek(signupMonth)
+      getWeek(currentMonth) <= getWeek(signupDate)
     ) {
       alert("더이상 뒤로 갈 수 없습니다.");
     }
@@ -143,7 +144,7 @@ const Calendar = ({
     <div className="calendar">
       <MonthSelection
         currentMonth={currentMonth}
-        signupMonth={signupMonth}
+        signupDate={signupDate}
         onChange={onSelectChange}
       />
       {renderDays()}

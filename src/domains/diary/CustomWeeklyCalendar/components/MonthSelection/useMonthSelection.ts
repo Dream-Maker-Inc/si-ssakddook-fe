@@ -1,6 +1,6 @@
 import { subMonths } from "date-fns";
 
-export const useMonthSelection = (signupMonth: Date) => {
+export const useMonthSelection = (signupDate: Date) => {
   let monthList = [];
   const currentMonth = new Date();
 
@@ -12,7 +12,7 @@ export const useMonthSelection = (signupMonth: Date) => {
     );
   }
 
-  for (let i = 0; i <= getMonthDifference(signupMonth, currentMonth); i++) {
+  for (let i = 0; i <= getMonthDifference(signupDate, currentMonth); i++) {
     const myMonth = {
       monthValue: subMonths(currentMonth, i),
     };
