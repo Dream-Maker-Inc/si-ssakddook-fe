@@ -73,7 +73,7 @@ const sx = {
   item: css`
     width: 100%;
     border-bottom: 1px solid ${LightColor.Gray500};
-    padding: 10px 8px;
+    padding: 10px 8px 2px 8px;
   `,
   row: css`
     width: 100%;
