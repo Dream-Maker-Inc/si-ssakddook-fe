@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useLifeDetailView } from "./useLifeDetailView";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { ShowThumbnailSection } from "@/common/components/thumbnail/ShowThumbnailSection";
+import Person from "@/img/icon-view.svg";
 
 export const LifeDetailView = () => {
   const { fetchState, result } = useLifeDetailView();
@@ -116,7 +117,7 @@ const TitleSection = ({ title, date, viewCount }: TitleSectionProps) => {
           관리자 · {date}
         </Typography>
         <div css={sx.viewWrapper}>
-          <Image width="10px" height="10px" src="/img/icon-view.svg" alt="" />
+          <Image width="10px" height="10px" src={Person} alt="" />
           <Typography variant="h5" color={LightColor.Gray100}>
             {viewCount}
           </Typography>
