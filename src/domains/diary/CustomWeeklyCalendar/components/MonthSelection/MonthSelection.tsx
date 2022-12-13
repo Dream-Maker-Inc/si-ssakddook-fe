@@ -7,22 +7,21 @@ import { useMonthSelection } from "./useMonthSelection";
 
 export type MonthSelectionProps = {
   currentMonth: Date;
-  signupMonth: Date;
+  signupDate: Date;
   onChange: (e: string) => void;
 };
 
 export const MonthSelection = ({
   currentMonth,
-  signupMonth,
+  signupDate,
   onChange,
 }: MonthSelectionProps) => {
   const setLastDate = useSetRecoilState(DiaryLastClickedDateAtom);
-  const { monthData } = useMonthSelection(signupMonth);
+  const { monthData } = useMonthSelection(signupDate);
 
   const formattedDate = (date: Date) => {
     const year = format(date, "yyyy");
     const month = format(date, "MM");
-
     return year + "년 " + month + "월";
   };
 

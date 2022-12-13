@@ -25,6 +25,7 @@ const MemoCalendar = ({
   setCurrentMonth,
   currentWeek,
   setCurrentWeek,
+  signupDate,
 }) => {
   const router = useRouter();
   const today = new Date();
@@ -81,6 +82,12 @@ const MemoCalendar = ({
     return today < new Date(date) ? false : true;
   };
 
+  const isBeforeSignupDate = (date) => {
+    const formattedSignupDate = new Date(format(signupDate, "yyyy-MM-dd"));
+
+    return formattedSignupDate > new Date(date) ? true : false;
+  };
+
   const onDateClickHandle = (day, dayStr) => {
     setNowDate(day);
     showDetailsHandle(dayStr);
@@ -119,7 +126,16 @@ const MemoCalendar = ({
               </div>
             </div>
 
-            {isAvailableDate(clickedDate) ? (
+            {isBeforeSignupDate(clickedDate) ? (
+              <div className="memo-outdated memo">
+                <div className="memo-deco"></div>
+                <div className="memo-content">
+                  <p className="memo-outdated-text memo-text">
+                    {"해당 일은 작성할 수 없습니다."}
+                  </p>
+                </div>
+              </div>
+            ) : isAvailableDate(clickedDate) ? (
               <div
                 className="memo"
                 onClick={() => {

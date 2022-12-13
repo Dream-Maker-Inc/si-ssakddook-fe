@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import Calendar from "./Calendar";
-import MemoCalendar from "./MemoCalendar";
+import MemoCalendar from "./MemoCalendar.js";
 import { LightColor } from "@/themes/Color";
 import { useWeeklyCalendar } from "./useWeeklyCalendar";
 export const WeeklyCalendar = () => {
@@ -19,7 +19,7 @@ export const WeeklyCalendar = () => {
           setCurrentMonth={calendarState.setCurrentMonth}
           currentWeek={calendarState.currentWeek}
           setCurrentWeek={calendarState.setCurrentWeek}
-          signupMonth={calendarState.signupMonth}
+          signupDate={calendarState.signupDate}
           onSelectChange={calendarState.onSelectChange}
         />
       </div>
@@ -35,6 +35,7 @@ export const WeeklyCalendar = () => {
           setCurrentMonth={memoCalendarState.setCurrentMonth}
           currentWeek={memoCalendarState.currentWeek}
           setCurrentWeek={memoCalendarState.setCurrentWeek}
+          signupDate={calendarState.signupDate}
         />
       </div>
     </div>

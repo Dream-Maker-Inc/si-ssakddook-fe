@@ -1,9 +1,9 @@
 import { useRecoilValue } from "recoil";
-import { getWeek } from "date-fns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DiaryLastClickedDateAtom } from "@/recoil/Diary/Diary.atom";
 import { useQuery } from "react-query";
 import { useGetCurrentMember } from "@/data/apis/member/useMemberApiHooks";
+import { format, getWeek } from "date-fns";
 
 export const useWeeklyCalendar = () => {
   // calendar
@@ -17,10 +17,18 @@ export const useWeeklyCalendar = () => {
 
   // getting for created-date of user account
   const { data: memberData } = useQuery("get-curr-member", useGetCurrentMember);
-  const signupMonth = new Date(memberData?.createdAt!!);
+  const signupDate = memberData?.createdAt
+    ? new Date(memberData?.createdAt)
+    : new Date();
 
-  const handleMonthSelectChange = (e: string) => {
-    setCurrentMonth(new Date(e));
+  const signupDateMonth = format(signupDate, "yyyy MM");
+
+  const handleMonthSelectChange = (monthSelectionDate: string) => {
+    if (signupDateMonth === monthSelectionDate) {
+      setCurrentMonth(signupDate ? signupDate : new Date(monthSelectionDate));
+    } else {
+      setCurrentMonth(new Date(monthSelectionDate));
+    }
   };
 
   const showDetailsHandle = (dayStr: string) => {
@@ -36,7 +44,7 @@ export const useWeeklyCalendar = () => {
     setCurrentMonth: setCurrentMonth,
     currentWeek: currentWeek,
     setCurrentWeek: setCurrentWeek,
-    signupMonth: signupMonth,
+    signupDate: signupDate,
     onSelectChange: handleMonthSelectChange,
   };
   const memoCalendarState = {
