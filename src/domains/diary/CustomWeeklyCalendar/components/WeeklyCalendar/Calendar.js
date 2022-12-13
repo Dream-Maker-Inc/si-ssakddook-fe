@@ -26,7 +26,6 @@ const Calendar = ({
   signupDate,
   onSelectChange,
 }) => {
-  console.log(currentMonth);
   const setLastDate = useSetRecoilState(DiaryLastClickedDateAtom);
   const changeWeekHandle = (btnType) => {
     if (btnType === "prev" && getWeek(currentMonth) > getWeek(signupDate)) {

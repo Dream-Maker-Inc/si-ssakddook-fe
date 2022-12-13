@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DiaryLastClickedDateAtom } from "@/recoil/Diary/Diary.atom";
 import { useQuery } from "react-query";
 import { useGetCurrentMember } from "@/data/apis/member/useMemberApiHooks";
