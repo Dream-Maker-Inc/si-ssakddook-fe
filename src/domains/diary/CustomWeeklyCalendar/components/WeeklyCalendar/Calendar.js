@@ -123,16 +123,18 @@ const Calendar = ({
     }
     return <div className="body">{rows}</div>;
   };
-  const renderFooter = () => {
+  const renderButtons = () => {
     return (
-      <div className="footer row">
+      <div className="buttons row">
         <div className="col-start">
           <div className="icon" onClick={() => changeWeekHandle("prev")}>
             <Image width="20px" height="20px" src={LeftScrollIcon} alt="" />
           </div>
         </div>
-        <div className="col-end" onClick={() => changeWeekHandle("next")}>
-          <Image width="20px" height="20px" src={RightScrollIcon} alt="" />
+        <div className="col-end">
+          <div className="icon" onClick={() => changeWeekHandle("next")}>
+            <Image width="20px" height="20px" src={RightScrollIcon} alt="" />
+          </div>
         </div>
       </div>
     );
@@ -146,7 +148,7 @@ const Calendar = ({
       />
       {renderDays()}
       {renderCells()}
-      {renderFooter()}
+      {renderButtons()}
     </div>
   );
 };

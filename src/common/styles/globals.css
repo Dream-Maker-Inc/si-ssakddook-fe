@@ -66,6 +66,7 @@ main {
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "liga";
+  cursor: pointer;
 }
 
 * {
@@ -93,7 +94,7 @@ header {
   background: var(--neutral-color);
 }
 
-.footer {
+.buttons {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -152,7 +153,6 @@ header #logo .icon {
 }
 
 /* Calendar */
-
 .calendar {
   display: block;
   position: relative;
@@ -182,7 +182,7 @@ header #logo .icon {
 }
 
 .calendar .header .icon:last-of-type {
-  margin-right: 1em;
+  margin-right: 0em;
 }
 
 .calendar .days {
@@ -214,15 +214,11 @@ header #logo .icon {
 .calendar .body .cell .number-wrapper {
   width: 26px;
   height: 26px;
-
   line-height: 1;
-
   border-radius: 18px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-color: transparent;
   transition: 0.5s ease-out;
 }
@@ -249,6 +245,7 @@ header #logo .icon {
 
 .calendar .body .cell .number {
   line-height: 1;
+  margin-top: 2px;
 }
 
 .calendar .body .disabled {
@@ -306,15 +303,11 @@ header #logo .icon {
 .vertical-calendar .vertical-body .cell .number-wrapper {
   width: 26px;
   height: 26px;
-
   line-height: 1;
-
   border-radius: 18px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-color: transparent;
   transition: 0.5s ease-out;
 }
