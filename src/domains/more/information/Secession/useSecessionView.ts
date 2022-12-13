@@ -1,3 +1,4 @@
+import { deleteDeviceInfo } from "@/common/flutter-bridge/flutter-bridge";
 import { RoutePath } from "@/constants/Path";
 import MemberApiService from "@/data/apis/member/member.api";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
@@ -18,6 +19,7 @@ export const useSecessionView = () => {
     setPassword(e.target.value);
   };
 
+  // 비밀번호 필드 생성시
   const handlePasswordErrorChange = () => {
     setIsPasswordFieldError(true);
   };
@@ -29,6 +31,7 @@ export const useSecessionView = () => {
     onSuccess: () => {
       LocalStorage.removeItem("jwt");
       LocalStorage.removeItem("id");
+      deleteDeviceInfo(window);
       router.push(RoutePath.Home);
     },
     onError: (res: any) => {

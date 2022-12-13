@@ -4,6 +4,7 @@ export enum FlutterSendBridgeKeys {
   RestartWebApp = "restartApp",
   ExitApp = "exitApp",
   GoBack = "goBack",
+  DeleteDeviceInfo = "deleteFcmToken",
 }
 
 // Flutter -> JS
@@ -36,6 +37,13 @@ export const restartWebApp = async (window: any) => {
 export const exitWebApp = async (window: any) => {
   return window?.flutter_inappwebview?.callHandler(
     FlutterSendBridgeKeys.ExitApp
+  );
+};
+
+// 디바이스 정보 제거
+export const deleteDeviceInfo = async (window: any) => {
+  return window?.flutter_inappwebview?.callHandler(
+    FlutterSendBridgeKeys.DeleteDeviceInfo
   );
 };
 
