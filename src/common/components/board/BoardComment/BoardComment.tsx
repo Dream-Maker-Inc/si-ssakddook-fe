@@ -59,9 +59,9 @@ export const BoardComment = ({
       </div>
       <div css={sx.wrapper}>
         <IconButton onClick={onLike}>
-          <Image width="10px" height="10px" src={likedIcon} alt="" />
+          <Image width="12px" height="12px" src={likedIcon} alt="" />
         </IconButton>
-        <Typography variant="h5" lineHeight="1" color={LightColor.Gray100}>
+        <Typography variant="h4" lineHeight="1" color={LightColor.Gray100}>
           {likeCount}
         </Typography>
       </div>
@@ -72,27 +72,25 @@ export const BoardComment = ({
 const sx = {
   item: css`
     width: 100%;
-
     border-bottom: 1px solid ${LightColor.Gray500};
-
-    padding: 10px 16px;
+    padding: 10px 8px 2px 8px;
   `,
   row: css`
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  `,
-
-  wrapper: css`
-    display: flex;
-    align-items: center;
-    gap: 2px;
+    padding: 0 8px;
   `,
   contentWrapper: css`
     width: 100%;
     margin-top: 4px;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
+    padding: 0 8px;
+  `,
+  wrapper: css`
+    display: flex;
+    align-items: center;
   `,
   content: css`
     text-align: left;

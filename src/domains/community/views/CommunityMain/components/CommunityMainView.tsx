@@ -40,16 +40,14 @@ export const CommunityMainView = () => {
               <Typography variant="h2" color="black">
                 최근 게시글
               </Typography>
-              <div css={sx.more}>
-                <IconButton onClick={onRecentView}>
-                  <Typography variant="h4">더보기</Typography>
-                  <Image
-                    width="11px"
-                    height="11px"
-                    src={ArrowRightSamllIcon}
-                    alt=""
-                  />
-                </IconButton>
+              <div css={sx.more} onClick={onRecentView}>
+                <Typography variant="h4">더보기</Typography>
+                <Image
+                  width="11px"
+                  height="11px"
+                  src={ArrowRightSamllIcon}
+                  alt=""
+                />
               </div>
             </div>
             {!result ||
@@ -78,9 +76,7 @@ const sx = {
     width: 100%;
     height: 100%;
     padding: 16px;
-
     position: relative;
-
     overflow-y: scroll;
     ::-webkit-scrollbar {
       display: none;
@@ -93,7 +89,6 @@ const sx = {
   boxContainer: css`
     width: 100%;
     margin-bottom: 40px;
-
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 16px;
@@ -103,19 +98,21 @@ const sx = {
     width: 100%;
     display: flex;
     justify-content: space-between;
-
+    align-items: center;
     padding-bottom: 9px;
     border-bottom: 1px solid ${LightColor.Gray500};
   `,
 
   more: css`
-    width: 49px;
-    height: 20px;
-
+    width: 60px;
+    height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    gap: 2px;
+    padding-left: 2px;
+    background-color: ${LightColor.Gray500};
+    border-radius: 12px;
     cursor: pointer;
   `,
 };
