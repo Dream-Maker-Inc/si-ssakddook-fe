@@ -3,6 +3,8 @@ import { useUpdatePassword } from "@/data/apis/member/useMemberApiHooks";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Regex } from "@/utils/validation/common/CommonRegex";
+import MemberApiService from "@/data/apis/member/member.api";
+import { useMutation } from "react-query";
 export const useChangePasswordView = () => {
   const router = useRouter();
   const [oldPassword, setCurrPw] = useState("");
@@ -27,19 +29,18 @@ export const useChangePasswordView = () => {
   const newPwValidation = Regex.password.test(newPassword);
   const isNewPwError = newPassword !== "" && !newPwValidation;
 
-  // change nickname api
-  const { mutate, isSuccess, isError } = useUpdatePassword(
-    oldPassword,
-    newPassword
+  const { mutate } = useMutation(
+    () => MemberApiService.updatePassword(oldPassword, newPassword),
+    {
+      onSuccess: () => {
+        router.push(RoutePath.MyInformation);
+      },
+      onError: (err) => {
+        alert("비밀번호를 다시 입력해주세요.");
+        console.log(err);
+      },
+    }
   );
-
-  if (isSuccess) {
-    console.log("password change success");
-    router.push(RoutePath.MyInformation);
-  }
-  if (isError) {
-    console.log("password change failed");
-  }
 
   const onSubmit = () => {
     mutate();
@@ -67,7 +68,11 @@ export const useChangePasswordView = () => {
 
     tabState: {
       title: "비밀번호 변경",
-      onActive: oldPassword !== "" && newPassword !== "" && confirmPw != "",
+      onActive:
+        oldPassword !== "" &&
+        newPassword !== "" &&
+        confirmPw != "" &&
+        newPassword === confirmPw,
       onClick: onSubmit,
     },
   };

@@ -63,7 +63,7 @@ class MemberApiService implements MemberApiInterface {
     oldPassword: string,
     newPassword: string
   ): Promise<ApiFailedResponse | any> {
-    const response = await axiosClient.patch(`/v1/member/${this.id}/password`, {
+    const response = await axiosClient.patch(`/v1/member/password`, {
       oldPassword,
       newPassword,
     });
