@@ -15,6 +15,7 @@ export const ChatCreateView = () => {
         onBack={tabState.onBack}
         onSubmit={tabState.onSubmit}
         disabled={tabState.disabled}
+        isButtonVisible={tabState.isButtonVisible}
       />
       <div css={sx.root}>
         <CategorySelection
