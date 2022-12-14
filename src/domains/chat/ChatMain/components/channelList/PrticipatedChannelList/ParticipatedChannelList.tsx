@@ -14,7 +14,6 @@ export const ParticipatedChannelList = () => {
     joined: true,
     // members: { $in: [client.user?.id!!] },
   };
-  console.log(channels);
 
   useEffect(() => {
     const fetchChannels = async () => {
