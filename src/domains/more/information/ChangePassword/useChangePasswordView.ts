@@ -1,5 +1,4 @@
 import { RoutePath } from "@/constants/Path";
-import { useUpdatePassword } from "@/data/apis/member/useMemberApiHooks";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Regex } from "@/utils/validation/common/CommonRegex";
