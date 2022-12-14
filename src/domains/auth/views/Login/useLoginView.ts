@@ -92,6 +92,17 @@ export const useLoginView = () => {
     }
   };
 
+  const handleKeyPressLogin = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key == "Enter") {
+      if (!emailValidation) {
+        setEmailNotValid(true);
+        alert("이메일 형식을 확인해주세요.");
+      } else {
+        mutate();
+      }
+    }
+  };
+
   return {
     emailState: {
       value: email,
@@ -101,6 +112,7 @@ export const useLoginView = () => {
     pwState: {
       value: pw,
       onChange: handlePwChange,
+      onKeyPressLogin: handleKeyPressLogin,
     },
     login: {
       disabled: !email || !pw || isEmailNotValid,

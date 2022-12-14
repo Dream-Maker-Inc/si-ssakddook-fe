@@ -38,6 +38,9 @@ export const LoginView = () => {
               placeholder="비밀번호"
               value={pwState.value}
               onChange={pwState.onChange}
+              onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) =>
+                pwState.onKeyPressLogin(e)
+              }
             />
             <Button
               fullWidth
