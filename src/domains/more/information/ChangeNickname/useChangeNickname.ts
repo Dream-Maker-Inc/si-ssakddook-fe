@@ -1,17 +1,12 @@
 import { RoutePath } from "@/constants/Path";
 import MemberApiService from "@/data/apis/member/member.api";
-import {
-  useGetCurrentMember,
-  useUpdateNickname,
-} from "@/data/apis/member/useMemberApiHooks";
+import { useGetCurrentMember } from "@/data/apis/member/useMemberApiHooks";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
 import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { useUserSession } from "@/recoil/session/user-session.atom";
-import { FolderCopyOutlined, FolderOffOutlined } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useMutation, useQuery } from "react-query";
-import { useRecoilState, useRecoilValue } from "recoil";
 
 export const useChangeNickname = () => {
   const router = useRouter();
