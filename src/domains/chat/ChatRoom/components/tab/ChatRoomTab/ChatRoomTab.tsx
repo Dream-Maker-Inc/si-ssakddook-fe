@@ -130,6 +130,6 @@ const sx = {
     border-top: 1px solid ${LightColor.Gray500};
     display: flex;
     align-items: center;
-    padding-left: 16px;
+    padding-left: 8px;
   `,
 };

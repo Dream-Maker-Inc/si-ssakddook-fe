@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { IconButton, Typography } from "@mui/material";
+import { CircularProgress, IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import PrevIconImg from "@/img/arrowIcon/prev-icon.svg";
 import IconSubmit from "@/img/icon-submit.svg";
@@ -9,12 +9,14 @@ type ChatMainTabProps = {
   onBack: () => void;
   onSubmit: () => void;
   disabled: boolean;
+  isButtonVisible: boolean;
 };
 
 export const ChatCreateTab = ({
   onBack,
   onSubmit,
   disabled,
+  isButtonVisible,
 }: ChatMainTabProps) => {
   return (
     <div css={sx.root}>
@@ -28,13 +30,24 @@ export const ChatCreateTab = ({
         </Typography>
       </div>
       <div>
-        {disabled ? (
-          <IconButton>
-            <Image width="24px" height="24px" src={IconDisabledSubmit} alt="" />
-          </IconButton>
+        {isButtonVisible ? (
+          disabled ? (
+            <IconButton>
+              <Image
+                width="24px"
+                height="24px"
+                src={IconDisabledSubmit}
+                alt=""
+              />
+            </IconButton>
+          ) : (
+            <IconButton onClick={onSubmit}>
+              <Image width="24px" height="24px" src={IconSubmit} alt="" />
+            </IconButton>
+          )
         ) : (
-          <IconButton onClick={onSubmit}>
-            <Image width="24px" height="24px" src={IconSubmit} alt="" />
+          <IconButton>
+            <CircularProgress size={24} />
           </IconButton>
         )}
       </div>

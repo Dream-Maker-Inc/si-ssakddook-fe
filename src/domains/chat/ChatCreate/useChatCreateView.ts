@@ -2,7 +2,7 @@ import { RoutePath } from "@/constants/Path";
 import { generateRandomString } from "@/utils/random/generateRandomString";
 import { SelectChangeEvent } from "@mui/material";
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { useChatContext } from "stream-chat-react";
 import { CHAT_CATEGORY_TYPE } from "@/domains/chat/types/ChatCategoryType.enum";
 import { useQuery } from "react-query";
@@ -15,6 +15,7 @@ export const useChatCreateView = () => {
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
+  const [isButtonVisible, setIsButtonVisible] = useState(true);
 
   // member profile-image
   const memberProfileImageData = useQuery(
@@ -50,6 +51,7 @@ export const useChatCreateView = () => {
   }
 
   const handleCreateChat = async () => {
+    setIsButtonVisible(false);
     const channelId = client.user?.id + "-" + generateRandomString(10);
     const channel = client.channel(getKeyByValue(category), channelId, {
       name,
@@ -73,6 +75,7 @@ export const useChatCreateView = () => {
       onSubmit: handleCreateChat,
       onBack: onBack,
       disabled: name == "" || desc == "" || category == "",
+      isButtonVisible: isButtonVisible,
     },
 
     categoryState: {
