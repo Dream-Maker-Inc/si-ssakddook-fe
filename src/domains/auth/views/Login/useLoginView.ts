@@ -7,10 +7,11 @@ import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { validateEmail } from "@/utils/validation/Email/EmailValidation";
 import { AxiosError } from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMutation } from "react-query";
 import DeviceApiService from "@/data/apis/device/device.api";
 import { StatusCode } from "@/data/statusCode/StatusCode.enum";
+import { enIE } from "date-fns/locale";
 
 export const useLoginView = () => {
   // 자동 로그인 해제
@@ -18,15 +19,12 @@ export const useLoginView = () => {
   if (memberId !== "undefined" || memberId !== null) {
     LocalStorage.removeItem("id");
   }
-
   const router = useRouter();
-
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
-
   const [isEmailNotValid, setEmailNotValid] = useState(false);
-
   const emailValidation = validateEmail(email);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -92,6 +90,16 @@ export const useLoginView = () => {
     }
   };
 
+  // tab 클릭시 비밀번호 필드로 이동
+  const handleKeyPressMovePwField = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (e.key == "Tab") {
+      inputRef.current?.focus();
+    }
+  };
+
+  // enter 클릭 시 로그인
   const handleKeyPressLogin = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key == "Enter") {
       if (!emailValidation) {
@@ -108,11 +116,13 @@ export const useLoginView = () => {
       value: email,
       onChange: handleEmailChange,
       error: isEmailNotValid,
+      onKeyPressMove: handleKeyPressMovePwField,
     },
     pwState: {
       value: pw,
       onChange: handlePwChange,
       onKeyPressLogin: handleKeyPressLogin,
+      ref: inputRef,
     },
     login: {
       disabled: !email || !pw || isEmailNotValid,

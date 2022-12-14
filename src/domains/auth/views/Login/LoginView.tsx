@@ -31,6 +31,9 @@ export const LoginView = () => {
               value={emailState.value}
               onChange={emailState.onChange}
               error={emailState.error}
+              onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) =>
+                emailState.onKeyPressMove(e)
+              }
             />
             <TextField
               fullWidth
@@ -41,6 +44,7 @@ export const LoginView = () => {
               onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) =>
                 pwState.onKeyPressLogin(e)
               }
+              inputRef={pwState.ref}
             />
             <Button
               fullWidth
