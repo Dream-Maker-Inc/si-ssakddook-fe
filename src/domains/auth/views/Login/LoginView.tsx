@@ -91,9 +91,7 @@ const sx = {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     text-align: center;
-
     position: relative;
   `,
   prevButtonWrapper: css`
@@ -108,23 +106,19 @@ const sx = {
     width: 100%;
     margin-top: 9.37vh;
   `,
-
   loginBox: css`
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 12px;
-
     margin-top: 4.68vh;
   `,
-
   lostAccount: css`
     text-decoration: underline;
     margin-top: 3.12px;
     width: fit-content;
     cursor: pointer;
   `,
-
   link: css`
     display: flex;
     justify-content: center;
