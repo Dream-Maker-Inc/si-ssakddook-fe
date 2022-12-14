@@ -11,7 +11,6 @@ import { useEffect, useRef, useState } from "react";
 import { useMutation } from "react-query";
 import DeviceApiService from "@/data/apis/device/device.api";
 import { StatusCode } from "@/data/statusCode/StatusCode.enum";
-import { enIE } from "date-fns/locale";
 
 export const useLoginView = () => {
   // 자동 로그인 해제
