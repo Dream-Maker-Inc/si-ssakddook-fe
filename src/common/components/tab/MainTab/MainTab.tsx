@@ -12,7 +12,7 @@ export const MainTab = ({ username }: MainTabProps) => {
       <IconButton>
         <Image width="24px" height="16px" src={MainLogo} alt="logo" />
       </IconButton>
-      <Typography variant="h2" ml="12px" sx={{ flexGrow: 1 }}>
+      <Typography variant="h2" ml="2px" sx={{ flexGrow: 1 }}>
         {username}님, 환영해요.
       </Typography>
     </div>
