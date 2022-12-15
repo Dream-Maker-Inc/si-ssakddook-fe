@@ -8,17 +8,17 @@ export const useEtcMainView = () => {
     {
       title: "공지 사항",
       iconSrc: IconNotice,
-      onClickPath: "",
+      onClickPath: "https://ssakduk.com/notice",
     },
     {
       title: "회사 소개",
       iconSrc: IconCompany,
-      onClickPath: "",
+      onClickPath: "https://ssakduk.com",
     },
     {
       title: "약관 및 정책",
       iconSrc: IconService,
-      onClickPath: "",
+      onClickPath: "https://ssakduk.com/policy",
     },
   ];
 
