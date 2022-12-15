@@ -158,6 +158,8 @@ const ImageSourceSection = ({ link }: ImageSourceSectionProps) => {
         variant="body2"
         color={LightColor.Gray100}
         href={link}
+        target="_blank"
+        rel="noreferrer"
         css={sx.src}
       >
         {link}

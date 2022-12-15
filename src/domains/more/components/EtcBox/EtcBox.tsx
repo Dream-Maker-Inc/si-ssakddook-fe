@@ -2,7 +2,6 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { EtcBoxProps } from "../../types/MoreType.type";
 import ArrowRightIcon from "@/img/more/etc/icon-etc-arrow-right.svg";
 
