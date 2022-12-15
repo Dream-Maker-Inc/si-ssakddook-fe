@@ -75,7 +75,6 @@ main {
 }
 
 /* VARIABLES */
-
 :root {
   --main-color: #1a8fff;
   --text-color: #777;
@@ -117,7 +116,6 @@ header #logo .icon {
 }
 
 /* GRID */
-
 .row {
   margin: 0;
   padding: 0;
@@ -264,7 +262,6 @@ header #logo .icon {
 }
 
 /* memo calendar  */
-
 .vertical-global {
   text-align: center;
   margin: 0;
@@ -428,7 +425,7 @@ header #logo .icon {
   color: #999999;
 }
 
-/* stream talk */
+/* stream chat */
 .channel-preview__container {
   height: 71px;
   cursor: pointer;
@@ -497,6 +494,10 @@ header #logo .icon {
 .str-chat {
   max-height: unset !important;
   height: 100% !important;
+}
+
+.str-chat__avatar {
+  display: block;
 }
 .str-chat-channel.messaging .str-chat__main-panel {
   padding: unset !important;
