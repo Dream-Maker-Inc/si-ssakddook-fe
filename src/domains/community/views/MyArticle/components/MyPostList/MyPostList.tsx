@@ -1,6 +1,6 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
-import { getDateDiff } from "@/utils/DateDif/DateDiff";
+import { getTimeFromNow } from "@/utils/moment/DateMoment";
 import { css } from "@emotion/react";
 import { useMyPostList } from "./useMyPostList";
 
@@ -19,7 +19,7 @@ export const MyPostList = () => {
               key={index}
               postId={it.id}
               title={it.title}
-              date={getDateDiff(it.createdAt)}
+              date={getTimeFromNow(it.createdAt)}
               nicknameOrTitle={it.author.nickname}
               category={it.category}
               like={it.likedCount + ""}

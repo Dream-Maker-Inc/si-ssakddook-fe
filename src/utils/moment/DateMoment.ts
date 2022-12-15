@@ -1,3 +1,4 @@
+import { parseISO, format } from "date-fns";
 import moment from "moment-timezone";
 import "moment/locale/ko";
 
@@ -10,6 +11,8 @@ export const getDateFromNow = (date: string) => {
 };
 
 export const getTimeFromNow = (date: Date) => {
-  const formattedDate = moment(date).fromNow();
-  return formattedDate;
+  const formattedDate = (date + "").slice(0, -1);
+  const createdDate = moment(formattedDate).fromNow();
+
+  return createdDate;
 };

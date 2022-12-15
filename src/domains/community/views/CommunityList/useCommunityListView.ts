@@ -1,11 +1,11 @@
 import { queryClient } from "./../../../../pages/_app";
 import { PostingItemResponse } from "@/data/apis/posting/posting.dto";
 import { useFetchAllPostByCategory } from "@/data/apis/posting/usePostingApiHooks";
-import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import _ from "lodash";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import { getTimeFromNow } from "@/utils/moment/DateMoment";
 
 export const useCommunityListView = () => {
   const router = useRouter();
@@ -56,7 +56,7 @@ const mapToPostings = (postingItemResponses: PostingItemResponse[]) => {
   const postings = postingItemResponses.map((it) => ({
     id: it.id,
     title: _.truncate(it.title),
-    date: getDateDiff(it.createdAt),
+    date: getTimeFromNow(it.createdAt),
     nickname: it.author.nickname,
     category: it.category,
     likedCount: `${it.likedCount}`,

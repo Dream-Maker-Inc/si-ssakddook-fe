@@ -1,6 +1,6 @@
-import { getDateDiff } from "./../../../utils/DateDif/DateDiff";
 import { useFindOneLifeById } from "@/data/apis/life/useLifeApiHooks";
 import { useRouter } from "next/router";
+import { getTimeFromNow } from "@/utils/moment/DateMoment";
 
 export const useLifeDetailView = () => {
   const router = useRouter();
@@ -8,7 +8,7 @@ export const useLifeDetailView = () => {
 
   const { data, isLoading, isError, error } = useFindOneLifeById(lifeId);
 
-  const date = getDateDiff(data?.createdAt!!);
+  const date = getTimeFromNow(data?.createdAt!!);
 
   if (isError) {
     console.log(error);

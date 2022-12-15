@@ -2,12 +2,12 @@ import { BoardComment } from "@/common/components/board/BoardComment";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
-import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import { CommentWrite } from "../../../components/CommentWrite";
 import { useCommentSection } from "./useCommentSection";
 import { LightColor } from "@/themes/Color";
+import { getTimeFromNow } from "@/utils/moment/DateMoment";
 
 type CommentSectionProps = {
   postId: string;
@@ -32,7 +32,7 @@ export const CommentSection = ({ postId }: CommentSectionProps) => {
           content={it.content}
           writerId={it.author.id + ""}
           nickname={it.author.nickname}
-          date={getDateDiff(it.createdAt)}
+          date={getTimeFromNow(it.createdAt)}
           likeCount={it.likedCount}
           isLike={it.myLiked == null ? false : true}
           onLike={

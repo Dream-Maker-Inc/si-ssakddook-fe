@@ -1,9 +1,6 @@
-import {
-  CommentItemResponse,
-  CommentItemsResponse,
-} from "@/data/apis/posting/posting.dto";
+import { CommentItemResponse } from "@/data/apis/posting/posting.dto";
 import { useFetchAllCommentById } from "@/data/apis/posting/usePostingApiHooks";
-import { getDateDiff } from "@/utils/DateDif/DateDiff";
+import { getTimeFromNow } from "@/utils/moment/DateMoment";
 import _ from "lodash";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
@@ -52,7 +49,7 @@ const mapToComments = (items: CommentItemResponse[]) => {
     postingId: it.posting.id,
     postingTitle: _.truncate(it.posting.title),
     content: _.truncate(it.content),
-    date: getDateDiff(it.createdAt),
+    date: getTimeFromNow(it.createdAt),
   }));
 
   return comments;

@@ -3,8 +3,8 @@ import { DefaultTab } from "@/common/components/tab/DefaultTab";
 import { useCommunityCommentDetailView } from "./useCommunityCommentDetailView";
 import { css } from "@emotion/react";
 import { BoardComment } from "@/common/components/board/BoardComment";
-import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { CommentWrite } from "../components/CommentWrite";
+import { getTimeFromNow } from "@/utils/moment/DateMoment";
 
 export const CommunityCommentDetailView = () => {
   const { result, commentState, likeState, ref } =
@@ -23,7 +23,7 @@ export const CommunityCommentDetailView = () => {
                 content={it.content}
                 writerId={it.author.id + ""}
                 nickname={it.author.nickname}
-                date={getDateDiff(it.createdAt)}
+                date={getTimeFromNow(it.createdAt)}
                 likeCount={it.likedCount}
                 isLike={it.myLiked == null ? false : true}
                 onLike={
