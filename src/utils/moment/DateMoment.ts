@@ -16,3 +16,9 @@ export const getTimeFromNow = (date: Date) => {
 
   return createdDate;
 };
+
+export const getLastChatTimeFromNow = (date: Date) => {
+  const createdDate = moment(date).fromNow();
+
+  return createdDate;
+};
