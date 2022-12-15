@@ -47,19 +47,17 @@ export const useChangePasswordView = () => {
   };
 
   // change profile-image api
-  const { mutate, isSuccess, isError, data, isLoading } = useMutation(
+  const { mutate, data } = useMutation(
     (formData: any) => MemberApiService.updateProfileImage(formData),
     {
       onSuccess: async (res) => {
-        LocalStorage.setItem("profileImage", data.profileImageUrl);
-
         // user chat session에 저장
         if (!data) return;
 
         setUser({
           id: `${data.id}`,
           name: data.nickname,
-          image: data.profileImageUrl!!,
+          image: data.profileImageUrl,
         });
 
         router.push(RoutePath.MyInformation);

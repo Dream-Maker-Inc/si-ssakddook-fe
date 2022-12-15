@@ -8,26 +8,13 @@ import {
   Window,
 } from "stream-chat-react";
 import { ChatRoomTab } from "./components/tab/ChatRoomTab";
-import { useUserSession } from "@/recoil/session/user-session.atom";
 
 export const ChatRoomView = () => {
-  const { user } = useUserSession();
-
-  const UserChatProfileImage = () => {
-    const ssakdukLogoImageUrl = "https://ssakduk.com/global-assets/logo.png";
-
-    return (
-      <Avatar
-        image={user?.image == "" ? ssakdukLogoImageUrl : user?.image}
-        shape="circle"
-      />
-    );
-  };
   return (
     <PlainLayout isBottomMarginNecessary={false}>
       <ChatRoomTab />
       <div css={sx.root}>
-        <Channel Avatar={UserChatProfileImage}>
+        <Channel>
           <Window>
             <MessageList messageActions={[]} />
             <MessageInput />
