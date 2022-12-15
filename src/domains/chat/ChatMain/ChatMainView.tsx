@@ -13,12 +13,12 @@ export const ChatMainView = () => {
       <div css={sx.container}>
         <BoardTab
           firstTabInfo={{
-            title: "참여중",
-            children: <ParticipatedChannelList />,
+            title: "모든 채팅방",
+            children: <EveryChannelList />,
           }}
           secondTabInfo={{
-            title: "둘러보기",
-            children: <EveryChannelList />,
+            title: "참여 중",
+            children: <ParticipatedChannelList />,
           }}
         />
       </div>
