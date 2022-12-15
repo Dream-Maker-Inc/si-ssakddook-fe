@@ -1,15 +1,18 @@
 import { RoutePath } from "@/constants/Path";
+import MemberApiService from "@/data/apis/member/member.api";
 import {
   useGetCurrentMember,
   useUpdateProfileImage,
 } from "@/data/apis/member/useMemberApiHooks";
 import LocalStorage from "@/data/LocalStorage/LocalStorage";
+import { useUserSession } from "@/recoil/session/user-session.atom";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 export const useChangePasswordView = () => {
   const router = useRouter();
+  const { user, setUser } = useUserSession();
 
   // member profile-image
   const defaultImage = useQuery("get-curr-member", useGetCurrentMember).data
@@ -44,26 +47,32 @@ export const useChangePasswordView = () => {
   };
 
   // change profile-image api
-  const { mutate, isSuccess, isError, data, isLoading } =
-    useUpdateProfileImage();
+  const { mutate, isSuccess, isError, data, isLoading } = useMutation(
+    (formData: any) => MemberApiService.updateProfileImage(formData),
+    {
+      onSuccess: async (res) => {
+        LocalStorage.setItem("profileImage", data.profileImageUrl);
 
-  if (isSuccess) {
-    console.log("success");
-    LocalStorage.setItem("profileImage", data.profileImageUrl);
-    router.push(RoutePath.MyInformation);
-  }
+        // user chat session에 저장
+        if (!data) return;
 
-  if (isLoading) {
-    console.log("loading");
-  }
+        setUser({
+          id: `${data.id}`,
+          name: data.nickname,
+          image: data.profileImageUrl!!,
+        });
 
-  if (isError) {
-    console.log(data);
-  }
+        router.push(RoutePath.MyInformation);
+      },
+      onError: (err) => {
+        alert("프로필 이미지 업로드에 실패했습니다.");
+        console.log(err);
+      },
+    }
+  );
 
   const onSubmit = async () => {
     // form data
-    console.log("click");
     const fd = new FormData();
     await fd.append("file", uploadedImage);
     await mutate(fd);
