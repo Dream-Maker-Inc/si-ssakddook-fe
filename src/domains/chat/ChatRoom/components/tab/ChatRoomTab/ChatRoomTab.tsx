@@ -1,6 +1,6 @@
 import { ChatModal } from "@/common/components/modal/ChatModal/ChatModal";
 import { css } from "@emotion/react";
-import { Box, Drawer, IconButton, Typography } from "@mui/material";
+import { Box, Drawer, IconButton, Switch, Typography } from "@mui/material";
 import Image from "next/image";
 import { useChatRoomTab } from "./useChatRoomTab";
 import PrevIconImg from "@/img/arrowIcon/prev-icon.svg";
@@ -9,7 +9,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { LightColor } from "@/themes/Color";
 
 export const ChatRoomTab = () => {
-  const { tabState, channelState, drawerState, modalState } = useChatRoomTab();
+  const { tabState, channelState, drawerState, modalState, toggleState } =
+    useChatRoomTab();
 
   return (
     <div css={sx.root}>
@@ -44,7 +45,6 @@ export const ChatRoomTab = () => {
                 {channelState.title}
               </Typography>
             </div>
-
             <div css={sx.content}>
               <Typography variant="body1" color="TextMain">
                 설명
@@ -53,7 +53,6 @@ export const ChatRoomTab = () => {
                 {channelState.desc}
               </Typography>
             </div>
-
             <div css={sx.content}>
               <Typography variant="body1" color="TextMain">
                 생성날짜
@@ -62,6 +61,18 @@ export const ChatRoomTab = () => {
                 {channelState.createdAt}
               </Typography>
             </div>
+
+            {toggleState.isChannelOwner ? (
+              <div css={sx.content}>
+                <Typography variant="body1" color="TextMain">
+                  채팅방 비활성화
+                </Typography>
+                <Switch
+                  checked={toggleState.isChecked}
+                  onChange={toggleState.onChange}
+                />
+              </div>
+            ) : null}
           </div>
           <div css={sx.chatExitSection}>
             <IconButton onClick={modalState.onOpen}>
