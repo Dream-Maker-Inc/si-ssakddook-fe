@@ -10,7 +10,6 @@ import { useMutation, useQuery } from "react-query";
 
 export const useChangeNickname = () => {
   const router = useRouter();
-
   const { user, setUser } = useUserSession();
 
   const [newNickname, setNewNickname] = useState("");
@@ -32,6 +31,7 @@ export const useChangeNickname = () => {
         } else {
           LocalStorage.setItem("nickname", newNickname);
 
+          // user chat session에 저장
           if (!data) return;
 
           setUser({
