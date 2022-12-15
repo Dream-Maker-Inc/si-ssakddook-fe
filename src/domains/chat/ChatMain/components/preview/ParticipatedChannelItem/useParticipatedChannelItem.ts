@@ -1,5 +1,8 @@
 import { RoutePath } from "@/constants/Path";
-import { getTimeFromNow } from "@/utils/moment/DateMoment";
+import {
+  getLastChatTimeFromNow,
+  getTimeFromNow,
+} from "@/utils/moment/DateMoment";
 import { useRouter } from "next/router";
 import { useChatContext } from "stream-chat-react";
 import { CHAT_CATEGORY_TYPE } from "@/domains/chat/types/ChatCategoryType.enum";
@@ -27,7 +30,7 @@ export const useParticipatedChannelItem = (channel: any) => {
     channel.data.last_message_at === undefined ||
     channel.data.last_message_at === null
       ? ""
-      : getTimeFromNow(channel.data.last_message_at);
+      : getLastChatTimeFromNow(channel.data.last_message_at);
 
   const channelType = channel.data.config.name;
   const channelCategory =
