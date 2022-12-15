@@ -14,6 +14,8 @@ export const useMainView = () => {
   const { post, postByLike, lifePost, lifePostByView } = useMainApi();
 
   const nickname = data?.nickname as string;
+  const profileImage = data?.profileImageUrl!!;
+  console.log(profileImage);
 
   LocalStorage.setItem("id", data?.id + "");
   LocalStorage.setItem("nickname", data?.nickname + "");
@@ -29,7 +31,10 @@ export const useMainView = () => {
     setUser({
       id: `${data.id}`,
       name: data.nickname,
-      image: data.profileImageUrl,
+      image:
+        profileImage == ""
+          ? "https://ssakduk.com/global-assets/logo.png"
+          : profileImage,
     });
   }, [data]);
 

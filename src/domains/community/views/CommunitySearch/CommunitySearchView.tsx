@@ -3,7 +3,7 @@ import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { SearchTab } from "@/common/components/tab/SearchTab";
 import { LightColor } from "@/themes/Color";
-import { getDateDiff } from "@/utils/DateDif/DateDiff";
+import { getTimeFromNow } from "@/utils/moment/DateMoment";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import { useCommunitySearchView } from "./useCommunitySearchView";
@@ -29,7 +29,7 @@ export const CommunitySearchView = () => {
                   key={index}
                   postId={it.id + ""}
                   title={it.title}
-                  date={getDateDiff(it.createdAt)}
+                  date={getTimeFromNow(it.createdAt)}
                   nickname={it.author.nickname}
                   category={it.category}
                   like={it.likedCount + ""}

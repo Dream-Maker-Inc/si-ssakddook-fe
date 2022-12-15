@@ -4,8 +4,8 @@ import {
   useUserSession,
 } from "@/recoil/session/user-session.atom";
 import _ from "lodash";
-import { Fragment, ReactNode, useCallback, useEffect, useState } from "react";
-import { DefaultGenerics, StreamChat } from "stream-chat";
+import { ReactNode, useCallback, useEffect, useState } from "react";
+import { StreamChat } from "stream-chat";
 import { Chat } from "stream-chat-react";
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY!!;

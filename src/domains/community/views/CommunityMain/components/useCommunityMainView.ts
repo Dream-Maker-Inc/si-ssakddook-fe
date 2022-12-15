@@ -14,7 +14,7 @@ import IconConcern from "@/img/community/boxIcons/icon-concern.svg";
 import IconEtc from "@/img/community/boxIcons/icon-etc.svg";
 import { PostingItemResponse } from "@/data/apis/posting/posting.dto";
 import _ from "lodash";
-import { getDateDiff } from "@/utils/DateDif/DateDiff";
+import { getTimeFromNow } from "@/utils/moment/DateMoment";
 
 export const useCommunityMainView = () => {
   const router = useRouter();
@@ -136,7 +136,7 @@ const mapToPostings = (postingItemResponses: PostingItemResponse[]) => {
   const postings = postingItemResponses.map((it) => ({
     id: it.id,
     title: _.truncate(it.title),
-    date: getDateDiff(it.createdAt),
+    date: getTimeFromNow(it.createdAt),
     nickname: it.author.nickname,
     category: it.category,
     likedCount: `${it.likedCount}`,

@@ -17,6 +17,8 @@ export const usePublicChannelItem = (channel: any) => {
     setModalOpen(false);
 
     await channel.watch();
+    // 모든 메세지 지우기
+    await channel.truncate();
 
     await channel.addMembers([client.user?.id], {
       text: `${client.user?.name} 님이 입장했습니다.`,

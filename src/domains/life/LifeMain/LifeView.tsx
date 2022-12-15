@@ -4,7 +4,7 @@ import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import { PreviewItem } from "@/common/components/board/PreviewItem";
 import { useLifeView } from "./useLifeView";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
-import { getDateDiff } from "@/utils/DateDif/DateDiff";
+import { getTimeFromNow } from "@/utils/moment/DateMoment";
 
 export const LifeView = () => {
   const { fetchState, result, ref } = useLifeView();
@@ -30,7 +30,7 @@ export const LifeView = () => {
                 title={it.title}
                 desc={it.content}
                 image={it.attachments[0]}
-                date={getDateDiff(it.createdAt)}
+                date={getTimeFromNow(it.createdAt)}
               />
             ))}
           </div>

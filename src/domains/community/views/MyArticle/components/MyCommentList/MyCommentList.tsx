@@ -1,6 +1,5 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
-import { getDateDiff } from "@/utils/DateDif/DateDiff";
 import { css } from "@emotion/react";
 import { useMyCommentList } from "./useMyCommentList";
 

@@ -1,6 +1,6 @@
 import LikeApiService from "@/data/apis/like/like.api";
 import PostingApiService from "@/data/apis/posting/posting.api";
-import { getDateDiff } from "@/utils/DateDif/DateDiff";
+import { getTimeFromNow } from "@/utils/moment/DateMoment";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useMutation, useQuery } from "react-query";
@@ -84,7 +84,7 @@ export const useCommunityDetailView = () => {
       category: data.category,
       title: data.title,
       nickname: data.author.nickname,
-      date: getDateDiff(data.createdAt),
+      date: getTimeFromNow(data.createdAt),
       content: data.content,
       attachments: data.attachments,
       likeCount: data.likedCount,

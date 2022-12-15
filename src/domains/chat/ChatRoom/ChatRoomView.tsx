@@ -1,6 +1,12 @@
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import { css } from "@emotion/react";
-import { Channel, MessageInput, MessageList, Window } from "stream-chat-react";
+import {
+  Avatar,
+  Channel,
+  MessageInput,
+  MessageList,
+  Window,
+} from "stream-chat-react";
 import { ChatRoomTab } from "./components/tab/ChatRoomTab";
 
 export const ChatRoomView = () => {
