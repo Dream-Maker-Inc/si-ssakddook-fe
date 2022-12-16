@@ -41,12 +41,15 @@ export const useChatRoomTab = () => {
   // 채탱방 방장인지 여부 확인
   const channelCreatedByInfo = channel?.data
     ?.created_by as ChannelCreatedByType;
-  const isChannelOwned =
-    LocalStorage.getItem("id")!! == channelCreatedByInfo.id;
+  const isChannelOwned = client.user?.id!! == channelCreatedByInfo.id;
 
   // 채팅방 나가기
   const handleChatExit = async () => {
     await setModalOpen(false);
+
+    if (isChannelOwned) {
+      await channel?.updatePartial({ set: { frozen: true } });
+    }
 
     await channel?.removeMembers([LocalStorage.getItem("id")!!], {
       text: `${client.user?.name}님이 나가셨습니다.`,
