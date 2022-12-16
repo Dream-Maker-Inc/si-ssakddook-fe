@@ -79,7 +79,10 @@ const MemoCalendar = ({
   };
 
   const isAvailableDate = (date) => {
-    return today < new Date(date) ? false : true;
+    const formattedToday = format(today, "yyyy-MM-dd");
+    const formattedDated = format(new Date(date), "yyyy-MM-dd");
+
+    return formattedToday < formattedDated ? false : true;
   };
 
   const isBeforeSignupDate = (date) => {
