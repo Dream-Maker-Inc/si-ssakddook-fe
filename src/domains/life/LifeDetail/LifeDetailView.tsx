@@ -8,6 +8,7 @@ import { useLifeDetailView } from "./useLifeDetailView";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { ShowThumbnailSection } from "@/common/components/thumbnail/ShowThumbnailSection";
 import Person from "@/img/icon-view.svg";
+import LinkImage from "@/img/icon-img-link.svg";
 
 export const LifeDetailView = () => {
   const { fetchState, result } = useLifeDetailView();
@@ -71,15 +72,12 @@ const sx = {
   `,
   sourceRoot: css`
     width: 100%;
-    height: 37px;
+    height: 40px;
     background-color: white;
-
     display: flex;
     align-items: center;
-    gap: 6px;
-
+    gap: 8px;
     padding: 0 16px;
-
     position: absolute;
     bottom: 0;
     left: 0;
@@ -152,10 +150,11 @@ export type ImageSourceSectionProps = {
 const ImageSourceSection = ({ link }: ImageSourceSectionProps) => {
   return (
     <div css={sx.sourceRoot}>
-      <Image width="12px" height="12px" src="/img/icon-img-link.svg" alt="" />
+      <Image width="16px" height="16px" src={LinkImage} alt="" />
       <Typography
         component="a"
-        variant="body2"
+        variant="h3"
+        lineHeight={1}
         color={LightColor.Gray100}
         href={link}
         target="_blank"
