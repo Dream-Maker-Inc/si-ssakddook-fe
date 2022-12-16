@@ -44,7 +44,7 @@ export const PublicChannelItem = ({ channel }: PublicChannelItemProps) => {
             <div css={sx.chatImageWrapper}>
               <Image
                 layout="fill"
-                src={channel.data.image}
+                src={channel.data.created_by.image}
                 alt="profile-image"
                 css={sx.chatImage}
               />
