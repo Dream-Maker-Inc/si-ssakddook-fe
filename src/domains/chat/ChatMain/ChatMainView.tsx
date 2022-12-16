@@ -17,7 +17,7 @@ export const ChatMainView = () => {
             children: <EveryChannelList />,
           }}
           secondTabInfo={{
-            title: "참여 중",
+            title: "참여 채팅방",
             children: <ParticipatedChannelList />,
           }}
         />
