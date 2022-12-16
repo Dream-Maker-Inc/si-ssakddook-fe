@@ -20,7 +20,7 @@ export const ChatMainTab = () => {
         </IconButton>
 
         <Typography variant="h2" lineHeight="1" ml="4px">
-          톡
+          채팅
         </Typography>
       </div>
       <div>
