@@ -12,8 +12,9 @@ export const BusinessInformationSection = () => {
           <Image layout="fill" src={SmallLogo} alt="logo" />
         </div>
         <Text>싹둑 사업자정보</Text>
-        <Text>대표 차진환 사업자등록번호 356-05-12624</Text>
+        <Text>대표 차진환 사업자등록번호 356-05-02624</Text>
         <Text>주소 서울특별시 강남구 언주로97길 27-12, 302호(역삼동)</Text>
+        <Text>유선전화 070-8064-0148</Text>
         <Text>호스팅서비스 아마존웹서비스 (AWS) 제공</Text>
       </div>
     </div>
