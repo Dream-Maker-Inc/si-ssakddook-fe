@@ -11,6 +11,9 @@ export const useSecessionView = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [password, setPassword] = useState("");
   const [isPasswordFieldError, setIsPasswordFieldError] = useState(false);
+  const [isModelOpen, setIsModelOpen] = useState(false);
+  const handleModalOpen = () => setIsModelOpen(true);
+  const handleModalClose = () => setIsModelOpen(false);
 
   const handleCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
@@ -62,7 +65,12 @@ export const useSecessionView = () => {
 
     buttonState: {
       disable: isButtonDisabled,
-      onClick: onSubmit,
+      onClick: handleModalOpen,
+    },
+    modalState: {
+      isOpen: isModelOpen,
+      onClose: handleModalClose,
+      onContinue: onSubmit,
     },
   };
 };
