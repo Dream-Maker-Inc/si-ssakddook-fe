@@ -3,9 +3,11 @@ import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { WritingTab } from "@/common/components/tab/WritingTab";
 import { useFindPasswordSuccessView } from "./useFindPasswordSuccessView";
 import { PasswordBox } from "@/common/components/field/PasswordBox/PasswordBox";
+import { NoticeModal } from "@/common/components/modal/NoticeModal";
 
 export const FindPasswordSuccessView = () => {
-  const { tabState, newPwState, confirmPwState } = useFindPasswordSuccessView();
+  const { tabState, newPwState, confirmPwState, modalState } =
+    useFindPasswordSuccessView();
 
   return (
     <AppbarLayout>
@@ -42,6 +44,11 @@ export const FindPasswordSuccessView = () => {
           />
         </div>
       </div>
+      <NoticeModal
+        isOpen={modalState.isOpen}
+        onClose={modalState.onClose}
+        text={modalState.text}
+      />
     </AppbarLayout>
   );
 };
