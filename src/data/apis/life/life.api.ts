@@ -17,14 +17,14 @@ class LifeApiService implements LifeApiInterface {
     const response = await axiosClient.get(
       `/v1/life-posting?page=1&size=${size}`
     );
-    return response.data.data;
+    return response.data;
   }
 
   async findAllLifeByViewCount(size: number): Promise<LifeItemsResponse> {
     const response = await axiosClient.get(
       `/v1/life-posting?page=1&size=${size}&sortBy=viewCount`
     );
-    return response.data.data;
+    return response.data;
   }
 
   async findOneLifeById(lifeId: string): Promise<LifeItemResponse> {
