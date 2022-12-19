@@ -28,7 +28,7 @@ class IamCertificationApiService implements IamCertificationApiInterface {
       importUid,
     });
 
-    return response.data;
+    return response.data.data;
   }
 }
 
