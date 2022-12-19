@@ -36,12 +36,9 @@ const sx = {
     height: 50px;
     left: 0px;
     top: 0px;
-
     padding-right: 16px;
     padding-left: 8px;
-
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-
     display: flex;
     align-items: center;
   `,
