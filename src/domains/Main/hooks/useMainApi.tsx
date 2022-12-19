@@ -24,11 +24,11 @@ export const useMainApi = () => {
 
   return {
     post: {
-      data: postData?.items,
+      data: postData?.data.items,
       isError: postDataError,
     },
     postByLike: {
-      data: postCommentData?.items,
+      data: postCommentData?.data.items,
       isError: postCommentDataError,
     },
     lifePost: {

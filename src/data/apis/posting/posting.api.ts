@@ -26,12 +26,12 @@ class PostingApiService implements PostingApiInterface {
 
   async findAllPost(size: number): Promise<PostingItemsResponse> {
     const response = await axiosClient.get(`/v1/posting?page=1&size=${size}`);
-    return response.data.data;
+    return response.data;
   }
 
   async findAllPostByLikeCount(): Promise<PostingItemsResponse> {
     const response = await axiosClient.get(`/v1/posting/sortedLiked`);
-    return response.data.data;
+    return response.data;
   }
 
   async findAllPostById(
@@ -62,7 +62,7 @@ class PostingApiService implements PostingApiInterface {
     const response = await axiosClient.get(
       `/v1/comment/mine?&page=${page}&size=${size}`
     );
-    return response.data.data;
+    return response.data;
   }
 
   async findAllCommentByPostId(
@@ -73,7 +73,7 @@ class PostingApiService implements PostingApiInterface {
     const response = await axiosClient.get(
       `/v1/comment?postingId=${postId}&page=${page}&size=${size}`
     );
-    return response.data.data;
+    return response.data;
   }
 
   async findOneByPostId(postId: string): Promise<PostingItemResponse> {
@@ -89,7 +89,7 @@ class PostingApiService implements PostingApiInterface {
       params: { category, page: pageParam, size: 15 },
     });
     console.log(response.data);
-    return response.data.data;
+    return response.data;
   }
 
   async updatePost(postId: string, body: any): Promise<PostingItemResponse> {

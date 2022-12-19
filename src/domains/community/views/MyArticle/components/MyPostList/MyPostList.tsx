@@ -14,7 +14,7 @@ export const MyPostList = () => {
     <div css={sx.root}>
       {result?.pages.map((page, index) => (
         <div key={index}>
-          {page.data.items.map((it, index) => (
+          {page.data.data.items.map((it, index) => (
             <BoardItem
               key={index}
               postId={it.id}

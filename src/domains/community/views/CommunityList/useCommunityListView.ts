@@ -36,7 +36,7 @@ export const useCommunityListView = () => {
     };
   }
 
-  const result = data.pages.map((page) => mapToPostings(page.data.items));
+  const result = data.pages.map((page) => mapToPostings(page.data.data.items));
 
   return {
     category: category == "" ? "최근 게시글" : category,
