@@ -9,6 +9,7 @@ import { CircularLoading } from "@/common/components/progress/CircularProgress/C
 import { ShowThumbnailSection } from "@/common/components/thumbnail/ShowThumbnailSection";
 import Person from "@/img/icon-view.svg";
 import LinkImage from "@/img/icon-img-link.svg";
+import { RoutePath } from "@/constants/Path";
 
 export const LifeDetailView = () => {
   const { fetchState, result } = useLifeDetailView();
@@ -17,7 +18,7 @@ export const LifeDetailView = () => {
 
   return (
     <PlainLayout>
-      <DefaultTab category="라이프" />
+      <DefaultTab category="라이프" routePath={RoutePath.Life} />
       <div css={sx.root}>
         <TitleSection
           title={result.title}
@@ -112,7 +113,7 @@ const TitleSection = ({ title, date, viewCount }: TitleSectionProps) => {
       </Typography>
       <div css={sx.titleWrapper}>
         <Typography variant="h5" color={LightColor.Gray100}>
-          관리자 · {date}
+          싹둑 · {date}
         </Typography>
         <div css={sx.viewWrapper}>
           <Image width="10px" height="10px" src={Person} alt="" />
