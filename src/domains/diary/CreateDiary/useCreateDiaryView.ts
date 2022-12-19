@@ -4,6 +4,7 @@ import { useMutation } from "react-query";
 import DiaryApiService from "@/data/apis/diary/diary.api";
 import { format } from "date-fns";
 import { RoutePath } from "@/constants/Path";
+import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 
 export const useCreateDiaryView = () => {
   const router = useRouter();
@@ -27,11 +28,16 @@ export const useCreateDiaryView = () => {
   const { mutate, data: newDiaryData } = useMutation(
     (body: any) => DiaryApiService.createDiary(body),
     {
-      onSuccess: () => {
-        router.push(RoutePath.Main);
+      onSuccess: (res) => {
+        if (isApiFailedResponse(res)) {
+          alert(res.message);
+          console.log(res);
+        } else {
+          router.push(RoutePath.Main);
+        }
       },
       onError: (err) => {
-        console.log(newDiaryData);
+        console.log(err);
       },
     }
   );

@@ -24,7 +24,7 @@ export const CommunitySearchView = () => {
         {result?.pages[0] !== undefined ? (
           result?.pages.map((page, index) => (
             <div key={index}>
-              {page.data.items.map((it, index) => (
+              {page.data.data.items.map((it, index) => (
                 <BoardExpandedItem
                   key={index}
                   postId={it.id + ""}

@@ -115,7 +115,7 @@ export const useCommunityMainView = () => {
     };
   }
 
-  const postings = mapToPostings(data.items);
+  const postings = mapToPostings(data.data.items);
 
   return {
     boxData: communitBoxInfos,

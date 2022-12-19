@@ -19,16 +19,18 @@ export type PostingItemResponse = {
 };
 
 export type PostingItemsResponse = {
-  items: PostingItemResponse[];
-  metaData: {
-    offset: number;
-    pageSize: number;
-    pageNumber: number;
-    totalPageCount: number;
-    itemCount: number;
-    totalItemCount: number;
-    isFirst: boolean;
-    isLast: boolean;
+  data: {
+    items: PostingItemResponse[];
+    metaData: {
+      offset: number;
+      pageSize: number;
+      pageNumber: number;
+      totalPageCount: number;
+      itemCount: number;
+      totalItemCount: number;
+      isFirst: boolean;
+      isLast: boolean;
+    };
   };
 };
 
@@ -58,16 +60,18 @@ export type MyCommentItems = {
 };
 
 export type AllCommentResponse = {
-  items: MyCommentItems[];
-  metaData: {
-    offset: number;
-    pageSize: number;
-    pageNumber: number;
-    totalPageCount: number;
-    itemCount: number;
-    totalItemCount: number;
-    isFirst: boolean;
-    isLast: boolean;
+  data: {
+    items: MyCommentItems[];
+    metaData: {
+      offset: number;
+      pageSize: number;
+      pageNumber: number;
+      totalPageCount: number;
+      itemCount: number;
+      totalItemCount: number;
+      isFirst: boolean;
+      isLast: boolean;
+    };
   };
 };
 
@@ -91,16 +95,18 @@ export type CommentItemResponse = {
 };
 
 export type CommentItemsResponse = {
-  items: CommentItemResponse[];
-  metaData: {
-    offset: number;
-    pageSize: number;
-    pageNumber: number;
-    totalPageCount: number;
-    itemCount: number;
-    totalItemCount: number;
-    isFirst: boolean;
-    isLast: boolean;
+  data: {
+    items: CommentItemResponse[];
+    metaData: {
+      offset: number;
+      pageSize: number;
+      pageNumber: number;
+      totalPageCount: number;
+      itemCount: number;
+      totalItemCount: number;
+      isFirst: boolean;
+      isLast: boolean;
+    };
   };
 };
 

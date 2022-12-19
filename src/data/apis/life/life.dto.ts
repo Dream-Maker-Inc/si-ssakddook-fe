@@ -11,15 +11,17 @@ export type LifeItemResponse = {
 };
 
 export type LifeItemsResponse = {
-  items: LifeItemResponse[];
-  metaData: {
-    offset: number;
-    pageSize: number;
-    pageNumber: number;
-    totalPageCount: number;
-    itemCount: number;
-    totalItemCount: number;
-    isFirst: boolean;
-    isLast: boolean;
+  data: {
+    items: LifeItemResponse[];
+    metaData: {
+      offset: number;
+      pageSize: number;
+      pageNumber: number;
+      totalPageCount: number;
+      itemCount: number;
+      totalItemCount: number;
+      isFirst: boolean;
+      isLast: boolean;
+    };
   };
 };

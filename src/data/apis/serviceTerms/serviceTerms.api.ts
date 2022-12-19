@@ -13,12 +13,12 @@ export class ServiceTermsApiService implements ServiceTermsApiInterface {
 
   async findAll(): Promise<ServiceFindAllApiResponse> {
     const response = await axiosClient.post("/v1/auth/login", {});
-    return response.data;
+    return response.data.data;
   }
 
   async findOne(): Promise<ServiceFindOneApiResponse> {
     const response = await axiosClient.post("/v1/auth/login", {});
-    return response.data;
+    return response.data.data;
   }
 }
 

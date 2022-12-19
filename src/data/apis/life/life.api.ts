@@ -29,7 +29,7 @@ class LifeApiService implements LifeApiInterface {
 
   async findOneLifeById(lifeId: string): Promise<LifeItemResponse> {
     const response = await axiosBasicClient.get(`/v1/life-posting/${lifeId}`);
-    return response.data;
+    return response.data.data;
   }
 }
 

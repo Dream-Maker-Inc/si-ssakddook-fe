@@ -99,7 +99,7 @@ export const useCommentSection = (postId: string) => {
       isError,
     },
     result: {
-      models: data.items,
+      models: data.data.items,
       buttonState: {
         onDelete: onDelete,
       },

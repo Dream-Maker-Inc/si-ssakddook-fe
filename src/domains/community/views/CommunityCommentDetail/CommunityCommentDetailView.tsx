@@ -16,7 +16,7 @@ export const CommunityCommentDetailView = () => {
       <div css={sx.root}>
         {models?.pages.map((page, index) => (
           <div key={index}>
-            {page.data.items.map((it, index) => (
+            {page.data.data.items.map((it, index) => (
               <BoardComment
                 key={index}
                 commentId={it.id}

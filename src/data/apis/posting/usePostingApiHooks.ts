@@ -89,8 +89,11 @@ export const useFetchAllPostByCategory = (category: string) => {
           params: { category, page: pageParam, size: 15 },
         }),
       {
-        getNextPageParam: ({ data: { metaData } }) =>
-          metaData.isLast ? undefined : metaData.pageNumber + 1,
+        getNextPageParam: ({
+          data: {
+            data: { metaData },
+          },
+        }) => (metaData.isLast ? undefined : metaData.pageNumber + 1),
       }
     );
 
@@ -112,8 +115,11 @@ export const useFetchAllPostByKeyword = (keyword: string, size: number) =>
         params: { keyword, page: pageParam, size },
       }),
     {
-      getNextPageParam: ({ data: { metaData } }) =>
-        metaData.isLast ? undefined : metaData.pageNumber + 1,
+      getNextPageParam: ({
+        data: {
+          data: { metaData },
+        },
+      }) => (metaData.isLast ? undefined : metaData.pageNumber + 1),
       enabled: false,
       onSuccess(data) {
         console.log(data);
@@ -129,8 +135,11 @@ export const useFetchAllCommentById = (size: number) =>
         params: { page: pageParam, size },
       }),
     {
-      getNextPageParam: ({ data: { metaData } }) =>
-        metaData.isLast ? undefined : metaData.pageNumber + 1,
+      getNextPageParam: ({
+        data: {
+          data: { metaData },
+        },
+      }) => (metaData.isLast ? undefined : metaData.pageNumber + 1),
     }
   );
 
@@ -142,8 +151,11 @@ export const useFetchAllPostsById = (size: number) =>
         params: { page: pageParam, size },
       }),
     {
-      getNextPageParam: ({ data: { metaData } }) =>
-        metaData.isLast ? undefined : metaData.pageNumber + 1,
+      getNextPageParam: ({
+        data: {
+          data: { metaData },
+        },
+      }) => (metaData.isLast ? undefined : metaData.pageNumber + 1),
     }
   );
 
@@ -155,7 +167,10 @@ export const useFetchAllCommentsByPostId = (size: number, postId: string) =>
         params: { page: pageParam, size, postingId: postId },
       }),
     {
-      getNextPageParam: ({ data: { metaData } }) =>
-        metaData.isLast ? undefined : metaData.pageNumber + 1,
+      getNextPageParam: ({
+        data: {
+          data: { metaData },
+        },
+      }) => (metaData.isLast ? undefined : metaData.pageNumber + 1),
     }
   );

@@ -32,7 +32,7 @@ export const useMyCommentList = () => {
     };
   }
 
-  const result = data.pages.map((page) => mapToComments(page.data.items));
+  const result = data.pages.map((page) => mapToComments(page.data.data.items));
 
   return {
     fetchState: {
