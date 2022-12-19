@@ -18,7 +18,7 @@ export const useWeeklyCalendar = () => {
   // getting for created-date of user account
   const { data: memberData } = useQuery("get-curr-member", useGetCurrentMember);
   const signupDate = memberData?.createdAt
-    ? new Date(memberData?.createdAt)
+    ? new Date(memberData?.createdAt.slice(0, -1))
     : new Date();
 
   const signupDateMonth = format(signupDate, "yyyy MM");

@@ -1,4 +1,5 @@
 export type ApiFailedResponse = {
+  data: any;
   statusCode: string;
   message: string;
   ref: any;

@@ -16,7 +16,8 @@ class DiaryApiService implements DiaryApiInterface {
 
   async createDiary(body: any): Promise<ApiFailedResponse> {
     const response = await axiosClient.post("/v1/diary-item", body);
-    return response.data.data;
+    console.log(response.data);
+    return response.data;
   }
 
   async deleteDiary(diaryId: number): Promise<ApiFailedResponse> {
@@ -47,7 +48,7 @@ class DiaryApiService implements DiaryApiInterface {
     const response = await axiosClient.get(
       `/v1/diary-item?date=${prevMonth}&date=${currMonth}&date=${nextMonth}`
     );
-    return response.data;
+    return response.data.data;
   }
 }
 
