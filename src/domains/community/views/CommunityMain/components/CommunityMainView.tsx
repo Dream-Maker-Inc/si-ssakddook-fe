@@ -5,7 +5,7 @@ import { CircularLoading } from "@/common/components/progress/CircularProgress/C
 import { CommunityTab } from "@/common/components/tab/CommunityTab";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
-import { IconButton, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Image from "next/image";
 import { CommunityBox } from "./CommunityBox/CommunityBox";
 import { NoticeBox } from "./NoticeBox";
