@@ -1,8 +1,8 @@
-import { subMonths } from "date-fns";
+import { addMonths, subMonths } from "date-fns";
 
 export const useMonthSelection = (signupDate: Date) => {
   let monthList = [];
-  const currentMonth = new Date();
+  const currentMonth = addMonths(new Date(), 2);
 
   function getMonthDifference(starDate: Date, endDate: Date) {
     return (
