@@ -90,8 +90,8 @@ const sx = {
     width: 100%;
     margin-bottom: 40px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 16px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
   `,
 
   recentContentTitle: css`

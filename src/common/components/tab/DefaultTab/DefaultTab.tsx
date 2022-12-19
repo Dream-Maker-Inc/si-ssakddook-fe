@@ -6,14 +6,19 @@ import { BoardPrevButton } from "../../button/BoardPrevButton";
 
 type DefaultTabProps = {
   category?: string;
+  routePath?: string;
 };
 
-export const DefaultTab = ({ category = "커뮤니티" }: DefaultTabProps) => {
+export const DefaultTab = ({
+  category = "커뮤니티",
+  routePath,
+}: DefaultTabProps) => {
   const router = useRouter();
 
   const onMoreView = () => {
-    router.push(RoutePath.Main);
+    router.push(routePath ? routePath : RoutePath.Main);
   };
+
   return (
     <div css={sx.tabContainer}>
       <BoardPrevButton onClick={onMoreView} />

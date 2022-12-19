@@ -14,8 +14,8 @@ export const NoticeBox = () => {
   return (
     <div css={sx.noticeContainer} onClick={handleBoxClick}>
       <Typography variant="body1" color="rgba(90, 136, 53, 0.6)">
-        {"운영자가 추천하는 칼럼과 취미!\n"}
-        <span css={sx.span}>싹둑 라이프와 함께하세요.</span>
+        {"썩은 잎을 잘라내는 일,\n"}
+        <span css={sx.span}>더 나은 내일을 함께 피우겠습니다.</span>
       </Typography>
       <Image width="20px" height="20px" src={HeartIcon} alt="" />
     </div>

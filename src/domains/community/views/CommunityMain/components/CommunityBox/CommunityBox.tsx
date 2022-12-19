@@ -27,10 +27,19 @@ export const CommunityBox = ({
   return (
     <Button css={sx.root} onClick={handleViewCategory}>
       <div css={sx.categoryContainer}>
-        <Image width="24px" height="24px" src={img} alt="" />
-        <Typography variant="h4" color={LightColor.Gray100} css={sx.text}>
-          {content}
-        </Typography>
+        <div css={sx.imageWrapper}>
+          <Image width="16px" height="16px" src={img} alt="" />
+        </div>
+        <div css={sx.textWrapper}>
+          <Typography
+            variant="h4"
+            lineHeight={1.3}
+            color={LightColor.Gray100}
+            css={sx.text}
+          >
+            {content}
+          </Typography>
+        </div>
       </div>
     </Button>
   );
@@ -45,27 +54,35 @@ const sx = {
   categoryContainer: css`
     width: 100%;
     height: 100%;
-
     background-color: ${LightColor.Gray500};
-    border-radius: 8px;
-
+    border-radius: 12px;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    padding: 16px;
-
+    padding: 10px;
     cursor: pointer;
+  `,
+  imageWrapper: css`
+    display: flex;
+    align-items: center;
+  `,
+  textWrapper: css`
+    width: 100%;
+    max-width: 60px;
+    height: 28px;
+    text-align: center;
+    margin-top: 8px;
   `,
 
   text: css`
-    max-width: 60px;
-    text-align: center;
     width: 100%;
+    height: 100%;
     word-break: keep-all;
-    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   `,
-
   button: css`
     height: unset;
     min-height: unset;

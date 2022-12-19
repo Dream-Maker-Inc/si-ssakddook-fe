@@ -3,12 +3,12 @@ import { DefaultTab } from "@/common/components/tab/DefaultTab";
 import { css } from "@emotion/react";
 import { DescriptionSection } from "./components/DescriptionSection";
 import { ImageSection } from "./components/ImageSection";
-import { InputPasswordSection } from "./components/InputPasswordSection";
+import { SecessionConfirmModal } from "./components/SecessionConfirmModal";
 import { SubmitButton } from "./components/SubmitButton";
 import { useSecessionView } from "./useSecessionView";
 
 export const SecessionView = () => {
-  const { checkboxState, buttonState } = useSecessionView();
+  const { checkboxState, buttonState, modalState } = useSecessionView();
 
   return (
     <PlainLayout isBottomMarginNecessary={false}>
@@ -30,6 +30,11 @@ export const SecessionView = () => {
           <SubmitButton
             disabled={buttonState.disable}
             onClick={buttonState.onClick}
+          />
+          <SecessionConfirmModal
+            isOpen={modalState.isOpen}
+            onClose={modalState.onClose}
+            onContinue={modalState.onContinue}
           />
         </div>
       </div>
