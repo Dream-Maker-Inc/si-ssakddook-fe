@@ -17,7 +17,6 @@ import { MonthSelection } from "../MonthSelection";
 import LeftScrollIcon from "@/img/calendar/icon-left-scroll.svg";
 import RightScrollIcon from "@/img/calendar/icon-right-scroll.svg";
 import { CalendarNoticeModal } from "../CalendarNoticeModal";
-import { toNamespacedPath } from "path";
 import { useState } from "react";
 
 const Calendar = ({
