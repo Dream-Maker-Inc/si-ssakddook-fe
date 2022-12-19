@@ -8,6 +8,7 @@ import CheckBoxRoundedIcon from "@mui/icons-material/CheckBoxRounded";
 import { css } from "@emotion/react";
 import Image from "next/image";
 import { LightColor } from "@/themes/Color";
+import ListIcon from "@/img/more/secession/icon-x.svg";
 
 type DescriptionSectionProps = {
   check: boolean;
@@ -20,7 +21,10 @@ export const DescriptionSection = ({
 }: DescriptionSectionProps) => {
   const descriptionModel = [
     { text: "회원가입 당시 작성했던", highlightText: "모든 회원정보" },
-    { text: "플랫폼 내에 작성하신", highlightText: "모든 게시글, 댓글 데이터" },
+    {
+      text: "플랫폼 내에 작성하신",
+      highlightText: "모든 게시글, 댓글 데이터 수정/삭제 불가",
+    },
     { text: "플랫폼 내에 기록하신", highlightText: "일기 데이터" },
     { text: "플랫폼 내에서 활동하신", highlightText: "채팅 기록" },
   ];
@@ -58,7 +62,7 @@ const sx = {
 
   descriptBox: css`
     width: 100%;
-    height: 143px;
+    height: 140px;
     background-color: ${LightColor.Gray500};
     border-radius: 8px;
     display: flex;
@@ -83,6 +87,11 @@ const sx = {
   `,
   span: css`
     color: ${LightColor.PrimaryDark};
+  `,
+
+  bold: css`
+    color: ${LightColor.PrimaryDark};
+    font-weight: 800;
   `,
   chekcbox: css`
     padding: 0px 0px 0px 8px;
@@ -120,13 +129,8 @@ type DescriptionProps = {
 const Description = ({ text, highlightText }: DescriptionProps) => {
   return (
     <div css={sx.descriptWrapper}>
-      <Image
-        width="12px"
-        height="12px"
-        src="/img/more/secession/icon-x.svg"
-        alt=""
-      />
-      <Typography variant="h4" sx={{}}>
+      <Image width="12px" height="12px" src={ListIcon} alt="" />
+      <Typography variant="h5">
         {text} <span css={sx.span}>{highlightText}</span>
       </Typography>
     </div>
