@@ -13,10 +13,7 @@ type LifeTopicProps = {
 export const LifeTopic = ({ data }: LifeTopicProps) => {
   return (
     <div css={sx.root}>
-      <TopicTitle
-        title="라이프"
-        desc="운영자가 직접 추천하는 칼럼과 취미, 싹둑 라이프"
-      />
+      <TopicTitle title="라이프" desc="칼럼과 취미, 싹둑 라이프" />
       <div css={sx.content}>
         <LifeBox topic="최근 등록된 글" models={data.lifePost} hasMore />
         <LifeBox topic="조회수 높은 글" models={data.lifePostByView} />
