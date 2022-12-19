@@ -32,11 +32,11 @@ export const useMainApi = () => {
       isError: postCommentDataError,
     },
     lifePost: {
-      data: lifeData?.items,
+      data: lifeData?.data.items,
       isError: lifeDataError,
     },
     lifePostByView: {
-      data: lifeViewData?.items,
+      data: lifeViewData?.data.items,
       isError: lifeViewDataError,
     },
   };
