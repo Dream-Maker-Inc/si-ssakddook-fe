@@ -9,6 +9,10 @@ export const useChangePasswordView = () => {
   const [oldPassword, setCurrPw] = useState("");
   const [newPassword, setNewPw] = useState("");
   const [confirmPw, setConfirmPw] = useState("");
+  const [isModelOpen, setIsModelOpen] = useState(false);
+
+  const handleModalOpen = () => setIsModelOpen(true);
+  const handleModalClose = () => setIsModelOpen(false);
 
   const handleCurrPwChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrPw(e.target.value);
@@ -35,6 +39,7 @@ export const useChangePasswordView = () => {
         router.push(RoutePath.MyInformation);
       },
       onError: (err) => {
+        handleModalClose();
         alert("비밀번호를 다시 입력해주세요.");
         console.log(err);
       },
@@ -72,7 +77,13 @@ export const useChangePasswordView = () => {
         newPassword !== "" &&
         confirmPw != "" &&
         newPassword === confirmPw,
-      onClick: onSubmit,
+      onClick: handleModalOpen,
+    },
+    modalState: {
+      isOpen: isModelOpen,
+      onClose: handleModalClose,
+      onContinue: onSubmit,
+      editValue: "비밀번호",
     },
   };
 };

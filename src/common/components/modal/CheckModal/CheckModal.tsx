@@ -2,20 +2,24 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Box, Modal, Typography } from "@mui/material";
 
-export type PrevModalProps = {
+export type CheckModalProps = {
   isOpen: boolean;
   onClose: () => void;
   onContinue: () => void;
+  editValue: string;
 };
 
-export const PrevModal = ({ isOpen, onClose, onContinue }: PrevModalProps) => {
+export const CheckModal = ({
+  isOpen,
+  onClose,
+  onContinue,
+  editValue,
+}: CheckModalProps) => {
   return (
     <Modal open={isOpen}>
       <Box css={sx.modalBox}>
         <Typography variant="h4">
-          입력 중인 데이터가 삭제됩니다.
-          <br />
-          계속하시겠어요?
+          {editValue}(을)를 정말 변경하시겠습니까?
         </Typography>
         <div css={sx.modalButtonWrapper}>
           <Typography

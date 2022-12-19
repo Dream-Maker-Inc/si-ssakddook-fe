@@ -6,9 +6,10 @@ import { LightColor } from "@/themes/Color";
 import Image from "next/image";
 import { useChangePasswordView } from "./useChangeProfileImageView";
 import AddProfileImg from "@/img/badge/icon-add-avatar.svg";
+import { CheckModal } from "@/common/components/modal/CheckModal";
 
 export const ChangeProfileImageView = () => {
-  const { imageState, tabState } = useChangePasswordView();
+  const { imageState, tabState, modalState } = useChangePasswordView();
 
   return (
     <AppbarLayout>
@@ -56,6 +57,12 @@ export const ChangeProfileImageView = () => {
           </Badge>
         </div>
       </div>
+      <CheckModal
+        isOpen={modalState.isOpen}
+        onClose={modalState.onClose}
+        onContinue={modalState.onContinue}
+        editValue={modalState.editValue}
+      />
     </AppbarLayout>
   );
 };

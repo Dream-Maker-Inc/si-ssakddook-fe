@@ -3,9 +3,10 @@ import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
 import { WritingTab } from "@/common/components/tab/WritingTab";
 import { PasswordBox } from "@/common/components/field/PasswordBox/PasswordBox";
 import { useChangePasswordView } from "./useChangePasswordView";
+import { CheckModal } from "@/common/components/modal/CheckModal";
 
 export const ChangePasswordView = () => {
-  const { currPwState, newPwState, confirmPwState, tabState } =
+  const { currPwState, newPwState, confirmPwState, tabState, modalState } =
     useChangePasswordView();
   return (
     <AppbarLayout>
@@ -52,6 +53,12 @@ export const ChangePasswordView = () => {
           />
         </div>
       </div>
+      <CheckModal
+        isOpen={modalState.isOpen}
+        onClose={modalState.onClose}
+        onContinue={modalState.onContinue}
+        editValue={modalState.editValue}
+      />
     </AppbarLayout>
   );
 };
