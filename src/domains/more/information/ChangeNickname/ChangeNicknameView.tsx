@@ -4,9 +4,10 @@ import { WritingTab } from "@/common/components/tab/WritingTab";
 import { TextField, Typography } from "@mui/material";
 import { LightColor } from "@/themes/Color";
 import { useChangeNickname } from "./useChangeNickname";
+import { CheckModal } from "@/common/components/modal/CheckModal";
 
 export const ChangeNicknameView = () => {
-  const { nicknameState, tabState } = useChangeNickname();
+  const { nicknameState, tabState, modalState } = useChangeNickname();
 
   return (
     <AppbarLayout>
@@ -28,6 +29,12 @@ export const ChangeNicknameView = () => {
           />
         </div>
       </div>
+      <CheckModal
+        isOpen={modalState.isOpen}
+        onClose={modalState.onClose}
+        onContinue={modalState.onContinue}
+        editValue={modalState.editValue}
+      />
     </AppbarLayout>
   );
 };

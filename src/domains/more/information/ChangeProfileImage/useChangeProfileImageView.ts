@@ -20,6 +20,9 @@ export const useChangePasswordView = () => {
 
   const [img, setImage] = useState(defaultImage);
   const [uploadedImage, setUploadedImage] = useState<any>(null);
+  const [isModelOpen, setIsModelOpen] = useState(false);
+  const handleModalOpen = () => setIsModelOpen(true);
+  const handleModalClose = () => setIsModelOpen(false);
 
   const maxSize = 3 * 1000000;
 
@@ -63,6 +66,7 @@ export const useChangePasswordView = () => {
         router.push(RoutePath.MyInformation);
       },
       onError: (err) => {
+        handleModalClose();
         alert("프로필 이미지 업로드에 실패했습니다.");
         console.log(err);
       },
@@ -84,7 +88,13 @@ export const useChangePasswordView = () => {
     tabState: {
       title: "프로필 이미지 변경하기",
       onActive: uploadedImage === null ? false : true,
-      onClick: onSubmit,
+      onClick: handleModalOpen,
+    },
+    modalState: {
+      isOpen: isModelOpen,
+      onClose: handleModalClose,
+      onContinue: onSubmit,
+      editValue: "프로필 이미지",
     },
   };
 };

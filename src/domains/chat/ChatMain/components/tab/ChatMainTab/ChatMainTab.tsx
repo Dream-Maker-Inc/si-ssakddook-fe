@@ -5,17 +5,25 @@ import LogoImg from "@/img/main/logo.svg";
 import AddCHatIconImg from "@/img/tab/icon-add-chat.svg";
 import { useRouter } from "next/router";
 import { RoutePath } from "@/constants/Path";
+import { useSetRecoilState } from "recoil";
+import { NavigationAtom } from "@/recoil/Navigation/Navigation.atom";
 
 export const ChatMainTab = () => {
   const router = useRouter();
+  const setNavigation = useSetRecoilState(NavigationAtom);
   const onClick = () => {
     router.push(RoutePath.ChatCreate);
+  };
+
+  const onMainView = () => {
+    setNavigation(RoutePath.Main);
+    router.push(RoutePath.Main);
   };
 
   return (
     <div css={sx.tabContainer}>
       <div css={sx.wrapper}>
-        <IconButton>
+        <IconButton onClick={onMainView}>
           <Image width="24px" height="16px" src={LogoImg} alt="logo" />
         </IconButton>
 

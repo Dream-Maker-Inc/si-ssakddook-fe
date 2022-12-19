@@ -11,8 +11,12 @@ import { useMutation, useQuery } from "react-query";
 export const useChangeNickname = () => {
   const router = useRouter();
   const { user, setUser } = useUserSession();
-
   const [newNickname, setNewNickname] = useState("");
+  const [isModelOpen, setIsModelOpen] = useState(false);
+
+  const handleModalOpen = () => setIsModelOpen(true);
+  const handleModalClose = () => setIsModelOpen(false);
+
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewNickname(e.target.value);
   };
@@ -27,6 +31,7 @@ export const useChangeNickname = () => {
     {
       onSuccess: async (res) => {
         if (isApiFailedResponse(res)) {
+          handleModalClose();
           alert("중복된 닉네임입니다.");
         } else {
           LocalStorage.setItem("nickname", newNickname);
@@ -44,6 +49,8 @@ export const useChangeNickname = () => {
         }
       },
       onError: (err) => {
+        handleModalClose();
+        alert("오류가 발생했습니다.");
         console.log(err);
       },
     }
@@ -67,7 +74,13 @@ export const useChangeNickname = () => {
     tabState: {
       title: "닉네임 변경하기",
       onActive: onActive,
-      onClick: onSubmit,
+      onClick: handleModalOpen,
+    },
+    modalState: {
+      isOpen: isModelOpen,
+      onContinue: onSubmit,
+      onClose: handleModalClose,
+      editValue: "닉네임",
     },
   };
 };

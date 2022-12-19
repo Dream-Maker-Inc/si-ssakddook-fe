@@ -6,9 +6,17 @@ import { useRouter } from "next/router";
 import MainLogo from "@/img/main/logo.svg";
 import SearchIcon from "@/img/tab/icon-search.svg";
 import NotificationIcon from "@/img/tab/icon-notification.svg";
+import { useSetRecoilState } from "recoil";
+import { NavigationAtom } from "@/recoil/Navigation/Navigation.atom";
 
 export const CommunityTab = () => {
   const router = useRouter();
+  const setNavigation = useSetRecoilState(NavigationAtom);
+
+  const onMainView = () => {
+    setNavigation(RoutePath.Main);
+    router.push(RoutePath.Main);
+  };
 
   const onMyClick = () => {
     router.push(RoutePath.MyArticle);
@@ -22,7 +30,7 @@ export const CommunityTab = () => {
     <div>
       <div css={sx.container}>
         <div css={sx.appbarContainer}>
-          <IconButton>
+          <IconButton onClick={onMainView}>
             <Image width="24px" height="16px" src={MainLogo} alt="logo" />
           </IconButton>
           <Typography variant="h2" ml="4px" sx={{ flexGrow: 1 }}>
