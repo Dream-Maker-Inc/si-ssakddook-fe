@@ -4,6 +4,7 @@ import { WritingTab } from "@/common/components/tab/WritingTab";
 import { PasswordBox } from "@/common/components/field/PasswordBox/PasswordBox";
 import { useChangePasswordView } from "./useChangePasswordView";
 import { CheckModal } from "@/common/components/modal/CheckModal";
+import { NoticeModal } from "@/common/components/modal/NoticeModal";
 
 export const ChangePasswordView = () => {
   const { currPwState, newPwState, confirmPwState, tabState, modalState } =
@@ -54,10 +55,15 @@ export const ChangePasswordView = () => {
         </div>
       </div>
       <CheckModal
-        isOpen={modalState.isOpen}
-        onClose={modalState.onClose}
-        onContinue={modalState.onContinue}
-        editValue={modalState.editValue}
+        isOpen={modalState.changeModal.isOpen}
+        onClose={modalState.changeModal.onClose}
+        onContinue={modalState.changeModal.onContinue}
+        editValue={modalState.changeModal.editValue}
+      />
+      <NoticeModal
+        isOpen={modalState.noticeModal.isOpen}
+        onClose={modalState.noticeModal.onClose}
+        text={modalState.noticeModal.text}
       />
     </AppbarLayout>
   );
