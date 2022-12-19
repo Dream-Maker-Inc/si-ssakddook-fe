@@ -15,12 +15,12 @@ class LikeApiService implements LikeApiInterface {
 
   async createLike(body: any): Promise<LikeItemResponse> {
     const response = await axiosClient.post(`/v1/liked`, body);
-    return response.data;
+    return response.data.data;
   }
 
   async deleteLike(id: number): Promise<LikeItemResponse> {
     const response = await axiosClient.delete(`/v1/liked/${id}`);
-    return response.data;
+    return response.data.data;
   }
 }
 

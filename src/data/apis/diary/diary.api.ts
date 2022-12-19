@@ -16,12 +16,12 @@ class DiaryApiService implements DiaryApiInterface {
 
   async createDiary(body: any): Promise<ApiFailedResponse> {
     const response = await axiosClient.post("/v1/diary-item", body);
-    return response.data;
+    return response.data.data;
   }
 
   async deleteDiary(diaryId: number): Promise<ApiFailedResponse> {
     const response = await axiosClient.delete(`/v1/diary-item/${diaryId}`);
-    return response.data;
+    return response.data.data;
   }
 
   async updateDiary(
@@ -31,12 +31,12 @@ class DiaryApiService implements DiaryApiInterface {
     const response = await axiosClient.patch(`/v1/diary-item/${diaryId}`, {
       content,
     });
-    return response.data;
+    return response.data.data;
   }
 
   async findOneByDiaryId(diaryId: string): Promise<DiaryItemResponse> {
     const response = await axiosClient.get(`/v1/diary-item/${diaryId}`);
-    return response.data;
+    return response.data.data;
   }
 
   async findAllByMonth(
@@ -47,7 +47,7 @@ class DiaryApiService implements DiaryApiInterface {
     const response = await axiosClient.get(
       `/v1/diary-item?date=${prevMonth}&date=${currMonth}&date=${nextMonth}`
     );
-    return response.data;
+    return response.data.data;
   }
 }
 

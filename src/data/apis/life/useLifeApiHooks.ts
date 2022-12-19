@@ -29,9 +29,13 @@ export const useFetchAllLife = (size: number) =>
         params: { page: pageParam, size },
       }),
     {
-      getNextPageParam: ({ data: { metaData } }) =>
-        metaData.isLast ? undefined : metaData.pageNumber + 1,
+      getNextPageParam: ({
+        data: {
+          data: { metaData },
+        },
+      }) => (metaData.isLast ? undefined : metaData.pageNumber + 1),
       onSuccess(data) {
+        console.log("##");
         console.log(data);
       },
     }

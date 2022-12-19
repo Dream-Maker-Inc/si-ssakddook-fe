@@ -10,21 +10,21 @@ class PushApiService implements PushApiInterface {
 
   async findAllPush(): Promise<PushItemsResponse> {
     const response = await axiosClient.get(`/v1/push-notification`);
-    return response.data;
+    return response.data.data;
   }
 
   async postPush(notificationId: number): Promise<ActivatedPushItemResponse> {
     const response = await axiosClient.post(`/v1/agreed-notifi`, {
       notificationId,
     });
-    return response.data;
+    return response.data.data;
   }
 
   async deletePush(notificationId: number): Promise<ActivatedPushItemResponse> {
     const response = await axiosClient.delete(
       `/v1/agreed-notifi/${notificationId}`
     );
-    return response.data;
+    return response.data.data;
   }
 }
 

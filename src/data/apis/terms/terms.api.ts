@@ -16,7 +16,7 @@ class TermsApiService implements TermsApiInterface {
 
   async findAllTerms(): Promise<TermsItemsResponse> {
     const response = await axiosBasicClient.get(`/v1/service-terms`);
-    return response.data;
+    return response.data.data;
   }
 
   async createTerms(
@@ -27,7 +27,7 @@ class TermsApiService implements TermsApiInterface {
       membersId: memberId,
       termsId: termsId,
     });
-    return response.data;
+    return response.data.data;
   }
 }
 

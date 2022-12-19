@@ -24,7 +24,7 @@ class MemberApiService implements MemberApiInterface {
       email,
     });
 
-    return response.data;
+    return response.data.data;
   }
 
   async validateNickname(
@@ -34,7 +34,7 @@ class MemberApiService implements MemberApiInterface {
       nickname,
     });
 
-    return response.data;
+    return response.data.data;
   }
 
   async signup(body: MemberModel): Promise<ApiFailedResponse | any> {
@@ -43,12 +43,12 @@ class MemberApiService implements MemberApiInterface {
       body
     );
 
-    return response.data;
+    return response.data.data;
   }
 
   async getCurrentMember(): Promise<MemberApiResponse> {
     const response = await axiosClient.get("/v1/member/me");
-    return response.data;
+    return response.data.data;
   }
 
   async updateNickname(nickname: string): Promise<ApiFailedResponse | any> {
@@ -56,7 +56,7 @@ class MemberApiService implements MemberApiInterface {
       nickname,
     });
 
-    return response.data;
+    return response.data.data;
   }
 
   async updatePassword(
@@ -68,19 +68,19 @@ class MemberApiService implements MemberApiInterface {
       newPassword,
     });
 
-    return response.data;
+    return response.data.data;
   }
 
   async updateProfileImage(formData: any): Promise<ApiFailedResponse | any> {
     const response = await axiosClient.patch(`/v1/member/profile`, formData);
 
-    return response.data;
+    return response.data.data;
   }
 
   async deleteMember(): Promise<ApiFailedResponse | any> {
     const response = await axiosClient.delete(`/v1/member`);
 
-    return response.data;
+    return response.data.data;
   }
 }
 

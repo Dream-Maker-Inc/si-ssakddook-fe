@@ -15,7 +15,7 @@ class AuthApiService implements AuthApiInterface {
       password,
     });
 
-    return response.data;
+    return response.data.data;
   }
 
   async findId(token: string): Promise<ApiFailedResponse | any> {
@@ -27,7 +27,7 @@ class AuthApiService implements AuthApiInterface {
 
     const response = await axiosBasicClient.get("/v1/member/email", config);
 
-    return response.data;
+    return response.data.data;
   }
 
   async findPassword(
@@ -46,7 +46,7 @@ class AuthApiService implements AuthApiInterface {
       config
     );
 
-    return response.data;
+    return response.data.data;
   }
 }
 
