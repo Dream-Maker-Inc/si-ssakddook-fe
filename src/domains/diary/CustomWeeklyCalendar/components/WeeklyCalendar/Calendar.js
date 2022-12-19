@@ -8,12 +8,17 @@ import {
   getWeek,
   addWeeks,
   subWeeks,
+  getMonth,
+  addMonths,
 } from "date-fns";
 import Image from "next/image";
 import { useSetRecoilState } from "recoil";
 import { MonthSelection } from "../MonthSelection";
 import LeftScrollIcon from "@/img/calendar/icon-left-scroll.svg";
 import RightScrollIcon from "@/img/calendar/icon-right-scroll.svg";
+import { CalendarNoticeModal } from "../CalendarNoticeModal";
+import { toNamespacedPath } from "path";
+import { useState } from "react";
 
 const Calendar = ({
   showDetailsHandle,
@@ -26,27 +31,42 @@ const Calendar = ({
   signupDate,
   onSelectChange,
 }) => {
+  const [isNoticeModalOpen, setIsNoticeModalOpen] = useState(false);
+  const onNoticeModalClose = () => {
+    setIsNoticeModalOpen(false);
+  };
+
+  const formattedCurrentDate = format(currentMonth, "yyyy-MM-dd");
+  const formattedSignupDate = format(signupDate, "yyyy-MM-dd");
+  const formattedAfterTwoMonthDate = format(
+    addMonths(new Date(), 2),
+    "yyyy-MM-dd"
+  );
+
   const setLastDate = useSetRecoilState(DiaryLastClickedDateAtom);
   const changeWeekHandle = (btnType) => {
-    if (btnType === "prev" && getWeek(currentMonth) > getWeek(signupDate)) {
+    if (btnType === "prev" && formattedCurrentDate > formattedSignupDate) {
       setCurrentMonth(subWeeks(currentMonth, 1));
       setCurrentWeek(getWeek(subWeeks(currentMonth, 1)));
       setLastDate("");
     } else if (
       btnType === "prev" &&
-      getWeek(currentMonth) <= getWeek(signupDate)
+      formattedCurrentDate <= formattedSignupDate
     ) {
-      alert("더이상 뒤로 갈 수 없습니다.");
+      setIsNoticeModalOpen(true);
     }
-    if (btnType === "next" && getWeek(currentMonth) < getWeek(new Date())) {
+    if (
+      btnType === "next" &&
+      formattedCurrentDate < formattedAfterTwoMonthDate
+    ) {
       setCurrentMonth(addWeeks(currentMonth, 1));
       setCurrentWeek(getWeek(addWeeks(currentMonth, 1)));
       setLastDate("");
     } else if (
       btnType === "next" &&
-      getWeek(currentMonth) >= getWeek(new Date())
+      formattedCurrentDate > formattedAfterTwoMonthDate
     ) {
-      alert("마지막 주 입니다.");
+      setIsNoticeModalOpen(true);
     }
   };
 
@@ -149,6 +169,11 @@ const Calendar = ({
       {renderDays()}
       {renderCells()}
       {renderButtons()}
+      <CalendarNoticeModal
+        isOpen={isNoticeModalOpen}
+        onClose={onNoticeModalClose}
+        text={"해당 날짜를 확인할 수 없습니다."}
+      />
     </div>
   );
 };
