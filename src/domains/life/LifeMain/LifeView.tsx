@@ -23,7 +23,7 @@ export const LifeView = () => {
       <div css={sx.root}>
         {result?.pages.map((page, index) => (
           <div key={index} css={sx.item}>
-            {page.data.items.map((it, index) => (
+            {page.data.data.items.map((it, index) => (
               <PreviewItem
                 key={index}
                 id={it.id + ""}

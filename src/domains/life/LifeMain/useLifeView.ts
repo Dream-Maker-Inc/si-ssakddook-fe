@@ -9,6 +9,8 @@ export const useLifeView = () => {
   const { data, isLoading, isError, error, isFetching, fetchNextPage } =
     useFetchAllLife(size);
 
+  console.log(data);
+
   useEffect(() => {
     if (inView) {
       fetchNextPage();
