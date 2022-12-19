@@ -11,7 +11,16 @@ export const useFindPasswordSuccessView = () => {
   const router = useRouter();
   const [newPassword, setNewPw] = useState("");
   const [confirmPw, setConfirmPw] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const tokenRecoilValue = useRecoilValue(CertificationTokenAtom);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   const handleNewPwChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewPw(e.target.value);
@@ -28,8 +37,6 @@ export const useFindPasswordSuccessView = () => {
   const newPwValidation = Regex.password.test(newPassword);
   const isNewPwError = newPassword !== "" && !newPwValidation;
 
-  console.log(tokenRecoilValue);
-
   // change password api
   const { mutate } = useMutation(
     () => authApi.findPassword(tokenRecoilValue, confirmPw),
@@ -38,7 +45,8 @@ export const useFindPasswordSuccessView = () => {
         router.push(RoutePath.Login);
       },
       onError(err) {
-        alert(err);
+        handleModalOpen();
+        console.log(err);
       },
     }
   );
@@ -66,6 +74,12 @@ export const useFindPasswordSuccessView = () => {
       helperText: isConfirmPwError
         ? "입력하신 새 비밀번호와 일치하지 않습니다."
         : "",
+    },
+
+    modalState: {
+      isOpen: isModalOpen,
+      onClose: handleModalClose,
+      text: "해당 비밀번호는 사용할 수 없습니다.",
     },
   };
 };
