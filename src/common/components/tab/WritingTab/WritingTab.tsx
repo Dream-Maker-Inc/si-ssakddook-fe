@@ -60,20 +60,15 @@ const sx = {
     position: absolute;
     width: 100%;
     max-width: 1000px;
-
     height: 50px;
     left: 0px;
     top: 0px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 0 8px;
-
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   `,
-
   tabWrapper: css`
     display: flex;
     align-items: center;
