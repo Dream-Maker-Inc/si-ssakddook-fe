@@ -1,5 +1,4 @@
 import DiaryApiService from "@/data/apis/diary/diary.api";
-import { DiaryItemsResponse } from "@/data/apis/diary/diary.dto";
 import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { addMonths, format, subMonths } from "date-fns";
 import { useState } from "react";
@@ -23,14 +22,9 @@ export const useMemoCalendar = (month: any) => {
     () => DiaryApiService.findAllByMonth(prevMonth, currMonth, nextMonth),
     {
       onSuccess: (res) => {
-        console.log("###");
-        console.log(res);
         if (isApiFailedResponse(res)) {
           return;
         } else {
-          console.log("@@");
-          console.log(res?.data);
-
           res?.data?.map((item) =>
             setAllDiaries((old) => [...old, ...item.data])
           );
