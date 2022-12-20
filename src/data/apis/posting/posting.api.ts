@@ -33,8 +33,7 @@ class PostingApiService implements PostingApiInterface {
     const response = await axiosClient.get(
       `/v1/posting/sort=-liked&size=5&page=1`
     );
-    console.log("response");
-    console.log(response);
+
     return response.data;
   }
 
