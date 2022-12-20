@@ -40,8 +40,8 @@ const catchIfBlindMemberResponse = (res: AxiosResponse<any, any>) => {
 const catchIfJwtExpiredResponse = (res: AxiosError) => {
   const status = res?.response?.status ?? 0;
   if (status === 401) {
-    logoutAndGoSplash();
     alert(`토큰이 만료 되었습니다. 다시 로그인 해주세요.`);
+    logoutAndGoSplash();
   }
 };
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Regex } from "@/utils/validation/common/CommonRegex";
 import MemberApiService from "@/data/apis/member/member.api";
 import { useMutation } from "react-query";
+import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 export const useChangePasswordView = () => {
   const router = useRouter();
   const [oldPassword, setCurrPw] = useState("");
@@ -39,8 +40,18 @@ export const useChangePasswordView = () => {
   const { mutate } = useMutation(
     () => MemberApiService.updatePassword(oldPassword, newPassword),
     {
-      onSuccess: () => {
-        router.push(RoutePath.MyInformation);
+      onSuccess: (res) => {
+        if (isApiFailedResponse(res)) {
+          handleModalClose();
+          if (res.statusCode === "JE0004") {
+            alert("기존 비밀번호를 다시 입력해주세요.");
+          } else {
+            alert("해당 비밀번호는 사용할 수 없습니다.");
+          }
+        } else {
+          handleModalClose();
+          router.push(RoutePath.MyInformation);
+        }
       },
       onError: async (err) => {
         await handleModalClose();
