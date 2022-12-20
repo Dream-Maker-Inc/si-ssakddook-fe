@@ -2,6 +2,7 @@ import { BoardExpandedItem } from "@/common/components/board/BoardExpandedItem";
 import { FloatingButton } from "@/common/components/button/FloatingButton";
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
+import { CommunityWithSearchTab } from "@/common/components/tab/CommunityWithSearchTab";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
@@ -13,7 +14,7 @@ export const CommunityListView = () => {
   if (fetchState.isLoading)
     return (
       <PlainLayout isBottomMarginNecessary={false}>
-        <DefaultTab category={category} />
+        <DefaultTab category={category} routePath="main" />
         <CircularLoading />
       </PlainLayout>
     );
@@ -21,7 +22,11 @@ export const CommunityListView = () => {
 
   return (
     <PlainLayout isBottomMarginNecessary={false}>
-      <DefaultTab category={category} />
+      {category == "최근 게시글" ? (
+        <CommunityWithSearchTab />
+      ) : (
+        <DefaultTab category={category} routePath={"main"} />
+      )}
       <div css={sx.root}>
         {result!![0].length !== 0 ? (
           result!!.map((postings, index) => (

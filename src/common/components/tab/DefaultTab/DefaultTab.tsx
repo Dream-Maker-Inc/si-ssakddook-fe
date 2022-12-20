@@ -6,7 +6,7 @@ import { BoardPrevButton } from "../../button/BoardPrevButton";
 
 type DefaultTabProps = {
   category?: string;
-  routePath?: string;
+  routePath: string;
 };
 
 export const DefaultTab = ({
@@ -16,7 +16,11 @@ export const DefaultTab = ({
   const router = useRouter();
 
   const onMoreView = () => {
-    router.push(routePath ? routePath : RoutePath.Main);
+    if (routePath == "recent") {
+      router.back();
+    } else {
+      router.push(RoutePath.Main);
+    }
   };
 
   return (

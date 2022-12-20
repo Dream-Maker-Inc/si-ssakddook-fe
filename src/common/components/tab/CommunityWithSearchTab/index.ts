@@ -1,0 +1,1 @@
+export { CommunityWithSearchTab } from "./CommunityWithSearchTab";

@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import MainLogo from "@/img/main/logo.svg";
 import SearchIcon from "@/img/tab/icon-search.svg";
-import NotificationIcon from "@/img/tab/icon-notification.svg";
 import { useSetRecoilState } from "recoil";
 import { NavigationAtom } from "@/recoil/Navigation/Navigation.atom";
 
@@ -28,8 +27,8 @@ export const CommunityTab = () => {
 
   return (
     <div>
-      <div css={sx.container}>
-        <div css={sx.appbarContainer}>
+      <div css={sx.root}>
+        <div css={sx.container}>
           <IconButton onClick={onMainView}>
             <Image width="24px" height="16px" src={MainLogo} alt="logo" />
           </IconButton>
@@ -51,16 +50,15 @@ export const CommunityTab = () => {
 };
 
 const sx = {
-  container: css`
+  root: css`
     position: absolute;
     width: 100%;
     height: 50px;
-
     top: 0;
     left: 0;
   `,
 
-  appbarContainer: css`
+  container: css`
     width: 100%;
     height: 100%;
     padding: 0 8px;

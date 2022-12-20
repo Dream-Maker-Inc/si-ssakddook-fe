@@ -24,7 +24,6 @@ export const CommunityMainView = () => {
       <div css={sx.root}>
         <div css={sx.container}>
           <NoticeBox />
-
           <div css={sx.boxContainer}>
             {boxData!!.map((it, index) => (
               <CommunityBox

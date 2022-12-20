@@ -15,11 +15,6 @@ export const useMainApi = () => {
   const { data: postMostLikeData, isError: postMostLikeDataError } =
     useFindAllPostByLikeCount();
 
-  console.log("postData");
-  console.log(postData);
-  console.log("postMostLikeData");
-  console.log(postMostLikeData);
-
   // 최근 TOP5 라이프 포스팅
   const { data: lifeData, isError: lifeDataError } = useFindAllLife(5);
 
@@ -33,7 +28,7 @@ export const useMainApi = () => {
       isError: postDataError,
     },
     postByLike: {
-      data: postMostLikeData?.data,
+      data: postMostLikeData?.data.items,
       isError: postMostLikeDataError,
     },
     lifePost: {
