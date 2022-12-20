@@ -12,12 +12,13 @@ export const useChangePasswordView = () => {
   const [confirmPw, setConfirmPw] = useState("");
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [isNoticeOpen, setIsNoticeOpen] = useState(false);
+  const [noticeText, setNoticeText] = useState("비밀번호를 다시 입력해주세요.");
 
   const handleModalOpen = () => setIsModelOpen(true);
   const handleModalClose = () => setIsModelOpen(false);
 
-  const handleNoticeOpen = () => setIsModelOpen(true);
-  const handleNoticeClose = () => setIsModelOpen(false);
+  const handleNoticeOpen = () => setIsNoticeOpen(true);
+  const handleNoticeClose = () => setIsNoticeOpen(false);
 
   const handleCurrPwChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrPw(e.target.value);
@@ -44,9 +45,11 @@ export const useChangePasswordView = () => {
         if (isApiFailedResponse(res)) {
           handleModalClose();
           if (res.statusCode === "JE0004") {
-            alert("기존 비밀번호를 다시 입력해주세요.");
+            setNoticeText("기존 비밀번호를 다시 입력해주세요.");
+            handleNoticeOpen();
           } else {
-            alert("해당 비밀번호는 사용할 수 없습니다.");
+            setNoticeText("해당 비밀번호는 사용할 수 없습니다.");
+            handleNoticeOpen();
           }
         } else {
           handleModalClose();
@@ -104,7 +107,7 @@ export const useChangePasswordView = () => {
       noticeModal: {
         isOpen: isNoticeOpen,
         onClose: handleNoticeClose,
-        text: "비밀번호를 다시 입력해주세요.",
+        text: noticeText,
       },
     },
   };
