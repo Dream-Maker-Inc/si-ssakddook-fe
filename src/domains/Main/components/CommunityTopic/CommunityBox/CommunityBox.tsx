@@ -16,8 +16,6 @@ export const CommunityBox = ({
   models,
   hasMore = false,
 }: CommunityBoxProps) => {
-  console.log("models");
-  console.log(models);
   const router = useRouter();
   const onRecentView = () => {
     router.push({ pathname: RoutePath.CommunityList, query: { category: "" } });
