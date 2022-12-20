@@ -24,19 +24,19 @@ export const useMainApi = () => {
 
   return {
     post: {
-      data: postData?.data.items,
+      data: postData?.data?.items,
       isError: postDataError,
     },
     postByLike: {
-      data: postMostLikeData?.data.items,
+      data: postMostLikeData?.data?.items,
       isError: postMostLikeDataError,
     },
     lifePost: {
-      data: lifeData?.data.items,
+      data: lifeData?.data?.items,
       isError: lifeDataError,
     },
     lifePostByView: {
-      data: lifeViewData?.data.items,
+      data: lifeViewData?.data?.items,
       isError: lifeViewDataError,
     },
   };
