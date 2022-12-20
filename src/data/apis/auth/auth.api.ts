@@ -27,7 +27,7 @@ class AuthApiService implements AuthApiInterface {
 
     const response = await axiosBasicClient.get("/v1/member/email", config);
 
-    return response.data.data;
+    return response.data;
   }
 
   async findPassword(

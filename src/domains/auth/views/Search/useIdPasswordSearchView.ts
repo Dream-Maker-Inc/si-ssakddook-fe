@@ -27,6 +27,11 @@ export const useIdPasswordSearchView = () => {
         const res = await authApi.findId(certificationToken);
 
         if (isApiFailedResponse(res)) {
+          if (res.statusCode === "CE0002") {
+            alert("가입되지 않은 사용자입니다");
+            router.push(RoutePath.Login);
+            return;
+          }
           router.push(RoutePath.FindIdFail);
         } else {
           router.push(
