@@ -1,22 +1,16 @@
-import { BoardItem } from "@/common/components/board/BoardItem";
 import { FloatingButton } from "@/common/components/button/FloatingButton";
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
-import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 import { CommunityTab } from "@/common/components/tab/CommunityTab";
-import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
-import { Typography } from "@mui/material";
-import Image from "next/image";
 import { CommunityBox } from "./CommunityBox/CommunityBox";
 import { NoticeBox } from "./NoticeBox";
+import { CommunityBoardTab } from "./CommunityBoardTab";
 import { useCommunityMainView } from "./useCommunityMainView";
-import ArrowRightSamllIcon from "@/img/arrowIcon/icon-arrow-right-small.svg";
+import { RecentBoardList } from "./RecentBoardList";
+import { HotBoardList } from "./HotBoardList";
 
 export const CommunityMainView = () => {
-  const { boxData, result, fetchState, onRecentView } = useCommunityMainView();
-
-  if (fetchState.isLoading) return <CircularLoading />;
-  if (fetchState.isError) return <div></div>;
+  const { boxData } = useCommunityMainView();
 
   return (
     <AppbarLayout>
@@ -34,35 +28,16 @@ export const CommunityMainView = () => {
               />
             ))}
           </div>
-          <div>
-            <div css={sx.recentContentTitle}>
-              <Typography variant="h2" color="black">
-                최근 게시글
-              </Typography>
-              <div css={sx.more} onClick={onRecentView}>
-                <Typography variant="h4">더보기</Typography>
-                <Image
-                  width="11px"
-                  height="11px"
-                  src={ArrowRightSamllIcon}
-                  alt=""
-                />
-              </div>
-            </div>
-            {!result ||
-              result.map((it, index) => (
-                <BoardItem
-                  key={index}
-                  postId={it.id}
-                  title={it.title}
-                  date={it.date}
-                  nicknameOrTitle={it.nickname}
-                  category={it.category}
-                  like={it.likedCount}
-                  comments={it.commentCount}
-                />
-              ))}
-          </div>
+          <CommunityBoardTab
+            firstTabInfo={{
+              title: "최근 게시글",
+              children: <RecentBoardList />,
+            }}
+            secondTabInfo={{
+              title: "인기글",
+              children: <HotBoardList />,
+            }}
+          />
         </div>
         <FloatingButton category="" />
       </div>
@@ -91,27 +66,5 @@ const sx = {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 10px;
-  `,
-
-  recentContentTitle: css`
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 9px;
-    border-bottom: 1px solid ${LightColor.Gray500};
-  `,
-
-  more: css`
-    width: 60px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
-    padding-left: 2px;
-    background-color: ${LightColor.Gray500};
-    border-radius: 12px;
-    cursor: pointer;
   `,
 };

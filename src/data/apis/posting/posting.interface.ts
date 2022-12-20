@@ -10,6 +10,7 @@ export interface PostingApiInterface {
   // post
   createPost(formData: any): Promise<ApiFailedResponse>;
   findAllPost(size: number): Promise<PostingItemsResponse>;
+  findAllHotPost(size: number): Promise<PostingItemsResponse>;
   findAllPostById(page: string, size: string): Promise<PostingItemsResponse>;
   findAllPostByLikeCount(): Promise<PostingItemsResponse>;
   findAllPostByCategory(

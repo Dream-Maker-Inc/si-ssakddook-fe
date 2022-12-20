@@ -29,6 +29,12 @@ class PostingApiService implements PostingApiInterface {
     return response.data;
   }
 
+  async findAllHotPost(size: number): Promise<PostingItemsResponse> {
+    const response = await axiosClient.get(`/v1/posting/popular?size=${size}`);
+
+    return response.data;
+  }
+
   async findAllPostByLikeCount(): Promise<PostingItemsResponse> {
     const response = await axiosClient.get(
       `/v1/posting/sort=-liked&size=5&page=1`

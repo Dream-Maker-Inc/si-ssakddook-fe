@@ -1,0 +1,1 @@
+export { CommunityBoardTab } from "./CommunityBoardTab";

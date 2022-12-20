@@ -1,0 +1,1 @@
+export { HotBoardList } from "./HotBoardList";

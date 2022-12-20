@@ -18,6 +18,12 @@ export const useFindAllPost = (size: number) => {
   );
 };
 
+export const useFindAllHotPost = (size: number) => {
+  return useQuery(["find-all-hot-post", size], () =>
+    PostingApiService.findAllHotPost(size)
+  );
+};
+
 export const useFindAllPostByKeyword = (
   keyword: string,
   page: number,
