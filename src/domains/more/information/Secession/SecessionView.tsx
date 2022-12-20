@@ -1,5 +1,6 @@
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
+import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
 import { DescriptionSection } from "./components/DescriptionSection";
 import { ImageSection } from "./components/ImageSection";
@@ -12,7 +13,7 @@ export const SecessionView = () => {
 
   return (
     <PlainLayout isBottomMarginNecessary={false}>
-      <DefaultTab category="회원 탈퇴" routePath={"main"} />
+      <DefaultTab category="회원 탈퇴" routePath={RoutePath.MyInformation} />
       <div css={sx.root}>
         <div css={sx.container}>
           <ImageSection />
