@@ -7,7 +7,7 @@ export const SettingView = () => {
   const { result, onChange } = useSettingView();
   return (
     <PlainLayout isBottomMarginNecessary={false}>
-      <DefaultTab category="설정" />
+      <DefaultTab category="설정" routePath={"main"} />
 
       {result?.map((it, index) => (
         <AlarmBox

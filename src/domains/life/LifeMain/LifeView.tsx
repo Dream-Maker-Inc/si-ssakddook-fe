@@ -19,7 +19,7 @@ export const LifeView = () => {
 
   return (
     <PlainLayout isBottomMarginNecessary={true}>
-      <DefaultTab category="라이프" />
+      <DefaultTab category="라이프" routePath={"main"} />
       <div css={sx.root}>
         {result?.pages.map((page, index) => (
           <div key={index} css={sx.item}>

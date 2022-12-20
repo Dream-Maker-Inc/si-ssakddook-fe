@@ -9,7 +9,7 @@ export const EtcMainView = () => {
   return (
     <AppbarLayout>
       <div css={sx.root}>
-        <DefaultTab category="기타" />
+        <DefaultTab category="기타" routePath={"main"} />
         {models.map((it, index) => (
           <EtcBox
             key={index}

@@ -9,7 +9,7 @@ export const MyInformationView = () => {
   return (
     <AppbarLayout>
       <div css={sx.root}>
-        <DefaultTab category="내 정보" />
+        <DefaultTab category="내 정보" routePath={"main"} />
         {models.map((it, index) => (
           <ClickBox
             key={index}

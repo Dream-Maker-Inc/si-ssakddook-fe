@@ -12,7 +12,7 @@ export const SecessionView = () => {
 
   return (
     <PlainLayout isBottomMarginNecessary={false}>
-      <DefaultTab category="회원 탈퇴" />
+      <DefaultTab category="회원 탈퇴" routePath={"main"} />
       <div css={sx.root}>
         <div css={sx.container}>
           <ImageSection />

@@ -18,8 +18,10 @@ export const DefaultTab = ({
   const onMoreView = () => {
     if (routePath == "recent") {
       router.back();
-    } else {
+    } else if (routePath == "main") {
       router.push(RoutePath.Main);
+    } else {
+      router.push(routePath);
     }
   };
 
