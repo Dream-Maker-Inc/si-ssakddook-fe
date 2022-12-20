@@ -48,6 +48,7 @@ class MemberApiService implements MemberApiInterface {
 
   async getCurrentMember(): Promise<MemberApiResponse> {
     const response = await axiosClient.get("/v1/member/me");
+
     return response.data.data;
   }
 

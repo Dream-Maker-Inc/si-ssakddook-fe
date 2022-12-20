@@ -43,7 +43,6 @@ export const useChangePasswordView = () => {
       onSuccess: (res) => {
         if (isApiFailedResponse(res)) {
           handleModalClose();
-          console.log(res);
           if (res.statusCode === "JE0004") {
             alert("기존 비밀번호를 다시 입력해주세요.");
           } else {

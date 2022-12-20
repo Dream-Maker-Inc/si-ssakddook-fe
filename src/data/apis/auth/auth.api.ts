@@ -15,7 +15,7 @@ class AuthApiService implements AuthApiInterface {
       password,
     });
 
-    return response.data.data;
+    return response.data;
   }
 
   async findId(token: string): Promise<ApiFailedResponse | any> {

@@ -15,7 +15,6 @@ export const useMainView = () => {
 
   const nickname = data?.nickname as string;
   const profileImage = data?.profileImageUrl!!;
-  console.log(profileImage);
 
   LocalStorage.setItem("id", data?.id + "");
   LocalStorage.setItem("nickname", data?.nickname + "");

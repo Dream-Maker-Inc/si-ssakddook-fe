@@ -54,13 +54,13 @@ export const useLoginView = () => {
     // flutter 웹뷰가 아닌 경우
     const _window = window as any;
     if (!_window?.flutter_inappwebview) {
-      return saveJwtAndGoMain(res.accessToken);
+      return saveJwtAndGoMain(res.data.accessToken);
     }
 
     // 유저 디바이스 정보 서버로 전달
     const deviceInfo = await handleGetDeviceInfo(window);
-    await DeviceApiService.registerDevice(res.accessToken, deviceInfo)
-      .then(() => saveJwtAndGoMain(res.accessToken))
+    await DeviceApiService.registerDevice(res.data.accessToken, deviceInfo)
+      .then(() => saveJwtAndGoMain(res.data.accessToken))
       .catch((e) => alert(e));
   };
 
