@@ -16,6 +16,8 @@ export const CommunityBox = ({
   models,
   hasMore = false,
 }: CommunityBoxProps) => {
+  console.log("models");
+  console.log(models);
   const router = useRouter();
   const onRecentView = () => {
     router.push({ pathname: RoutePath.CommunityList, query: { category: "" } });
@@ -49,7 +51,7 @@ export const CommunityBox = ({
       </div>
       <div css={sx.hr}></div>
       <div css={sx.contentContainer}>
-        {models.data?.map((it, index) => (
+        {models?.data?.map((it, index) => (
           <div
             css={sx.wrapper}
             key={index}

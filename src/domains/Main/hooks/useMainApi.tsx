@@ -12,8 +12,13 @@ export const useMainApi = () => {
   const { data: postData, isError: postDataError } = useFindAllPost(5);
 
   // 좋아요 TOP5 포스팅
-  const { data: postCommentData, isError: postCommentDataError } =
+  const { data: postMostLikeData, isError: postMostLikeDataError } =
     useFindAllPostByLikeCount();
+
+  console.log("postData");
+  console.log(postData);
+  console.log("postMostLikeData");
+  console.log(postMostLikeData);
 
   // 최근 TOP5 라이프 포스팅
   const { data: lifeData, isError: lifeDataError } = useFindAllLife(5);
@@ -28,8 +33,8 @@ export const useMainApi = () => {
       isError: postDataError,
     },
     postByLike: {
-      data: postCommentData?.data.items,
-      isError: postCommentDataError,
+      data: postMostLikeData?.data,
+      isError: postMostLikeDataError,
     },
     lifePost: {
       data: lifeData?.data.items,
