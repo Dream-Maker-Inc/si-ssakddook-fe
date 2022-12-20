@@ -1,10 +1,7 @@
 import { RoutePath } from "@/constants/Path";
 import MemberApiService from "@/data/apis/member/member.api";
-import {
-  useGetCurrentMember,
-  useUpdateProfileImage,
-} from "@/data/apis/member/useMemberApiHooks";
-import LocalStorage from "@/data/LocalStorage/LocalStorage";
+import { useGetCurrentMember } from "@/data/apis/member/useMemberApiHooks";
+import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
 import { useUserSession } from "@/recoil/session/user-session.atom";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -54,16 +51,20 @@ export const useChangePasswordView = () => {
     (formData: any) => MemberApiService.updateProfileImage(formData),
     {
       onSuccess: async (res) => {
-        // user chat session에 저장
-        if (!data) return;
+        if (isApiFailedResponse(res)) {
+          alert("오류가 발생했습니다.");
+        } else {
+          // user chat session에 저장
+          if (!data) return;
 
-        setUser({
-          id: `${data.id}`,
-          name: data.nickname,
-          image: data.profileImageUrl,
-        });
+          setUser({
+            id: `${data.id}`,
+            name: data.nickname,
+            image: data.profileImageUrl,
+          });
 
-        router.push(RoutePath.MyInformation);
+          router.push(RoutePath.MyInformation);
+        }
       },
       onError: (err) => {
         handleModalClose();

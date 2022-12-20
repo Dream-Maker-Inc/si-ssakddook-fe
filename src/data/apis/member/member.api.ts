@@ -56,7 +56,7 @@ class MemberApiService implements MemberApiInterface {
       nickname,
     });
 
-    return response.data.data;
+    return response.data;
   }
 
   async updatePassword(
@@ -68,13 +68,15 @@ class MemberApiService implements MemberApiInterface {
       newPassword,
     });
 
-    return response.data.data;
+    console.log(response);
+
+    return response.data;
   }
 
   async updateProfileImage(formData: any): Promise<ApiFailedResponse | any> {
     const response = await axiosClient.patch(`/v1/member/profile`, formData);
 
-    return response.data.data;
+    return response.data;
   }
 
   async deleteMember(): Promise<ApiFailedResponse | any> {

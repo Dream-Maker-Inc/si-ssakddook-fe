@@ -5,4 +5,5 @@ export type ApiFailedResponse = {
   ref: any;
 };
 
-export const isApiFailedResponse = (target: any) => "statusCode" in target;
+export const isApiFailedResponse = (target: any) =>
+  target.statusCode !== "S0000";

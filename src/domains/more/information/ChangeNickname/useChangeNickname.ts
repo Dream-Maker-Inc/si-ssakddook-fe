@@ -32,8 +32,9 @@ export const useChangeNickname = () => {
       onSuccess: async (res) => {
         if (isApiFailedResponse(res)) {
           handleModalClose();
-          alert("중복된 닉네임입니다.");
+          alert("오류가 발생했습니다.");
         } else {
+          handleModalClose();
           LocalStorage.setItem("nickname", newNickname);
 
           // user chat session에 저장
