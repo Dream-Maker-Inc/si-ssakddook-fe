@@ -9,6 +9,8 @@ export type DiaryItemResponse = {
 };
 
 export type DiaryItemsResponse = {
-  yearMonth: string;
-  data: DiaryItemResponse[];
-}[];
+  data: {
+    yearMonth: string;
+    data: DiaryItemResponse[];
+  }[];
+};

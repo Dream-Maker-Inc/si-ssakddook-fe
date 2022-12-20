@@ -48,7 +48,8 @@ class DiaryApiService implements DiaryApiInterface {
     const response = await axiosClient.get(
       `/v1/diary-item?date=${prevMonth}&date=${currMonth}&date=${nextMonth}`
     );
-    return response.data.data;
+
+    return response.data;
   }
 }
 
