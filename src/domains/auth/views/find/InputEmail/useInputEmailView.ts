@@ -37,7 +37,6 @@ export const useInputEmailView = () => {
           setIsEmailExisted(false);
           return;
         } else {
-          console.log(res);
           alert("문제가 발생했습니다.");
         }
       },

@@ -31,7 +31,6 @@ export const useCreateDiaryView = () => {
       onSuccess: (res) => {
         if (isApiFailedResponse(res)) {
           alert(res.message);
-          console.log(res);
         } else {
           router.push(RoutePath.Main);
         }

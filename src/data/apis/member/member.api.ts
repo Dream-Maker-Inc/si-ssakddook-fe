@@ -69,8 +69,6 @@ class MemberApiService implements MemberApiInterface {
       newPassword,
     });
 
-    console.log(response);
-
     return response.data;
   }
 
