@@ -5,10 +5,19 @@ import DiaryApiService from "@/data/apis/diary/diary.api";
 import { format } from "date-fns";
 import { RoutePath } from "@/constants/Path";
 import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
+import { useNoticeModal } from "@/common/components/modal/NoticeModal/useNoticeModal";
 
 export const useCreateDiaryView = () => {
   const router = useRouter();
   const date = router.query?.date + "";
+
+  const {
+    isNoticeOpen,
+    onNoticeClose,
+    onNoticeOpen,
+    noticeText,
+    onNoticeTextChange,
+  } = useNoticeModal();
 
   //forwardRef 사용 권고
   const inputRef = useRef<HTMLInputElement>(null);
@@ -30,7 +39,8 @@ export const useCreateDiaryView = () => {
     {
       onSuccess: (res) => {
         if (isApiFailedResponse(res)) {
-          alert(res.message);
+          onNoticeTextChange(res.message);
+          onNoticeOpen();
         } else {
           router.push(RoutePath.Main);
         }
@@ -77,6 +87,13 @@ export const useCreateDiaryView = () => {
         content === null
           ? "본인 외에는 그 누구도 나의 감정일기를 볼 수 없어요."
           : "",
+    },
+    modalState: {
+      noticeModal: {
+        isOpen: isNoticeOpen,
+        onClose: onNoticeClose,
+        text: noticeText,
+      },
     },
   };
 };
