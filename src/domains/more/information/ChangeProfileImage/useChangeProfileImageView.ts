@@ -1,3 +1,4 @@
+import { useNoticeModal } from "@/common/components/modal/NoticeModal/useNoticeModal";
 import { RoutePath } from "@/constants/Path";
 import MemberApiService from "@/data/apis/member/member.api";
 import { useGetCurrentMember } from "@/data/apis/member/useMemberApiHooks";
@@ -10,6 +11,13 @@ import { useMutation, useQuery } from "react-query";
 export const useChangePasswordView = () => {
   const router = useRouter();
   const { user, setUser } = useUserSession();
+  const {
+    isNoticeOpen,
+    onNoticeClose,
+    onNoticeOpen,
+    noticeText,
+    onNoticeTextChange,
+  } = useNoticeModal();
 
   // member profile-image
   const defaultImage = useQuery("get-curr-member", useGetCurrentMember).data
@@ -17,7 +25,11 @@ export const useChangePasswordView = () => {
 
   const [img, setImage] = useState(defaultImage);
   const [uploadedImage, setUploadedImage] = useState<any>(null);
+
+  // change modal
   const [isModelOpen, setIsModelOpen] = useState(false);
+
+  // change modal functions
   const handleModalOpen = () => setIsModelOpen(true);
   const handleModalClose = () => setIsModelOpen(false);
 
@@ -38,7 +50,8 @@ export const useChangePasswordView = () => {
     const fileSize = e.target.files[0].size;
 
     if (fileSize > maxSize) {
-      alert("이미지 사이즈는 3MB 이하만 첨부할 수 있습니다.");
+      onNoticeTextChange("이미지 사이즈는 3MB 이하만 첨부할 수 있습니다.");
+      onNoticeOpen();
       return;
     }
 
@@ -52,23 +65,24 @@ export const useChangePasswordView = () => {
     {
       onSuccess: async (res) => {
         if (isApiFailedResponse(res)) {
-          alert("오류가 발생했습니다.");
+          handleModalClose();
+          onNoticeTextChange("오류가 발생했습니다.");
+          onNoticeOpen();
         } else {
           // user chat session에 저장
-          if (!data) return;
-
+          if (!user) return;
           setUser({
-            id: `${data.id}`,
-            name: data.nickname,
-            image: data.profileImageUrl,
+            ...user,
+            image: uploadedImage,
           });
-
+          handleModalClose();
           router.push(RoutePath.MyInformation);
         }
       },
       onError: (err) => {
         handleModalClose();
-        alert("프로필 이미지 업로드에 실패했습니다.");
+        onNoticeTextChange("프로필 이미지 업로드에 실패했습니다.");
+        onNoticeOpen();
         console.log(err);
       },
     }
@@ -92,10 +106,17 @@ export const useChangePasswordView = () => {
       onClick: handleModalOpen,
     },
     modalState: {
-      isOpen: isModelOpen,
-      onClose: handleModalClose,
-      onContinue: onSubmit,
-      editValue: "프로필 이미지",
+      changeModal: {
+        isOpen: isModelOpen,
+        onClose: handleModalClose,
+        onContinue: onSubmit,
+        editValue: "프로필 이미지",
+      },
+      noticeModal: {
+        isOpen: isNoticeOpen,
+        onClose: onNoticeClose,
+        text: noticeText,
+      },
     },
   };
 };
