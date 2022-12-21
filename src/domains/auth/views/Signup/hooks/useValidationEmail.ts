@@ -42,7 +42,7 @@ export const useValidationEmail = () => {
   };
 
   // 서버 이메일 중복확인 성공 여부
-  const isEmailValidationPassed = data?.isValid ?? false;
+  const isEmailValidationPassed = data?.data?.isValid ?? false;
 
   const getEmailHelperText = () => {
     if (email === "") return "";

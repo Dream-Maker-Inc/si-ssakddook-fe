@@ -8,9 +8,10 @@ import { useLoginView } from "./useLoginView";
 import MainImg from "@/img/logo/main.svg";
 import { LightColor } from "@/themes/Color";
 import { RoutePath } from "@/constants/Path";
+import { NoticeModal } from "@/common/components/modal/NoticeModal";
 
 export const LoginView = () => {
-  const { emailState, pwState, login } = useLoginView();
+  const { emailState, pwState, login, modalState } = useLoginView();
 
   return (
     <div css={sx.root}>
@@ -75,6 +76,11 @@ export const LoginView = () => {
           </div>
         </div>
       </div>
+      <NoticeModal
+        isOpen={modalState.isOpen}
+        onClose={modalState.onClose}
+        text={modalState.text}
+      />
     </div>
   );
 };

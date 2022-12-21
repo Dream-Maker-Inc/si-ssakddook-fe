@@ -7,6 +7,7 @@ import { ContentSecton } from "./ContentSecton/ContentSection";
 import { CreateThumbnailSection } from "@/common/components/thumbnail/CreateThumbnailSection";
 import { TitleSection } from "./TitleSection";
 import { useCommunityWriteView } from "./useCommunityWriteView";
+import { NoticeModal } from "@/common/components/modal/NoticeModal";
 
 export const CommunityWriteView = () => {
   const {
@@ -16,6 +17,7 @@ export const CommunityWriteView = () => {
     imageState,
     buttonState,
     tabState,
+    modalState,
   } = useCommunityWriteView();
   return (
     <AppbarLayout>
@@ -44,6 +46,11 @@ export const CommunityWriteView = () => {
           <CameraSection onUpload={imageState.onUpload} />
         </div>
       </div>
+      <NoticeModal
+        isOpen={modalState.noticeModal.isOpen}
+        onClose={modalState.noticeModal.onClose}
+        text={modalState.noticeModal.text}
+      />
     </AppbarLayout>
   );
 };

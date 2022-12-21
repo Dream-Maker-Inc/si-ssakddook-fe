@@ -1,4 +1,5 @@
 import { CloseButton } from "@/common/components/button/CloseButton";
+import { NoticeModal } from "@/common/components/modal/NoticeModal";
 import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
 import { RoutePath } from "@/constants/Path";
 import IconNext from "@/img/arrowIcon/icon-button-next.svg";
@@ -8,7 +9,8 @@ import Image from "next/image";
 import { useIdPasswordSearchView } from "./useIdPasswordSearchView";
 
 export const IdPasswordSearchView = () => {
-  const { titleState, idFieldState, pwFieldState } = useIdPasswordSearchView();
+  const { titleState, idFieldState, pwFieldState, modalState } =
+    useIdPasswordSearchView();
   return (
     <div css={sx.root}>
       <div css={sx.container}>
@@ -30,6 +32,11 @@ export const IdPasswordSearchView = () => {
           />
         </div>
       </div>
+      <NoticeModal
+        isOpen={modalState.noticeModal.isOpen}
+        onClose={modalState.noticeModal.onClose}
+        text={modalState.noticeModal.text}
+      />
     </div>
   );
 };

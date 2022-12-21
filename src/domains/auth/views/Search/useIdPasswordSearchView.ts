@@ -1,3 +1,4 @@
+import { useNoticeModal } from "@/common/components/modal/NoticeModal/useNoticeModal";
 import { RoutePath } from "@/constants/Path";
 import authApi from "@/data/apis/auth/auth.api";
 import IamCertificationApi from "@/data/apis/certification/certification.api";
@@ -15,6 +16,13 @@ export const useIdPasswordSearchView = () => {
     imp.init(StoreUid);
   }, []);
 
+  const { isNoticeOpen, onNoticeOpen, noticeText, onNoticeTextChange } =
+    useNoticeModal();
+
+  const onNoticeClose = () => {
+    router.push(RoutePath.Login);
+  };
+
   const handleRequestId = async () => {
     // iamport 인증
     IamCertificationApi.iamportCertificate(
@@ -28,8 +36,8 @@ export const useIdPasswordSearchView = () => {
 
         if (isApiFailedResponse(res)) {
           if (res.statusCode === "CE0002") {
-            alert("가입되지 않은 사용자입니다");
-            router.push(RoutePath.Login);
+            onNoticeTextChange("가입되지 않은 사용자입니다");
+            onNoticeOpen();
             return;
           }
           router.push(RoutePath.FindIdFail);
@@ -73,6 +81,14 @@ export const useIdPasswordSearchView = () => {
       title: "비밀번호 찾기",
       desc: "휴대폰 번호를 통해 비밀번호를 찾을 수 있어요.",
       onClick: handleFindPw,
+    },
+
+    modalState: {
+      noticeModal: {
+        isOpen: isNoticeOpen,
+        onClose: onNoticeClose,
+        text: noticeText,
+      },
     },
   };
 };

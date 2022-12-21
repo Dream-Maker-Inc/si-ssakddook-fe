@@ -29,7 +29,7 @@ export const CreateThumbnailSection = ({
             onClick={() => onDeleteClick(it.id)}
             css={sx.thumbnailCloseBtn}
           >
-            <Image width="10px" height="10px" src={ThumbnailIcon} alt="" />
+            <Image width="12px" height="12px" src={ThumbnailIcon} alt="" />
           </IconButton>
         </div>
       ))}
@@ -66,7 +66,7 @@ const sx = {
 
   thumbnailCloseBtn: css`
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: -3px;
+    right: -3px;
   `,
 };

@@ -13,7 +13,6 @@ export const SignupSuccessView = () => {
   const onClick = () => {
     router.push(RoutePath.Login);
   };
-  console.log(useRecoilValue(MemberAtom));
   return (
     <div css={sx.root}>
       <div css={sx.container}>

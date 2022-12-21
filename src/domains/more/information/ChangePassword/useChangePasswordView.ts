@@ -5,20 +5,25 @@ import { Regex } from "@/utils/validation/common/CommonRegex";
 import MemberApiService from "@/data/apis/member/member.api";
 import { useMutation } from "react-query";
 import { isApiFailedResponse } from "@/data/statusCode/FailedResponse";
+import { useNoticeModal } from "@/common/components/modal/NoticeModal/useNoticeModal";
 export const useChangePasswordView = () => {
   const router = useRouter();
+
+  const {
+    isNoticeOpen,
+    onNoticeClose,
+    onNoticeOpen,
+    noticeText,
+    onNoticeTextChange,
+  } = useNoticeModal();
+
   const [oldPassword, setCurrPw] = useState("");
   const [newPassword, setNewPw] = useState("");
   const [confirmPw, setConfirmPw] = useState("");
   const [isModelOpen, setIsModelOpen] = useState(false);
-  const [isNoticeOpen, setIsNoticeOpen] = useState(false);
-  const [noticeText, setNoticeText] = useState("비밀번호를 다시 입력해주세요.");
 
   const handleModalOpen = () => setIsModelOpen(true);
   const handleModalClose = () => setIsModelOpen(false);
-
-  const handleNoticeOpen = () => setIsNoticeOpen(true);
-  const handleNoticeClose = () => setIsNoticeOpen(false);
 
   const handleCurrPwChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrPw(e.target.value);
@@ -45,11 +50,11 @@ export const useChangePasswordView = () => {
         if (isApiFailedResponse(res)) {
           handleModalClose();
           if (res.statusCode === "JE0004") {
-            setNoticeText("기존 비밀번호를 다시 입력해주세요.");
-            handleNoticeOpen();
+            onNoticeTextChange("기존 비밀번호를 다시 입력해주세요.");
+            onNoticeOpen();
           } else {
-            setNoticeText("해당 비밀번호는 사용할 수 없습니다.");
-            handleNoticeOpen();
+            onNoticeTextChange("해당 비밀번호는 사용할 수 없습니다.");
+            onNoticeOpen();
           }
         } else {
           handleModalClose();
@@ -58,7 +63,7 @@ export const useChangePasswordView = () => {
       },
       onError: async (err) => {
         await handleModalClose();
-        await handleNoticeOpen();
+        await onNoticeOpen();
         console.log(err);
       },
     }
@@ -106,7 +111,7 @@ export const useChangePasswordView = () => {
       },
       noticeModal: {
         isOpen: isNoticeOpen,
-        onClose: handleNoticeClose,
+        onClose: onNoticeClose,
         text: noticeText,
       },
     },

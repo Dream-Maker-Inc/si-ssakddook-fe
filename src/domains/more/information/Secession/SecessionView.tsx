@@ -1,4 +1,5 @@
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
+import { NoticeModal } from "@/common/components/modal/NoticeModal";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
 import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
@@ -33,11 +34,16 @@ export const SecessionView = () => {
             onClick={buttonState.onClick}
           />
           <SecessionConfirmModal
-            isOpen={modalState.isOpen}
-            onClose={modalState.onClose}
-            onContinue={modalState.onContinue}
+            isOpen={modalState.checkModal.isOpen}
+            onClose={modalState.checkModal.onClose}
+            onContinue={modalState.checkModal.onContinue}
           />
         </div>
+        <NoticeModal
+          isOpen={modalState.noticeModal.isOpen}
+          onClose={modalState.noticeModal.onClose}
+          text={modalState.noticeModal.text}
+        />
       </div>
     </PlainLayout>
   );

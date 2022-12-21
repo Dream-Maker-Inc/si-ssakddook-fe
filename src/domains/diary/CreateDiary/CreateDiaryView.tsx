@@ -1,4 +1,5 @@
 import { AppbarLayout } from "@/common/components/layout/AppbarLayout";
+import { NoticeModal } from "@/common/components/modal/NoticeModal";
 import { CreateDiaryTab } from "@/common/components/tab/CreateDiaryTan";
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
@@ -7,7 +8,7 @@ import Image from "next/image";
 import { useCreateDiaryView } from "./useCreateDiaryView";
 
 export const CreateDiaryView = () => {
-  const { tabState, diaryState } = useCreateDiaryView();
+  const { tabState, diaryState, modalState } = useCreateDiaryView();
 
   return (
     <AppbarLayout>
@@ -42,6 +43,11 @@ export const CreateDiaryView = () => {
             />
           </div>
         </div>
+        <NoticeModal
+          isOpen={modalState.noticeModal.isOpen}
+          onClose={modalState.noticeModal.onClose}
+          text={modalState.noticeModal.text}
+        />
       </div>
     </AppbarLayout>
   );

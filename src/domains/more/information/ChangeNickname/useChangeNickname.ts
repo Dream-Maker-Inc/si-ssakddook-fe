@@ -1,3 +1,4 @@
+import { useNoticeModal } from "@/common/components/modal/NoticeModal/useNoticeModal";
 import { RoutePath } from "@/constants/Path";
 import MemberApiService from "@/data/apis/member/member.api";
 import { useGetCurrentMember } from "@/data/apis/member/useMemberApiHooks";
@@ -11,6 +12,14 @@ import { useMutation, useQuery } from "react-query";
 export const useChangeNickname = () => {
   const router = useRouter();
   const { user, setUser } = useUserSession();
+  const {
+    isNoticeOpen,
+    onNoticeClose,
+    onNoticeOpen,
+    noticeText,
+    onNoticeTextChange,
+  } = useNoticeModal();
+
   const [newNickname, setNewNickname] = useState("");
   const [isModelOpen, setIsModelOpen] = useState(false);
 
@@ -32,26 +41,25 @@ export const useChangeNickname = () => {
       onSuccess: async (res) => {
         if (isApiFailedResponse(res)) {
           handleModalClose();
-          alert("오류가 발생했습니다.");
+          onNoticeTextChange("오류가 발생했습니다.");
+          onNoticeOpen();
         } else {
           handleModalClose();
           LocalStorage.setItem("nickname", newNickname);
 
           // user chat session에 저장
-          if (!data) return;
+          if (!user) return;
 
-          setUser({
-            id: `${data.id}`,
-            name: newNickname,
-            image: data.profileImageUrl,
-          });
+          setUser({ ...user, name: newNickname });
 
+          handleModalClose();
           router.push(RoutePath.MyInformation);
         }
       },
       onError: (err) => {
         handleModalClose();
-        alert("오류가 발생했습니다.");
+        onNoticeTextChange("오류가 발생했습니다.");
+        onNoticeOpen();
         console.log(err);
       },
     }
@@ -78,10 +86,18 @@ export const useChangeNickname = () => {
       onClick: handleModalOpen,
     },
     modalState: {
-      isOpen: isModelOpen,
-      onContinue: onSubmit,
-      onClose: handleModalClose,
-      editValue: "닉네임",
+      changeModal: {
+        isOpen: isModelOpen,
+        onContinue: onSubmit,
+        onClose: handleModalClose,
+        editValue: "닉네임",
+      },
+
+      noticeModal: {
+        isOpen: isNoticeOpen,
+        onClose: onNoticeClose,
+        text: noticeText,
+      },
     },
   };
 };

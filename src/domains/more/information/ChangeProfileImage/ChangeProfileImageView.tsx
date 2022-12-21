@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useChangePasswordView } from "./useChangeProfileImageView";
 import AddProfileImg from "@/img/badge/icon-add-avatar.svg";
 import { CheckModal } from "@/common/components/modal/CheckModal";
+import { NoticeModal } from "@/common/components/modal/NoticeModal";
 
 export const ChangeProfileImageView = () => {
   const { imageState, tabState, modalState } = useChangePasswordView();
@@ -58,10 +59,15 @@ export const ChangeProfileImageView = () => {
         </div>
       </div>
       <CheckModal
-        isOpen={modalState.isOpen}
-        onClose={modalState.onClose}
-        onContinue={modalState.onContinue}
-        editValue={modalState.editValue}
+        isOpen={modalState.changeModal.isOpen}
+        onClose={modalState.changeModal.onClose}
+        onContinue={modalState.changeModal.onContinue}
+        editValue={modalState.changeModal.editValue}
+      />
+      <NoticeModal
+        isOpen={modalState.noticeModal.isOpen}
+        onClose={modalState.noticeModal.onClose}
+        text={modalState.noticeModal.text}
       />
     </AppbarLayout>
   );
