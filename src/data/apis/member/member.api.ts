@@ -43,7 +43,7 @@ class MemberApiService implements MemberApiInterface {
       body
     );
 
-    return response.data.data;
+    return response.data;
   }
 
   async getCurrentMember(): Promise<MemberApiResponse> {
