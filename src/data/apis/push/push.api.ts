@@ -17,6 +17,7 @@ class PushApiService implements PushApiInterface {
     const response = await axiosClient.post(`/v1/agreed-notifi`, {
       notificationId,
     });
+
     return response.data.data;
   }
 

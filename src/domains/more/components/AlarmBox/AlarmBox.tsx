@@ -9,8 +9,6 @@ type AlarmBoxProps = {
   desc: string;
   isChecked: AgreedItem | null;
   onChange: (pushId: number, p: AgreedItem | null) => void;
-  // isChecked: boolean;
-  // onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const AlarmBox = ({
