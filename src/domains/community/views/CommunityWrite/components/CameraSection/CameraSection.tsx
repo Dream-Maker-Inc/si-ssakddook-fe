@@ -16,7 +16,7 @@ export const CameraSection = ({ onUpload }: CameraSectionProps) => {
         name="avatar"
         accept="image/png, image/jpeg"
         css={sx.cameraInput}
-        onChange={onUpload}
+        onChange={(e) => onUpload(e)}
       />
       <label htmlFor="board-img-upload">
         <Image width="24px" height="24px" src={CameraIcon} alt="" />
