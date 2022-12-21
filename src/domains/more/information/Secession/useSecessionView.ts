@@ -37,9 +37,9 @@ export const useSecessionView = () => {
       deleteDeviceInfo(window);
       router.push(RoutePath.Home);
     },
-    onError: (res: any) => {
+    onError: (err: any) => {
       alert("오류가 발생했습니다.");
-      console.log(res);
+      console.log(err);
     },
   });
 

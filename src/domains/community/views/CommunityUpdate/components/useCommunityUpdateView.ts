@@ -30,8 +30,8 @@ export const useCommunityUpdateView = () => {
           query: { postId: postId },
         });
       },
-      onError: (res: any) => {
-        console.log(res);
+      onError: (err: any) => {
+        console.log(err);
       },
     }
   );

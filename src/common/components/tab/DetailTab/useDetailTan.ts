@@ -24,8 +24,8 @@ export const useDetailTab = (postId: number) => {
       onSuccess: (res: any) => {
         router.push(RoutePath.Community);
       },
-      onError: (res: any) => {
-        console.log(res);
+      onError: (err: any) => {
+        console.log(err);
       },
     }
   );

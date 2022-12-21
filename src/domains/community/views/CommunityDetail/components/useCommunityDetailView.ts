@@ -18,8 +18,8 @@ export const useCommunityDetailView = () => {
       onSuccess: (res: any) => {
         refetch();
       },
-      onError: (res: any) => {
-        console.log(res);
+      onError: (err: any) => {
+        console.log(err);
       },
     }
   );
@@ -30,8 +30,8 @@ export const useCommunityDetailView = () => {
       onSuccess: (res: any) => {
         refetch();
       },
-      onError: (res: any) => {
-        console.log(res);
+      onError: (err: any) => {
+        console.log(err);
       },
     }
   );
