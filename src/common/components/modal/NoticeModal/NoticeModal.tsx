@@ -1,6 +1,7 @@
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Box, Modal, Typography } from "@mui/material";
+import { useState } from "react";
 
 export type NoticeModalProps = {
   isOpen: boolean;
