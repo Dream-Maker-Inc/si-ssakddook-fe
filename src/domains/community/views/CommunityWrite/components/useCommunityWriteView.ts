@@ -6,12 +6,21 @@ import { useRouter } from "next/router";
 import { RoutePath } from "@/constants/Path";
 import { ImageType } from "../types/communityImage.type";
 import { useMutation, useQueryClient } from "react-query";
+import { useNoticeModal } from "@/common/components/modal/NoticeModal/useNoticeModal";
 
 export const useCommunityWriteView = () => {
   const categoryList = Object.values(CATEGORY_TYPE);
   const router = useRouter();
   const selectedCategory = router.query.category + "";
   const queryClient = useQueryClient();
+
+  const {
+    isNoticeOpen,
+    onNoticeClose,
+    onNoticeOpen,
+    noticeText,
+    onNoticeTextChange,
+  } = useNoticeModal();
 
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState(
@@ -66,12 +75,14 @@ export const useCommunityWriteView = () => {
     const fileSize = e.target.files[0].size;
 
     if (fileSize > maxSize) {
-      alert("이미지 사이즈는 3MB 이하만 첨부할 수 있습니다.");
+      onNoticeTextChange("이미지 사이즈는 3MB 이하만 첨부할 수 있습니다.");
+      onNoticeOpen();
       return;
     }
 
     if (img.length == 5) {
-      alert("이미지는 5개까지 첨부할 수 있습니다.");
+      onNoticeTextChange("이미지는 5개까지 첨부할 수 있습니다.");
+      onNoticeOpen();
       return;
     }
 
@@ -139,15 +150,20 @@ export const useCommunityWriteView = () => {
       onUpload: imapgeUploadHandler,
       index: count,
     },
-
     tabState: {
       onClick: onSubmit,
       onActive:
         isTitleFilled && isCategoryFilled && isContentFilled ? true : false,
     },
-
     buttonState: {
       onDelete: handleRemoveImage,
+    },
+    modalState: {
+      noticeModal: {
+        isOpen: isNoticeOpen,
+        onClose: onNoticeClose,
+        text: noticeText,
+      },
     },
   };
 };
