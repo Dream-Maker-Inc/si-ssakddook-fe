@@ -1,21 +1,48 @@
 import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Typography, TypographyProps } from "@mui/material";
-import Image from "next/image";
-import SmallLogo from "@/img/main/small-logo.png";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useState } from "react";
 
 export const BusinessInformationSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const handleVisieblChange = () => {
+    setIsVisible(!isVisible);
+  };
   return (
     <div css={sx.root}>
+      <div css={sx.list}>
+        <LinkText href={"https://ssakduk.com/notice"} title={"공지사항"} />
+        <LinkText href={"https://ssakduk.com"} title={"회사소개"} />
+        <LinkText href={"https://ssakduk.com/policy"} title={"이용약관"} />
+        <LinkText
+          href={"https://ssakduk.com/policy"}
+          title={"개인정보 처리방침"}
+        />
+      </div>
       <div css={sx.container}>
-        <div css={sx.image}>
-          <Image layout="fill" src={SmallLogo} alt="logo" />
+        <Text>썪은 잎을 잘라내는 일,</Text>
+        <Text>더 나은 내일을 함께 피우겠습니다.</Text>
+        <div css={sx.button} onClick={handleVisieblChange}>
+          <Typography variant="h5" color={LightColor.Gray100}>
+            (주) 싹둑 사업자정보
+          </Typography>
+          {isVisible ? (
+            <ExpandMoreIcon fontSize="inherit" />
+          ) : (
+            <ExpandLessIcon fontSize="inherit" />
+          )}
         </div>
-        <Text>싹둑 사업자정보</Text>
-        <Text>대표 차진환 사업자등록번호 356-05-02624</Text>
-        <Text>주소 서울특별시 강남구 언주로97길 27-12, 302호(역삼동)</Text>
-        <Text>유선전화 070-8064-0148</Text>
-        <Text>호스팅서비스 아마존웹서비스 (AWS) 제공</Text>
+        <div css={sx.content(isVisible)}>
+          <Text>대표이사: 차진환 | 사업자등록번호: 356-05-02624</Text>
+          <Text>주소: 서울특별시 강남구 언주로97길 27-12, 302호(역삼동)</Text>
+          <Text>호스팅 사업자: Amazon Web Service (AWS)</Text>
+          <Text>고객센터: 070-8064-0148 | help@ssakduk.com</Text>
+          <Text>
+            상담시간: 평일 10:00~18:00 (점심: 13:00~14:00 | 토요일,공휴일 휴무)
+          </Text>
+        </div>
       </div>
     </div>
   );
@@ -24,7 +51,7 @@ export const BusinessInformationSection = () => {
 const sx = {
   root: css`
     width: 100%;
-    height: 127px;
+    height: fit-content;
     background-color: rgba(90, 136, 53, 0.04);
   `,
   container: css`
@@ -32,17 +59,49 @@ const sx = {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    padding: 16px 0;
   `,
-  image: css`
-    position: relative;
-    width: 26px;
-    height: 16.9px;
-    margin-bottom: 10.81px;
+  list: css`
+    width: 100%;
+    height: 26px;
+    display: flex;
+    border-top: 1px solid ${LightColor.Gray500};
+    border-bottom: 1px solid ${LightColor.Gray500};
+  `,
+  li: css`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `,
+  button: css`
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+  `,
+
+  content: (isVisible: boolean) => css`
+    display: ${isVisible ? "block" : "none"};
+    margin-top: 8px;
   `,
 };
 
 const Text = (p: TypographyProps) => (
-  <Typography variant="h5" lineHeight={1.5} color={LightColor.Gray100} {...p} />
+  <Typography variant="h5" color={LightColor.Gray100} {...p} />
 );
+
+type LinkTextProps = {
+  href: string;
+  title: string;
+};
+const LinkText = ({ href, title }: LinkTextProps) => {
+  return (
+    <a css={sx.li} href={href} target="_blank" rel="noreferrer">
+      <Typography variant="h5" color={LightColor.Gray100}>
+        {title}
+      </Typography>
+    </a>
+  );
+};
