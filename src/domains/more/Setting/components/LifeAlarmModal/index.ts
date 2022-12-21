@@ -1,0 +1,1 @@
+export { LifeAlarmModal } from "./LifeAlarmModal";

@@ -81,7 +81,7 @@ class PostingApiService implements PostingApiInterface {
     size: string
   ): Promise<CommentItemsResponse> {
     const response = await axiosClient.get(
-      `/v1/comment?postingId=${postId}&page=${page}&size=${size}`
+      `/v1/comment?postingId=${postId}&page=${page}&size=${size}&sort=-liked`
     );
     return response.data;
   }

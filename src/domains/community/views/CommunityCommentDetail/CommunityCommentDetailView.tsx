@@ -12,7 +12,7 @@ export const CommunityCommentDetailView = () => {
   const { models, buttonState } = result;
   return (
     <AppbarLayout hasCommentWriteSection={true}>
-      <DefaultTab category={`댓글 전체보기`} routePath={"main"} />
+      <DefaultTab category={`댓글 전체보기`} routePath={"recent"} />
       <div css={sx.root}>
         {models?.pages.map((page, index) => (
           <div key={index}>
