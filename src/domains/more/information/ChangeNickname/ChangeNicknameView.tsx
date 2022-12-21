@@ -5,6 +5,7 @@ import { TextField, Typography } from "@mui/material";
 import { LightColor } from "@/themes/Color";
 import { useChangeNickname } from "./useChangeNickname";
 import { CheckModal } from "@/common/components/modal/CheckModal";
+import { NoticeModal } from "@/common/components/modal/NoticeModal";
 
 export const ChangeNicknameView = () => {
   const { nicknameState, tabState, modalState } = useChangeNickname();
@@ -30,10 +31,15 @@ export const ChangeNicknameView = () => {
         </div>
       </div>
       <CheckModal
-        isOpen={modalState.isOpen}
-        onClose={modalState.onClose}
-        onContinue={modalState.onContinue}
-        editValue={modalState.editValue}
+        isOpen={modalState.changeModal.isOpen}
+        onClose={modalState.changeModal.onClose}
+        onContinue={modalState.changeModal.onContinue}
+        editValue={modalState.changeModal.editValue}
+      />
+      <NoticeModal
+        isOpen={modalState.noticeModal.isOpen}
+        onClose={modalState.noticeModal.onClose}
+        text={modalState.noticeModal.text}
       />
     </AppbarLayout>
   );
