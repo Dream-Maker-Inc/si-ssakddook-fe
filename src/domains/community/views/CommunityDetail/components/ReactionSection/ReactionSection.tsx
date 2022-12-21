@@ -1,3 +1,4 @@
+import { NoticeModal } from "@/common/components/modal/NoticeModal";
 import CommentIcon from "@/img/icon-chat-comment.svg";
 import RedHeartIcon from "@/img/icon-chat-heart-red.svg";
 import HeartIcon from "@/img/icon-chat-heart.svg";
@@ -6,6 +7,7 @@ import { LightColor } from "@/themes/Color";
 import { css } from "@emotion/react";
 import { Button, Typography, TypographyProps } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 
 type ReactionSectionProps = {
   commentCount: number;
@@ -13,6 +15,12 @@ type ReactionSectionProps = {
 };
 
 export const ReactionSection = (props: ReactionSectionProps) => {
+  // notice modal
+  const [isNoticeOpen, setIsNoticeOpen] = useState(false);
+
+  // notice modal functions
+  const handleNoticeOpen = () => setIsNoticeOpen(true);
+  const handleNoticeClose = () => setIsNoticeOpen(false);
   return (
     <div css={st.reactionContainer}>
       <LikeBox
@@ -21,7 +29,12 @@ export const ReactionSection = (props: ReactionSectionProps) => {
         isLike={props.likeState.isLike}
       />
       <CommentBox>{props.commentCount}</CommentBox>
-      <ReportBox />
+      <ReportBox onClick={handleNoticeOpen} />
+      <NoticeModal
+        isOpen={isNoticeOpen}
+        onClose={handleNoticeClose}
+        text={"준비중입니다."}
+      />
     </div>
   );
 };
@@ -102,14 +115,18 @@ const CommentBox = (p: TypographyProps) => {
   );
 };
 
-const ReportBox = () => {
+type ReportBoxProps = {
+  onClick: () => void;
+};
+
+const ReportBox = ({ onClick }: ReportBoxProps) => {
   return (
     <div css={st.box}>
       <Button
         css={st.button}
         size={"small"}
         startIcon={<Image width="16px" height="16px" src={ReportIcon} alt="" />}
-        onClick={() => alert("준비중입니다.")}
+        onClick={onClick}
       >
         <Typography variant="body2" lineHeight="1" color={LightColor.TextMain}>
           신고하기
