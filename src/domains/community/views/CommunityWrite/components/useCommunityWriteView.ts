@@ -53,6 +53,8 @@ export const useCommunityWriteView = () => {
 
   // image upload
   const imapgeUploadHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
     const reader = new FileReader();
 
     reader.onload = () => {
@@ -73,7 +75,6 @@ export const useCommunityWriteView = () => {
     }
 
     const fileSize = e.target.files[0].size;
-
     if (fileSize > maxSize) {
       onNoticeTextChange("이미지 사이즈는 3MB 이하만 첨부할 수 있습니다.");
       onNoticeOpen();
@@ -88,6 +89,7 @@ export const useCommunityWriteView = () => {
 
     reader.readAsDataURL(e.target.files[0]);
     setCount(count + 1);
+    e.target.value = "";
   };
 
   const handleRemoveImage = (index: number) => {
