@@ -23,6 +23,11 @@ export const useLoginView = () => {
   const [pw, setPw] = useState("");
   const [isEmailNotValid, setEmailNotValid] = useState(false);
   const emailValidation = validateEmail(email);
+  const [isNoticeOpen, setIsNoticeOpen] = useState(false);
+  const [noticeText, setNoticeText] = useState("");
+  const handleNoticeOpen = () => setIsNoticeOpen(true);
+  const handleNoticeClose = () => setIsNoticeOpen(false);
+
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,9 +50,13 @@ export const useLoginView = () => {
     // 로그인 실패
     if (isApiFailedResponse(res)) {
       if (res.statusCode == StatusCode.BLIND_MEMBER) {
-        return alert("사용이 차단된 계정입니다.");
+        handleNoticeOpen();
+        setNoticeText("사용이 차단된 계정입니다.");
+        return;
       } else {
-        return alert("이메일과 비밀번호를 확인해주세요.");
+        handleNoticeOpen();
+        setNoticeText("아이디 또는 비밀번호가 잘못되었습니다.");
+        return;
       }
     }
 
@@ -71,7 +80,8 @@ export const useLoginView = () => {
       onSuccess: handleLoginSuccess,
       onError: (err: AxiosError) => {
         console.error(err);
-        alert(`아이디 또는 비밀번호가 잘못되었습니다.`);
+        handleNoticeOpen();
+        setNoticeText("아이디 또는 비밀번호가 잘못되었습니다.");
       },
     }
   );
@@ -83,7 +93,8 @@ export const useLoginView = () => {
   const handleLoginClick = () => {
     if (!emailValidation) {
       setEmailNotValid(true);
-      alert("이메일 형식을 확인해주세요.");
+      handleNoticeOpen();
+      setNoticeText("이메일 형식을 확인해주세요.");
     } else {
       mutate();
     }
@@ -103,7 +114,8 @@ export const useLoginView = () => {
     if (e.key == "Enter") {
       if (!emailValidation) {
         setEmailNotValid(true);
-        alert("이메일 형식을 확인해주세요.");
+        handleNoticeOpen();
+        setNoticeText("이메일 형식을 확인해주세요.");
       } else {
         mutate();
       }
@@ -127,6 +139,12 @@ export const useLoginView = () => {
       disabled: !email || !pw || isEmailNotValid,
       onClick: handleLoginClick,
       isLoading: isLoading,
+    },
+
+    modalState: {
+      isOpen: isNoticeOpen,
+      onClose: handleNoticeClose,
+      text: noticeText,
     },
   };
 };
