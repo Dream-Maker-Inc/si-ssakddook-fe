@@ -12,6 +12,7 @@ export const useCommunityCommentDetailView = () => {
   const [comment, setComment] = useState("");
   const [postId, setPostId] = useState("");
   const size = 15;
+  const sort = "-liked";
 
   useEffect(() => {
     if (router && router.query) {
@@ -27,7 +28,8 @@ export const useCommunityCommentDetailView = () => {
 
   const { data, refetch, fetchNextPage } = useFetchAllCommentsByPostId(
     size,
-    postId
+    postId,
+    sort
   );
 
   // delete comment
