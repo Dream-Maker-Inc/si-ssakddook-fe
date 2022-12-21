@@ -50,12 +50,14 @@ export const useLoginView = () => {
     // 로그인 실패
     if (isApiFailedResponse(res)) {
       if (res.statusCode == StatusCode.BLIND_MEMBER) {
-        handleNoticeOpen();
         setNoticeText("사용이 차단된 계정입니다.");
+        handleNoticeOpen();
+
         return;
       } else {
-        handleNoticeOpen();
         setNoticeText("아이디 또는 비밀번호가 잘못되었습니다.");
+        handleNoticeOpen();
+
         return;
       }
     }
@@ -70,7 +72,10 @@ export const useLoginView = () => {
     const deviceInfo = await handleGetDeviceInfo(window);
     await DeviceApiService.registerDevice(res.data.accessToken, deviceInfo)
       .then(() => saveJwtAndGoMain(res.data.accessToken))
-      .catch((e) => alert(e));
+      .catch((e) => {
+        setNoticeText("디바이스 연결에 실패했습니다.");
+        handleNoticeOpen();
+      });
   };
 
   // 로그인 뮤테이션
@@ -80,8 +85,8 @@ export const useLoginView = () => {
       onSuccess: handleLoginSuccess,
       onError: (err: AxiosError) => {
         console.error(err);
-        handleNoticeOpen();
         setNoticeText("아이디 또는 비밀번호가 잘못되었습니다.");
+        handleNoticeOpen();
       },
     }
   );
@@ -93,8 +98,8 @@ export const useLoginView = () => {
   const handleLoginClick = () => {
     if (!emailValidation) {
       setEmailNotValid(true);
-      handleNoticeOpen();
       setNoticeText("이메일 형식을 확인해주세요.");
+      handleNoticeOpen();
     } else {
       mutate();
     }
@@ -114,8 +119,8 @@ export const useLoginView = () => {
     if (e.key == "Enter") {
       if (!emailValidation) {
         setEmailNotValid(true);
-        handleNoticeOpen();
         setNoticeText("이메일 형식을 확인해주세요.");
+        handleNoticeOpen();
       } else {
         mutate();
       }
