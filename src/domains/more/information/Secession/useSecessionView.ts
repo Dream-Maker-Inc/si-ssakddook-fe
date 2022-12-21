@@ -1,3 +1,4 @@
+import { useNoticeModal } from "@/common/components/modal/NoticeModal/useNoticeModal";
 import { deleteDeviceInfo } from "@/common/flutter-bridge/flutter-bridge";
 import { RoutePath } from "@/constants/Path";
 import MemberApiService from "@/data/apis/member/member.api";
@@ -8,6 +9,14 @@ import { useMutation } from "react-query";
 
 export const useSecessionView = () => {
   const router = useRouter();
+  const {
+    isNoticeOpen,
+    onNoticeClose,
+    onNoticeOpen,
+    noticeText,
+    onNoticeTextChange,
+  } = useNoticeModal();
+
   const [isChecked, setIsChecked] = useState(false);
   const [password, setPassword] = useState("");
   const [isPasswordFieldError, setIsPasswordFieldError] = useState(false);
@@ -38,7 +47,9 @@ export const useSecessionView = () => {
       router.push(RoutePath.Home);
     },
     onError: (err: any) => {
-      alert("오류가 발생했습니다.");
+      handleModalClose();
+      onNoticeTextChange("오류가 발생했습니다.");
+      onNoticeOpen();
       console.log(err);
     },
   });
@@ -68,9 +79,17 @@ export const useSecessionView = () => {
       onClick: handleModalOpen,
     },
     modalState: {
-      isOpen: isModelOpen,
-      onClose: handleModalClose,
-      onContinue: onSubmit,
+      checkModal: {
+        isOpen: isModelOpen,
+        onClose: handleModalClose,
+        onContinue: onSubmit,
+      },
+
+      noticeModal: {
+        isOpen: isNoticeOpen,
+        onClose: onNoticeClose,
+        text: noticeText,
+      },
     },
   };
 };
