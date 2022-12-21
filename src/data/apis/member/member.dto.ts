@@ -1,5 +1,7 @@
 export type ValidateEmailApiResponse = {
-  isValid: boolean;
+  data: {
+    isValid: boolean;
+  };
 };
 
 export type ValidateNicknameApiResponse = {

@@ -9,9 +9,20 @@ import { useMutation } from "react-query";
 import MemberApiService from "@/data/apis/member/member.api";
 import { useSetRecoilState } from "recoil";
 import { CertificationTokenAtom } from "@/recoil/Member/Member.atom";
+import { useNoticeModal } from "@/common/components/modal/NoticeModal/useNoticeModal";
+import { ContentPasteSearchOutlined } from "@mui/icons-material";
 
 export const useInputEmailView = () => {
   const router = useRouter();
+
+  const {
+    isNoticeOpen,
+    onNoticeClose,
+    onNoticeOpen,
+    noticeText,
+    onNoticeTextChange,
+  } = useNoticeModal();
+
   const [email, setEmail] = useState("");
   const [isEmailExisted, setIsEmailExisted] = useState(true);
   const tokenRecoilValue = useSetRecoilState(CertificationTokenAtom);
@@ -32,16 +43,21 @@ export const useInputEmailView = () => {
     {
       onSuccess(res) {
         if (isApiFailedResponse(res)) {
-          handleRequestPw();
-        } else if (res.isValid == true) {
+          if (res.statusCode === "JE0001") {
+            handleRequestPw();
+            return;
+          }
+          onNoticeTextChange("에러가 발생했습니다.");
+          onNoticeOpen();
+        } else {
           setIsEmailExisted(false);
           return;
-        } else {
-          alert("문제가 발생했습니다.");
         }
       },
       onError(err) {
-        alert(err);
+        onNoticeTextChange("에러가 발생했습니다.");
+        onNoticeOpen();
+        console.log(err);
       },
     }
   );
@@ -85,14 +101,10 @@ export const useInputEmailView = () => {
 
         const res = await authApi.findId(certificationToken);
 
-        if (isApiFailedResponse(res)) {
-          return router.push(RoutePath.FindIdFail);
-        } else {
-          if (res.email == email) {
-            return router.push(RoutePath.FindPasswordSuccess);
-          }
-          return router.push(RoutePath.FindIdFail);
+        if (res.data.email == email) {
+          return router.push(RoutePath.FindPasswordSuccess);
         }
+        return router.push(RoutePath.FindIdFail);
       },
       (error) => {
         console.error(error);
@@ -115,6 +127,13 @@ export const useInputEmailView = () => {
     buttonState: {
       onSubmit: handleExistedEmailCheck,
       disabled: isEmailEmpty || isEmailError,
+    },
+    modalState: {
+      noticeModal: {
+        isOpen: isNoticeOpen,
+        onClose: onNoticeClose,
+        text: noticeText,
+      },
     },
   };
 };

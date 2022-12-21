@@ -19,12 +19,12 @@ class MemberApiService implements MemberApiInterface {
     return LocalStorage.getItem("id");
   }
 
-  async validateEmail(email: string): Promise<ValidateEmailApiResponse> {
+  async validateEmail(email: string): Promise<ApiFailedResponse | any> {
     const response = await axiosClient.post("/v1/member/validate/email", {
       email,
     });
 
-    return response.data.data;
+    return response.data;
   }
 
   async validateNickname(

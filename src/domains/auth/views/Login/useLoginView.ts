@@ -52,12 +52,10 @@ export const useLoginView = () => {
       if (res.statusCode == StatusCode.BLIND_MEMBER) {
         setNoticeText("사용이 차단된 계정입니다.");
         handleNoticeOpen();
-
         return;
       } else {
         setNoticeText("아이디 또는 비밀번호가 잘못되었습니다.");
         handleNoticeOpen();
-
         return;
       }
     }

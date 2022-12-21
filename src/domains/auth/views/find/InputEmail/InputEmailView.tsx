@@ -1,12 +1,13 @@
 import { PrevButton } from "@/common/components/button/PrevButton";
 import { SubmitButton } from "@/common/components/button/SubmitButton";
+import { NoticeModal } from "@/common/components/modal/NoticeModal";
 import { TitleWithDesc } from "@/common/components/title/TitleWithDesc";
 import { css } from "@emotion/react";
 import { TextField, Typography } from "@mui/material";
 import { useInputEmailView } from "./useInputEmailView";
 
 export const InputEmailView = () => {
-  const { fieldState, buttonState } = useInputEmailView();
+  const { fieldState, buttonState, modalState } = useInputEmailView();
   return (
     <div css={sx.root}>
       <div css={sx.container}>
@@ -31,6 +32,11 @@ export const InputEmailView = () => {
           error={fieldState.error}
         />
       </div>
+      <NoticeModal
+        isOpen={modalState.noticeModal.isOpen}
+        onClose={modalState.noticeModal.onClose}
+        text={modalState.noticeModal.text}
+      />
     </div>
   );
 };

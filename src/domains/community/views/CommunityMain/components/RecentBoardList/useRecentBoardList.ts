@@ -7,7 +7,7 @@ export const useRecentBoardList = () => {
   const size = 5;
   const { data, isLoading, isError } = useFindAllPost(size);
 
-  if (!data) {
+  if (!data?.data) {
     return {
       fetchState: {
         isLoading,
@@ -16,7 +16,8 @@ export const useRecentBoardList = () => {
       result: null,
     };
   }
-  const postings = mapToPostings(data.data.items);
+
+  const postings = mapToPostings(data?.data.items);
 
   return {
     fetchState: {
