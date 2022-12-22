@@ -109,7 +109,7 @@ const MemoCalendar = ({
     let formattedDate = "";
 
     while (day < endDate) {
-      for (let i = 0; i < 7; i++) {
+      for (let i = 0; i <= 7; i++) {
         let clickedDate = format(day, monthDateFormat);
         formattedDate = format(day, dateFormat);
         const cloneDay = day;

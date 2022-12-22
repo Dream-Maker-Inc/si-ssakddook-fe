@@ -27,6 +27,9 @@ export const SearchTab = ({
         placeholder={"검색어를 입력하세요."}
         variant="standard"
         css={sx.searchField}
+        onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
+          e.key == "Enter" && onSearch();
+        }}
         InputProps={{
           disableUnderline: true,
           endAdornment: (

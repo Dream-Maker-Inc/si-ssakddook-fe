@@ -85,6 +85,7 @@ const sx = {
   content: (isVisible: boolean) => css`
     display: ${isVisible ? "block" : "none"};
     margin-top: 8px;
+    text-align: center;
   `,
 };
 
