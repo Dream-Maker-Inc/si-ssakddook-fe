@@ -31,7 +31,7 @@ export const ChangePasswordView = () => {
           <PasswordBox
             titleProps={{
               title: "변경할 비밀번호",
-              desc: "변경할 비밀번호를 입력해 주세요.",
+              desc: "변경할 비밀번호를 입력해 주세요.\n이전에 사용하셨던 비밀번호는 다시 사용할 수 없어요.",
             }}
             fieldProps={{
               value: newPwState.value,
