@@ -26,16 +26,16 @@ export const BusinessInformationSection = () => {
         <Text>더 나은 내일을 함께 피우겠습니다.</Text>
         <div css={sx.button} onClick={handleVisieblChange}>
           <Typography variant="h5" color={LightColor.Gray100}>
-            (주) 싹둑 사업자정보
+            싹둑 사업자정보
           </Typography>
           {isVisible ? (
-            <ExpandMoreIcon fontSize="inherit" />
-          ) : (
             <ExpandLessIcon fontSize="inherit" />
+          ) : (
+            <ExpandMoreIcon fontSize="inherit" />
           )}
         </div>
         <div css={sx.content(isVisible)}>
-          <Text>대표이사: 차진환 | 사업자등록번호: 356-05-02624</Text>
+          <Text>대표: 차진환 | 사업자등록번호: 356-05-02624</Text>
           <Text>주소: 서울특별시 강남구 언주로97길 27-12, 302호(역삼동)</Text>
           <Text>호스팅 사업자: Amazon Web Service (AWS)</Text>
           <Text>고객센터: 070-8064-0148 | help@ssakduk.com</Text>
