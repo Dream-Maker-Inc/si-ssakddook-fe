@@ -52,6 +52,9 @@ export const useChangePasswordView = () => {
           if (res.statusCode === "JE0004") {
             onNoticeTextChange("기존 비밀번호를 다시 입력해주세요.");
             onNoticeOpen();
+          } else if (res.statusCode === "JE0005") {
+            onNoticeTextChange("이전에 사용하셨던 비밀번호입니다.");
+            onNoticeOpen();
           } else {
             onNoticeTextChange("해당 비밀번호는 사용할 수 없습니다.");
             onNoticeOpen();
