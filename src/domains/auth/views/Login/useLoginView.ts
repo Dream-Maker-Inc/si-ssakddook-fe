@@ -114,7 +114,7 @@ export const useLoginView = () => {
 
   // enter 클릭 시 로그인
   const handleKeyPressLogin = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key == "Enter") {
+    if (e.key == "Enter" && email !== "" && pw !== "") {
       if (!emailValidation) {
         setEmailNotValid(true);
         setNoticeText("이메일 형식을 확인해주세요.");
