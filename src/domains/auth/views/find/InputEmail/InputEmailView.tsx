@@ -30,6 +30,9 @@ export const InputEmailView = () => {
             </Typography>
           }
           error={fieldState.error}
+          onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) =>
+            fieldState.onKeyPressSubmit(e)
+          }
         />
       </div>
       <NoticeModal

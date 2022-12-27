@@ -112,17 +112,21 @@ export const useInputEmailView = () => {
     );
   };
 
-  const handleSubmit = () => {};
+  const onKeyPressSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key == "Enter" && !isEmailError) {
+      mutate();
+    }
+  };
   return {
     fieldState: {
       title: "아이디 (이메일) 입력",
       desc: "회원가입 시 등록한 아이디 (이메일) 을 입력해 주세요.",
       value: email,
       onChange: handleChangeEmail,
-      onSubmit: handleSubmit,
       helperText: emailHelperText,
       color: emailHelperTextColor,
       error: isEmailError,
+      onKeyPressSubmit: onKeyPressSubmit,
     },
     buttonState: {
       onSubmit: handleExistedEmailCheck,
