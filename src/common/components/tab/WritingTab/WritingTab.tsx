@@ -37,14 +37,17 @@ export const WritingTab = ({
           {title}
         </Typography>
       </div>
-      <IconButton onClick={onClick}>
-        <Image
-          width="24px"
-          height="24px"
-          src={onActive ? SubmitIcon : SubmitDisabledIcon}
-          alt=""
-        />
-      </IconButton>
+
+      {onActive ? (
+        <IconButton onClick={onClick}>
+          <Image width="24px" height="24px" src={SubmitIcon} alt="" />
+        </IconButton>
+      ) : (
+        <div css={sx.disabledButton}>
+          <Image width="24px" height="24px" src={SubmitDisabledIcon} alt="" />
+        </div>
+      )}
+
       <PrevModal
         key={"modal"}
         isOpen={modalOpen}
@@ -72,5 +75,11 @@ const sx = {
   tabWrapper: css`
     display: flex;
     align-items: center;
+  `,
+
+  disabledButton: css`
+    width: 40px;
+    height: 40px;
+    padding: 8px;
   `,
 };
