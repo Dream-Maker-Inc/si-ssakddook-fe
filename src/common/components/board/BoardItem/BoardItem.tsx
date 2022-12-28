@@ -39,7 +39,7 @@ export const BoardItem = ({
   return (
     <div css={sx.item(isInMyArticleList)} onClick={handleBoxClick}>
       <div css={sx.rowWrapper}>
-        <Typography variant="h3" color="black">
+        <Typography variant="h4" color="black" sx={{ fontSize: 14 }}>
           {title}
         </Typography>
         <Typography variant="h5" color={LightColor.Gray100}>
