@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import { useMainView } from "./useMainView";
 import { LifeTopic } from "./components/LifeTopic";
 import { CommunityTopic } from "./components/CommunityTopic";
+import { BusinessInformationSection } from "@/common/components/footer/BusinessInformationSection";
 
 export const MainView = () => {
   const { result, username } = useMainView();
@@ -16,6 +17,7 @@ export const MainView = () => {
           <CommunityTopic data={result.postData} />
           <LifeTopic data={result.lifePostData} />
         </div>
+        <BusinessInformationSection />
       </div>
     </AppbarLayout>
   );

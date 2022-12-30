@@ -9,7 +9,7 @@ import MainImg from "@/img/logo/main.svg";
 import { LightColor } from "@/themes/Color";
 import { RoutePath } from "@/constants/Path";
 import { NoticeModal } from "@/common/components/modal/NoticeModal";
-import { BusinessInformationSection } from "./components/BusinessInformationSection";
+import { BusinessInformationSection } from "@/common/components/footer/BusinessInformationSection";
 
 export const LoginView = () => {
   const { emailState, pwState, login, modalState } = useLoginView();
@@ -77,7 +77,7 @@ export const LoginView = () => {
             </div>
           </div>
         </div>
-        <BusinessInformationSection />
+        <BusinessInformationSection isWhite />
       </div>
 
       <NoticeModal

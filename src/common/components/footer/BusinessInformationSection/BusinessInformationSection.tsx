@@ -5,13 +5,19 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
 
-export const BusinessInformationSection = () => {
+type BusinessInformationSection = {
+  isWhite?: boolean;
+};
+
+export const BusinessInformationSection = ({
+  isWhite = false,
+}: BusinessInformationSection) => {
   const [isVisible, setIsVisible] = useState(false);
   const handleVisieblChange = () => {
     setIsVisible(!isVisible);
   };
   return (
-    <div css={sx.root}>
+    <div css={sx.root(isWhite)}>
       <div css={sx.list}>
         <LinkText href={"https://ssakduk.com/notice"} title={"공지사항"} />
         <LinkText href={"https://ssakduk.com"} title={"회사소개"} />
@@ -49,10 +55,10 @@ export const BusinessInformationSection = () => {
 };
 
 const sx = {
-  root: css`
+  root: (isWhite: boolean) => css`
     width: 100%;
     height: fit-content;
-    background-color: rgba(90, 136, 53, 0.04);
+    background-color: ${isWhite ? "white" : "rgba(90, 136, 53, 0.04)"};
   `,
   container: css`
     width: 100%;
