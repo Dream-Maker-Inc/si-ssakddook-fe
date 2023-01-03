@@ -1,15 +1,13 @@
-name: sync up to codecommit
+name: Ssakduk Frontend CI/CD
 
-on:
-  push:
-    branches:
-      - 'main'
+on: [push, pull_request]
 
 jobs:
   sync:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -21,10 +19,22 @@ jobs:
           aws-secret-access-key: ${{ secrets.SSAKDUK_AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      - name: aws-codecommit-sync 
+      - name: Sync to CodeCommit
         uses: afinkorea/aws-codecommit-sync@v1.0.0
-
         with:
           repository_name: ssakduk-client-frontend-real
           aws_region: ap-northeast-2
           branch: main
+
+      - uses: ravsamhq/notify-slack-action@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          notification_title: "{workflow} has {status_message}"
+          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
+          footer: "Linked Repo <{repo_url}|{repo}>"
+          notify_when: "success,failure,cancelled,warnings,skipped"
+          mention_users: "U048E4GMEMN"
+          mention_users_when: "success,failure,cancelled,warnings,skipped"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
