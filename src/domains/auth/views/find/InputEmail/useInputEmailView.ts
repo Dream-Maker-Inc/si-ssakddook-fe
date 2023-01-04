@@ -32,7 +32,7 @@ export const useInputEmailView = () => {
 
   useEffect(() => {
     // 가맹점 식별 코드
-    const StoreUid = "imp12349201";
+    const StoreUid = "imp25540524";
     const imp = window.IMP;
     imp.init(StoreUid);
   }, []);
