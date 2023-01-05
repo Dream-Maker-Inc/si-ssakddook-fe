@@ -10,7 +10,6 @@ import MemberApiService from "@/data/apis/member/member.api";
 import { useSetRecoilState } from "recoil";
 import { CertificationTokenAtom } from "@/recoil/Member/Member.atom";
 import { useNoticeModal } from "@/common/components/modal/NoticeModal/useNoticeModal";
-import { ContentPasteSearchOutlined } from "@mui/icons-material";
 
 export const useInputEmailView = () => {
   const router = useRouter();
