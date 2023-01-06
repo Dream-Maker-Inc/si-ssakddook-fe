@@ -58,8 +58,8 @@ export const HomeView = () => {
             </Button>
           </div>
         </div>
-        <BusinessInformationSection isWhite />
       </div>
+      <BusinessInformationSection isWhite />
     </div>
   );
 };
@@ -68,6 +68,7 @@ const sx = {
   root: css`
     width: 100%;
     height: 100%;
+    overflow-y: scroll;
   `,
   container: css`
     width: 100%;
@@ -102,7 +103,5 @@ const sx = {
     flex-direction: column;
     gap: 16px;
     font-size: 14px;
-    /* position: absolute;
-    bottom: 0px; */
   `,
 };
