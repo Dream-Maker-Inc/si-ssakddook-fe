@@ -6,8 +6,6 @@ import { ContentSection } from "./ContentSection";
 import { ReactionSection } from "./ReactionSection";
 import { useCommunityDetailView } from "./useCommunityDetailView";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
-import { CommentWrite } from "../../components/CommentWrite";
-import { NoticeModal } from "@/common/components/modal/NoticeModal";
 
 export const CommunityDetailView = () => {
   const { fetchState, result, postId } = useCommunityDetailView();

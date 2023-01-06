@@ -1,14 +1,49 @@
 import LikeApiService from "@/data/apis/like/like.api";
 import PostingApiService from "@/data/apis/posting/posting.api";
+import { StatusCode } from "@/data/statusCode/StatusCode.enum";
+import { NoticeModalAtom } from "@/recoil/Modal/NoticeModal.atom";
 import { getTimeFromNow } from "@/utils/moment/DateMoment";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
+import { useRecoilState } from "recoil";
 import { PostingItemResponse } from "./../../../../../data/apis/posting/posting.dto";
 
 export const useCommunityDetailView = () => {
   const router = useRouter();
   const postId = router.query.postId + "";
+
+  // notice-modal atom
+  const [isNoticeOopen, setIsNoticeOpen] = useRecoilState(NoticeModalAtom);
+
+  const useGetPostingDetail = (postId: string) => {
+    const router = useRouter();
+
+    const handleSuccess = (res: PostingItemResponse | any) => {
+      if (res.statusCode == StatusCode.BLIND_POSTING) {
+        setIsNoticeOpen(true);
+        router.back();
+        return;
+      } else if (res?.deletedAt) {
+        router.back();
+      }
+    };
+
+    const query = useQuery(
+      ["getPostingDetail", postId],
+      () => PostingApiService.findOneByPostId(postId),
+      {
+        onSuccess: handleSuccess,
+        enabled: false,
+      }
+    );
+
+    useEffect(() => {
+      query.refetch();
+    }, []);
+
+    return query;
+  };
 
   const { data, isLoading, isError, refetch } = useGetPostingDetail(postId);
 
@@ -36,10 +71,10 @@ export const useCommunityDetailView = () => {
     }
   );
 
-  const isLike = data?.myLiked == null ? false : true;
+  const isLike = data && (data.data?.myLiked == null ? false : true);
   const body = {
     type: "posting",
-    contentId: data?.id!!,
+    contentId: data && data.data?.id!!,
   };
 
   const handleLikeCreate = () => {
@@ -49,7 +84,7 @@ export const useCommunityDetailView = () => {
     deleteLike();
   };
 
-  if (!data || data?.deletedAt) {
+  if (!data || !data.data || (data.data && data.data?.deletedAt)) {
     return {
       fetchState: {
         isLoading: isLoading,
@@ -69,6 +104,7 @@ export const useCommunityDetailView = () => {
         isLike: false,
         commentCount: 0,
       },
+
       postId: postId,
     };
   }
@@ -79,44 +115,20 @@ export const useCommunityDetailView = () => {
       isError: isError,
     },
     result: {
-      postId: data.id,
-      authorId: data.author.id,
-      category: data.category,
-      title: data.title,
-      nickname: data.author.nickname,
-      date: getTimeFromNow(data.createdAt),
-      content: data.content,
-      attachments: data.attachments,
-      likeCount: data.likedCount,
+      postId: data.data.id,
+      authorId: data.data.author.id,
+      category: data.data.category,
+      title: data.data.title,
+      nickname: data.data.author.nickname,
+      date: getTimeFromNow(data.data.createdAt),
+      content: data.data.content,
+      attachments: data.data.attachments,
+      likeCount: data.data.likedCount,
       onLike: isLike ? handleDeleteCreate : handleLikeCreate,
       isLike: isLike,
-      commentCount: data.commentCount,
+      commentCount: data.data.commentCount,
     },
+
     postId: postId,
   };
-};
-
-const useGetPostingDetail = (postId: string) => {
-  const router = useRouter();
-
-  const handleSuccess = (data: PostingItemResponse) => {
-    if (data.deletedAt) {
-      router.back();
-    }
-  };
-
-  const query = useQuery(
-    ["getPostingDetail", postId],
-    () => PostingApiService.findOneByPostId(postId),
-    {
-      onSuccess: handleSuccess,
-      enabled: false,
-    }
-  );
-
-  useEffect(() => {
-    query.refetch();
-  }, []);
-
-  return query;
 };

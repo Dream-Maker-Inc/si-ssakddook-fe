@@ -5,9 +5,10 @@ import { useMainView } from "./useMainView";
 import { LifeTopic } from "./components/LifeTopic";
 import { CommunityTopic } from "./components/CommunityTopic";
 import { BusinessInformationSection } from "@/common/components/footer/BusinessInformationSection";
+import { NoticeModal } from "@/common/components/modal/NoticeModal";
 
 export const MainView = () => {
-  const { result, username } = useMainView();
+  const { result, username, modalState } = useMainView();
 
   return (
     <AppbarLayout>
@@ -18,6 +19,11 @@ export const MainView = () => {
           <LifeTopic data={result.lifePostData} />
         </div>
         <BusinessInformationSection />
+        <NoticeModal
+          isOpen={modalState.noticeModal.isOpen}
+          onClose={modalState.noticeModal.onClose}
+          text={modalState.noticeModal.text}
+        />
       </div>
     </AppbarLayout>
   );

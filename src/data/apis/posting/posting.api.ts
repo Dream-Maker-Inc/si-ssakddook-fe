@@ -88,7 +88,9 @@ class PostingApiService implements PostingApiInterface {
 
   async findOneByPostId(postId: string): Promise<PostingItemResponse> {
     const response = await axiosClient.get(`/v1/posting/${postId}`);
-    return response.data.data;
+    console.log("response");
+    console.log(response);
+    return response.data;
   }
 
   async findAllPostByCategory(
