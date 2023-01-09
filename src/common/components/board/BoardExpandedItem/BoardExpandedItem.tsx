@@ -30,7 +30,7 @@ export const BoardExpandedItem = ({
   const handleBoxClick = () => {
     router.push({
       pathname: RoutePath.CommunityDetail,
-      query: { postId: postId },
+      query: { postId: postId, category: category },
     });
   };
   return (

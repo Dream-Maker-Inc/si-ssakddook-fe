@@ -1,4 +1,5 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
+import { RoutePath } from "@/constants/Path";
 import { useHotBoardList } from "./useHotBoardList";
 
 export const HotBoardList = () => {
@@ -17,6 +18,7 @@ export const HotBoardList = () => {
             category={it.category}
             like={it.likedCount}
             comments={it.commentCount}
+            prevPage={RoutePath.Main}
           />
         ))}
     </div>

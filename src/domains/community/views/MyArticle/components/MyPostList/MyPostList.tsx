@@ -1,5 +1,6 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
+import { RoutePath } from "@/constants/Path";
 import { getTimeFromNow } from "@/utils/moment/DateMoment";
 import { css } from "@emotion/react";
 import { useMyPostList } from "./useMyPostList";
@@ -25,6 +26,7 @@ export const MyPostList = () => {
               like={it.likedCount + ""}
               comments={it.commentCount + ""}
               isInMyArticleList={true}
+              prevPage={RoutePath.MyArticle}
             />
           ))}
         </div>

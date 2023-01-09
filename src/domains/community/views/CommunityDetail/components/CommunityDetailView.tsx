@@ -8,7 +8,7 @@ import { useCommunityDetailView } from "./useCommunityDetailView";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
 
 export const CommunityDetailView = () => {
-  const { fetchState, result, postId } = useCommunityDetailView();
+  const { fetchState, result, postId, category } = useCommunityDetailView();
   if (fetchState.isLoading) return <CircularLoading />;
   if (fetchState.isError) return <CircularLoading />;
 
@@ -16,7 +16,11 @@ export const CommunityDetailView = () => {
     <AppbarLayout hasCommentWriteSection={true}>
       <div css={sx.root}>
         <div css={sx.container}>
-          <DetailTab postId={result.postId} writerId={result.authorId} />
+          <DetailTab
+            postId={result.postId}
+            writerId={result.authorId}
+            category={category}
+          />
           <ContentSection
             category={result.category}
             title={result.title}

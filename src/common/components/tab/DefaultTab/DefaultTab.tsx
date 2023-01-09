@@ -1,4 +1,5 @@
 import { RoutePath } from "@/constants/Path";
+import { CATEGORY_PATH_TYPE } from "@/domains/community/types/CategoryType.enum";
 import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import { useRouter } from "next/router";
@@ -14,6 +15,7 @@ export const DefaultTab = ({
   routePath,
 }: DefaultTabProps) => {
   const router = useRouter();
+  const arr = Object.values(CATEGORY_PATH_TYPE);
 
   const onMoreView = () => {
     if (routePath == "recent") {
@@ -21,7 +23,14 @@ export const DefaultTab = ({
     } else if (routePath == "main") {
       router.push(RoutePath.Main);
     } else {
-      router.push(routePath);
+      if (arr.includes(routePath)) {
+        router.push({
+          pathname: RoutePath.CommunityList,
+          query: { category: routePath },
+        });
+      } else {
+        router.push(routePath);
+      }
     }
   };
 

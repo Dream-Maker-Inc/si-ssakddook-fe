@@ -18,7 +18,10 @@ export const CommunityTab = () => {
   };
 
   const onMyClick = () => {
-    router.push(RoutePath.MyArticle);
+    router.push({
+      pathname: RoutePath.MyArticle,
+      query: { category: "recent" },
+    });
   };
 
   const onSearch = () => {

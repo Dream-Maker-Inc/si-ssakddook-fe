@@ -4,9 +4,11 @@ import {
   useInfiniteQuery,
   useMutation,
   useQuery,
+  useQueryClient,
 } from "react-query";
 import { axiosClient } from "@/constants/api/client/client";
 import { CommentItemsResponse, PostingItemsResponse } from "./posting.dto";
+import { queryClient } from "@/pages/_app";
 
 export const useCreatePost = () => {
   return useMutation((formData: any) => PostingApiService.createPost(formData));
@@ -87,21 +89,29 @@ export const useUpdatePost = (postId: string, body: any) => {
 };
 
 export const useFetchAllPostByCategory = (category: string) => {
-  const { data, isLoading, isError, error, isFetching, fetchNextPage } =
-    useInfiniteQuery(
-      ["find-all-post-by-category", category],
-      ({ pageParam = 1 }: QueryFunctionContext) =>
-        axiosClient.get<PostingItemsResponse>("/v1/posting", {
-          params: { category, page: pageParam, size: 15 },
-        }),
-      {
-        getNextPageParam: ({
-          data: {
-            data: { metaData },
-          },
-        }) => (metaData.isLast ? undefined : metaData.pageNumber + 1),
-      }
-    );
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    isFetching,
+    fetchNextPage,
+    refetch,
+    remove,
+  } = useInfiniteQuery(
+    ["find-all-post-by-category", category],
+    ({ pageParam = 1 }: QueryFunctionContext) =>
+      axiosClient.get<PostingItemsResponse>("/v1/posting", {
+        params: { category, page: pageParam, size: 15 },
+      }),
+    {
+      getNextPageParam: ({
+        data: {
+          data: { metaData },
+        },
+      }) => (metaData.isLast ? undefined : metaData.pageNumber + 1),
+    }
+  );
 
   return {
     data,
@@ -110,6 +120,8 @@ export const useFetchAllPostByCategory = (category: string) => {
     error,
     isFetching,
     fetchNextPage,
+    refetch,
+    remove,
   };
 };
 
@@ -126,10 +138,6 @@ export const useFetchAllPostByKeyword = (keyword: string, size: number) =>
           data: { metaData },
         },
       }) => (metaData.isLast ? undefined : metaData.pageNumber + 1),
-      enabled: false,
-      onSuccess(data) {
-        console.log(data);
-      },
     }
   );
 

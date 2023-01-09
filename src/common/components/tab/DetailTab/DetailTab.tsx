@@ -6,11 +6,11 @@ import { BoardPrevButton } from "../../button/BoardPrevButton";
 import { useDetailTab } from "./useDetailTan";
 import EtcIcon from "@/img/tab/icon-etc.svg";
 
-type DetailTabProps = { postId: number; writerId: number };
+type DetailTabProps = { postId: number; writerId: number; category: string };
 
-export const DetailTab = ({ postId, writerId }: DetailTabProps) => {
+export const DetailTab = ({ postId, writerId, category }: DetailTabProps) => {
   const myId = LocalStorage.getItem("id");
-  const { popoverState, onEdit, onDelete } = useDetailTab(postId);
+  const { popoverState, onEdit, onDelete } = useDetailTab(postId, category);
 
   return (
     <div css={sx.tabContainer}>

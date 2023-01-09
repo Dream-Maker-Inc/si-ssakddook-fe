@@ -1,5 +1,6 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
 import { CircularLoading } from "@/common/components/progress/CircularProgress/CircularLoading";
+import { RoutePath } from "@/constants/Path";
 import { css } from "@emotion/react";
 import { useMyCommentList } from "./useMyCommentList";
 
@@ -21,6 +22,7 @@ export const MyCommentList = () => {
               nicknameOrTitle={it.postingTitle}
               isInMyArticleList={true}
               isPost={false}
+              prevPage={RoutePath.MyArticle}
             />
           ))}
         </div>

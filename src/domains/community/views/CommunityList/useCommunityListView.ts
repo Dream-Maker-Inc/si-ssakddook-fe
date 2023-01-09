@@ -12,8 +12,25 @@ export const useCommunityListView = () => {
   let category = router.query.category + "";
 
   const { ref, inView } = useInView();
-  const { data, isLoading, isError, error, isFetching, fetchNextPage } =
-    useFetchAllPostByCategory(category);
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    isFetching,
+    fetchNextPage,
+    refetch,
+    remove,
+  } = useFetchAllPostByCategory(category);
+
+  const removeCacheAndRefetch = async () => {
+    await remove();
+    await refetch();
+  };
+
+  useEffect(() => {
+    removeCacheAndRefetch();
+  }, []);
 
   useEffect(() => {
     if (inView) {
@@ -35,7 +52,6 @@ export const useCommunityListView = () => {
       ref: ref,
     };
   }
-
   const result = data.pages.map((page) => mapToPostings(page.data.data.items));
 
   return {

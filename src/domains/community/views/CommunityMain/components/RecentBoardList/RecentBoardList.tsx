@@ -1,4 +1,5 @@
 import { BoardItem } from "@/common/components/board/BoardItem";
+import { RoutePath } from "@/constants/Path";
 import { useRecentBoardList } from "./useRecentBoardList";
 
 export const RecentBoardList = () => {
@@ -16,6 +17,7 @@ export const RecentBoardList = () => {
             category={it.category}
             like={it.likedCount}
             comments={it.commentCount}
+            prevPage={RoutePath.Main}
           />
         ))}
     </div>

@@ -24,7 +24,7 @@ export const CommunityBox = ({
   const onPostView = (postId: string) => {
     router.push({
       pathname: RoutePath.CommunityDetail,
-      query: { postId: postId },
+      query: { postId: postId, category: "main" },
     });
   };
 

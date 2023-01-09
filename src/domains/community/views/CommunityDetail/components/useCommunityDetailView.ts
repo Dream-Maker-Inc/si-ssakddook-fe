@@ -11,7 +11,9 @@ import { PostingItemResponse } from "./../../../../../data/apis/posting/posting.
 
 export const useCommunityDetailView = () => {
   const router = useRouter();
-  const postId = router.query.postId + "";
+  const { postId, category } = router.query;
+  const id = postId + "";
+  const prevCommunityCategory = category + "";
 
   // notice-modal atom
   const [isNoticeOopen, setIsNoticeOpen] = useRecoilState(NoticeModalAtom);
@@ -30,8 +32,8 @@ export const useCommunityDetailView = () => {
     };
 
     const query = useQuery(
-      ["getPostingDetail", postId],
-      () => PostingApiService.findOneByPostId(postId),
+      ["getPostingDetail", id],
+      () => PostingApiService.findOneByPostId(id),
       {
         onSuccess: handleSuccess,
         enabled: false,
@@ -45,7 +47,7 @@ export const useCommunityDetailView = () => {
     return query;
   };
 
-  const { data, isLoading, isError, refetch } = useGetPostingDetail(postId);
+  const { data, isLoading, isError, refetch } = useGetPostingDetail(id);
 
   const { mutate: createLike } = useMutation(
     () => LikeApiService.createLike(body!!),
@@ -105,7 +107,8 @@ export const useCommunityDetailView = () => {
         commentCount: 0,
       },
 
-      postId: postId,
+      postId: id,
+      category: prevCommunityCategory,
     };
   }
 
@@ -129,6 +132,7 @@ export const useCommunityDetailView = () => {
       commentCount: data.data.commentCount,
     },
 
-    postId: postId,
+    postId: id,
+    category: prevCommunityCategory,
   };
 };

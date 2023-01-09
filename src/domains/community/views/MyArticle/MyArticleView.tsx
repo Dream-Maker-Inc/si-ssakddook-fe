@@ -9,11 +9,9 @@ export const MyArticleView = () => {
   const router = useRouter();
   let prevPage = router.query?.category + "";
 
-  console.log(prevPage);
-
   return (
     <PlainLayout isBottomMarginNecessary={false}>
-      <DefaultTab category="내가 작성한 글" routePath={prevPage} />
+      <DefaultTab category="내가 작성한 글" routePath={"main"} />
       <BoardTab
         isBottomMarginNecessary={false}
         firstTabInfo={{ title: "글", children: <MyPostList /> }}

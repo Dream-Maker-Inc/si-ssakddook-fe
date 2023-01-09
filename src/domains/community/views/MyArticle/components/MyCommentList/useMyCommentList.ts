@@ -9,8 +9,17 @@ export const useMyCommentList = () => {
   const size = 15;
 
   const { ref, inView } = useInView();
-  const { data, isLoading, isError, error, isFetching, fetchNextPage } =
+  const { data, isLoading, isError, error, fetchNextPage, refetch, remove } =
     useFetchAllCommentById(size);
+
+  const removeCacheAndRefetch = async () => {
+    await remove();
+    await refetch();
+  };
+
+  useEffect(() => {
+    removeCacheAndRefetch();
+  }, []);
 
   useEffect(() => {
     if (inView) {

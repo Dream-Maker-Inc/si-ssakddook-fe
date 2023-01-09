@@ -16,6 +16,7 @@ type BoardItemProps = {
   comments?: string;
   isInMyArticleList?: boolean;
   isPost?: boolean;
+  prevPage: string;
 };
 
 export const BoardItem = ({
@@ -28,12 +29,15 @@ export const BoardItem = ({
   comments,
   isInMyArticleList = false,
   isPost = true,
+  prevPage,
 }: BoardItemProps) => {
+  console.log("@@@@@@");
+  console.log(prevPage);
   const router = useRouter();
   const handleBoxClick = () => {
     router.push({
       pathname: RoutePath.CommunityDetail,
-      query: { postId: postId },
+      query: { postId: postId, category: prevPage },
     });
   };
   return (
