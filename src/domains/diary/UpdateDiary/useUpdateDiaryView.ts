@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import DiaryApiService from "@/data/apis/diary/diary.api";
 import { format } from "date-fns";
@@ -12,6 +12,9 @@ export const useUpdateDiaryView = () => {
 
   const [content, setContent] = useState("");
   const [lastDate, setLastDate] = useState("");
+
+  // tab
+  const [isWritingMode, setIsWritingMode] = useState(false);
 
   // diary api
   const { data, refetch } = useQuery(
@@ -30,9 +33,6 @@ export const useUpdateDiaryView = () => {
       onError(err) {},
     }
   );
-
-  // tab
-  const [isWritingMode, setIsWritingMode] = useState(false);
 
   //forwardRef 사용 권고
   const inputRef = useRef<HTMLInputElement>(null);
@@ -76,7 +76,7 @@ export const useUpdateDiaryView = () => {
   return {
     tabState: {
       title: titleDate,
-      isWritingState: isWritingMode,
+      isWritingMode: isWritingMode,
       onSubmit: handleSubmitClick,
       onEdit: handleEditClick,
       onRestate: handleRestate,

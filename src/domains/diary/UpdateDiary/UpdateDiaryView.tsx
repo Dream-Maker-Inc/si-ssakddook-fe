@@ -16,7 +16,7 @@ export const UpdateDiaryView = () => {
         <DiaryTab
           title={tabState.title}
           writingState={{
-            isWritingState: tabState.isWritingState,
+            isWritingState: tabState.isWritingMode,
             onSubmit: tabState.onSubmit,
             onEdit: tabState.onEdit,
             onRestate: tabState.onRestate,
@@ -25,11 +25,10 @@ export const UpdateDiaryView = () => {
         <div css={sx.container}>
           <div css={sx.contentContainer}>
             <TextField
-              inputRef={diaryState.ref}
-              onFocus={function (e) {
-                var val = e.target.value;
-                e.target.value = "";
-                e.target.value = val;
+              ref={function (ref) {
+                if (ref !== null && !tabState.isWritingMode) {
+                  ref.focus();
+                }
               }}
               value={diaryState.value}
               onChange={diaryState.onChange}
@@ -39,14 +38,14 @@ export const UpdateDiaryView = () => {
               css={sx.textfield}
               InputProps={{
                 disableUnderline: true,
-                readOnly: !tabState.isWritingState,
+                readOnly: !tabState.isWritingMode,
               }}
             />
-            {tabState.isWritingState || (
+            {tabState.isWritingMode || (
               <LastUpdated date={diaryState.lastUpdatedDate} />
             )}
           </div>
-          {tabState.isWritingState || <CheerImage />}
+          {tabState.isWritingMode || <CheerImage />}
         </div>
       </div>
     </AppbarLayout>
