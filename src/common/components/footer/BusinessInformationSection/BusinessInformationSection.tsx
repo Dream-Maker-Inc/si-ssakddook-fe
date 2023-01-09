@@ -20,7 +20,10 @@ export const BusinessInformationSection = ({
     <div css={sx.root(isWhite)}>
       <div css={sx.list}>
         <LinkText href={"https://ssakduk.com/notice"} title={"공지사항"} />
-        <LinkText href={"https://ssakduk.com"} title={"회사소개"} />
+        <LinkText
+          href={"https://ssakduk.com/intro/index.html"}
+          title={"회사소개"}
+        />
         <LinkText href={"https://ssakduk.com/policy"} title={"이용약관"} />
         <LinkText
           href={"https://ssakduk.com/policy"}

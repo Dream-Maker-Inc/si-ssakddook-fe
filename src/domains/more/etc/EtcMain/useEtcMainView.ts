@@ -13,7 +13,7 @@ export const useEtcMainView = () => {
     {
       title: "회사 소개",
       iconSrc: IconCompany,
-      onClickPath: "https://ssakduk.com",
+      onClickPath: "https://ssakduk.com/intro/index.html",
     },
     {
       title: "약관 및 정책",
