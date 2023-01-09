@@ -48,4 +48,5 @@ export enum RoutePath {
   Secession = "/more/secession",
   Etc = "/more/etc",
   Setting = "/more/setting",
+  OfficialSite = "/official-site",
 }

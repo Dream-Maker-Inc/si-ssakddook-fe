@@ -1,0 +1,1 @@
+export { EtcInnerView } from "./EtcInnerView";

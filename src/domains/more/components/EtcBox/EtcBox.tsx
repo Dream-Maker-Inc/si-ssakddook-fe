@@ -4,10 +4,20 @@ import { Typography } from "@mui/material";
 import Image from "next/image";
 import { EtcBoxProps } from "../../types/MoreType.type";
 import ArrowRightIcon from "@/img/more/etc/icon-etc-arrow-right.svg";
+import { useRouter } from "next/router";
+import { RoutePath } from "@/constants/Path";
 
 export const EtcBox = ({ title, iconSrc, onClickPath }: EtcBoxProps) => {
+  const router = useRouter();
+  const handleMoveUrl = (title: string, url: string) => {
+    router.push({
+      pathname: RoutePath.OfficialSite,
+      query: { title: title, url: url },
+    });
+  };
+
   return (
-    <a css={sx.root} href={onClickPath} target="_blank" rel="noreferrer">
+    <div css={sx.root} onClick={() => handleMoveUrl(title, onClickPath)}>
       <div css={sx.container}>
         <Image width="16px" height="16px" src={iconSrc} alt="" />
         <Typography variant="body1" color={"black"}>
@@ -17,7 +27,7 @@ export const EtcBox = ({ title, iconSrc, onClickPath }: EtcBoxProps) => {
       <div css={sx.arrow}>
         <Image width="24px" height="24px" src={ArrowRightIcon} alt="" />
       </div>
-    </a>
+    </div>
   );
 };
 
