@@ -9,7 +9,7 @@ export const EtcInnerView = () => {
 
   return (
     <PlainLayout isBottomMarginNecessary={false}>
-      <DefaultTab category={title + ""} routePath={RoutePath.Etc} />
+      <DefaultTab category={title + ""} routePath={"recent"} />
       <iframe
         name="I1"
         id="if1"

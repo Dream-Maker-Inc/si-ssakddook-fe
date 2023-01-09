@@ -10,6 +10,7 @@ import { ShowThumbnailSection } from "@/common/components/thumbnail/ShowThumbnai
 import Person from "@/img/icon-view.svg";
 import LinkImage from "@/img/icon-img-link.svg";
 import { RoutePath } from "@/constants/Path";
+import { useRouter } from "next/router";
 
 export const LifeDetailView = () => {
   const { fetchState, result } = useLifeDetailView();
@@ -149,6 +150,14 @@ export type ImageSourceSectionProps = {
 };
 
 const ImageSourceSection = ({ link }: ImageSourceSectionProps) => {
+  const router = useRouter();
+  const handleMoveUrl = (title: string, url: string) => {
+    router.push({
+      pathname: RoutePath.OfficialSite,
+      query: { title: title, url: url },
+    });
+  };
+
   return (
     <div css={sx.sourceRoot}>
       <Image width="16px" height="16px" src={LinkImage} alt="" />
@@ -157,10 +166,10 @@ const ImageSourceSection = ({ link }: ImageSourceSectionProps) => {
         variant="h3"
         lineHeight={1}
         color={LightColor.Gray100}
-        href={link}
         target="_blank"
         rel="noreferrer"
         css={sx.src}
+        onClick={() => handleMoveUrl("", link)}
       >
         {link}
       </Typography>
