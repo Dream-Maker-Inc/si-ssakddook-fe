@@ -60,7 +60,7 @@ export const useCommunityDetailView = () => {
   );
 
   const { mutate: deleteLike } = useMutation(
-    () => LikeApiService.deleteLike(data?.myLiked.id!!),
+    () => LikeApiService.deleteLike(data?.data?.myLiked?.id ?? 0),
     {
       onSuccess: (res: any) => {
         refetch();
