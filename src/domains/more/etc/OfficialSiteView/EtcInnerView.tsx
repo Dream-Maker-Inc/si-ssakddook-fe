@@ -1,5 +1,6 @@
 import { PlainLayout } from "@/common/components/layout/PlainLayout";
 import { DefaultTab } from "@/common/components/tab/DefaultTab";
+import { RoutePath } from "@/constants/Path";
 import { useRouter } from "next/router";
 
 export const EtcInnerView = () => {
@@ -8,7 +9,7 @@ export const EtcInnerView = () => {
 
   return (
     <PlainLayout isBottomMarginNecessary={false}>
-      <DefaultTab category={title + ""} routePath={"recent"} />
+      <DefaultTab category={title + ""} routePath={RoutePath.Etc} />
       <iframe
         name="I1"
         id="if1"
