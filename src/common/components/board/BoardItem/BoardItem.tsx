@@ -31,8 +31,6 @@ export const BoardItem = ({
   isPost = true,
   prevPage,
 }: BoardItemProps) => {
-  console.log("@@@@@@");
-  console.log(prevPage);
   const router = useRouter();
   const handleBoxClick = () => {
     router.push({
