@@ -42,7 +42,7 @@ export const useLoginView = () => {
   // JWT 저장 후 메인 화면 이동
   const saveJwtAndGoMain = (accessToken: string) => {
     LocalStorage.setItem("jwt", accessToken);
-    router.push(RoutePath.Main);
+    router.replace(RoutePath.Main);
   };
 
   // 로그인 성공 핸들링
